@@ -1,3 +1,43 @@
 {
-  "verbs": []
+  "verbs": [
+    {
+      "infinitive": "abrir",
+      "translation": "to open",
+      "conjugations": [
+        {
+          "tense": "present",
+          "yo": "",
+          "tu": "",
+          "el": "",
+          "nosotros": "",
+          "els": ""
+        },
+        {
+          "tense": "preterite",
+          "yo": "",
+          "tu": "",
+          "el": "",
+          "nosotros": "",
+          "els": ""
+        },
+        {
+          "tense": "imperfect",
+          "yo": "",
+          "tu": "",
+          "el": "",
+          "nosotros": "",
+          "els": ""
+        },
+        {
+          "tense": "future",
+          "yo": "",
+          "tu": "",
+          "el": "",
+          "nosotros": "",
+          "els": ""
+        }
+      ],
+      "id": 1
+    }
+  ]
 }
