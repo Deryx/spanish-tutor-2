@@ -1,0 +1,28 @@
+header {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 60px;
+  display: flex;
+  flex-flow: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-between;
+  background: rgb(255, 0, 0);
+}
+
+header h1 {
+  margin: 0;
+  padding: 0;
+  margin-left: 40px;
+  color: rgb(255, 255, 255);
+  font-family: 'Passion One', sans-serif;
+  font-size: 2rem;
+  letter-spacing: 0.05rem;
+}
+
+header app-menu {
+  margin: 0;
+  padding: 0;
+  margin-right: 80px;
+}

@@ -1,0 +1,31 @@
+nav {
+  margin: 0;
+  padding: 0;
+  width: 210px;
+  text-transform: uppercase;
+  font-family: 'Source Sans Pro', sans-serif;
+  letter-spacing: 0.09rem;
+}
+
+#menu  {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  list-style-type: none;
+}
+
+#menu a {
+  text-decoration: none;
+  display: block;
+  color: rgb(255, 255, 255);
+}
+
+#subMenu {
+  width: 100%;
+  list-style-type: none;
+  margin-left: 0;
+  margin-top: 318px;
+  padding: 0;
+  background: rgb(255, 0, 0);
+  display: none;
+}

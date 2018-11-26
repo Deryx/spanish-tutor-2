@@ -1,0 +1,82 @@
+section {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  font-family: "Source Sans Pro", sans-serif;
+}
+
+section > h1 {
+  text-transform: uppercase;
+  text-align: center;
+}
+
+fieldset {
+  border: none;
+  text-align: center;
+  margin: 0 auto;
+  padding: 0;
+  width: 750px;
+}
+
+#buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+  margin-top: 2.5em;
+}
+
+select {
+  padding: 5px;
+  margin-bottom: 25px;
+}
+
+dl {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  margin-top: 0.01em;
+  margin-bottom: 0.01em;
+  font-size: 1.25em;
+}
+
+dt {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  width: 50%;
+  margin-top: 0.25em;
+  margin-right: 0.5em;
+}
+
+dd {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  width: 50%;
+  margin-left: 0.5em;
+  font-weight: bold;
+}
+
+h2 {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 3em;
+}
+
+h3 {
+  margin-top: 0;
+  font-size: 2em;
+}
+
+input[type='text'] {
+  border: none;
+  border-bottom: 1px solid rgb(0, 0, 0);
+  width: 20em;
+}
+
+input[type='button'] {
+  margin-right: 1em;
+  margin-left: 1em;
+  padding: 10px;
+}

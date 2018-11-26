@@ -1,0 +1,36 @@
+<app-overlay></app-overlay>
+<app-conjugator-overlay-form></app-conjugator-overlay-form>
+<section>
+  <h1>verb conjugator</h1>
+  <form>
+    <fieldset>
+      <h2>{{infinitive}}</h2>
+      <h3>{{translation}}</h3>
+      <dl>
+        <dt>Yo</dt>
+        <dd><input type="text" id="yo" name="yo" /></dd>
+      </dl>
+      <dl>
+        <dt>Tu</dt>
+        <dd><input type="text" id="tu" name="tu" /></dd>
+      </dl>
+      <dl>
+        <dt>El/Ella/Usted</dt>
+        <dd><input type="text" id="el" name="el" /></dd>
+      </dl>
+      <dl>
+        <dt>Nosotros/Nosotras</dt>
+        <dd><input type="text" id="nosotros" name="nosotros" /></dd>
+      </dl>
+      <dl>
+        <dt>Ellos/Ellas/Ustedes</dt>
+        <dd><input type="text" id="ellos" name="els" /></dd>
+      </dl>
+      <app-spanish-accent-marks></app-spanish-accent-marks>
+    </fieldset>
+    <div id="buttons">
+      <input type="button" id="answerBtn" name="answerBtn" value="answer" />
+      <input type="button" id="resetBtn" name="resetBtn" value="reset" />
+    </div>
+  </form>
+</section>

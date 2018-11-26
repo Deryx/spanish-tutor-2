@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
 
 
 import { AppComponent } from './app.component';
@@ -21,6 +22,11 @@ import { VerbInputComponent } from './verb-input/verb-input.component';
 
 import { VocabularyService } from './vocabulary.service';
 import { VerbService } from './verb.service';
+import { RandomNumberGeneratorService } from './random-number-generator.service';
+import { SpanishAccentMarksComponent } from './spanish-accent-marks/spanish-accent-marks.component';
+import { OverlayComponent } from './overlay/overlay.component';
+import { ConjugatorOverlayFormComponent } from './conjugator-overlay-form/conjugator-overlay-form.component';
+import { VocabularyOverlayFormComponent } from './vocabulary-overlay-form/vocabulary-overlay-form.component';
 
 
 @NgModule({
@@ -38,14 +44,19 @@ import { VerbService } from './verb.service';
     VocabularyFlashcardComponent,
     VerbFlashcardComponent,
     VocabularyInputComponent,
-    VerbInputComponent
+    VerbInputComponent,
+    SpanishAccentMarksComponent,
+    OverlayComponent,
+    ConjugatorOverlayFormComponent,
+    VocabularyOverlayFormComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    RouterModule
   ],
-  providers: [VocabularyService, VerbService],
+  providers: [VocabularyService, VerbService, RandomNumberGeneratorService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,0 +1,92 @@
+section {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  font-family: "Source Sans Pro", sans-serif;
+}
+
+section > h1 {
+  text-transform: uppercase;
+  text-align: center;
+}
+
+section > div {
+  margin: 0 auto;
+  padding: 0;
+  width: 750px;
+}
+
+fieldset {
+  border: none;
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+div.buttons {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  text-align: center;
+}
+
+select {
+  padding: 5px;
+  margin-bottom: 25px;
+}
+
+.card {
+  margin: 0 auto;
+  padding: 0 20px;
+  width: 432px;
+  height: 288px;
+  background: rgb(240, 240, 240);
+}
+
+dl {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  margin-top: 0.01em;
+  margin-bottom: 0.01em;
+  font-size: 1.25em;
+}
+
+dt {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  width: 50%;
+  margin-right: 0.5em;
+}
+
+dd {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  width: 50%;
+  margin-left: 0.5em;
+  font-weight: bold;
+}
+
+.face {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 100%;
+}
+
+h2 {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 3em;
+}
+
+h3 {
+  margin-top: 0;
+  font-size: 2em;
+}
+
+.back {
+  display: none;
+}
