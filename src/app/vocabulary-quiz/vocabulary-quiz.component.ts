@@ -33,7 +33,7 @@ export class VocabularyQuizComponent {
       this.showForm = true;
 
       if(data.category) {
-        this.words.getDictionary()
+        this.words.getCategory(data.category)
         .subscribe(
           data => {
             this.dictionary = data;
@@ -45,7 +45,7 @@ export class VocabularyQuizComponent {
           }
         );
       } else {
-        this.words.getCategory(data.category)
+        this.words.getDictionary()
         .subscribe(
           data => {
             this.dictionary = data;
