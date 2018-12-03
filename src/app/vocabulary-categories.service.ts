@@ -1,0 +1,19 @@
+import { VocabularyService } from './vocabulary.service';
+import { Injectable } from '@angular/core';
+import 'rxjs/add/operator/map';
+
+@Injectable()
+export class VocabularyCategoriesService {
+  categories: string[] = [];
+
+  constructor( private words: VocabularyService ) {}
+
+  getCategories( dictionary: any[] ): string[] {  
+    for(let i = 0; i < dictionary.length; i++) {
+      let category = dictionary[i].category;
+      if(this.categories.indexOf( category ) === -1) this.categories.push( category );
+    };
+
+    return this.categories;
+  }
+}

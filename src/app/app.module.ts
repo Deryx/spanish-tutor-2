@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 
 
 import { AppComponent } from './app.component';
@@ -23,11 +23,21 @@ import { VerbInputComponent } from './verb-input/verb-input.component';
 import { VocabularyService } from './vocabulary.service';
 import { VerbService } from './verb.service';
 import { RandomNumberGeneratorService } from './random-number-generator.service';
+import { VocabularyCategoriesService } from './vocabulary-categories.service';
 import { SpanishAccentMarksComponent } from './spanish-accent-marks/spanish-accent-marks.component';
 import { OverlayComponent } from './overlay/overlay.component';
 import { ConjugatorOverlayFormComponent } from './conjugator-overlay-form/conjugator-overlay-form.component';
 import { VocabularyOverlayFormComponent } from './vocabulary-overlay-form/vocabulary-overlay-form.component';
 
+const appRoutes: Routes = [
+  { path: 'verb-input', component: VerbInputComponent },
+  { path: 'vocabulary-input', component: VocabularyInputComponent },
+  { path: 'verb-flashcard', component: VerbFlashcardComponent },
+  { path: 'vocabulary-flashcard', component: VocabularyFlashcardComponent },
+  { path: 'verb-conjugator', component: VerbConjugatorComponent },
+  { path: 'vocabulary-quiz', component: VocabularyQuizComponent },
+  { path: 'verb-input', component: VerbInputComponent }
+];
 
 @NgModule({
   declarations: [
@@ -56,7 +66,7 @@ import { VocabularyOverlayFormComponent } from './vocabulary-overlay-form/vocabu
     FormsModule,
     RouterModule
   ],
-  providers: [VocabularyService, VerbService, RandomNumberGeneratorService],
+  providers: [VocabularyService, VerbService, RandomNumberGeneratorService, VocabularyCategoriesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

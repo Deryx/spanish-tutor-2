@@ -10,7 +10,7 @@
     <dl *ngIf="( category === 'other' )">
       <dt>new category:</dt>
       <dd>
-        <input type="text" id="newCategory" name="newCategory">
+        <input type="text" id="newCategory" name="newCategory" [(ngModel)]="newCategory" />
       </dd>
     </dl>
     <dl>

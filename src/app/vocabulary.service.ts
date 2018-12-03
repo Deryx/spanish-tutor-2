@@ -7,8 +7,7 @@ const baseUrl = 'http://localhost:4000/api';
 
 @Injectable()
 export class VocabularyService {
-  constructor( private http: HttpClient ){
-  }
+  constructor( private http: HttpClient ){}
 
   getDictionary(){
     const uri = baseUrl + '/words';
@@ -18,7 +17,6 @@ export class VocabularyService {
         return res;
       });
   }
-
 
   getCategory( category: string ){
     const uri = baseUrl + '/words/' + category;

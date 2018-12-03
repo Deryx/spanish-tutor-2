@@ -22,11 +22,9 @@ export class VocabularyQuizComponent {
   currentQuestion = 0;
   numberCorrect = 0;
 
-  constructor( private words: VocabularyService, private randomNumberService: RandomNumberGeneratorService ) {
-  }
+  constructor( private words: VocabularyService, private randomNumberService: RandomNumberGeneratorService ) {}
 
   getOverlayData(data) {
-    console.log(data);
     if(!data.isVisible) {
       this.showOverlay = data.isVisible;
       this.showVocabularyOverlay = data.isVisible;
@@ -37,6 +35,7 @@ export class VocabularyQuizComponent {
         .subscribe(
           data => {
             this.dictionary = data;
+            console.log(this.dictionary);
           },
           error => console.log('Error: ', error),
           () => {
