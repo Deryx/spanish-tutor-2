@@ -1,11 +1,12 @@
-<app-overlay></app-overlay>
-<app-conjugator-overlay-form></app-conjugator-overlay-form>
+<app-overlay *ngIf='showOverlay'></app-overlay>
+<app-conjugator-overlay-form (formChange)='getOverlayData($event)' *ngIf='showConjugatorOverlay'></app-conjugator-overlay-form>
 <section>
   <h1>verb conjugator</h1>
-  <form>
+  <form *ngIf='showForm'>
     <fieldset>
       <h2>{{infinitive}}</h2>
       <h3>{{translation}}</h3>
+      <h4>{{tense}}</h4>
       <dl>
         <dt>Yo</dt>
         <dd><input type="text" id="yo" name="yo" /></dd>

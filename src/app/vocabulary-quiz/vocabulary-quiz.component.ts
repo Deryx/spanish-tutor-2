@@ -12,6 +12,7 @@ export class VocabularyQuizComponent {
   showOverlay: boolean = true;
   showVocabularyOverlay: boolean = true;
   showForm: boolean = false;
+
   dictionary: any;
   word: string = '';
   answer: string;
@@ -35,7 +36,6 @@ export class VocabularyQuizComponent {
         .subscribe(
           data => {
             this.dictionary = data;
-            console.log(this.dictionary);
           },
           error => console.log('Error: ', error),
           () => {

@@ -24,14 +24,14 @@ export class MenuComponent implements OnInit {
   }
 
   ngOnInit() {
-    let subMenu = document.getElementById( 'subMenu' );
-    for(let i = 0; i < this.siteLinks.length; i++) {
-      let li = document.createElement('li');
-      let liText = this.createLink( this.siteLinks[i].link, this.siteLinks[i].ref );
+    // let subMenu = document.getElementById( 'subMenu' );
+    // for(let i = 0; i < this.siteLinks.length; i++) {
+    //   let li = document.createElement('li');
+    //   let liText = this.createLink( this.siteLinks[i].link, this.siteLinks[i].ref );
 
-      li.appendChild( liText );
-      subMenu.appendChild( li );
-    }
+    //   li.appendChild( liText );
+    //   subMenu.appendChild( li );
+    // }
   }
 
   createLink = function( text: string, href: string ) {

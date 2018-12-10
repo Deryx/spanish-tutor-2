@@ -31,11 +31,14 @@ import { VocabularyOverlayFormComponent } from './vocabulary-overlay-form/vocabu
 
 const appRoutes: Routes = [
   { path: 'verb-input', component: VerbInputComponent },
-  { path: 'vocabulary-input', component: VocabularyInputComponent },
-  { path: 'verb-flashcard', component: VerbFlashcardComponent },
+  { path: 'vocabulary-completion', component: VocabularyCompletionComponent },
   { path: 'vocabulary-flashcard', component: VocabularyFlashcardComponent },
-  { path: 'verb-conjugator', component: VerbConjugatorComponent },
+  { path: 'vocabulary-input', component: VocabularyInputComponent },
   { path: 'vocabulary-quiz', component: VocabularyQuizComponent },
+  { path: 'vocabulary-scramble', component: VocabularyScrambleComponent },
+  { path: 'vocabulary-slider', component: VocabularySliderComponent },
+  { path: 'verb-flashcard', component: VerbFlashcardComponent },
+  { path: 'verb-conjugator', component: VerbConjugatorComponent },
   { path: 'verb-input', component: VerbInputComponent }
 ];
 
@@ -64,7 +67,10 @@ const appRoutes: Routes = [
     BrowserModule,
     HttpClientModule,
     FormsModule,
-    RouterModule
+    RouterModule.forRoot(
+      appRoutes,
+      { enableTracing: true }
+    )
   ],
   providers: [VocabularyService, VerbService, RandomNumberGeneratorService, VocabularyCategoriesService],
   bootstrap: [AppComponent]
