@@ -12,8 +12,16 @@ export class VerbConjugatorComponent {
   showConjugatorOverlay: boolean = true;
   showForm: boolean = false;
 
+  tenses = {
+    'present': 0,
+    'preterite': 1,
+    'imperfect': 2,
+    'future': 3
+  };
+
   infinitives: any;
   verb: string;
+  numberQuestions: number;
   tense: string;
   translation: string;
   questionSet: number[] = [];
@@ -32,6 +40,8 @@ export class VerbConjugatorComponent {
   nosotros: string = '';
   ellos: string = '';
 
+  numberCorrect: number = 0;
+
   constructor( private verbs: VerbService, private randomNumberService: RandomNumberGeneratorService ) { }
 
   getOverlayData(data) {
@@ -40,6 +50,7 @@ export class VerbConjugatorComponent {
       this.showConjugatorOverlay = data.isVisible;
       this.showForm = true;
       this.tense = data.tense;
+      this.numberQuestions = data.numberVerbs;
 
       this.verbs.getVerbs()
         .subscribe(
@@ -47,28 +58,49 @@ export class VerbConjugatorComponent {
             this.infinitives = data;
             console.log(this.infinitives);
 
-            this.randomNumberService.generateRandomNumberArray(data.numberVerbs, this.infinitives.length, this.questionSet );
+            this.randomNumberService.generateRandomNumberArray(this.numberQuestions, this.infinitives.length, this.questionSet );
             this.getCurrentVerb( this.currentVerb, this.tense );
           });
     }
   }
 
   getCurrentVerb( verb: number, tense: string) {
-    let currentVerb = this.questionSet[verb];
     this.infinitive = this.infinitives[verb].infinitive;
     this.translation = '[ ' + this.infinitives[verb].translation + ' ]';
-    let tenses = {
-      'present': 0,
-      'preterite': 1,
-      'imperfect': 2,
-      'future': 3
-    }
-    let conjugation = tenses[tense];
+    this.getConjugation( verb, tense );
+  }
+
+  getConjugation( verb: number, tense: string) {
+    let conjugation = this.tenses[tense];
     let currentConjugation = this.infinitives[verb].conjugations[conjugation];
     this.currentAnswers.yo = currentConjugation.yo;
     this.currentAnswers.tu = currentConjugation.tu;
     this.currentAnswers.el = currentConjugation.el;
     this.currentAnswers.nosotros = currentConjugation.nosotros;
     this.currentAnswers.ellos = currentConjugation.els;
+  }
+
+  getNextVerb() {
+    let numberVerbs = this.questionSet.length;
+    if( this.currentVerb < numberVerbs ) {
+      this.currentVerb++;
+      this.getCurrentVerb( this.currentVerb, this.tense );
+    } else {
+      this.writeSummary();
+    }
+  }
+
+  writeSummary() {
+
+  }
+
+  getAnswers() {
+    this.resetCurrentAnswers();
+
+    this.getNextVerb();
+  }
+
+  resetCurrentAnswers() {
+    this.currentAnswers.forEach( (member) => member = '');
   }
 }
