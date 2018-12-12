@@ -52,12 +52,11 @@ export class VerbConjugatorComponent {
         .subscribe(
           data => {
             this.infinitives = data;
-            console.log(this.infinitives);
 
             this.randomNumberService.generateRandomNumberArray(this.numberQuestions, this.infinitives.length, this.questionSet );
             this.getCurrentVerb( this.currentVerb, this.tense );
             this.cloneConjugation( this.getConjugation( this.currentVerb, this.tense ) );
-            console.log( this.currentAnswers );
+            delete this.currentAnswers._id;
           });
     }
   }
@@ -72,6 +71,7 @@ export class VerbConjugatorComponent {
     let conjugation: any = this.tenses[tense];
     let conjugates: any = this.infinitives[verb].conjugations[conjugation];
     delete conjugates.tense;
+    delete conjugates._id;
     return conjugates;
   }
 
