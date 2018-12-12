@@ -26,7 +26,8 @@ export class VerbConjugatorComponent {
   translation: string;
   questionSet: number[] = [];
   currentVerb = 0;
-  currentAnswers: any = {
+  currentAnswers: any = {};
+  inputAnswers: any = {
     yo: '',
     tu: '',
     el: '',
@@ -34,11 +35,6 @@ export class VerbConjugatorComponent {
     ellos: ''
   };
   infinitive = '';
-  yo: string = '';
-  tu: string = '';
-  el: string = '';
-  nosotros: string = '';
-  ellos: string = '';
 
   numberCorrect: number = 0;
 
@@ -60,6 +56,8 @@ export class VerbConjugatorComponent {
 
             this.randomNumberService.generateRandomNumberArray(this.numberQuestions, this.infinitives.length, this.questionSet );
             this.getCurrentVerb( this.currentVerb, this.tense );
+            this.cloneConjugation( this.getConjugation( this.currentVerb, this.tense ) );
+            console.log( this.currentAnswers );
           });
     }
   }
@@ -70,18 +68,19 @@ export class VerbConjugatorComponent {
     this.getConjugation( verb, tense );
   }
 
-  getConjugation( verb: number, tense: string) {
-    let conjugation = this.tenses[tense];
-    let currentConjugation = this.infinitives[verb].conjugations[conjugation];
-    this.currentAnswers.yo = currentConjugation.yo;
-    this.currentAnswers.tu = currentConjugation.tu;
-    this.currentAnswers.el = currentConjugation.el;
-    this.currentAnswers.nosotros = currentConjugation.nosotros;
-    this.currentAnswers.ellos = currentConjugation.els;
+  getConjugation( verb: number, tense: string): any {
+    let conjugation: any = this.tenses[tense];
+    let conjugates: any = this.infinitives[verb].conjugations[conjugation];
+    delete conjugates.tense;
+    return conjugates;
+  }
+
+  cloneConjugation(conjugation: any) {
+    return Object.assign( this.currentAnswers, conjugation );
   }
 
   getNextVerb() {
-    let numberVerbs = this.questionSet.length;
+    let numberVerbs: number = this.questionSet.length;
     if( this.currentVerb < numberVerbs ) {
       this.currentVerb++;
       this.getCurrentVerb( this.currentVerb, this.tense );
@@ -95,12 +94,19 @@ export class VerbConjugatorComponent {
   }
 
   getAnswers() {
+    const answers: any = Object.keys( this.currentAnswers );
+    for( const answer of answers ) {
+        if( this.currentAnswers[answer] === this.inputAnswers[answer] ) this.numberCorrect++;
+    }
     this.resetCurrentAnswers();
 
     this.getNextVerb();
   }
 
   resetCurrentAnswers() {
-    this.currentAnswers.forEach( (member) => member = '');
+    const answers = Object.keys( this.currentAnswers );
+    for(const answer of answers) {
+      this.currentAnswers[answer] = '';
+    }
   }
 }
