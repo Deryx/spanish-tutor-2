@@ -52,7 +52,9 @@ export class VerbConjugatorComponent {
         .subscribe(
           data => {
             this.infinitives = data;
-
+          },
+          error => console.log('Error: ', error),
+          () => {
             this.randomNumberService.generateRandomNumberArray(this.numberQuestions, this.infinitives.length, this.questionSet );
             this.getCurrentVerb( this.currentVerb, this.tense );
             this.cloneConjugation( this.getConjugation( this.currentVerb, this.tense ) );

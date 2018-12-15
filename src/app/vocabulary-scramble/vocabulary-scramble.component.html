@@ -1,5 +1,5 @@
-<!--<app-overlay></app-overlay>-->
-<!--<app-vocabulary-overlay-form></app-vocabulary-overlay-form>-->
+<app-overlay *ngIf='showOverlay'></app-overlay>
+<app-vocabulary-overlay-form (formChange)='getOverlayData($event)' *ngIf='showVocabularyOverlay'></app-vocabulary-overlay-form>
 <section>
-
+    <h1>vocabulary scramble</h1>
 </section>
