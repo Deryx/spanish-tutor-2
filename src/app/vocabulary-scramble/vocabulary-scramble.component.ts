@@ -14,7 +14,10 @@ export class VocabularyScrambleComponent {
 
   dictionary: any;
   word: string = '';
+  translation: string = '';
+  image: string = '';
   answer: string;
+  scrambledWord: string[] = [];
   scrambleAnswer: string;
   answers: string[] = [];
   questionSet: number[] = [];
@@ -23,7 +26,6 @@ export class VocabularyScrambleComponent {
   numberCorrect = 0;
 
   constructor( private words: VocabularyService, private randomNumberService: RandomNumberGeneratorService ) {}
-
 
   getOverlayData(data) {
     if(!data.isVisible) {
@@ -60,18 +62,52 @@ export class VocabularyScrambleComponent {
   }
 
   getCurrentWord( word: number ) {
-    let wordArray: string[] = [];
-    let scrambledArray: number[] = [];
     let currentWord = this.questionSet[word];
+
+    this.translation = this.dictionary[currentWord].translation;
+    this.image = this.dictionary[currentWord].image;
     this.answer = this.dictionary[currentWord].word;
-    wordArray = this.answer.split('');
-    this.randomNumberService.generateRandomNumberArray(wordArray.length, wordArray.length, scrambledArray);
-    let scrambledWord: string[] = [];
-    for(let i = 0; i < wordArray.length; i++) {
-      scrambledWord.push(wordArray[scrambledArray[i]]);
-    }
-    console.log(wordArray, scrambledWord);
+    this.createScramble( this.answer );
   }
 
+  createScramble( word: string ) {
+    let wordArray: string[] = [];
+    let scrambledArray: number[] = [];
 
+    wordArray = word.split('');
+    this.randomNumberService.generateRandomNumberArray(wordArray.length, wordArray.length, scrambledArray);
+    for(let i = 0; i < wordArray.length; i++) {
+      this.scrambledWord.push(wordArray[scrambledArray[i]]);
+    }
+  }
+
+  getNextQuestion() {
+    let numberQuestions = this.questionSet.length;
+    if( this.currentWord < numberQuestions ) {
+      this.currentWord++;
+      this.getCurrentWord( this.currentWord );
+    } else {
+      this.writeSummary();
+    }
+  }
+
+  getAnswer() {
+    this.scrambledWord = [];
+    this.getNextQuestion();
+  }
+
+  writeSummary() {
+
+  }
+
+  reset() {
+    this.answer = '';
+    this.currentWord = 0;
+    this.numberCorrect = 0;
+    this.getNextQuestion();
+  }
+
+  quit() {
+
+  }
 }

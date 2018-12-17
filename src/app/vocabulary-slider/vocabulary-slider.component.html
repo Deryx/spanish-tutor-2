@@ -1,5 +1,26 @@
-<app-overlay></app-overlay>
-<app-vocabulary-overlay-form></app-vocabulary-overlay-form>
+<app-overlay *ngIf='showOverlay'></app-overlay>
+<app-vocabulary-overlay-form (formChange)='getOverlayData($event)' *ngIf='showVocabularyOverlay'></app-vocabulary-overlay-form>
 <section>
     <h1>vocabulary slider</h1>
+    <form *ngIf='showForm'>
+        <fieldset>
+            <ul>
+                <!-- <li *ngFor="let translationSlide of this.translationSlides">
+                    {{translationSlide.translation}}
+                    <div><image src={{translationSlide.image}} /></div>
+                </li> -->
+            </ul>
+
+            <ul>
+                <!-- <li *ngFor="let word of this.wordSlides">
+                    {{word}}
+                </li> -->
+            </ul>
+        </fieldset>
+        <div id="buttons">
+            <input type="button" id="answerBtn" value="answer" (click)="getAnswer()" />
+            <input type="button" id="resetBtn" value="reset" (click)="reset()" />
+            <input type="button" id="quitBtn" value="quit" (click)="quit()" />
+        </div>
+    </form>
 </section>
