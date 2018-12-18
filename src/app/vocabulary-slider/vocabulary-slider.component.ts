@@ -18,12 +18,14 @@ export class VocabularySliderComponent {
   image: string = '';
   word: string = '';
 
+  slideSets: any = {};
   translationSlides: any = [];
   wordSlides: any = [];
 
   constructor( private words: VocabularyService, private randomNumberService: RandomNumberGeneratorService ) {}
 
   getOverlayData(data) {
+    const numberCards = 5;
     if(!data.isVisible) {
       this.showOverlay = data.isVisible;
       this.showVocabularyOverlay = data.isVisible;
@@ -37,7 +39,7 @@ export class VocabularySliderComponent {
           },
           error => console.log('Error: ', error),
           () => {
-            this.randomNumberService.generateRandomNumberArray(data.numberQuestions, this.dictionary.length, [] );
+            this.setSlideSets(data.numberQuestions, numberCards, this.dictionary.length );
           }
         );
       } else {
@@ -48,26 +50,36 @@ export class VocabularySliderComponent {
           },
           error => console.log('Error: ', error),
           () => {
-            this.randomNumberService.generateRandomNumberArray(data.numberQuestions, this.dictionary.length, [] );
+            this.setSlideSets( data.numberQuestions, numberCards, this.dictionary.length );
           }
         );
       }
     }
   }
 
-  getTranslationSlides() {
+  setSlideSets( numberSets: number, arrayLength: number, maxNumber: number ) {
+    let slideSet: any = [];
+    for( let i = 0; i < numberSets; i++) {
+      this.randomNumberService.generateRandomNumberArray( arrayLength, maxNumber, slideSet );
+      this.slideSets[i] = slideSet;
+      slideSet = [];
+    }
+  }
+
+  getTranslationCards() {
 
   }
 
-  getAnswerSlides() {
+  getWordSliders() {
 
   }
 
-  getNextSlides() {
+  getNextSet() {
 
   }
 
   reset() {
+    
   }
 
   quit() {
