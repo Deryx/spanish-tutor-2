@@ -13,13 +13,14 @@ export class VocabularySliderComponent {
   showForm: boolean = false;
 
   dictionary: any;
+  setNumber: number = 0;
 
   translation: string = '';
   image: string = '';
   word: string = '';
 
-  slideSets: any = {};
-  translationSlides: any = [];
+  slideSet: number[] = [];
+  translationCards: any[] = [];
   wordSlides: any = [];
 
   constructor( private words: VocabularyService, private randomNumberService: RandomNumberGeneratorService ) {}
@@ -39,7 +40,9 @@ export class VocabularySliderComponent {
           },
           error => console.log('Error: ', error),
           () => {
-            this.setSlideSets(data.numberQuestions, numberCards, this.dictionary.length );
+            this.randomNumberService.generateRandomNumberArray( numberCards, this.dictionary.length, this.slideSet );
+            console.log(this.slideSet);
+            this.translationCards = this.getTranslationCards( this.slideSet, this.dictionary );
           }
         );
       } else {
@@ -50,24 +53,32 @@ export class VocabularySliderComponent {
           },
           error => console.log('Error: ', error),
           () => {
-            this.setSlideSets( data.numberQuestions, numberCards, this.dictionary.length );
+            
           }
         );
       }
     }
   }
 
-  setSlideSets( numberSets: number, arrayLength: number, maxNumber: number ) {
-    let slideSet: any = [];
-    for( let i = 0; i < numberSets; i++) {
-      this.randomNumberService.generateRandomNumberArray( arrayLength, maxNumber, slideSet );
-      this.slideSets[i] = slideSet;
-      slideSet = [];
-    }
-  }
+  getTranslationCards( cardSet: number[], vocabulary: any ): any[] {
+    let card: any = {};
+    let cards: any = [];
 
-  getTranslationCards() {
+    for( let i = 0; i < cardSet.length; i++) {
+      let vocabularyId = cardSet[i];
+      card.translation = vocabulary[vocabularyId].translation;
+      card.image = vocabulary[vocabularyId].image;
 
+      (function(index) {
+        cards[index] = card;
+      })(i);
+
+      card = {};
+    };
+
+    console.log(cards);
+
+    return cards;
   }
 
   getWordSliders() {
@@ -79,7 +90,7 @@ export class VocabularySliderComponent {
   }
 
   reset() {
-    
+
   }
 
   quit() {

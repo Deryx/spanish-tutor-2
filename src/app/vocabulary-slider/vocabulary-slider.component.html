@@ -5,10 +5,10 @@
     <form *ngIf='showForm'>
         <fieldset>
             <ul>
-                <!-- <li *ngFor="let translationSlide of this.translationSlides">
-                    {{translationSlide.translation}}
-                    <div><image src={{translationSlide.image}} /></div>
-                </li> -->
+                <li *ngFor="let translationCard of this.translationCards">
+                    {{translationCard.translation}}
+                    <div><img src={{translationCard.image}} /></div>
+                </li>
             </ul>
 
             <ul>
