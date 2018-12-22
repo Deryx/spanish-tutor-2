@@ -5,16 +5,16 @@
     <form *ngIf='showForm'>
         <fieldset>
             <ul>
-                <li *ngFor="let translationCard of this.translationCards">
-                    {{translationCard.translation}}
+                <li ngClass="card" *ngFor="let translationCard of this.translationCards">
+                    <h3>{{translationCard.translation}}</h3>
                     <div><img src={{translationCard.image}} /></div>
                 </li>
             </ul>
 
             <ul>
-                <!-- <li *ngFor="let word of this.wordSlides">
+                <li ngClass="slide" *ngFor="let word of this.wordSlides">
                     {{word}}
-                </li> -->
+                </li>
             </ul>
         </fieldset>
         <div id="buttons">

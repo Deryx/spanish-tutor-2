@@ -13,12 +13,13 @@ export class VocabularySliderComponent {
   showForm: boolean = false;
 
   dictionary: any;
-  setNumber: number = 0;
+  currentQuestion: number = 0;
 
   translation: string = '';
   image: string = '';
   word: string = '';
 
+  questionSet: any = {};
   slideSet: number[] = [];
   translationCards: any[] = [];
   wordSlides: any = [];
@@ -40,9 +41,8 @@ export class VocabularySliderComponent {
           },
           error => console.log('Error: ', error),
           () => {
-            this.randomNumberService.generateRandomNumberArray( numberCards, this.dictionary.length, this.slideSet );
-            console.log(this.slideSet);
-            this.translationCards = this.getTranslationCards( this.slideSet, this.dictionary );
+            this.getQuestionSet( data.numberQuestions, numberCards, this.dictionary.length );
+            this.displaySlideSet( this.currentQuestion );
           }
         );
       } else {
@@ -58,6 +58,19 @@ export class VocabularySliderComponent {
         );
       }
     }
+  }
+
+  getQuestionSet( numQuestions: number, setSize: number, maxNumber: number ) {
+    for( let i = 0; i < numQuestions; i++ ) {
+      let slideSet: number[] = [];
+      this.randomNumberService.generateRandomNumberArray( setSize, maxNumber, slideSet );
+      this.questionSet[i] = slideSet;
+    }
+  }
+
+  displaySlideSet( numberQuestion: number ) {
+    this.translationCards = this.getTranslationCards( this.questionSet[numberQuestion], this.dictionary);
+    this.wordSlides = this.getWordSliders( this.questionSet[numberQuestion], this.dictionary);
   }
 
   getTranslationCards( cardSet: number[], vocabulary: any ): any[] {
@@ -76,16 +89,46 @@ export class VocabularySliderComponent {
       card = {};
     };
 
-    console.log(cards);
-
     return cards;
   }
 
-  getWordSliders() {
+  getWordSliders( cardSet: number[], vocabulary: any ): any {
+    let sliders: any = [];
+    let words: any = [];
+    let wordSliders: any = [];
 
+    this.randomNumberService.generateRandomNumberArray( cardSet.length, cardSet.length, sliders );
+    for( let i = 0; i < sliders.length; i++) {
+      let sliderIndex = sliders[i];
+      words[i] = cardSet[sliderIndex];
+    }
+
+    for( let i = 0; i < words.length; i++) {
+      let vocabularyId = words[i];
+
+      (function(index) {
+        wordSliders[index] = vocabulary[vocabularyId].word;
+      })(i);
+    }
+
+    return wordSliders;
   }
 
   getNextSet() {
+    let numberQuestions = Object.keys(this.questionSet).length;
+    if( this.currentQuestion < numberQuestions ) {
+      this.currentQuestion++;
+      this.displaySlideSet( this.currentQuestion );
+    } else {
+      this.writeSummary();
+    }
+  }
+
+  getAnswer() {
+    this.getNextSet();
+  }
+
+  writeSummary() {
 
   }
 
