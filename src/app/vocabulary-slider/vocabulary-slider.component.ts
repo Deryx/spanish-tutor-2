@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { VocabularyService } from '../vocabulary.service';
 import { RandomNumberGeneratorService } from '../random-number-generator.service';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-vocabulary-slider',
@@ -33,9 +34,9 @@ export class VocabularySliderComponent {
       this.showVocabularyOverlay = data.isVisible;
       this.showForm = true;
 
-      if(data.category) {
-        this.words.getCategory(data.category)
-        .subscribe(
+      const dataCommand: any = data.category ? this.words.getCategory( data.category ) : this.words.getDictionary();
+      dataCommand
+      .subscribe(
           data => {
             this.dictionary = data;
           },
@@ -45,19 +46,7 @@ export class VocabularySliderComponent {
             this.displaySlideSet( this.currentQuestion );
           }
         );
-      } else {
-        this.words.getDictionary()
-        .subscribe(
-          data => {
-            this.dictionary = data;
-          },
-          error => console.log('Error: ', error),
-          () => {
-            
-          }
-        );
       }
-    }
   }
 
   getQuestionSet( numQuestions: number, setSize: number, maxNumber: number ) {
@@ -74,10 +63,10 @@ export class VocabularySliderComponent {
   }
 
   getTranslationCards( cardSet: number[], vocabulary: any ): any[] {
-    let card: any = {};
     let cards: any = [];
 
     for( let i = 0; i < cardSet.length; i++) {
+      let card: any = {};
       let vocabularyId = cardSet[i];
       card.translation = vocabulary[vocabularyId].translation;
       card.image = vocabulary[vocabularyId].image;
@@ -85,8 +74,6 @@ export class VocabularySliderComponent {
       (function(index) {
         cards[index] = card;
       })(i);
-
-      card = {};
     };
 
     return cards;

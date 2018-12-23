@@ -33,8 +33,8 @@ export class VocabularyScrambleComponent {
       this.showVocabularyOverlay = data.isVisible;
       this.showForm = true;
 
-      if(data.category) {
-        this.words.getCategory(data.category)
+      const dataCommand: any = data.category ? this.words.getCategory( data.category ) : this.words.getDictionary();
+      dataCommand
         .subscribe(
           data => {
             this.dictionary = data;
@@ -45,19 +45,6 @@ export class VocabularyScrambleComponent {
             this.getCurrentWord( this.currentWord );
           }
         );
-      } else {
-        this.words.getDictionary()
-        .subscribe(
-          data => {
-            this.dictionary = data;
-          },
-          error => console.log('Error: ', error),
-          () => {
-            this.randomNumberService.generateRandomNumberArray(data.numberQuestions, this.dictionary.length, this.questionSet );
-            this.getCurrentWord( this.currentWord );
-          }
-        );
-      }
     }
   }
 
