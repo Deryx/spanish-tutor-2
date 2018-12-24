@@ -14,7 +14,7 @@ section h1 {
   
 form {
     margin-top: 5rem;
-    width: 75rem;
+    width: 50rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -46,7 +46,7 @@ fieldset div {
 ul {
     margin: 0;
     padding: 0;
-    width: 75rem;
+    width: 50rem;
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;

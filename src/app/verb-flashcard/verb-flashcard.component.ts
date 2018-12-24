@@ -9,6 +9,8 @@ import { VerbService } from '../verb.service';
   styleUrls: ['./verb-flashcard.component.css']
 })
 export class VerbFlashcardComponent implements OnInit {
+  showFront: boolean = true;
+  showBack: boolean = false;
   infinitives: any;
   verb: any;
   infinitive: string = 'infinitive';
@@ -61,7 +63,7 @@ export class VerbFlashcardComponent implements OnInit {
 
             let option = document.createElement('option');
             option.value = i.toString();
-            option.innerHTML = tense.toUpperCase();
+            option.innerHTML = tense;
 
             tenseSelect.appendChild(option);
           }
@@ -76,6 +78,8 @@ export class VerbFlashcardComponent implements OnInit {
           this.translation = this.verb.translation;
           this.tense = '';
           this.conjugation = '';
+          this.showFront = true;
+          this.showBack = false;
         }
       )
   }
@@ -88,5 +92,12 @@ export class VerbFlashcardComponent implements OnInit {
           this.conjugation = this.verb.conjugations[parseInt(this.tense)];
         }
       )
+  }
+
+  flipCard() {
+    if(this.infinitive && this.tense) {
+      this.showFront = !this.showFront;
+      this.showBack = !this.showBack;
+    }
   }
 }

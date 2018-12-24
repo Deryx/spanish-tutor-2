@@ -39,6 +39,7 @@ select {
 
 .card {
   margin: 0 auto;
+  margin-top: 40px;
   padding: 0;
   width: 432px;
   height: 288px;
@@ -66,11 +67,8 @@ h3 {
   font-style: italic;
 }
 
-.back {
-  display: none;
-}
-
 img {
   margin-top: 20px;
   width: 50%;
+  height: 50%;
 }

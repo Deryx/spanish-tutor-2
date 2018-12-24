@@ -1,13 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { VocabularyCategories } from '../vocabulary-categories';
 import { VocabularyService } from '../vocabulary.service';
+import { VocabularyCategoriesService } from '../vocabulary-categories.service';
 
 @Component({
   selector: 'app-vocabulary-flashcard',
   templateUrl: './vocabulary-flashcard.component.html',
-  styleUrls: ['./vocabulary-flashcard.component.css']
+  styleUrls: ['./vocabulary-flashcard.component.css'],
+  providers: [VocabularyCategoriesService]
 })
+
 export class VocabularyFlashcardComponent implements OnInit {
+  showFront: boolean = true;
+  showBack: boolean = false;
   word: string = 'word';
   category: string;
   image: string;
@@ -16,28 +21,39 @@ export class VocabularyFlashcardComponent implements OnInit {
   categories = new VocabularyCategories();
   vocabularyCategory: any;
   index: number;
+  dictionary: any;
 
-  constructor( private words: VocabularyService ) { }
+  constructor( private words: VocabularyService, private vocabularyCategories: VocabularyCategoriesService ) { }
 
   ngOnInit() {
-    let categorySelect = document.getElementById( 'category' );
-    let categoryOptions = this.categories.getCategories();
-    categoryOptions.sort();
-
-    let firstOption = document.createElement( 'option' );
-    firstOption.value = '';
-    firstOption.innerHTML = 'SELECT A CATEGORY';
-    categorySelect.appendChild( firstOption );
-
-    for(let i = 0; i < categoryOptions.length; i++) {
-      let category = categoryOptions[i];
-
-      let option = document.createElement( 'option' );
-      option.value = category;
-      option.innerHTML = category.charAt(0).toUpperCase() + category.slice(1);
-
-      categorySelect.appendChild( option );
-    }
+    this.words.getDictionary()
+    .subscribe(
+      data => {
+        this.dictionary = data;
+      },
+      error => console.log('Error: ', error),
+      () => {
+        let categorySelect = document.getElementById( 'category' );
+        let categoryOptions: string[] = this.vocabularyCategories.getCategories( this.dictionary );
+        categoryOptions.sort();
+    
+        let firstOption = document.createElement( 'option' );
+        firstOption.value = '';
+        firstOption.disabled = true;
+        firstOption.selected = true;
+        firstOption.innerHTML = 'SELECT A CATEGORY';
+        categorySelect.appendChild( firstOption );
+    
+        for(let i = 0; i < categoryOptions.length; i++) {
+          let category = categoryOptions[i];
+    
+          let option = document.createElement( 'option' );
+          option.value = category;
+          option.innerHTML = category.charAt(0).toUpperCase() + category.slice(1);
+    
+          categorySelect.appendChild( option );
+        }
+    });
   }
 
   changeCategory(){
@@ -50,6 +66,8 @@ export class VocabularyFlashcardComponent implements OnInit {
           this.pronunciation = this.vocabularyCategory[this.index].pronunciation;
           this.translation = '[ ' + this.vocabularyCategory[this.index].translation + ' ]';
           this.image = this.vocabularyCategory[this.index].image;
+          this.showFront = true;
+          this.showBack = false;
         }
       )
   }
@@ -60,5 +78,14 @@ export class VocabularyFlashcardComponent implements OnInit {
     this.pronunciation = this.vocabularyCategory[this.index].pronunciation;
     this.translation = '[ ' + this.vocabularyCategory[this.index].translation + ' ]';
     this.image = this.vocabularyCategory[this.index].image;
+    this.showFront = true;
+    this.showBack = false;
+  }
+
+  flipCard() {
+    if( this.category ) {
+      this.showFront = !this.showFront;
+      this.showBack = !this.showBack;
+    }
   }
 }

@@ -6,7 +6,7 @@
     <fieldset>
       <h2>{{infinitive}}</h2>
       <h3>{{translation}}</h3>
-      <h4>{{tense}}</h4>
+      <h4>{{tense}} tense</h4>
       <dl>
         <dt>Yo</dt>
         <dd><input type="text" id="yo" name="yo" [(ngModel)]="inputAnswers.yo" /></dd>
@@ -27,7 +27,6 @@
         <dt>Ellos/Ellas/Ustedes</dt>
         <dd><input type="text" id="ellos" name="els" [(ngModel)]="inputAnswers.els" /></dd>
       </dl>
-      <app-spanish-accent-marks></app-spanish-accent-marks>
     </fieldset>
     <div id="buttons">
       <input type="button" id="answerBtn" name="answerBtn" value="answer" (click)="getAnswers()" />

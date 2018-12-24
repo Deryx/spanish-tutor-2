@@ -6,11 +6,11 @@
       <fieldset>
         <select id="category" name="category" [(ngModel)]="category" (change)="changeCategory()"></select>
         <div class="card">
-          <div class="face front">
+          <div class="face front" *ngIf="showFront">
             <h2>[ {{word}} ]</h2>
             <h3>{{pronunciation}}</h3>
           </div>
-          <div class="face back">
+          <div class="face back" *ngIf="showBack">
             <h2>{{translation}}</h2>
             <img src={{image}} />
           </div>
@@ -18,7 +18,7 @@
       </fieldset>
       <div class="buttons">
         <input id="btnReset" type="reset" value="reset">
-        <input id="btnFlip" type="button" value="flip card">
+        <input id="btnFlip" type="button" value="flip card" (click)="flipCard()">
         <input id="btnNext" type="button" value="next" (click)="next()">
       </div>
     </form>

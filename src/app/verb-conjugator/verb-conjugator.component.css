@@ -11,11 +11,13 @@ section > h1 {
 }
 
 fieldset {
-  border: none;
   text-align: center;
   margin: 0 auto;
   padding: 0;
   width: 750px;
+  border: 1px solid rgb(190, 190, 190);
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 #buttons {
@@ -23,7 +25,7 @@ fieldset {
   flex-direction: row;
   justify-content: center;
   width: 100%;
-  margin-top: 2.5em;
+  margin-top: 2em;
 }
 
 select {
@@ -35,8 +37,9 @@ dl {
   display: flex;
   flex-direction: row;
   width: 100%;
+  margin-left: -30px;
   margin-top: 0.01em;
-  margin-bottom: 0.01em;
+  margin-bottom: 10px;
   font-size: 1.25em;
 }
 
@@ -70,8 +73,6 @@ h3 {
 }
 
 input[type='text'] {
-  border: none;
-  border-bottom: 1px solid rgb(0, 0, 0);
   width: 20em;
 }
 
@@ -79,4 +80,11 @@ input[type='button'] {
   margin-right: 1em;
   margin-left: 1em;
   padding: 10px;
+}
+
+fieldset h4 {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  font-size: 125%;
+  text-transform: uppercase;
 }

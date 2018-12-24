@@ -7,11 +7,12 @@
         <div><select id="infinitive" name="infinitive" [(ngModel)]="infinitive" (change)="changeVerb()"></select></div>
         <div><select id="tense" name="tense" [(ngModel)]="tense" (change)="changeTense()"></select></div>
         <div class="card">
-          <div class="face front">
+          <div class="face front" *ngIf="showFront">
             <section><h2>{{infinitive}}</h2></section>
             <section><h3>{{translation}}</h3></section>
           </div>
-          <div class="face back">
+          <div class="face back" *ngIf="showBack">
+            <h3>[ {{this.conjugation.tense}} ] tense</h3>
             <dl>
               <dt>yo</dt>
               <dd>{{this.conjugation.yo}}</dd>
@@ -38,7 +39,7 @@
 
       <div class="buttons">
         <input id="btnReset" type="reset" value="reset">
-        <input id="btnFlip" type="button" value="flip card">
+        <input id="btnFlip" type="button" value="flip card" (click)="flipCard()">
       </div>
     </form>
   </div>
