@@ -79,6 +79,8 @@ export class VocabularyScrambleComponent {
   }
 
   getAnswer() {
+    const userAnswer = this.scrambledWord.join('');
+    if( this.answer === userAnswer ) this.numberCorrect++;
     this.scrambledWord = [];
     this.getNextQuestion();
   }

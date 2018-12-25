@@ -20,6 +20,8 @@ nav {
 #menu a {
   text-decoration: none;
   display: block;
+  color: rgb(255, 255, 255);
+  font-weight: bold;
 }
 
 ul#subMenu {
@@ -42,6 +44,7 @@ ul#subMenu li {
 ul#subMenu li a {
   background: rgb(255, 0, 0);
   color: rgb(255, 255, 255);
+  font-weight: normal;
 }
 
 ul#subMenu li a:hover {

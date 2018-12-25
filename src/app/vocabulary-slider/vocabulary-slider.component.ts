@@ -15,6 +15,7 @@ export class VocabularySliderComponent {
 
   dictionary: any;
   currentQuestion: number = 0;
+  numberCorrect: number = 0;
 
   translation: string = '';
   image: string = '';
@@ -70,6 +71,7 @@ export class VocabularySliderComponent {
       let vocabularyId = cardSet[i];
       card.translation = vocabulary[vocabularyId].translation;
       card.image = vocabulary[vocabularyId].image;
+      card.answer = vocabulary[vocabularyId].word;
 
       (function(index) {
         cards[index] = card;
@@ -112,6 +114,11 @@ export class VocabularySliderComponent {
   }
 
   getAnswer() {
+    const userAnswer = this.wordSlides;
+    for(let i = 0; i < userAnswer.length; i++) {
+      if( this.translationCards[i].answer === userAnswer[i] ) this.numberCorrect++;
+    }
+    console.log(this.numberCorrect);
     this.getNextSet();
   }
 
