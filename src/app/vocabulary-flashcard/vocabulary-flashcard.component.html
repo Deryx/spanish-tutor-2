@@ -5,12 +5,12 @@
     <form>
       <fieldset>
         <select id="category" name="category" [(ngModel)]="category" (change)="changeCategory()"></select>
-        <div class="card">
-          <div class="face front" *ngIf="showFront">
+        <div class="card" [@flipState]="flip">
+          <div class="face front">
             <h2>[ {{word}} ]</h2>
             <h3>{{pronunciation}}</h3>
           </div>
-          <div class="face back" *ngIf="showBack">
+          <div class="face back">
             <h2>{{translation}}</h2>
             <img src={{image}} />
           </div>

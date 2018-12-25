@@ -69,12 +69,38 @@ dd {
   font-weight: bold;
 }
 
+.card {
+  margin: 0 auto;
+  margin-top: 40px;
+  padding: 0;
+  width: 432px;
+  height: 288px;
+  background: rgb(255, 255, 255);
+  border: 1px solid rgb(190, 190, 190);
+  position: relative;
+  transform-style: preserve-3d;
+  transform: transform 1s;
+}
+
 .face {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  width: 100%;
   height: 100%;
+  position: absolute;
+  backface-visibility: hidden;
+  user-select: none;
+  margin: 0 auto;
+}
+
+.front {
+  transform: rotateX(0deg);
+}
+
+.back {
+  transform: rotateX(180deg);
 }
 
 .back h3 {

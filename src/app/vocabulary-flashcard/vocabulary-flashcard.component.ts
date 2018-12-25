@@ -2,17 +2,18 @@ import { Component, OnInit } from '@angular/core';
 import { VocabularyCategories } from '../vocabulary-categories';
 import { VocabularyService } from '../vocabulary.service';
 import { VocabularyCategoriesService } from '../vocabulary-categories.service';
+import { FlipAnimation } from '../../animations/flip.animation'
 
 @Component({
   selector: 'app-vocabulary-flashcard',
   templateUrl: './vocabulary-flashcard.component.html',
   styleUrls: ['./vocabulary-flashcard.component.css'],
-  providers: [VocabularyCategoriesService]
+  providers: [VocabularyCategoriesService],
+  animations: FlipAnimation.animations
 })
 
 export class VocabularyFlashcardComponent implements OnInit {
-  showFront: boolean = true;
-  showBack: boolean = false;
+  flip = 'inactive';
   word: string = 'word';
   category: string;
   image: string;
@@ -66,8 +67,6 @@ export class VocabularyFlashcardComponent implements OnInit {
           this.pronunciation = this.vocabularyCategory[this.index].pronunciation;
           this.translation = '[ ' + this.vocabularyCategory[this.index].translation + ' ]';
           this.image = this.vocabularyCategory[this.index].image;
-          this.showFront = true;
-          this.showBack = false;
         }
       )
   }
@@ -78,14 +77,13 @@ export class VocabularyFlashcardComponent implements OnInit {
     this.pronunciation = this.vocabularyCategory[this.index].pronunciation;
     this.translation = '[ ' + this.vocabularyCategory[this.index].translation + ' ]';
     this.image = this.vocabularyCategory[this.index].image;
-    this.showFront = true;
-    this.showBack = false;
-  }
+  
+    let card = document.querySelector('.card');
+    let cardFlipState = card.style.transform;
+    if(cardFlipState === 'rotateX(180deg)') this.flip = 'inactive';
+}
 
   flipCard() {
-    if( this.category ) {
-      this.showFront = !this.showFront;
-      this.showBack = !this.showBack;
-    }
+    this.flip = this.flip === 'inactive' ? 'active' : 'inactive';
   }
 }

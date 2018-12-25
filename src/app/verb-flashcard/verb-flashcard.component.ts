@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { Verb } from '../verb';
-import { Conjugation } from '../conjugation';
 import { VerbService } from '../verb.service';
+import { FlipAnimation } from '../../animations/flip.animation'
 
 @Component({
   selector: 'app-verb-flashcard',
   templateUrl: './verb-flashcard.component.html',
-  styleUrls: ['./verb-flashcard.component.css']
+  styleUrls: ['./verb-flashcard.component.css'],
+  animations: FlipAnimation.animations
 })
+
 export class VerbFlashcardComponent implements OnInit {
-  showFront: boolean = true;
-  showBack: boolean = false;
+  flip = 'inactive';
   infinitives: any;
   verb: any;
   infinitive: string = 'infinitive';
@@ -78,8 +78,10 @@ export class VerbFlashcardComponent implements OnInit {
           this.translation = this.verb.translation;
           this.tense = '';
           this.conjugation = '';
-          this.showFront = true;
-          this.showBack = false;
+
+          let card = document.querySelector('.card');
+          let cardFlipState = card.style.transform;
+          if(cardFlipState === 'rotateX(180deg)') this.flip = 'inactive';
         }
       )
   }
@@ -96,8 +98,7 @@ export class VerbFlashcardComponent implements OnInit {
 
   flipCard() {
     if(this.infinitive && this.tense) {
-      this.showFront = !this.showFront;
-      this.showBack = !this.showBack;
+      this.flip = this.flip === 'inactive' ? 'active' : 'inactive';
     }
   }
 }

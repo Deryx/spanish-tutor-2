@@ -11,7 +11,7 @@
                 </li>
             </ul>
 
-            <ul>
+            <ul [sortablejs]="this.wordSlides">
                 <li ngClass="slide" *ngFor="let word of this.wordSlides">
                     {{word}}
                 </li>

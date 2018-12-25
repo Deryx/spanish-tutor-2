@@ -7,7 +7,7 @@
         <fieldset>
             <h2>{{translation}}</h2>
             <div><img src={{image}} /></div>
-            <ul>
+            <ul [sortablejs]="this.scrambledWord">
                 <li *ngFor="let letter of this.scrambledWord">
                     <h3>{{letter}}</h3>
                 </li>
