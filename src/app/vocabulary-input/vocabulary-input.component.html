@@ -1,51 +1,53 @@
 <section>
   <h2>Vocabulary Input</h2>
   <form (ngSubmit)="onSubmit()">
-    <dl>
-      <dt>category:</dt>
-      <dd>
-        <select id="category" required [(ngModel)]="category" name="category"></select>
-      </dd>
-    </dl>
-    <dl *ngIf="( category === 'other' )">
-      <dt>new category:</dt>
-      <dd>
-        <input type="text" id="newCategory" name="newCategory" [(ngModel)]="newCategory" />
-      </dd>
-    </dl>
-    <dl>
-      <dt>word:</dt>
-      <dd>
-        <input type="text" [(ngModel)]="word" id="word" name="word" required />
-      </dd>
-    </dl>
-    <dl>
-      <dt>translation:</dt>
-      <dd>
-        <input type="text" [(ngModel)]="translation" id="translation" name="translation" required />
-      </dd>
-    </dl>
-    <dl class="gender">
-      <dt>gender:</dt>
-      <dd>
-        <select id="gender" required [(ngModel)]="gender" name="gender"></select>
-      </dd>
-    </dl>
-    <dl>
-      <dt>image:</dt>
-      <dd>
-        <input type="file" [(ngModel)]="image" id="image" name="image" />
-      </dd>
-    </dl>
-    <dl>
-      <dt>pronunciation:</dt>
-      <dd>
-        <input type="text" [(ngModel)]="pronunciation" id="pronunciation" name="pronunciation" />
-      </dd>
-    </dl>
+    <fieldset>
+      <dl>
+        <dt>category:</dt>
+        <dd>
+          <select id="category" required [(ngModel)]="category" name="category"></select>
+        </dd>
+      </dl>
+      <dl *ngIf="( category === 'other' )">
+        <dt>new category:</dt>
+        <dd>
+          <input type="text" id="newCategory" name="newCategory" [(ngModel)]="newCategory" />
+        </dd>
+      </dl>
+      <dl>
+        <dt>word:</dt>
+        <dd>
+          <input type="text" [(ngModel)]="word" id="word" name="word" required />
+        </dd>
+      </dl>
+      <dl>
+        <dt>translation:</dt>
+        <dd>
+          <input type="text" [(ngModel)]="translation" id="translation" name="translation" required />
+        </dd>
+      </dl>
+      <dl class="gender">
+        <dt>gender:</dt>
+        <dd>
+          <select id="gender" required [(ngModel)]="gender" name="gender"></select>
+        </dd>
+      </dl>
+      <dl>
+        <dt>image:</dt>
+        <dd>
+          <input type="file" [(ngModel)]="image" id="image" name="image" />
+        </dd>
+      </dl>
+      <dl>
+        <dt>pronunciation:</dt>
+        <dd>
+          <input type="text" [(ngModel)]="pronunciation" id="pronunciation" name="pronunciation" />
+        </dd>
+      </dl>
+    </fieldset>
 
     <div>
-      <input type="submit" id="submitBtn" value="ADD WORD">
-    </div>
-  </form>
+        <input type="submit" id="submitBtn" value="ADD WORD">
+      </div>
+    </form>
 </section>

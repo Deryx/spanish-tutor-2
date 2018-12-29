@@ -8,6 +8,7 @@ section {
 section h1 {
   text-align: center;
   text-transform: uppercase;
+  padding-bottom: 50px;
 }
 
 section > div {

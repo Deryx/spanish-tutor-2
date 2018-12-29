@@ -1,212 +1,213 @@
 <section>
   <h2>Verb Input</h2>
   <form (ngSubmit)="onSubmit()">
-    <dl>
-      <dt>infinitive:</dt>
-      <dd>
-        <input type="text" name="infinitive"
-               [(ngModel)]="infinitive"
-               required
-        />
-      </dd>
-    </dl>
-    <dl>
-      <dt>translation:</dt>
-      <dd>
-        <input type="text" id="translation" name="translation"
-               [(ngModel)]="translation"
-               required
-        />
-      </dd>
-    </dl>
+    <fieldset>
+      <dl>
+        <dt>infinitive:</dt>
+        <dd>
+          <input type="text" name="infinitive"
+                [(ngModel)]="infinitive"
+                required
+          />
+        </dd>
+      </dl>
+      <dl>
+        <dt>translation:</dt>
+        <dd>
+          <input type="text" id="translation" name="translation"
+                [(ngModel)]="translation"
+                required
+          />
+        </dd>
+      </dl>
 
-    <section *ngIf="currentTense === 'present'">
-      <h4>present tense</h4>
-      <dl>
-        <dt>yo:</dt>
-        <dd>
-          <input type="text" name="presentYo" id="presentYo"
-                 [(ngModel)]="presentYo"
-                 required />
-        </dd>
-      </dl>
-      <dl>
-        <dt>tu:</dt>
-        <dd>
-          <input type="text" name="presentTu" id="presentTu"
-                 [(ngModel)]="presentTu"
-                 required />
-        </dd>
-      </dl>
-      <dl>
-        <dt>el/Ella/Usted:</dt>
-        <dd>
-          <input type="text" name="presentEl" id="presentEl"
-                 [(ngModel)]="presentEl"
-                 required />
-        </dd>
-      </dl>
-      <dl>
-        <dt>nosotros:</dt>
-        <dd>
-          <input type="text" name="presentNosotros" id="presentNosotros"
-                 [(ngModel)]="presentNosotros"
-                 required />
-        </dd>
-      </dl>
-      <dl>
-        <dt>ellos/Ellas/Ustedes:</dt>
-        <dd><input type="text" name="presentEls" id="presentEls"
-                   [(ngModel)]="presentEls"
-                   required />
-        </dd>
-      </dl>
-    </section>
+      <section *ngIf="currentTense === 'present'">
+        <h4>present tense</h4>
+        <dl>
+          <dt>yo:</dt>
+          <dd>
+            <input type="text" name="presentYo" id="presentYo"
+                  [(ngModel)]="presentYo"
+                  required />
+          </dd>
+        </dl>
+        <dl>
+          <dt>tu:</dt>
+          <dd>
+            <input type="text" name="presentTu" id="presentTu"
+                  [(ngModel)]="presentTu"
+                  required />
+          </dd>
+        </dl>
+        <dl>
+          <dt>el/Ella/Usted:</dt>
+          <dd>
+            <input type="text" name="presentEl" id="presentEl"
+                  [(ngModel)]="presentEl"
+                  required />
+          </dd>
+        </dl>
+        <dl>
+          <dt>nosotros:</dt>
+          <dd>
+            <input type="text" name="presentNosotros" id="presentNosotros"
+                  [(ngModel)]="presentNosotros"
+                  required />
+          </dd>
+        </dl>
+        <dl>
+          <dt>ellos/Ellas/Ustedes:</dt>
+          <dd><input type="text" name="presentEls" id="presentEls"
+                    [(ngModel)]="presentEls"
+                    required />
+          </dd>
+        </dl>
+      </section>
 
-    <section *ngIf="currentTense === 'preterite'">
-      <h4>preterite tense</h4>
-      <dl>
-        <dt>yo:</dt>
-        <dd>
-          <input type="text" name="preteriteYo" id="preteriteYo"
-                 required
-                 [(ngModel)]="preteriteYo"
+      <section *ngIf="currentTense === 'preterite'">
+        <h4>preterite tense</h4>
+        <dl>
+          <dt>yo:</dt>
+          <dd>
+            <input type="text" name="preteriteYo" id="preteriteYo"
+                  required
+                  [(ngModel)]="preteriteYo"
+            >
+          </dd>
+        </dl>
+        <dl>
+          <dt>tu:</dt>
+          <dd>
+            <input type="text" name="preteriteTu" id="preteriteTu"
+                  required
+                  [(ngModel)]="preteriteTu"
+            >
+          </dd>
+        </dl>
+        <dl>
+          <dt>el/Ella/Usted:</dt>
+          <dd>
+            <input type="text" name="preteriteEl" id="preteriteEl"
+                  required
+                  [(ngModel)]="preteriteEl"
+            >
+          </dd>
+        </dl>
+        <dl>
+          <dt>nosotros:</dt>
+          <dd>
+            <input type="text" name="preteriteNosotros" id="preteriteNosotros"
+                  required
+                  [(ngModel)]="preteriteNosotros"
+            >
+          </dd>
+        </dl>
+        <dl>
+          <dt>ellos/Ellas/Ustedes:</dt>
+          <dd><input type="text" name="preteriteEls" id="preteriteEls"
+                    required
+                    [(ngModel)]="preteriteEls"
           >
-        </dd>
-      </dl>
-      <dl>
-        <dt>tu:</dt>
-        <dd>
-          <input type="text" name="preteriteTu" id="preteriteTu"
-                 required
-                 [(ngModel)]="preteriteTu"
-          >
-        </dd>
-      </dl>
-      <dl>
-        <dt>el/Ella/Usted:</dt>
-        <dd>
-          <input type="text" name="preteriteEl" id="preteriteEl"
-                 required
-                 [(ngModel)]="preteriteEl"
-          >
-        </dd>
-      </dl>
-      <dl>
-        <dt>nosotros:</dt>
-        <dd>
-          <input type="text" name="preteriteNosotros" id="preteriteNosotros"
-                 required
-                 [(ngModel)]="preteriteNosotros"
-          >
-        </dd>
-      </dl>
-      <dl>
-        <dt>ellos/Ellas/Ustedes:</dt>
-        <dd><input type="text" name="preteriteEls" id="preteriteEls"
-                   required
-                   [(ngModel)]="preteriteEls"
-        >
-        </dd>
-      </dl>
-    </section>
+          </dd>
+        </dl>
+      </section>
 
-    <section *ngIf="currentTense === 'imperfect'">
-      <h4>imperfect tense</h4>
-      <dl>
-        <dt>yo:</dt>
-        <dd>
-          <input type="text" name="imperfectYo" id="imperfectYo"
-                 required
-                 [(ngModel)]="imperfectYo"
+      <section *ngIf="currentTense === 'imperfect'">
+        <h4>imperfect tense</h4>
+        <dl>
+          <dt>yo:</dt>
+          <dd>
+            <input type="text" name="imperfectYo" id="imperfectYo"
+                  required
+                  [(ngModel)]="imperfectYo"
+            >
+          </dd>
+        </dl>
+        <dl>
+          <dt>tu:</dt>
+          <dd>
+            <input type="text" name="imperfectTu" id="imperfectTu"
+                  required
+                  [(ngModel)]="imperfectTu"
+            >
+          </dd>
+        </dl>
+        <dl>
+          <dt>el/Ella/Usted:</dt>
+          <dd>
+            <input type="text" name="imperfectEl" id="imperfectEl"
+                  required
+                  [(ngModel)]="imperfectEl"
+            >
+          </dd>
+        </dl>
+        <dl>
+          <dt>nosotros:</dt>
+          <dd>
+            <input type="text" name="imperfectNosotros" id="imperfectNosotros"
+                  required
+                  [(ngModel)]="imperfectNosotros"
+            >
+          </dd>
+        </dl>
+        <dl>
+          <dt>ellos/Ellas/Ustedes:</dt>
+          <dd><input type="text" name="imperfectEls" id="imperfectEls"
+                    required
+                    [(ngModel)]="imperfectEls"
           >
-        </dd>
-      </dl>
-      <dl>
-        <dt>tu:</dt>
-        <dd>
-          <input type="text" name="imperfectTu" id="imperfectTu"
-                 required
-                 [(ngModel)]="imperfectTu"
-          >
-        </dd>
-      </dl>
-      <dl>
-        <dt>el/Ella/Usted:</dt>
-        <dd>
-          <input type="text" name="imperfectEl" id="imperfectEl"
-                 required
-                 [(ngModel)]="imperfectEl"
-          >
-        </dd>
-      </dl>
-      <dl>
-        <dt>nosotros:</dt>
-        <dd>
-          <input type="text" name="imperfectNosotros" id="imperfectNosotros"
-                 required
-                 [(ngModel)]="imperfectNosotros"
-          >
-        </dd>
-      </dl>
-      <dl>
-        <dt>ellos/Ellas/Ustedes:</dt>
-        <dd><input type="text" name="imperfectEls" id="imperfectEls"
-                   required
-                   [(ngModel)]="imperfectEls"
-        >
-        </dd>
-      </dl>
-    </section>
+          </dd>
+        </dl>
+      </section>
 
-    <section *ngIf="currentTense === 'future'">
-      <h4>future tense</h4>
-      <dl>
-        <dt>yo:</dt>
-        <dd>
-          <input type="text" name="futureYo" id="futureYo"
-                 required
-                 [(ngModel)]="futureYo"
+      <section *ngIf="currentTense === 'future'">
+        <h4>future tense</h4>
+        <dl>
+          <dt>yo:</dt>
+          <dd>
+            <input type="text" name="futureYo" id="futureYo"
+                  required
+                  [(ngModel)]="futureYo"
+            >
+          </dd>
+        </dl>
+        <dl>
+          <dt>tu:</dt>
+          <dd>
+            <input type="text" name="futureTu" id="futureTu"
+                  required
+                  [(ngModel)]="futureTu"
+            >
+          </dd>
+        </dl>
+        <dl>
+          <dt>el/Ella/Usted:</dt>
+          <dd>
+            <input type="text" name="futureEl" id="futureEl"
+                  required
+                  [(ngModel)]="futureEl"
+            >
+          </dd>
+        </dl>
+        <dl>
+          <dt>nosotros:</dt>
+          <dd>
+            <input type="text" name="futureNosotros" id="futureNosotros"
+                  required
+                  [(ngModel)]="futureNosotros"
+            >
+          </dd>
+        </dl>
+        <dl>
+          <dt>ellos/Ellas/Ustedes:</dt>
+          <dd><input type="text" name="futureEls" id="futureEls"
+                    required
+                    [(ngModel)]="futureEls"
           >
-        </dd>
-      </dl>
-      <dl>
-        <dt>tu:</dt>
-        <dd>
-          <input type="text" name="futureTu" id="futureTu"
-                 required
-                 [(ngModel)]="futureTu"
-          >
-        </dd>
-      </dl>
-      <dl>
-        <dt>el/Ella/Usted:</dt>
-        <dd>
-          <input type="text" name="futureEl" id="futureEl"
-                 required
-                 [(ngModel)]="futureEl"
-          >
-        </dd>
-      </dl>
-      <dl>
-        <dt>nosotros:</dt>
-        <dd>
-          <input type="text" name="futureNosotros" id="futureNosotros"
-                 required
-                 [(ngModel)]="futureNosotros"
-          >
-        </dd>
-      </dl>
-      <dl>
-        <dt>ellos/Ellas/Ustedes:</dt>
-        <dd><input type="text" name="futureEls" id="futureEls"
-                   required
-                   [(ngModel)]="futureEls"
-        >
-        </dd>
-      </dl>
-    </section>
-
+          </dd>
+        </dl>
+      </section>
+    </fieldset>
     <div>
       <span *ngIf="currentTense !== 'future'">
         <input type="button" id="nextBtn" (click)="next()" value="next" />

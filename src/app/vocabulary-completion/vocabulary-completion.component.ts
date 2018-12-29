@@ -18,7 +18,6 @@ export class VocabularyCompletionComponent {
   image: string = '';
   answer: string;
   incompleteWord: string[] = [];
-  completeAnswer: string;
   answers: string[] = [];
   questionSet: number[] = [];
   answerSet: number[] = [];
@@ -86,8 +85,12 @@ export class VocabularyCompletionComponent {
   }
 
   getAnswer() {
-    this.incompleteWord = [];
+    const userAnswer = this.incompleteWord.join('');
     this.getNextQuestion();
+  }
+
+  trackByFn(index: number, item: any) {
+    return index;
   }
 
   writeSummary() {

@@ -22,9 +22,12 @@ section h4 {
 }
 
 section form {
-  border: 1px solid rgb(220, 220, 220);
   width: 100%;
   padding-top: 15px;
+}
+
+fieldset {
+  border: 1px solid rgb(220, 220, 220);
 }
 
 section div {

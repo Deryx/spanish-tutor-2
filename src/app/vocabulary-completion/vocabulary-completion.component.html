@@ -3,13 +3,13 @@
 <section>
     <h1>vocabulary completion</h1>
 
-    <form *ngIf='showForm'>
+    <form [ngFormOptions]="{ updateOn: 'change' }" *ngIf='showForm'>
         <fieldset>
             <h2>{{translation}}</h2>
             <div><img src={{image}} /></div>
             <ul>
-                <li *ngFor="let letter of this.incompleteWord">
-                    <input type='text' value={{letter}} maxlength="1" [disabled]="letter !== ''" />
+                <li *ngFor="let letter of this.incompleteWord; index as i, trackBy: trackByFn">
+                    <input type='text' id="userAnswer{{i}}" name="userAnswer{{i}}" [(ngModel)]="this.incompleteWord[i]" maxlength="1" [disabled]="letter !== ''" />
                 </li>
             </ul>
         </fieldset>

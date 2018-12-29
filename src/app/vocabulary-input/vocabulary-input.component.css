@@ -12,9 +12,12 @@ section h2 {
 }
 
 section form {
-  border: 1px solid rgb(220, 220, 220);
   width: 100%;
   padding-top: 15px;
+}
+
+fieldset {
+  border: 1px solid rgb(220, 220, 220);
 }
 
 section div {
@@ -27,7 +30,7 @@ section div {
 }
 
 dl {
-  margin: 10px;
+  margin: 20px 10px;
   padding: 0;
   width: 100%;
   display: flex;
