@@ -69,8 +69,8 @@ dl:nth-of-type(1) dt {
   margin-top: -1px;
 }
 
-dl.gender dt {
-  margin-top: -1px;
+.select {
+  padding-top: 3px;
 }
 
 dl.gender dd div {
@@ -79,12 +79,6 @@ dl.gender dd div {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-}
-
-dl.gender dd div input[type='radio'] {
-  margin: 0;
-  padding: 0;
-  width: 20px;
 }
 
 dl.gender dd label {
@@ -102,4 +96,8 @@ dl.gender dd label {
   font-size: 0.75em;
   font-weight: bold;
   width: 100px;
+}
+
+select {
+  padding: 5px;
 }

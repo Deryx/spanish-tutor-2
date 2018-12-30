@@ -3,7 +3,7 @@
   <form (ngSubmit)="onSubmit()">
     <fieldset>
       <dl>
-        <dt>category:</dt>
+        <dt class="select">category:</dt>
         <dd>
           <select id="category" required [(ngModel)]="category" name="category"></select>
         </dd>
@@ -21,13 +21,13 @@
         </dd>
       </dl>
       <dl>
-        <dt>translation:</dt>
+        <dt>translation:</dt> 
         <dd>
           <input type="text" [(ngModel)]="translation" id="translation" name="translation" required />
         </dd>
       </dl>
-      <dl class="gender">
-        <dt>gender:</dt>
+      <dl>
+        <dt class="select">gender:</dt>
         <dd>
           <select id="gender" required [(ngModel)]="gender" name="gender"></select>
         </dd>

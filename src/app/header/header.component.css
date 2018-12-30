@@ -21,6 +21,14 @@ header h1 {
   letter-spacing: 0.05rem;
 }
 
+header h1 a {
+  text-decoration: none;
+}
+
+header h1 a:visited {
+  color: rgb(255, 255, 255);
+}
+
 header app-menu {
   margin: 0;
   padding: 0;

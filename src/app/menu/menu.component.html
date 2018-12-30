@@ -1,13 +1,14 @@
 <nav>
   <ul id="menu">
     <li>
-      <a href="#">menu</a>
-      <ul id="subMenu">
+      <a (click)="toggleShowMenu()">menu</a>
+      <span class="closeIcon">X</span>
+      <ul id="subMenu" [@slideInOut]="animationState">
         <li><a routerLink="/verb-input" routerLinkActive="active">verb input</a></li>
         <li><a routerLink="/vocabulary-input" routerLinkActive="active">vocabulary input</a></li>
         <li><a routerLink="/verb-flashcard" routerLinkActive="active">verb flashcard</a></li>
-        <li><a routerLink="/verb-conjugator" routerLinkActive="active">verb conjugator</a></li>
         <li><a routerLink="/vocabulary-flashcard" routerLinkActive="active">vocabulary flashcard</a></li>
+        <li><a routerLink="/verb-conjugator" routerLinkActive="active">verb conjugator</a></li>
         <li><a routerLink="/vocabulary-completion" routerLinkActive="active">vocabulary completion</a></li>
         <li><a routerLink="/vocabulary-quiz" routerLinkActive="active">vocabulary quiz</a></li>
         <li><a routerLink="/vocabulary-scramble" routerLinkActive="active">vocabulary scramble</a></li>

@@ -13,14 +13,11 @@ export class VocabularyCompletionComponent {
   showForm: boolean = false;
 
   dictionary: any;
-  word: string = '';
   translation: string = '';
   image: string = '';
   answer: string;
   incompleteWord: string[] = [];
-  answers: string[] = [];
   questionSet: number[] = [];
-  answerSet: number[] = [];
   currentWord = 0;
   numberCorrect = 0;
 
@@ -86,6 +83,7 @@ export class VocabularyCompletionComponent {
 
   getAnswer() {
     const userAnswer = this.incompleteWord.join('');
+    console.log(userAnswer);
     this.getNextQuestion();
   }
 

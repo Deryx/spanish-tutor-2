@@ -77,7 +77,6 @@ dd {
   width: 432px;
   height: 288px;
   background: rgb(255, 255, 255);
-  border: 1px solid rgb(190, 190, 190);
   position: relative;
   transform-style: preserve-3d;
   transform: transform 1s;
@@ -98,10 +97,13 @@ dd {
 
 .front {
   transform: rotateX(0deg);
+  background: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
 }
 
 .back {
   transform: rotateX(180deg);
+  border: 1px solid rgb(190, 190, 190);
 }
 
 .back h3 {

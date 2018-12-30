@@ -1,11 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { SlideInOutAnimation } from '../../animations/slide.animation';
 
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
-  styleUrls: ['./menu.component.css']
+  styleUrls: ['./menu.component.css'],
+  animations: [SlideInOutAnimation]
 })
-export class MenuComponent implements OnInit {
+
+export class MenuComponent {
+  animationState = 'out';
 
   siteLinks: { link: string, ref: string }[];
 
@@ -23,17 +27,6 @@ export class MenuComponent implements OnInit {
     ]
   }
 
-  ngOnInit() {
-    // let subMenu = document.getElementById( 'subMenu' );
-    // for(let i = 0; i < this.siteLinks.length; i++) {
-    //   let li = document.createElement('li');
-    //   let liText = this.createLink( this.siteLinks[i].link, this.siteLinks[i].ref );
-
-    //   li.appendChild( liText );
-    //   subMenu.appendChild( li );
-    // }
-  }
-
   createLink = function( text: string, href: string ) {
     let newLink = document.createElement('a');
     let linkText = document.createTextNode( text );
@@ -43,4 +36,7 @@ export class MenuComponent implements OnInit {
     return newLink;
   }
 
+  toggleShowMenu() {
+    this.animationState = this.animationState === 'out' ? 'in' : 'out';
+  }
 }

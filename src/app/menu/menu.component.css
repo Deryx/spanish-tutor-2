@@ -9,6 +9,7 @@ nav {
 
 #menu  {
   margin: 0;
+  margin-top: -10px;
   padding: 0;
   width: 210px;
   list-style-type: none;
@@ -17,9 +18,15 @@ nav {
   right: 10rem;
 }
 
+.closeIcon {
+  float: right;
+  margin-right: 20px;
+  color: rgb(255, 255, 255);
+  font-weight: bold;
+}
+
 #menu a {
   text-decoration: none;
-  display: block;
   color: rgb(255, 255, 255);
   font-weight: bold;
 }
@@ -28,7 +35,7 @@ ul#subMenu {
   width: 100%;
   list-style-type: none;
   left: -8px;
-  margin-top: 5px;
+  margin-top: 15px;
   margin-left: 0;
   padding: 0;
   z-index: 99;
