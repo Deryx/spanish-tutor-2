@@ -2,7 +2,7 @@
   <ul id="menu">
     <li>
       <a (click)="toggleShowMenu()">menu</a>
-      <span class="closeIcon">X</span>
+      <span class="closeIcon" *ngIf="showCloseIcon" (click)="toggleShowMenu()">X</span>
       <ul id="subMenu" [@slideInOut]="animationState">
         <li><a routerLink="/verb-input" routerLinkActive="active">verb input</a></li>
         <li><a routerLink="/vocabulary-input" routerLinkActive="active">vocabulary input</a></li>

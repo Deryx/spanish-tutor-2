@@ -78,9 +78,25 @@ input[type='text'] {
 }
 
 input[type='button'] {
-  margin-right: 1em;
-  margin-left: 1em;
-  padding: 10px;
+  margin-right: 0.15rem;
+  margin-left:  0.15rem;
+  padding: 0.625rem;
+  width: 100px;
+  border: none;
+  text-transform: uppercase;
+  color: rgb(255, 255, 255);
+  font-weight: bold;
+  letter-spacing: 1px;
+  border-radius: .25rem;
+  font-size: 0.75em;
+}
+
+.answer {
+  background: rgb(30, 126, 52);
+}
+
+.reset {
+  background: rgb(108, 117, 125);
 }
 
 fieldset h4 {

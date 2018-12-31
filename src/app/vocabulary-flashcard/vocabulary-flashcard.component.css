@@ -33,6 +33,32 @@ div.buttons {
   text-align: center;
 }
 
+.button {
+  margin-right: 0.15rem;
+  margin-left:  0.15rem;
+  padding: 0.625rem;
+  width: 100px;
+  border: none;
+  text-transform: uppercase;
+  color: rgb(255, 255, 255);
+  font-weight: bold;
+  letter-spacing: 1px;
+  border-radius: .25rem;
+  font-size: 0.75em;
+}
+
+.flip {
+  background: rgb(0, 123, 255);
+}
+
+.reset {
+  background: rgb(108, 117, 125);
+}
+
+.next {
+  background: rgb(30, 126, 52);
+}
+
 select {
   padding: 5px;
   margin-bottom: 25px;

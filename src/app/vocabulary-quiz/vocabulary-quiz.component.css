@@ -64,17 +64,19 @@ fieldset h2 {
   flex-direction: row;
   justify-content: center;
 }
-
+  
 #buttons input {
-  margin-right: 10px;
-  color: rgb(255, 255, 255);
-  border: none;
-  padding: 10px;
-  border-radius: 5px;
-  font-size: 0.75em;
-  font-weight: bold;
+  margin-right: 0.15rem;
+  margin-left:  0.15rem;
+  padding: 0.625rem;
   width: 100px;
+  border: none;
   text-transform: uppercase;
+  color: rgb(255, 255, 255);
+  font-weight: bold;
+  letter-spacing: 1px;
+  border-radius: .25rem;
+  font-size: 0.75em;
 }
 
 #answerBtn {
@@ -83,9 +85,9 @@ fieldset h2 {
 }
 
 #resetBtn {
-  background: rgb(0, 0, 0);
+  background: rgb(108, 117, 125);
 }
 
 #quitBtn {
-  background: rgb(255, 0, 0);
+  background: rgb(220, 53, 69);
 }

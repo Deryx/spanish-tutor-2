@@ -88,14 +88,15 @@ dl.gender dd label {
 }
 
 #submitBtn {
-  background: rgb(40, 167, 69);
+  background: rgb(30, 126, 52);
   color: rgb(255, 255, 255);
   border: none;
-  padding: 10px;
+  padding: 0.625rem;
   border-radius: 5px;
   font-size: 0.75em;
   font-weight: bold;
   width: 100px;
+  letter-spacing: 1px;
 }
 
 select {
