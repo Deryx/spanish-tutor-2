@@ -10,6 +10,9 @@ import { VocabularyCategoriesService } from '../vocabulary-categories.service';
   styleUrls: ['./vocabulary-input.component.css']
 })
 export class VocabularyInputComponent implements OnInit {
+  animationState = 'left';
+  buttonText: string = 'show accents';
+
   category = '';
   newCategory = '';
   word = '';
@@ -110,5 +113,10 @@ export class VocabularyInputComponent implements OnInit {
       .subscribe();
 
     this.resetForm();
+  }
+
+  toggleAccents() {
+    this.animationState = this.animationState === 'left' ? 'right' : 'left';
+    this.buttonText = this.animationState === 'left' ? 'show accents' : 'close accents';
   }
 }

@@ -87,16 +87,26 @@ dl.gender dd label {
   text-transform: capitalize;
 }
 
-#submitBtn {
-  background: rgb(30, 126, 52);
-  color: rgb(255, 255, 255);
+input[type="button"], input[type="submit"] {
   border: none;
   padding: 0.625rem;
   border-radius: 5px;
   font-size: 0.75em;
   font-weight: bold;
   width: 100px;
-  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+#submitBtn {
+  background: rgb(30, 126, 52);
+  color: rgb(255, 255, 255);
+}
+
+#accentBtn {
+  background: rgb(23, 162, 184);
+  color: rgb(255, 255, 255);
+  width: 125px;
+
 }
 
 select {

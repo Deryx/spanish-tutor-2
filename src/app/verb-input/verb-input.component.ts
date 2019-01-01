@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { VerbService } from '../verb.service';
 import { Verb } from '../verb';
 import { Conjugation } from '../conjugation'
@@ -9,6 +9,9 @@ import { Conjugation } from '../conjugation'
   styleUrls: ['./verb-input.component.css']
 })
 export class VerbInputComponent {
+  animationState = 'left';
+  buttonText: string = 'show accents';
+
   currentTense = 'present';
 
   infinitive = '';
@@ -39,8 +42,6 @@ export class VerbInputComponent {
   futureEls = '';
 
   constructor( private verbs: VerbService ){}
-
-  ngOnInit(){}
 
   resetForm(){
     this.currentTense = 'present';
@@ -137,5 +138,10 @@ export class VerbInputComponent {
       .subscribe();
 
     this.resetForm();
+  }
+
+  toggleAccents() {
+    this.animationState = this.animationState === 'left' ? 'right' : 'left';
+    this.buttonText = this.animationState === 'left' ? 'show accents' : 'close accents';
   }
 }

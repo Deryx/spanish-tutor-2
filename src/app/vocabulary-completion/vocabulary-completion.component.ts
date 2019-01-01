@@ -8,6 +8,9 @@ import { RandomNumberGeneratorService } from '../random-number-generator.service
   styleUrls: ['./vocabulary-completion.component.css']
 })
 export class VocabularyCompletionComponent {
+  animationState = 'left';
+  buttonText: string = 'show accents';
+
   showOverlay: boolean = true;
   showVocabularyOverlay: boolean = true;
   showForm: boolean = false;
@@ -104,5 +107,10 @@ export class VocabularyCompletionComponent {
 
   quit() {
 
+  }
+
+  toggleAccents() {
+    this.animationState = this.animationState === 'left' ? 'right' : 'left';
+    this.buttonText = this.animationState === 'left' ? 'show accents' : 'close accents';
   }
 }

@@ -9,7 +9,7 @@ import { SlideInOutAnimation } from '../../animations/slide.animation';
 })
 
 export class MenuComponent {
-  animationState = 'out';
+  animationState = 'top';
   showCloseIcon: boolean = false;
 
   siteLinks: { link: string, ref: string }[];
@@ -38,7 +38,7 @@ export class MenuComponent {
   }
 
   toggleShowMenu() {
-    this.animationState = this.animationState === 'out' ? 'in' : 'out';
-    this.showCloseIcon = this.showCloseIcon === false ? true : false
+    this.animationState = this.animationState === 'top' ? 'bottom' : 'top';
+    this.showCloseIcon = this.showCloseIcon === false ? true : false;
   }
 }

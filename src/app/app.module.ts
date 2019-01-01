@@ -29,6 +29,7 @@ import { SpanishAccentMarksComponent } from './spanish-accent-marks/spanish-acce
 import { OverlayComponent } from './overlay/overlay.component';
 import { ConjugatorOverlayFormComponent } from './conjugator-overlay-form/conjugator-overlay-form.component';
 import { VocabularyOverlayFormComponent } from './vocabulary-overlay-form/vocabulary-overlay-form.component';
+import { SpanishAccentCodesComponent } from './spanish-accent-codes/spanish-accent-codes.component';
 
 const appRoutes: Routes = [
   { path: 'verb-input', component: VerbInputComponent },
@@ -62,7 +63,8 @@ const appRoutes: Routes = [
     SpanishAccentMarksComponent,
     OverlayComponent,
     ConjugatorOverlayFormComponent,
-    VocabularyOverlayFormComponent
+    VocabularyOverlayFormComponent,
+    SpanishAccentCodesComponent
   ],
   imports: [
     BrowserModule,

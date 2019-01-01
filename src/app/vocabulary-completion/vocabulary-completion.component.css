@@ -75,7 +75,7 @@ li h3 {
     padding: 0;
 }
 
-#buttons {
+.buttons {
     margin-top: 25px;
     width: 100%;
     display: flex;
@@ -83,7 +83,7 @@ li h3 {
     justify-content: center;
 }
   
-#buttons input {
+.buttons input {
     margin-right: 0.15rem;
     margin-left:  0.15rem;
     padding: 0.625rem;
@@ -92,7 +92,6 @@ li h3 {
     text-transform: uppercase;
     color: rgb(255, 255, 255);
     font-weight: bold;
-    letter-spacing: 1px;
     border-radius: .25rem;
     font-size: 0.75em;
   }
@@ -103,13 +102,19 @@ li h3 {
 }
   
 #resetBtn {
-    background: rgb(108, 117, 125);
+    background: rgb(52, 58, 64);
 }
   
 #quitBtn {
     background: rgb(220, 53, 69);
 }
 
+#accentBtn {
+    background: rgb(23, 162, 184);
+    color: rgb(255, 255, 255);
+    width: 125px;
+  }
+  
 input[type='text'] {
     text-transform: uppercase;
     text-align: center;

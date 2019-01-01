@@ -21,7 +21,7 @@ fieldset {
   padding-bottom: 20px;
 }
 
-#buttons {
+.buttons {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -86,7 +86,6 @@ input[type='button'] {
   text-transform: uppercase;
   color: rgb(255, 255, 255);
   font-weight: bold;
-  letter-spacing: 1px;
   border-radius: .25rem;
   font-size: 0.75em;
 }
@@ -96,7 +95,13 @@ input[type='button'] {
 }
 
 .reset {
-  background: rgb(108, 117, 125);
+  background: rgb(52, 58, 64);
+}
+
+#accentBtn {
+  background: rgb(23, 162, 184);
+  color: rgb(255, 255, 255);
+  width: 125px;
 }
 
 fieldset h4 {

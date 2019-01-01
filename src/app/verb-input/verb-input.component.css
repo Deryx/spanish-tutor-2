@@ -75,9 +75,7 @@ dl:nth-of-type(3) dt {
   margin-top: -1px;
 }
 
-#nextBtn {
-  background: rgb(0, 123, 255);
-  color: rgb(255, 255, 255);
+input[type="button"] {
   border: none;
   padding: 0.625rem;
   border-radius: 5px;
@@ -87,14 +85,19 @@ dl:nth-of-type(3) dt {
   text-transform: uppercase;
 }
 
+#nextBtn {
+  background: rgb(0, 123, 255);
+  color: rgb(255, 255, 255);
+}
+
 #submitBtn {
   background: rgb(40, 167, 69);
   color: rgb(255, 255, 255);
   border: none;
-  padding: 10px;
-  border-radius: 5px;
-  font-size: 0.75em;
-  font-weight: bold;
-  width: 100px;
-  letter-spacing: 1px;
+}
+
+#accentBtn {
+  background: rgb(23, 162, 184);
+  color: rgb(255, 255, 255);
+  width: 125px;
 }

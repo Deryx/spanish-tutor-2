@@ -8,6 +8,10 @@ import { RandomNumberGeneratorService } from '../random-number-generator.service
   styleUrls: ['./verb-conjugator.component.css']
 })
 export class VerbConjugatorComponent {
+  // showAccents: boolean = false;
+  buttonText: string = 'show accents';
+  animationState = 'left';
+
   showOverlay: boolean = true;
   showConjugatorOverlay: boolean = true;
   showForm: boolean = false;
@@ -110,5 +114,10 @@ export class VerbConjugatorComponent {
     for(const answer of answers) {
       this.currentAnswers[answer] = '';
     }
+  }
+
+  toggleAccents() {
+    this.animationState = this.animationState === 'left' ? 'right' : 'left';
+    this.buttonText = this.animationState === 'left' ? 'show accents' : 'close accents';
   }
 }

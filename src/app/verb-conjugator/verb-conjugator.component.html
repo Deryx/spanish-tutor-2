@@ -28,9 +28,11 @@
         <dd><input type="text" id="ellos" name="els" [(ngModel)]="inputAnswers.els" /></dd>
       </dl>
     </fieldset>
-    <div id="buttons">
+    <div class="buttons">
       <input type="button" class="button answer" id="answerBtn" name="answerBtn" value="answer" (click)="getAnswers()" />
       <input type="button" class="button reset" id="resetBtn" name="resetBtn" value="reset" />
     </div>
+    <div class="buttons"><input type="button" id="accentBtn" value={{buttonText}} (click)="toggleAccents()" /></div>
   </form>
 </section>
+<app-spanish-accent-codes [animationState]="animationState"></app-spanish-accent-codes>

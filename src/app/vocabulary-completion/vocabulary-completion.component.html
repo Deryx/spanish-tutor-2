@@ -13,10 +13,12 @@
                 </li>
             </ul>
         </fieldset>
-        <div id="buttons">
+        <div class="buttons">
             <input type="button" id="answerBtn" value="answer" (click)="getAnswer()" />
             <input type="button" id="resetBtn" value="reset" (click)="reset()" />
             <input type="button" id="quitBtn" value="quit" (click)="quit()" />
         </div>
+        <div class="buttons"><input type="button" id="accentBtn" value={{buttonText}} (click)="toggleAccents()" /></div>
     </form>
 </section>
+<app-spanish-accent-codes [animationState]="animationState"></app-spanish-accent-codes>
