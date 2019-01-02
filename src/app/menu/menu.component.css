@@ -21,6 +21,7 @@ nav {
 .closeIcon {
   float: right;
   margin-right: 20px;
+  margin-top: -20px;
   color: rgb(255, 255, 255);
   font-weight: bold;
 }
@@ -29,6 +30,7 @@ nav {
   text-decoration: none;
   color: rgb(255, 255, 255);
   font-weight: bold;
+  display: block;
 }
 
 ul#subMenu {
