@@ -2,7 +2,7 @@ section {
   margin: 0;
   padding: 0;
   width: 100%;
-  font-family: "Source Sans Pro", sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
 section > h1 {
@@ -42,6 +42,7 @@ div.buttons {
   letter-spacing: 1px;
   border-radius: .25rem;
   font-size: 0.75em;
+  font-family: "Roboto", sans-serif;
 }
 
 .flip {
@@ -64,6 +65,7 @@ select {
   width: 432px;
   height: 288px;
   background: rgb(240, 240, 240);
+  font-family: "Roboto", sans-serif;
 }
 
 dl {

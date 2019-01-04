@@ -2,7 +2,7 @@ section {
   margin: 0;
   padding: 0;
   width: 100%;
-  font-family: "Source Sans Pro", sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
 section > h1 {
@@ -19,6 +19,7 @@ fieldset {
   border: 1px solid rgb(190, 190, 190);
   padding-top: 20px;
   padding-bottom: 20px;
+  font-family: "Roboto", sans-serif;
 }
 
 .buttons {
@@ -88,6 +89,7 @@ input[type='button'] {
   font-weight: bold;
   border-radius: .25rem;
   font-size: 0.75em;
+  font-family: "Roboto", sans-serif;
 }
 
 .answer {

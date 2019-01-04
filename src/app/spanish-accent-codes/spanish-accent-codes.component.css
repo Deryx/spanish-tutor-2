@@ -1,5 +1,5 @@
 section {
-    width: 250px;
+    width: 275px;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -8,16 +8,19 @@ section {
     position: absolute;
     z-index: -1;
     top: 0;
-    right: 2.5rem;
+    right: 0rem;
     border-left: 1px solid rgb(190, 190, 190);
-    padding-left: 2.5rem;
+    padding-left: 0rem;
+    font-family: "Roboto", sans-serif;
+    background: rgba(0, 0, 0, 0.90);
+    color: rgb(255, 255, 255);
 }
 
 dl {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    width: 250px;
+    width: 100%;
 }
 
 dd {
