@@ -111,6 +111,6 @@ export class VocabularyCompletionComponent {
 
   toggleAccents() {
     this.animationState = this.animationState === 'left' ? 'right' : 'left';
-    this.buttonText = this.animationState === 'left' ? 'show accents' : 'close accents';
+    this.buttonText = this.animationState === 'left' ? 'show accents' : 'hide accents';
   }
 }
