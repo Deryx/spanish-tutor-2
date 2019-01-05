@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { SlideInOutAnimation } from '../../animations/slide.animation';
+import { SlideInOutAnimation } from '../../../animations/slide.animation';
 
 @Component({
   selector: 'app-menu',

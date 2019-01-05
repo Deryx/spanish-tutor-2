@@ -1,17 +1,16 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Verb } from './verb';
+import { Vocabulary } from '../vocabulary';
 import 'rxjs/add/operator/map';
 
 const baseUrl = 'http://localhost:4000/api';
 
 @Injectable()
-export class VerbService {
-
+export class VocabularyService {
   constructor( private http: HttpClient ){}
 
-  getVerbs(){
-    const uri = baseUrl + '/verbs';
+  getDictionary(){
+    const uri = baseUrl + '/words';
     return this.http
       .get( uri )
       .map( function(res){
@@ -19,8 +18,8 @@ export class VerbService {
       });
   }
 
-  getVerb( verb: string ){
-    const uri = baseUrl + '/verbs/' + verb;
+  getCategory( category: string ){
+    const uri = baseUrl + '/words/' + category;
     return this.http
       .get( uri )
       .map( function(res){
@@ -28,9 +27,9 @@ export class VerbService {
       });
   }
 
-  addVerb( newVerb: Verb ) {
-    const uri = baseUrl + '/verbs';
+  addWord( newWord: Vocabulary ){
+    const uri = baseUrl + '/words';
     return this.http
-      .post( uri, newVerb )
+      .post( uri, newWord )
   }
 }

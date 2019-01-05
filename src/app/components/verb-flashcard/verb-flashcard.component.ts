@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { VerbService } from '../verb.service';
-import { FlipAnimation } from '../../animations/flip.animation'
+import { VerbService } from '../../services/verb.service';
+import { FlipAnimation } from '../../../animations/flip.animation'
 
 @Component({
   selector: 'app-verb-flashcard',

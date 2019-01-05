@@ -7,29 +7,28 @@ import { RouterModule, Routes } from '@angular/router';
 import { SortablejsModule } from 'angular-sortablejs';
 
 import { AppComponent } from './app.component';
-import { MenuComponent } from './menu/menu.component';
-import { HeaderComponent } from './header/header.component';
-import { FooterComponent } from './footer/footer.component';
-import { MarqueeComponent } from './marquee/marquee.component';
-import { VocabularySliderComponent } from './vocabulary-slider/vocabulary-slider.component';
-import { VocabularyQuizComponent } from './vocabulary-quiz/vocabulary-quiz.component';
-import { VocabularyCompletionComponent } from './vocabulary-completion/vocabulary-completion.component';
-import { VocabularyScrambleComponent } from './vocabulary-scramble/vocabulary-scramble.component';
-import { VerbConjugatorComponent } from './verb-conjugator/verb-conjugator.component';
-import { VocabularyFlashcardComponent } from './vocabulary-flashcard/vocabulary-flashcard.component';
-import { VerbFlashcardComponent } from './verb-flashcard/verb-flashcard.component';
-import { VocabularyInputComponent } from './vocabulary-input/vocabulary-input.component';
-import { VerbInputComponent } from './verb-input/verb-input.component';
+import { MenuComponent } from './components/menu/menu.component';
+import { HeaderComponent } from './components/header/header.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { MarqueeComponent } from './components/marquee/marquee.component';
+import { VocabularySliderComponent } from './components/vocabulary-slider/vocabulary-slider.component';
+import { VocabularyQuizComponent } from './components/vocabulary-quiz/vocabulary-quiz.component';
+import { VocabularyCompletionComponent } from './components/vocabulary-completion/vocabulary-completion.component';
+import { VocabularyScrambleComponent } from './components/vocabulary-scramble/vocabulary-scramble.component';
+import { VerbConjugatorComponent } from './components/verb-conjugator/verb-conjugator.component';
+import { VocabularyFlashcardComponent } from './components/vocabulary-flashcard/vocabulary-flashcard.component';
+import { VerbFlashcardComponent } from './components/verb-flashcard/verb-flashcard.component';
+import { VocabularyInputComponent } from './components/vocabulary-input/vocabulary-input.component';
+import { VerbInputComponent } from './components/verb-input/verb-input.component';
 
-import { VocabularyService } from './vocabulary.service';
-import { VerbService } from './verb.service';
-import { RandomNumberGeneratorService } from './random-number-generator.service';
-import { VocabularyCategoriesService } from './vocabulary-categories.service';
-import { SpanishAccentMarksComponent } from './spanish-accent-marks/spanish-accent-marks.component';
-import { OverlayComponent } from './overlay/overlay.component';
-import { ConjugatorOverlayFormComponent } from './conjugator-overlay-form/conjugator-overlay-form.component';
-import { VocabularyOverlayFormComponent } from './vocabulary-overlay-form/vocabulary-overlay-form.component';
-import { SpanishAccentCodesComponent } from './spanish-accent-codes/spanish-accent-codes.component';
+import { VocabularyService } from './services/vocabulary.service';
+import { VerbService } from './services/verb.service';
+import { RandomNumberGeneratorService } from './services/random-number-generator.service';
+import { VocabularyCategoriesService } from './services/vocabulary-categories.service';
+import { OverlayComponent } from './components/overlay/overlay.component';
+import { ConjugatorOverlayFormComponent } from './components/conjugator-overlay-form/conjugator-overlay-form.component';
+import { VocabularyOverlayFormComponent } from './components/vocabulary-overlay-form/vocabulary-overlay-form.component';
+import { SpanishAccentCodesComponent } from './components/spanish-accent-codes/spanish-accent-codes.component';
 
 const appRoutes: Routes = [
   { path: 'verb-input', component: VerbInputComponent },
@@ -60,7 +59,6 @@ const appRoutes: Routes = [
     VerbFlashcardComponent,
     VocabularyInputComponent,
     VerbInputComponent,
-    SpanishAccentMarksComponent,
     OverlayComponent,
     ConjugatorOverlayFormComponent,
     VocabularyOverlayFormComponent,

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { VocabularyService } from '../vocabulary.service';
-import { Vocabulary } from '../vocabulary';
-import { VocabularyGender } from '../vocabulary-gender'
-import { VocabularyCategoriesService } from '../vocabulary-categories.service';
+import { VocabularyService } from '../../services/vocabulary.service';
+import { Vocabulary } from '../../vocabulary';
+import { VocabularyGender } from '../../vocabulary-gender'
+import { VocabularyCategoriesService } from '../../services/vocabulary-categories.service';
 
 @Component({
   selector: 'app-vocabulary-input',

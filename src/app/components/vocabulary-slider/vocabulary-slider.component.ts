@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { VocabularyService } from '../vocabulary.service';
-import { RandomNumberGeneratorService } from '../random-number-generator.service';
+import { VocabularyService } from '../../services/vocabulary.service';
+import { RandomNumberGeneratorService } from '../../services/random-number-generator.service';
 import { Observable } from 'rxjs/Observable';
 
 @Component({

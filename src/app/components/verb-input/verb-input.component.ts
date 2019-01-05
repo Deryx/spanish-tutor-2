@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { VerbService } from '../verb.service';
-import { Verb } from '../verb';
-import { Conjugation } from '../conjugation'
+import { VerbService } from '../../services/verb.service';
+import { Verb } from '../../verb';
+import { Conjugation } from '../../conjugation'
 
 @Component({
   selector: 'app-verb-input',

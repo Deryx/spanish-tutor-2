@@ -1,6 +1,6 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
-import { VocabularyService } from '../vocabulary.service'
-import { VocabularyCategoriesService } from '../vocabulary-categories.service';
+import { VocabularyService } from '../../services/vocabulary.service'
+import { VocabularyCategoriesService } from '../../services/vocabulary-categories.service';
 
 @Component({
   selector: 'app-vocabulary-overlay-form',

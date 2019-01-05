@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { VerbService } from '../verb.service';
-import { RandomNumberGeneratorService } from '../random-number-generator.service';
+import { VerbService } from '../../services/verb.service';
+import { RandomNumberGeneratorService } from '../../services/random-number-generator.service';
 
 @Component({
   selector: 'app-verb-conjugator',

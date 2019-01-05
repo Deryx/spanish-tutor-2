@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { VocabularyCategories } from '../vocabulary-categories';
-import { VocabularyService } from '../vocabulary.service';
-import { VocabularyCategoriesService } from '../vocabulary-categories.service';
-import { FlipAnimation } from '../../animations/flip.animation';
+import { VocabularyCategories } from '../../vocabulary-categories';
+import { VocabularyService } from '../../services/vocabulary.service';
+import { VocabularyCategoriesService } from '../../services/vocabulary-categories.service';
+import { FlipAnimation } from '../../../animations/flip.animation';
 
 @Component({
   selector: 'app-vocabulary-flashcard',

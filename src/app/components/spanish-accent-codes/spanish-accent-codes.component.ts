@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { SideSlideAnimation } from '../../animations/side.slide.animation';
+import { SideSlideAnimation } from '../../../animations/side.slide.animation';
 
 @Component({
   selector: 'app-spanish-accent-codes',
