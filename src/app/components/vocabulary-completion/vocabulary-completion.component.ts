@@ -24,6 +24,8 @@ export class VocabularyCompletionComponent {
   currentWord = 0;
   numberCorrect = 0;
 
+  answerReport: any = [];
+
   constructor( private words: VocabularyService, private randomNumberService: RandomNumberGeneratorService ) {}
   
   getOverlayData(data) {
@@ -85,8 +87,15 @@ export class VocabularyCompletionComponent {
   }
 
   getAnswer() {
-    const userAnswer = this.incompleteWord.join('');
-    console.log(userAnswer);
+    const answerObject: any = {};
+
+    let response = this.incompleteWord.join('');
+    if( this.answer === response ) this.numberCorrect++;
+
+    answerObject.answer = this.answer;
+    answerObject.response = response;
+    this.answerReport.push( answerObject );
+
     this.getNextQuestion();
   }
 

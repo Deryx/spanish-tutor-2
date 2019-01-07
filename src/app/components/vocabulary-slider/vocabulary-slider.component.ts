@@ -114,11 +114,25 @@ export class VocabularySliderComponent {
   }
 
   getAnswer() {
-    const userAnswer = this.wordSlides;
-    for(let i = 0; i < userAnswer.length; i++) {
-      if( this.translationCards[i].answer === userAnswer[i] ) this.numberCorrect++;
+    const response = this.wordSlides;
+    for(let i = 0; i < response.length; i++) {
+      if( this.translationCards[i].answer === response[i] ) this.numberCorrect++;
     }
-    console.log(this.numberCorrect);
+
+    const answerObject: any = {};
+    const translations: string[] = [];
+    const answers: string[] = [];
+    for(let i = 0; i < this.translationCards.length; i++){
+      translations.push( this.translationCards[i].translation);
+      answers.push( this.translationCards[i].answer );
+    }
+    answerObject.translations = translations;
+    answerObject.answers = answers;
+    answerObject.response = response;
+    answerObject.numberCorrect = this.numberCorrect;
+
+    this.numberCorrect = 0;
+
     this.getNextSet();
   }
 

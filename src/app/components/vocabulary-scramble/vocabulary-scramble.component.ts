@@ -25,6 +25,8 @@ export class VocabularyScrambleComponent {
   currentWord = 0;
   numberCorrect = 0;
 
+  answerReport: any = [];
+
   constructor( private words: VocabularyService, private randomNumberService: RandomNumberGeneratorService ) {}
 
   getOverlayData(data) {
@@ -79,8 +81,14 @@ export class VocabularyScrambleComponent {
   }
 
   getAnswer() {
-    const userAnswer = this.scrambledWord.join('');
-    if( this.answer === userAnswer ) this.numberCorrect++;
+    const response = this.scrambledWord.join('');
+    if( this.answer === response ) this.numberCorrect++;
+
+    const answerObject: any = {};
+    answerObject.word = this.translation;
+    answerObject.answer = this.answer;
+    answerObject.response = response;
+
     this.scrambledWord = [];
     this.getNextQuestion();
   }

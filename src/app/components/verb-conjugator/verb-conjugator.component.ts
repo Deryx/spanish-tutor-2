@@ -36,11 +36,13 @@ export class VerbConjugatorComponent {
     tu: '',
     el: '',
     nosotros: '',
-    ellos: ''
+    els: ''
   };
   infinitive = '';
 
   numberCorrect: number = 0;
+
+  answerReport: any = [];
 
   constructor( private verbs: VerbService, private randomNumberService: RandomNumberGeneratorService ) { }
 
@@ -61,23 +63,26 @@ export class VerbConjugatorComponent {
           () => {
             this.randomNumberService.generateRandomNumberArray(this.numberQuestions, this.infinitives.length, this.questionSet );
             this.getCurrentVerb( this.currentVerb, this.tense );
-            this.cloneConjugation( this.getConjugation( this.currentVerb, this.tense ) );
             delete this.currentAnswers._id;
           });
     }
   }
 
   getCurrentVerb( verb: number, tense: string) {
-    this.infinitive = this.infinitives[verb].infinitive;
-    this.translation = '[ ' + this.infinitives[verb].translation + ' ]';
-    this.getConjugation( verb, tense );
+    const currentVerb = this.questionSet[verb];
+    this.infinitive = this.infinitives[currentVerb].infinitive;
+    this.translation = '[ ' + this.infinitives[currentVerb].translation + ' ]';
+    this.cloneConjugation( this.getConjugation( this.currentVerb, this.tense ) );
   }
 
   getConjugation( verb: number, tense: string): any {
+    const currentVerb = this.questionSet[verb];
+
     let conjugation: any = this.tenses[tense];
-    let conjugates: any = this.infinitives[verb].conjugations[conjugation];
+    let conjugates: any = this.infinitives[currentVerb].conjugations[conjugation];
     delete conjugates.tense;
     delete conjugates._id;
+
     return conjugates;
   }
 
@@ -89,6 +94,7 @@ export class VerbConjugatorComponent {
     let numberVerbs: number = this.questionSet.length;
     if( this.currentVerb < numberVerbs ) {
       this.currentVerb++;
+      this.cloneConjugation({});
       this.getCurrentVerb( this.currentVerb, this.tense );
     } else {
       this.writeSummary();
@@ -100,11 +106,21 @@ export class VerbConjugatorComponent {
   }
 
   getAnswers() {
+    const answerObject: any = {};
     const answers: any = Object.keys( this.currentAnswers );
+
     for( const answer of answers ) {
         if( this.currentAnswers[answer] === this.inputAnswers[answer] ) this.numberCorrect++;
     }
+
+    answerObject.answers = {};
+    Object.assign(answerObject.answers, this.currentAnswers);
+    answerObject.responses = this.inputAnswers;
+    answerObject.numberCorrect = this.numberCorrect;
+
     this.resetCurrentAnswers();
+
+    this.numberCorrect = 0;
 
     this.getNextVerb();
   }

@@ -23,6 +23,8 @@ export class VocabularyQuizComponent {
   currentQuestion = 0;
   numberCorrect = 0;
 
+  answerReport: any = [];
+
   constructor( private words: VocabularyService, private randomNumberService: RandomNumberGeneratorService ) {}
 
   getOverlayData(data) {
@@ -69,9 +71,12 @@ export class VocabularyQuizComponent {
 
   getAnswer() {
     let response = this.quizAnswer;
-    if(response === this.answer) {
-      this.numberCorrect++;
-    }
+    if(response === this.answer) this.numberCorrect++;
+    
+    const answerObject: any = {};
+    answerObject.word = this.word;
+    answerObject.answer = this.answer;
+    answerObject.response = response;
 
     this.quizAnswer = '';
 
