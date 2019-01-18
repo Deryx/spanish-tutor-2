@@ -97,7 +97,7 @@ export class VocabularyInputComponent implements OnInit {
 
   onSubmit(){
     this.vocabulary.setCategory( this.category );
-    if( this.newCategory ) this.vocabulary.setCategory( this.newCategory );
+    if( this.newCategory ) this.vocabulary.setCategory( this.newCategory.toLowerCase() );
     this.vocabulary.setWord( this.word );
     this.vocabulary.setTranslation( this.translation );
     this.vocabulary.setGender( this.gender );

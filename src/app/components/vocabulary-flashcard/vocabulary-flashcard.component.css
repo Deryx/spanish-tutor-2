@@ -69,7 +69,7 @@ select {
   margin-top: 40px;
   padding: 0;
   width: 432px;
-  height: 288px;
+  height: 320px;
   background: rgb(255, 255, 255);
   position: relative;
   transform-style: preserve-3d;
@@ -115,6 +115,5 @@ h3 {
 
 img {
   margin-top: 20px;
-  width: 50%;
-  height: 50%;
+  width: 40%;
 }

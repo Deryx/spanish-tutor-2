@@ -36,7 +36,6 @@ export class VocabularyFlashcardComponent implements OnInit {
       () => {
         let categorySelect = document.getElementById( 'category' );
         let categoryOptions: string[] = this.vocabularyCategories.getCategories( this.dictionary );
-        categoryOptions.sort();
     
         let firstOption = document.createElement( 'option' );
         firstOption.value = '';
@@ -78,7 +77,7 @@ export class VocabularyFlashcardComponent implements OnInit {
     this.translation = '[ ' + this.vocabularyCategory[this.index].translation + ' ]';
     this.image = this.vocabularyCategory[this.index].image;
   
-    let card = document.querySelector('.card');
+    let card = document.querySelector('div.card');
     let cardFlipState = card.style.transform;
     if(cardFlipState === 'rotateX(180deg)') this.flip = 'inactive';
 }

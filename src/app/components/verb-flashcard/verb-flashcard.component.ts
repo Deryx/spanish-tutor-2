@@ -25,6 +25,7 @@ export class VerbFlashcardComponent implements OnInit {
       .subscribe(
         data => {
           this.infinitives = data;
+          this.infinitives.sort();
 
           let infinitiveSelect = document.getElementById('infinitive');
 
@@ -79,7 +80,7 @@ export class VerbFlashcardComponent implements OnInit {
           this.tense = '';
           this.conjugation = '';
 
-          let card = document.querySelector(".card");
+          let card = document.querySelector("div.card");
           let cardFlipState = card.style.transform;
           if(cardFlipState === 'rotateX(180deg)') this.flip = 'inactive';
         }

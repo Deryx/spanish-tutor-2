@@ -14,6 +14,8 @@ export class VocabularyCategoriesService {
       if(this.categories.indexOf( category ) === -1) this.categories.push( category );
     };
 
-    return this.categories;
+    const categories = this.categories.sort();
+
+    return categories;
   }
 }
