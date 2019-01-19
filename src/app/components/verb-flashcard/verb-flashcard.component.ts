@@ -25,7 +25,7 @@ export class VerbFlashcardComponent implements OnInit {
       .subscribe(
         data => {
           this.infinitives = data;
-          this.infinitives.sort();
+          this.infinitives;
 
           let infinitiveSelect = document.getElementById('infinitive');
 
