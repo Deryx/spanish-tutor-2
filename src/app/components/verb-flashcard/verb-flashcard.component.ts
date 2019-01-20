@@ -81,7 +81,7 @@ export class VerbFlashcardComponent implements OnInit {
           this.conjugation = '';
 
           let card = document.querySelector("div.card");
-          let cardFlipState = card.style.transform;
+          let cardFlipState = (<any>card).style.transform;
           if(cardFlipState === 'rotateX(180deg)') this.flip = 'inactive';
         }
       )

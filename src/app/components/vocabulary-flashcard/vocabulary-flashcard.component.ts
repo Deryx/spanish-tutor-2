@@ -78,7 +78,7 @@ export class VocabularyFlashcardComponent implements OnInit {
     this.image = this.vocabularyCategory[this.index].image;
   
     let card = document.querySelector('div.card');
-    let cardFlipState = card.style.transform;
+    let cardFlipState = (<any>card).style.transform;
     if(cardFlipState === 'rotateX(180deg)') this.flip = 'inactive';
 }
 
