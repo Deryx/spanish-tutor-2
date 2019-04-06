@@ -1,16 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { VerbService } from '../../services/verb.service';
 import { FlipAnimation } from '../../../animations/flip.animation'
+import { FadeAnimation } from '../../../animations/fade.animation';
 
 @Component({
   selector: 'app-verb-flashcard',
   templateUrl: './verb-flashcard.component.html',
   styleUrls: ['./verb-flashcard.component.css'],
-  animations: FlipAnimation.animations
+  animations: [FlipAnimation.animations, FadeAnimation.animations]
 })
 
 export class VerbFlashcardComponent implements OnInit {
   flip = 'inactive';
+  fade = 'out';
   infinitives: any;
   verb: any;
   infinitive: string = 'infinitive';
@@ -80,8 +82,8 @@ export class VerbFlashcardComponent implements OnInit {
           this.tense = '';
           this.conjugation = '';
 
-          let card = document.querySelector("div.card");
-          let cardFlipState = (<any>card).style.transform;
+          const card: any = document.querySelector("div.card");
+          let cardFlipState = card.style.transform;
           if(cardFlipState === 'rotateX(180deg)') this.flip = 'inactive';
         }
       )
@@ -93,6 +95,7 @@ export class VerbFlashcardComponent implements OnInit {
         data => {
           this.verb = data;
           this.conjugation = this.verb.conjugations[parseInt(this.tense)];
+          this.fade = this.fade === 'in' ? 'out' : 'in';
         }
       )
   }

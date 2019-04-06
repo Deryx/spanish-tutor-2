@@ -16,6 +16,7 @@ export class MenuComponent {
 
   constructor() {
     this.siteLinks = [
+      { 'link': 'letter pronunciation', 'ref': '/letter-pronunciation'},
       { 'link': 'verb flashcard', 'ref': '/verb-flashcard'},
       { 'link': 'vocabulary flashcard', 'ref': '/vocabulary-flashcard'},
       { 'link': 'verb conjugator', 'ref': '/verb-conjugator'},

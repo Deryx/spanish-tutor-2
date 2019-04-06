@@ -11,6 +11,7 @@ import { MenuComponent } from './components/menu/menu.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { MarqueeComponent } from './components/marquee/marquee.component';
+import { LetterPronunciationComponent } from './components/letter-pronunciation/letter-pronunciation.component';
 import { VocabularySliderComponent } from './components/vocabulary-slider/vocabulary-slider.component';
 import { VocabularyQuizComponent } from './components/vocabulary-quiz/vocabulary-quiz.component';
 import { VocabularyCompletionComponent } from './components/vocabulary-completion/vocabulary-completion.component';
@@ -31,6 +32,7 @@ import { VocabularyOverlayFormComponent } from './components/vocabulary-overlay-
 import { SpanishAccentCodesComponent } from './components/spanish-accent-codes/spanish-accent-codes.component';
 
 const appRoutes: Routes = [
+  { path: 'letter-pronunciation', component: LetterPronunciationComponent },
   { path: 'verb-input', component: VerbInputComponent },
   { path: 'vocabulary-completion', component: VocabularyCompletionComponent },
   { path: 'vocabulary-flashcard', component: VocabularyFlashcardComponent },
@@ -62,7 +64,8 @@ const appRoutes: Routes = [
     OverlayComponent,
     ConjugatorOverlayFormComponent,
     VocabularyOverlayFormComponent,
-    SpanishAccentCodesComponent
+    SpanishAccentCodesComponent,
+    LetterPronunciationComponent
   ],
   imports: [
     BrowserModule,

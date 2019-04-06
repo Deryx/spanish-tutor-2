@@ -4,6 +4,7 @@
       <a (click)="toggleShowMenu()">menu</a>
       <span class="closeIcon" *ngIf="showCloseIcon" (click)="toggleShowMenu()">X</span>
       <ul id="subMenu" [@slideInOut]="animationState">
+        <li><a routerLink="/letter-pronunciation" routerLinkActive="active">letter pronunciation</a></li>
         <li><a routerLink="/verb-input" routerLinkActive="active">verb input</a></li>
         <li><a routerLink="/vocabulary-input" routerLinkActive="active">vocabulary input</a></li>
         <li><a routerLink="/verb-flashcard" routerLinkActive="active">verb flashcard</a></li>
