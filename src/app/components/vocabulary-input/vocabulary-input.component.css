@@ -114,6 +114,7 @@ input[type="button"], input[type="submit"] {
   background: rgb(23, 162, 184);
   color: rgb(255, 255, 255);
   width: 125px;
+  margin-top: -1.5em;
 
 }
 
