@@ -1,5 +1,6 @@
 section {
   margin: 0;
+  margin-top: 4.0rem;
   padding: 0;
   width: 100%;
   font-family: 'Roboto', sans-serif;
@@ -10,6 +11,12 @@ section {
 
 section h1 {
   text-transform: uppercase;
+  text-align: center;
+  padding-bottom: 50px;
+  font-family: "Alfa Slab One", serif;
+  text-transform: capitalize;
+  font-weight: normal;
+  font-size: 175%;
 }
 
 form {

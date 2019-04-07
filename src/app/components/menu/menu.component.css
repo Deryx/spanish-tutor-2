@@ -14,7 +14,7 @@ nav {
   list-style-type: none;
   z-index: 99;
   position: absolute;
-  right: 10rem;
+  right: 0;
 }
 
 .closeIcon {

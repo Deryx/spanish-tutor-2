@@ -1,19 +1,26 @@
 section {
   margin: 0 auto;
+  margin-top: 3.0rem;
   padding: 0;
   width: 575px;
   font-family: 'Roboto', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-section h2 {
-  text-align: center;
+section h1 {
   text-transform: uppercase;
-  margin-bottom: 50px;
+  text-align: center;
+  padding-bottom: 50px;
+  font-family: "Alfa Slab One", serif;
+  text-transform: capitalize;
+  font-weight: normal;
+  font-size: 175%;
 }
 
 section form {
   width: 100%;
-  padding-top: 15px;
   font-family: 'Roboto', sans-serif;
 }
 
