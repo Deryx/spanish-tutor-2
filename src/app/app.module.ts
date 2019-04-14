@@ -65,7 +65,7 @@ const appRoutes: Routes = [
     ConjugatorOverlayFormComponent,
     VocabularyOverlayFormComponent,
     SpanishAccentCodesComponent,
-    LetterPronunciationComponent
+    LetterPronunciationComponent,
   ],
   imports: [
     BrowserModule,
