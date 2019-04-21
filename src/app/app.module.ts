@@ -30,8 +30,11 @@ import { OverlayComponent } from './components/overlay/overlay.component';
 import { ConjugatorOverlayFormComponent } from './components/conjugator-overlay-form/conjugator-overlay-form.component';
 import { VocabularyOverlayFormComponent } from './components/vocabulary-overlay-form/vocabulary-overlay-form.component';
 import { SpanishAccentCodesComponent } from './components/spanish-accent-codes/spanish-accent-codes.component';
+import { HomeComponent } from './components/home/home.component';
+import { CardComponent } from './components/card/card.component';
 
 const appRoutes: Routes = [
+  { path: '', component: HomeComponent },
   { path: 'letter-pronunciation', component: LetterPronunciationComponent },
   { path: 'verb-input', component: VerbInputComponent },
   { path: 'vocabulary-completion', component: VocabularyCompletionComponent },
@@ -66,6 +69,8 @@ const appRoutes: Routes = [
     VocabularyOverlayFormComponent,
     SpanishAccentCodesComponent,
     LetterPronunciationComponent,
+    HomeComponent,
+    CardComponent
   ],
   imports: [
     BrowserModule,
