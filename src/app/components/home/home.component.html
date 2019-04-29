@@ -1,10 +1,20 @@
 <app-marquee></app-marquee>
 <section>
-  <h1>Welcome to MySpanishTutor</h1>
+  <h1>Welcome to <span class="logo-my">My</span><span class="logo-st">SpanishTutor</span></h1>
   <div class="row">
-
+    <app-card 
+      [cardImage]=pronunciationCard.image 
+      [cardHeader]=pronunciationCard.header 
+      [cardSummary]=pronunciationCard.summary>
+    </app-card>
+    <app-card></app-card>
+    <app-card></app-card>
+    <app-card></app-card>
   </div>
   <div class="row">
-    
+    <app-card></app-card>
+    <app-card></app-card>
+    <app-card></app-card>
+    <app-card></app-card>
   </div>
 </section>

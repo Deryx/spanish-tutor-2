@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -11,6 +11,6 @@ export class HeaderComponent {
 
   constructor() {
     this.titleMy = 'My';
-    this.titleST = 'Spanish Tutor';
+    this.titleST = 'SpanishTutor';
   }
 }
