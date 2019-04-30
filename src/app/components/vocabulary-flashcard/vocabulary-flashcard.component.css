@@ -76,8 +76,8 @@ select {
   margin: 0 auto;
   margin-top: 40px;
   padding: 0;
-  width: 432px;
-  height: 320px;
+  width: 31.25rem;
+  height: 20rem;
   background: rgb(255, 255, 255);
   position: relative;
   transform-style: preserve-3d;
