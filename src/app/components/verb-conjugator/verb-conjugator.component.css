@@ -1,0 +1,122 @@
+section {
+  margin: 0;
+  margin-top: 4.0rem;
+  padding: 0;
+  width: 100%;
+  font-family: 'Roboto', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+section > h1 {
+  text-transform: uppercase;
+  text-align: center;
+  padding-bottom: 50px;
+  font-family: "Alfa Slab One", serif;
+  text-transform: capitalize;
+  font-weight: normal;
+  font-size: 175%;
+}
+
+fieldset {
+  text-align: center;
+  margin: 0 auto;
+  padding: 0;
+  width: 550px;
+  border: 1px solid rgb(190, 190, 190);
+  padding-top: 20px;
+  padding-bottom: 20px;
+  font-family: "Roboto", sans-serif;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+  margin-top: 2em;
+}
+
+select {
+  padding: 5px;
+  margin-bottom: 25px;
+}
+
+dl {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  margin-left: -30px;
+  margin-top: 0.01em;
+  margin-bottom: 10px;
+  font-size: 1.25em;
+}
+
+dt {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  width: 50%;
+  margin-top: 0.25em;
+  margin-right: 0.5em;
+}
+
+dd {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  width: 50%;
+  margin-left: 0.5em;
+  font-weight: bold;
+}
+
+h2 {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 3em;
+}
+
+h3 {
+  margin-top: 0;
+  font-size: 2em;
+}
+
+input[type='text'] {
+  width: 20em;
+}
+
+input[type='button'] {
+  margin-right: 0.15rem;
+  margin-left:  0.15rem;
+  padding: 0.625rem;
+  width: 100px;
+  border: none;
+  text-transform: uppercase;
+  color: rgb(255, 255, 255);
+  font-weight: bold;
+  font-size: 0.75em;
+  font-family: "Roboto", sans-serif;
+}
+
+.answer {
+  background: rgb(30, 126, 52);
+}
+
+.reset {
+  background: rgb(52, 58, 64);
+}
+
+#accentBtn {
+  background: rgb(23, 162, 184);
+  color: rgb(255, 255, 255);
+  width: 125px;
+  margin-top: -1.5em;
+}
+
+fieldset h4 {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  font-size: 125%;
+  text-transform: uppercase;
+}

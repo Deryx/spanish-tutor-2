@@ -1,0 +1,41 @@
+<section>
+  <form>
+    <fieldset>
+      <dl>
+        <dt>What verb tense do you want to conjugate?</dt>
+        <dd>
+          <input type="radio" id="presentTense" name="tense" [(ngModel)]="tense" value="present" />
+          <label for="presentTense">present</label>
+
+          <input type="radio" id="preteriteTense" name="tense" [(ngModel)]="tense" value="preterite" />
+          <label for="preteriteTense">preterite</label>
+
+          <input type="radio" id="imperfectTense" name="tense" [(ngModel)]="tense" value="imperfect" />
+          <label for="imperfectTense">imperfect</label>
+
+          <input type="radio" id="futureTense" name="tense" [(ngModel)]="tense" value="future" />
+          <label for="futureTense">future</label>
+        </dd>
+      </dl>
+      <dl>
+        <dt>How many verbs do you want to conjugate?</dt>
+        <dd>
+          <input type="radio" id="verbs5" name="numberVerbs" [(ngModel)]="numberVerbs" value="5" />
+          <label for="verbs5">5</label>
+
+          <input type="radio" id="verbs10" name="numberVerbs" [(ngModel)]="numberVerbs" value="10" />
+          <label for="verbs10">10</label>
+
+          <input type="radio" id="verbs15" name="numberVerbs" [(ngModel)]="numberVerbs" value="15" />
+          <label for="verbs15">15</label>
+
+          <input type="radio" id="verbs20" name="numberVerbs" [(ngModel)]="numberVerbs" value="20" />
+          <label for="verbs20">20</label>
+        </dd>
+      </dl>
+      <div id="buttons">
+        <input type="button" id="submitBtn" name="submitBtn" value="continue" (click)="onClick()" />
+      </div>
+    </fieldset>
+  </form>
+</section>

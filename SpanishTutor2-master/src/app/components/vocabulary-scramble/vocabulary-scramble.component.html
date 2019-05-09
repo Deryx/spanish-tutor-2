@@ -1,0 +1,22 @@
+<app-overlay *ngIf='showOverlay'></app-overlay>
+<app-vocabulary-overlay-form (formChange)='getOverlayData($event)' *ngIf='showVocabularyOverlay'></app-vocabulary-overlay-form>
+<section>
+    <h1>vocabulary scramble</h1>
+
+    <form *ngIf='showForm'>
+        <fieldset>
+            <h2>{{translation}}</h2>
+            <div><img src={{image}} /></div>
+            <ul [sortablejs]="this.scrambledWord">
+                <li *ngFor="let letter of this.scrambledWord">
+                    <h3>{{letter}}</h3>
+                </li>
+            </ul>
+        </fieldset>
+        <div id="buttons">
+            <input type="button" id="answerBtn" value="answer" (click)="getAnswer()" />
+            <input type="button" id="resetBtn" value="reset" (click)="reset()" />
+            <input type="button" id="quitBtn" value="quit" (click)="quit()" />
+        </div>
+    </form>
+</section>

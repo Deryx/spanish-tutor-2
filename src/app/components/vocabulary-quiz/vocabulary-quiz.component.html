@@ -1,0 +1,56 @@
+<app-overlay *ngIf='showOverlay'></app-overlay>
+<app-vocabulary-overlay-form (formChange)='getOverlayData($event)' *ngIf='showVocabularyOverlay'></app-vocabulary-overlay-form>
+<section>
+  <h1>vocabulary quiz</h1>
+
+  <form *ngIf='showForm'>
+    <fieldset>
+      <h2>{{word}}</h2>
+
+      <div id="answers">
+        <div class="row">
+          <span>
+            <input type="radio" id="quizAnswer_0" name="quizAnswer" [(ngModel)]="quizAnswer" value={{this.answers[0]}} />
+          </span>
+          <label for='quizAnswer_0'>{{this.answers[0]}}</label>
+        </div>
+        <div class="row">
+          <span>
+            <input type="radio" id="quizAnswer_1" name="quizAnswer" [(ngModel)]="quizAnswer" value={{this.answers[1]}} />
+          </span>
+          <label for='quizAnswer_1'>{{this.answers[1]}}</label>
+        </div>
+        <div class="row">
+          <span>
+            <input type="radio" id="quizAnswer_2" name="quizAnswer" [(ngModel)]="quizAnswer" value={{this.answers[2]}} />
+          </span>
+          <label for='quizAnswer_2'>{{this.answers[2]}}</label>
+        </div>
+        <div class="row">
+          <span>
+            <input type="radio" id="quizAnswer_3" name="quizAnswer" [(ngModel)]="quizAnswer" value={{this.answers[3]}} />
+          </span>
+          <label for='quizAnswer_3'>{{this.answers[3]}}</label>
+        </div>
+        <div class="row">
+          <span>
+            <input type="radio" id="quizAnswer_4" name="quizAnswer" [(ngModel)]="quizAnswer" value={{this.answers[4]}} />
+          </span>
+          <label for='quizAnswer_4'>{{this.answers[4]}}</label>
+        </div>
+        <div class="row">
+          <span>
+            <input type="radio" id="quizAnswer_5" name="quizAnswer" [(ngModel)]="quizAnswer" value={{this.answers[5]}} />
+          </span>
+          <label for='quizAnswer_5'>{{this.answers[5]}}</label>
+        </div>
+      </div>
+    </fieldset>
+    <div id="buttons">
+      <input type="button" id="answerBtn" value="answer" (click)="getAnswer()" />
+      <input type="button" id="resetBtn" value="reset" (click)="reset()" />
+      <input type="button" id="quitBtn" value="quit" (click)="quit()" />
+    </div>
+  </form>
+
+</section>
