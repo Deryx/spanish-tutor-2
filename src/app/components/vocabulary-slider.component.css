@@ -1,0 +1,145 @@
+section {
+    margin: 0;
+    margin-top: 4.0rem;
+    padding: 0;
+    width: 100%;
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+  
+section h1 {
+    text-transform: uppercase;
+    text-align: center;
+    padding-bottom: 50px;
+    font-family: "Alfa Slab One", serif;
+    text-transform: capitalize;
+    font-weight: normal;
+    font-size: 175%;
+}
+  
+form {
+    margin-top: 5rem;
+    width: 50rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+  
+fieldset {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    width: 100%;
+    border: none;
+    display: flex;
+    justify-content: center;
+    font-family: "Roboto", sans-serif;
+}
+
+fieldset h2 {
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    text-transform: uppercase;
+}
+
+fieldset div {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+    width: 60rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    list-style-type: none;
+}
+
+.card, .slide {
+    margin: 5px;
+    list-style: none;
+    text-align: center;
+    font-family: "Roboto", sans-serif;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    height: 250px;
+    border: 1px solid rgb(190, 190, 190);
+}
+
+.card h3 {
+    margin-top: 1.5rem;
+    margin-bottom: 10px;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    text-transform: uppercase;
+    font-size: 125%;
+}
+
+.card img {
+    width: 60%; 
+    height: 60%;
+}
+
+.slide {
+    width: 200px;
+    background: rgb(52, 152, 219);
+    color: rgb(255, 255, 255);
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+#buttons {
+    margin-top: 25px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+  
+#buttons input {
+    margin-right: 0.15rem;
+    margin-left:  0.15rem;
+    padding: 0.625rem;
+    width: 100px;
+    border: none;
+    text-transform: uppercase;
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+    letter-spacing: 1px;
+    font-size: 0.75em;
+    font-family: "Roboto", sans-serif;
+}
+  
+#answerBtn {
+    margin-left: 30px;
+    background: rgb(40, 167, 69);
+}
+  
+#resetBtn {
+    background: rgb(52, 58, 64);
+}
+  
+#quitBtn {
+    background: rgb(220, 53, 69);
+}
+
+input[type='text'] {
+    text-transform: uppercase;
+    text-align: center;
+    width: 10px;
+    height: 10px;
+    padding: 5px;
+}

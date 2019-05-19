@@ -1,0 +1,66 @@
+nav {
+  margin: 0;
+  padding: 0;
+  width: 225px;
+  text-transform: uppercase;
+  font-family: 'Roboto', sans-serif;
+}
+
+#menu  {
+  margin: 0;
+  margin-top: -0.5rem;
+  padding: 0;
+  width: 230px;
+  list-style-type: none;
+  z-index: 99;
+  position: absolute;
+  right: 0;
+}
+
+.closeIcon {
+  float: right;
+  margin-right: 1.5em;
+  margin-top: -1.5em;
+  color: rgb(255, 255, 255);
+  font-weight: bold;
+}
+
+#menu a {
+  text-decoration: none;
+  color: rgb(255, 255, 255);
+  font-size: 125%;
+  font-weight: bold;
+  letter-spacing: 0.2em;
+  display: block;
+}
+
+ul#subMenu {
+  width: 100%;
+  list-style-type: none;
+  left: -8px;
+  margin-top: 0.8em;
+  margin-left: 0;
+  padding: 0;
+  z-index: 99;
+  position: absolute;
+  background: rgb(255, 0, 0);
+  font-weight: 800;
+  font-family: 'Roboto', sans-serif;
+}
+
+ul#subMenu li {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+ul#subMenu li a {
+  background: rgb(255, 0, 0);
+  color: rgb(255, 255, 255);
+  font-weight: normal;
+  letter-spacing: 0;
+}
+
+ul#subMenu li a:hover {
+  background: rgb(255, 255, 255);
+  color: rgb(255, 0, 0);
+}
