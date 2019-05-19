@@ -16,6 +16,10 @@ section {
     color: rgb(255, 255, 255);
 }
 
+h4 {
+    margin-bottom: 1.0rem;
+}
+
 dl {
     display: flex;
     flex-direction: row;

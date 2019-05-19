@@ -1,8 +1,9 @@
 .card {
-    width: 18.75rem;
-    height: 25.0rem;
+    width: 18.0rem;
+    height: 16.0rem;
     border: 1px solid #CCCCCC;
     margin: 0.9375rem;
+    margin-top: 5.0rem;
     background: rgba(240, 240, 240, 0.5);
 }
 
@@ -14,7 +15,12 @@
     background: rgb(255, 7, 7);
     padding-top: 0.625rem;
     padding-bottom: 0.625rem;
-    margin-top: 0;
+    padding-left: 2.0rem;
+    padding-right: 2.0rem;
+    margin: 0 auto;
+    margin-top: -3.0rem;
+    margin-bottom: 1.0rem;
+    width: 85%;
 }
 
 .card .card-image {
@@ -27,9 +33,9 @@
 }
 
 .card .summary {
-    padding-left: 1.25rem;
-    padding-right: 1.25rem;
-    font-size: 1.1rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    font-size: 1.0rem;
     font-family: 'Roboto', sans-serif;
     text-align: justify;
 }

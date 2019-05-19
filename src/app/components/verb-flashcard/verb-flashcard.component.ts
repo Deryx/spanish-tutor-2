@@ -16,7 +16,7 @@ export class VerbFlashcardComponent implements OnInit {
   infinitives: any;
   verb: any;
   infinitive: string = 'infinitive';
-  translation: string = '[ translation ]';
+  translation: string = 'translation';
   tense: any;
   conjugation: any;
 

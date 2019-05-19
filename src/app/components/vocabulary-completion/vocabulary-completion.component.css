@@ -54,9 +54,9 @@ fieldset div {
     justify-content: center;
 }
 
-img {
-    width: 20%;
-    height: 20%;
+fieldset div img {
+    width: 10%;
+    height: 10%;
 }
 
 ul {
@@ -70,7 +70,7 @@ ul {
 }
 
 ul li {
-    margin: 5px;
+    margin: 15px;
     list-style: none;
     width: 20px;
     height: 20px;
@@ -127,7 +127,7 @@ li h3 {
 input[type='text'] {
     text-transform: uppercase;
     text-align: center;
-    width: 10px;
-    height: 10px;
+    width: 2.5rem;
+    height: 2.5rem;
     padding: 5px;
 }

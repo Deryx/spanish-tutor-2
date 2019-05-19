@@ -122,6 +122,10 @@ dd {
   color: rgb(255, 255, 255);
 }
 
+.front h3 {
+  margin-top: -3.5rem;
+}
+
 .back {
   transform: rotateX(180deg);
   border: 1px solid rgb(240, 240, 240);
@@ -140,6 +144,5 @@ h2 {
 }
 
 h3 {
-  margin-top: -3.0rem;
   font-size: 2em;
 }

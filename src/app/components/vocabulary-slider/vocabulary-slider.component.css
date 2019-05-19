@@ -34,7 +34,6 @@ fieldset {
     border: none;
     display: flex;
     justify-content: center;
-    border: 1px solid rgb( 190, 190, 190 );
     font-family: "Roboto", sans-serif;
 }
 
@@ -57,7 +56,7 @@ fieldset div {
 ul {
     margin: 0;
     padding: 0;
-    width: 50rem;
+    width: 60rem;
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
@@ -75,15 +74,18 @@ ul {
 .card {
     display: flex;
     flex-direction: column;
-    width: 150px;
+    width: 200px;
     height: 250px;
     border: 1px solid rgb(190, 190, 190);
 }
 
 .card h3 {
-    margin-top: 10px;
+    margin-top: 1.5rem;
     margin-bottom: 10px;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
     text-transform: uppercase;
+    font-size: 125%;
 }
 
 .card img {
@@ -92,7 +94,7 @@ ul {
 }
 
 .slide {
-    width: 150px;
+    width: 200px;
     background: rgb(52, 152, 219);
     color: rgb(255, 255, 255);
     padding-top: 10px;
