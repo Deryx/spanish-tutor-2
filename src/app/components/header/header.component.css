@@ -17,8 +17,9 @@ header h1 {
   margin-top: 0.25em;
   margin-left: 4.0em;
   color: rgb(255, 255, 255);
-  font-size: 2rem;
+  font-size: 2rem !important;
   letter-spacing: 0.1rem;
+  font-size: inherit;
 }
 
 .titleMy {
@@ -48,4 +49,5 @@ header app-menu {
   margin: 0;
   padding: 0;
   margin-right: 80px;
+  font-size: inherit;
 }
