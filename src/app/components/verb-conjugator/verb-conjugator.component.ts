@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { VerbService } from '../../services/verb.service';
 import { RandomNumberGeneratorService } from '../../services/random-number-generator.service';
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-verb-conjugator',
@@ -44,7 +45,21 @@ export class VerbConjugatorComponent {
 
   answerReport: any = [];
 
-  constructor( private verbs: VerbService, private randomNumberService: RandomNumberGeneratorService ) { }
+  constructor( private verbs: VerbService, private randomNumberService: RandomNumberGeneratorService, private router: Router ) { }
+
+  retrieveVerbs() {
+    this.verbs.getVerbs()
+    .subscribe(
+      data => {
+        this.infinitives = data;
+      },
+      error => console.log('Error: ', error),
+      () => {
+        this.randomNumberService.generateRandomNumberArray(this.numberQuestions, this.infinitives.length, this.questionSet );
+        this.getCurrentVerb( this.currentVerb, this.tense );
+        delete this.currentAnswers._id;
+      });
+}
 
   getOverlayData(data) {
     if(!data.isVisible) {
@@ -54,17 +69,7 @@ export class VerbConjugatorComponent {
       this.tense = data.tense;
       this.numberQuestions = data.numberVerbs;
 
-      this.verbs.getVerbs()
-        .subscribe(
-          data => {
-            this.infinitives = data;
-          },
-          error => console.log('Error: ', error),
-          () => {
-            this.randomNumberService.generateRandomNumberArray(this.numberQuestions, this.infinitives.length, this.questionSet );
-            this.getCurrentVerb( this.currentVerb, this.tense );
-            delete this.currentAnswers._id;
-          });
+      this.retrieveVerbs();
     }
   }
 
@@ -135,5 +140,24 @@ export class VerbConjugatorComponent {
   toggleAccents() {
     this.animationState = this.animationState === 'left' ? 'right' : 'left';
     this.buttonText = this.animationState === 'left' ? 'show accents' : 'hide accents';
+  }
+
+  reset() {
+    this.inputAnswers = {
+      yo: '',
+      tu: '',
+      el: '',
+      nosotros: '',
+      els: ''
+    };
+    this.resetCurrentAnswers();
+    this.retrieveVerbs();
+    this.currentVerb = 0;
+    this.numberCorrect = 0;
+    this.getNextVerb();
+  }
+
+  quit() {
+    this.router.navigateByUrl('');
   }
 }

@@ -30,7 +30,8 @@
     </fieldset>
     <div class="buttons">
       <input type="button" class="button answer" id="answerBtn" name="answerBtn" value="answer" (click)="getAnswers()" />
-      <input type="button" class="button reset" id="resetBtn" name="resetBtn" value="reset" />
+      <input type="button" class="button reset" id="resetBtn" name="resetBtn" value="reset" (click)="reset()" />
+      <input type="button" id="quitBtn" value="quit" (click)="quit()" />
     </div>
     <div class="buttons"><input type="button" id="accentBtn" value={{buttonText}} (click)="toggleAccents()" /></div>
   </form>
