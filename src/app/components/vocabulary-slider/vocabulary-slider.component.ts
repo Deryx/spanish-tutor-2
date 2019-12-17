@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { VocabularyService } from '../../services/vocabulary.service';
 import { RandomNumberGeneratorService } from '../../services/random-number-generator.service';
 import { Observable } from 'rxjs/Observable';
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-vocabulary-slider',
@@ -26,7 +27,7 @@ export class VocabularySliderComponent {
   translationCards: any[] = [];
   wordSlides: any = [];
 
-  constructor( private words: VocabularyService, private randomNumberService: RandomNumberGeneratorService ) {}
+  constructor( private words: VocabularyService, private randomNumberService: RandomNumberGeneratorService, private router: Router ) {}
 
   getOverlayData(data) {
     const numberCards = 5;
@@ -145,6 +146,6 @@ export class VocabularySliderComponent {
   }
 
   quit() {
-
+    this.router.navigateByUrl('');
   }
 }

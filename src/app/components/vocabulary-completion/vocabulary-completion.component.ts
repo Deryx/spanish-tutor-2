@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { VocabularyService } from '../../services/vocabulary.service';
 import { RandomNumberGeneratorService } from '../../services/random-number-generator.service';
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-vocabulary-completion',
@@ -26,7 +27,7 @@ export class VocabularyCompletionComponent {
 
   answerReport: any = [];
 
-  constructor( private words: VocabularyService, private randomNumberService: RandomNumberGeneratorService ) {}
+  constructor( private words: VocabularyService, private randomNumberService: RandomNumberGeneratorService, private router: Router ) {}
   
   getOverlayData(data) {
     if(!data.isVisible) {
@@ -115,7 +116,7 @@ export class VocabularyCompletionComponent {
   }
 
   quit() {
-
+    this.router.navigateByUrl('');
   }
 
   toggleAccents() {

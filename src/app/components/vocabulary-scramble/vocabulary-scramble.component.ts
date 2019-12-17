@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { VocabularyService } from '../../services/vocabulary.service';
 import { RandomNumberGeneratorService } from '../../services/random-number-generator.service';
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-vocabulary-scramble',
@@ -27,7 +28,7 @@ export class VocabularyScrambleComponent {
 
   answerReport: any = [];
 
-  constructor( private words: VocabularyService, private randomNumberService: RandomNumberGeneratorService ) {}
+  constructor( private words: VocabularyService, private randomNumberService: RandomNumberGeneratorService, private router: Router ) {}
 
   getOverlayData(data) {
     if(!data.isVisible) {
@@ -99,12 +100,13 @@ export class VocabularyScrambleComponent {
 
   reset() {
     this.answer = '';
-    this.currentWord = 0;
+    this.scrambledWord = [];
+    // this.currentWord = 0;
     this.numberCorrect = 0;
-    this.getNextQuestion();
+    this.getCurrentWord( this.currentWord );
   }
 
   quit() {
-
+    this.router.navigateByUrl('');
   }
 }

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { VocabularyService } from '../../services/vocabulary.service';
 import { RandomNumberGeneratorService } from '../../services/random-number-generator.service';
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-vocabulary-quiz',
@@ -25,7 +26,7 @@ export class VocabularyQuizComponent {
 
   answerReport: any = [];
 
-  constructor( private words: VocabularyService, private randomNumberService: RandomNumberGeneratorService ) {}
+  constructor( private words: VocabularyService, private randomNumberService: RandomNumberGeneratorService, private router: Router ) {}
 
   getOverlayData(data) {
     if(!data.isVisible) {
@@ -88,13 +89,13 @@ export class VocabularyQuizComponent {
   }
 
   reset() {
-    this.quizAnswer = '';
+    this.answer = '';
     this.currentQuestion = 0;
     this.numberCorrect = 0;
     this.getNextQuestion();
   }
 
   quit() {
-
+    this.router.navigateByUrl('');
   }
 }
