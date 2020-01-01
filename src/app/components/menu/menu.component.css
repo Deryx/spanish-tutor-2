@@ -37,13 +37,8 @@ nav {
 ul#subMenu {
   width: 100%;
   list-style-type: none;
-<<<<<<< HEAD
   left: -0.5rem;
   margin-top: 1.1rem;
-=======
-  left: -8px;
-  margin-top: 1.2em;
->>>>>>> 8b393d635914e5360cd223043ed02f1ac0ede23d
   margin-left: 0;
   padding: 0;
   z-index: 99;

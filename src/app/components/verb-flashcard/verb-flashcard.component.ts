@@ -27,7 +27,8 @@ export class VerbFlashcardComponent implements OnInit {
       .subscribe(
         data => {
           this.infinitives = data;
-          this.infinitives;
+          this.infinitives = this.infinitives.Items;
+          console.log(this.infinitives);
 
           let infinitiveSelect = document.getElementById('infinitive');
 
@@ -65,7 +66,7 @@ export class VerbFlashcardComponent implements OnInit {
             let tense: string = tenses[i];
 
             let option = document.createElement('option');
-            option.value = i.toString();
+            option.value = tense;
             option.innerHTML = tense;
 
             tenseSelect.appendChild(option);
@@ -78,7 +79,8 @@ export class VerbFlashcardComponent implements OnInit {
       .subscribe(
         data => {
           this.verb = data;
-          this.translation = this.verb.translation;
+          this.verb = this.verb.Items;
+          this.translation = this.verb[0].translation;
           this.tense = '';
           this.conjugation = '';
 
@@ -94,7 +96,8 @@ export class VerbFlashcardComponent implements OnInit {
       .subscribe(
         data => {
           this.verb = data;
-          this.conjugation = this.verb.conjugations[parseInt(this.tense)];
+          this.verb = this.verb.Items;
+          this.conjugation = this.verb[0].conjugations[this.tense];
           this.fade = this.fade === 'in' ? 'out' : 'in';
         }
       )

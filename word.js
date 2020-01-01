@@ -2,15 +2,17 @@
  * Created by deryx on 8/29/2018.
  */
 
-var mongoose = require( 'mongoose' );
-var Schema = mongoose.Schema;
-var WordSchema = new Schema({
-  category: String,
-  word: String,
-  translation: String,
-  gender: String,
-  image: String,
-  pronunciation: String
+var Word = dynamo.define('Word', {
+  hashKey : 'word',
+ 
+  schema : {
+    word          : Joi.string().word(),
+    translation   : Joi.string(),
+    category      : Joi.string(),
+    pronunciation : Joi.string(),
+    image         : Joi.string(),
+    gender        : Joi.string()
+  }
 });
 
-module.exports = mongoose.model( 'Word', WordSchema );
+module.exports = dynamo.model( 'Word', Word );

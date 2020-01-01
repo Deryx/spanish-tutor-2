@@ -3,12 +3,41 @@ import { Conjugation } from './conjugation';
 export class Verb {
   infinitive: string;
   translation: string;
-  conjugations: Conjugation[];
+  conjugations: {};
 
   constructor (){
     this.infinitive ='';
     this.translation = '';
-    this.conjugations = [];
+    this.conjugations = {
+      'present': {
+        'yo': '',
+        'tu': '',
+        'el': '',
+        'nosotros': '',
+        'els': ''
+      },
+      'preterite': {
+        'yo': '',
+        'tu': '',
+        'el': '',
+        'nosotros': '',
+        'els': ''
+      },
+      'imperfect': {
+        'yo': '',
+        'tu': '',
+        'el': '',
+        'nosotros': '',
+        'els': ''
+      },
+      'future': {
+        'yo': '',
+        'tu': '',
+        'el': '',
+        'nosotros': '',
+        'els': ''
+      }
+    };
   }
 
   setInfinitive(infinitive: string){
@@ -19,7 +48,7 @@ export class Verb {
     this.translation = translation;
   }
 
-  addConjugation(conjugation: Conjugation){
-    this.conjugations.push(conjugation);
+  addConjugations(conjugations: any){
+    this.conjugations = conjugations;
   }
 }

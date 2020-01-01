@@ -1,5 +1,4 @@
 export class Conjugation {
-  tense: string;
   yo: string;
   tu: string;
   el: string;
@@ -7,7 +6,6 @@ export class Conjugation {
   els: string;
 
   constructor() {
-    this.tense = '';
     this.yo = '';
     this.tu = '';
     this.el = '';

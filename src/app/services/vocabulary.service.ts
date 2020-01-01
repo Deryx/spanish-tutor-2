@@ -1,14 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-<<<<<<< HEAD
 import { map } from 'rxjs/operators';
 import { Vocabulary } from '../vocabulary';
-=======
-import { Vocabulary } from '../vocabulary';
-import 'rxjs/add/operator/map';
->>>>>>> 8b393d635914e5360cd223043ed02f1ac0ede23d
 
-const baseUrl = 'http://localhost:4000/api';
+const baseUrl = 'http://localhost:4000';
 
 @Injectable()
 export class VocabularyService {
@@ -18,30 +13,20 @@ export class VocabularyService {
     const uri = baseUrl + '/words';
     return this.http
       .get( uri )
-<<<<<<< HEAD
-      .pipe(map( function(res){
-        return res;
+      .pipe(map( 
+        function(res){
+          return res;
       }));
-=======
-      .map( function(res){
-        return res;
-      });
->>>>>>> 8b393d635914e5360cd223043ed02f1ac0ede23d
   }
 
   getCategory( category: string ){
-    const uri = baseUrl + '/words/' + category;
+    const uri = baseUrl + '/words/category/' + category;
     return this.http
       .get( uri )
-<<<<<<< HEAD
-      .pipe(map( function(res){
-        return res;
+      .pipe(map( 
+        function(res){
+          return res;
       }));
-=======
-      .map( function(res){
-        return res;
-      });
->>>>>>> 8b393d635914e5360cd223043ed02f1ac0ede23d
   }
 
   addWord( newWord: Vocabulary ){

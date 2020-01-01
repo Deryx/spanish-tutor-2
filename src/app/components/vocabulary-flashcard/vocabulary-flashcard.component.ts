@@ -35,7 +35,7 @@ export class VocabularyFlashcardComponent implements OnInit {
       error => console.log('Error: ', error),
       () => {
         let categorySelect = document.getElementById( 'category' );
-        let categoryOptions: string[] = this.vocabularyCategories.getCategories( this.dictionary );
+        let categoryOptions: string[] = this.vocabularyCategories.getCategories( this.dictionary.Items );
     
         let firstOption = document.createElement( 'option' );
         firstOption.value = '';
@@ -61,6 +61,7 @@ export class VocabularyFlashcardComponent implements OnInit {
       .subscribe(
         data => {
           this.vocabularyCategory = data;
+          this.vocabularyCategory = this.vocabularyCategory.Items;
           this.index = 0;
           this.word = this.vocabularyCategory[this.index].word;
           this.pronunciation = this.vocabularyCategory[this.index].pronunciation;
