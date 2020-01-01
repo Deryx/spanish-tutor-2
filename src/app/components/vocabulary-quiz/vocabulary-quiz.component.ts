@@ -39,6 +39,7 @@ export class VocabularyQuizComponent {
         .subscribe(
           data => {
             this.dictionary = data;
+            this.dictionary = this.dictionary.Items;
           },
           error => console.log('Error: ', error),
           () => {

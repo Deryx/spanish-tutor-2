@@ -52,6 +52,7 @@ export class VerbConjugatorComponent {
     .subscribe(
       data => {
         this.infinitives = data;
+        this.infinitives = this.infinitives.Items;
       },
       error => console.log('Error: ', error),
       () => {

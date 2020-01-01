@@ -28,7 +28,7 @@ export class VocabularyOverlayFormComponent implements OnInit {
       error => console.log('Error: ', error),
       () => {
         let categorySelect = document.getElementById( 'category' );
-        let categoryOptions: string[] = this.vocabularyCategories.getCategories( this.dictionary );
+        let categoryOptions: string[] = this.vocabularyCategories.getCategories( this.dictionary.Items );
         categoryOptions.sort();
     
         let firstOption = document.createElement( 'option' );
