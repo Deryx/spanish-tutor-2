@@ -102,7 +102,6 @@ export class VocabularyScrambleComponent {
   reset() {
     this.answer = '';
     this.scrambledWord = [];
-    // this.currentWord = 0;
     this.numberCorrect = 0;
     this.getCurrentWord( this.currentWord );
   }

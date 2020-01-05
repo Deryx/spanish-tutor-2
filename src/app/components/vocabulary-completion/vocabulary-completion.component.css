@@ -1,11 +1,10 @@
 section {
     margin: 0;
     padding: 0;
-    width: 100%;
-    height: 100%;
     font-family: 'Roboto', sans-serif;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
 }
   
@@ -22,21 +21,22 @@ section h1 {
   
 form {
     margin-top: 5rem;
-    width: 50rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    margin: 0 auto;
 }
   
 fieldset {
-    padding-top: 20px;
-    padding-bottom: 20px;
-    width: 100%;
     border: none;
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     border: 1px solid rgb( 190, 190, 190 );
     font-family: "Roboto", sans-serif;
+    margin: 0 auto;
+    padding-top: 1.7rem;
+    padding-bottom: 1.7rem;
 }
 
 fieldset h2 {
@@ -47,23 +47,21 @@ fieldset h2 {
 }
 
 fieldset div {
-    margin-top: 30px;
-    margin-bottom: 30px;
-    width: 100%;
+    margin-top: 1.75rem;
+    margin-bottom: 1.75rem;
     display: flex;
     flex-direction: row;
     justify-content: center;
 }
 
-fieldset div img {
-    width: 10%;
-    height: 10%;
+img {
+    width: 30%;
+    height: 30%;
 }
 
 ul {
     margin: 0;
     padding: 0;
-    width: 50rem;
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
@@ -76,6 +74,10 @@ ul li {
     width: 20px;
     height: 20px;
     text-align: center;
+}
+
+ul li:first-child {
+    margin-left: 0;
 }
 
 li h3 {

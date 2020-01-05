@@ -1,11 +1,11 @@
 <section>
   <h1>Verb Input</h1>
-  <form (ngSubmit)="onSubmit()">
-    <fieldset>
+  <form (ngSubmit)="onSubmit()" class="col-lg-4 col-md-6 col-xs-12">
+    <fieldset class="col-lg-10">
       <dl>
         <dt>infinitive:</dt>
         <dd>
-          <input type="text" name="infinitive"
+          <input type="text" name="infinitive" class="col-lg-12"
                 [(ngModel)]="infinitive"
                 required
           />
@@ -14,7 +14,7 @@
       <dl>
         <dt>translation:</dt>
         <dd>
-          <input type="text" id="translation" name="translation"
+          <input type="text" id="translation" name="translation" class="col-lg-12"
                 [(ngModel)]="translation"
                 required
           />
@@ -26,7 +26,7 @@
         <dl>
           <dt>yo:</dt>
           <dd>
-            <input type="text" name="presentYo" id="presentYo"
+            <input type="text" name="presentYo" id="presentYo" class="col-lg-12"
                   [(ngModel)]="presentYo"
                   required />
           </dd>
@@ -34,7 +34,7 @@
         <dl>
           <dt>tu:</dt>
           <dd>
-            <input type="text" name="presentTu" id="presentTu"
+            <input type="text" name="presentTu" id="presentTu" class="col-lg-12"
                   [(ngModel)]="presentTu"
                   required />
           </dd>
@@ -42,7 +42,7 @@
         <dl>
           <dt>el/Ella/Usted:</dt>
           <dd>
-            <input type="text" name="presentEl" id="presentEl"
+            <input type="text" name="presentEl" id="presentEl" class="col-lg-12"
                   [(ngModel)]="presentEl"
                   required />
           </dd>
@@ -50,14 +50,14 @@
         <dl>
           <dt>nosotros:</dt>
           <dd>
-            <input type="text" name="presentNosotros" id="presentNosotros"
+            <input type="text" name="presentNosotros" id="presentNosotros" class="col-lg-12"
                   [(ngModel)]="presentNosotros"
                   required />
           </dd>
         </dl>
         <dl>
           <dt>ellos/Ellas/Ustedes:</dt>
-          <dd><input type="text" name="presentEls" id="presentEls"
+          <dd><input type="text" name="presentEls" id="presentEls" class="col-lg-12"
                     [(ngModel)]="presentEls"
                     required />
           </dd>
@@ -69,7 +69,7 @@
         <dl>
           <dt>yo:</dt>
           <dd>
-            <input type="text" name="preteriteYo" id="preteriteYo"
+            <input type="text" name="preteriteYo" id="preteriteYo"  class="col-lg-12"
                   required
                   [(ngModel)]="preteriteYo"
             >
@@ -78,7 +78,7 @@
         <dl>
           <dt>tu:</dt>
           <dd>
-            <input type="text" name="preteriteTu" id="preteriteTu"
+            <input type="text" name="preteriteTu" id="preteriteTu" class="col-lg-12"
                   required
                   [(ngModel)]="preteriteTu"
             >
@@ -87,7 +87,7 @@
         <dl>
           <dt>el/Ella/Usted:</dt>
           <dd>
-            <input type="text" name="preteriteEl" id="preteriteEl"
+            <input type="text" name="preteriteEl" id="preteriteEl" class="col-lg-12"
                   required
                   [(ngModel)]="preteriteEl"
             >
@@ -96,7 +96,7 @@
         <dl>
           <dt>nosotros:</dt>
           <dd>
-            <input type="text" name="preteriteNosotros" id="preteriteNosotros"
+            <input type="text" name="preteriteNosotros" id="preteriteNosotros" class="col-lg-12"
                   required
                   [(ngModel)]="preteriteNosotros"
             >
@@ -104,7 +104,7 @@
         </dl>
         <dl>
           <dt>ellos/Ellas/Ustedes:</dt>
-          <dd><input type="text" name="preteriteEls" id="preteriteEls"
+          <dd><input type="text" name="preteriteEls" id="preteriteEls" class="col-lg-12"
                     required
                     [(ngModel)]="preteriteEls"
           >
@@ -117,7 +117,7 @@
         <dl>
           <dt>yo:</dt>
           <dd>
-            <input type="text" name="imperfectYo" id="imperfectYo"
+            <input type="text" name="imperfectYo" id="imperfectYo" class="col-lg-12"
                   required
                   [(ngModel)]="imperfectYo"
             >
@@ -126,7 +126,7 @@
         <dl>
           <dt>tu:</dt>
           <dd>
-            <input type="text" name="imperfectTu" id="imperfectTu"
+            <input type="text" name="imperfectTu" id="imperfectTu" class="col-lg-12"
                   required
                   [(ngModel)]="imperfectTu"
             >
@@ -135,7 +135,7 @@
         <dl>
           <dt>el/Ella/Usted:</dt>
           <dd>
-            <input type="text" name="imperfectEl" id="imperfectEl"
+            <input type="text" name="imperfectEl" id="imperfectEl" class="col-lg-12"
                   required
                   [(ngModel)]="imperfectEl"
             >
@@ -144,7 +144,7 @@
         <dl>
           <dt>nosotros:</dt>
           <dd>
-            <input type="text" name="imperfectNosotros" id="imperfectNosotros"
+            <input type="text" name="imperfectNosotros" id="imperfectNosotros" class="col-lg-12"
                   required
                   [(ngModel)]="imperfectNosotros"
             >
@@ -152,7 +152,7 @@
         </dl>
         <dl>
           <dt>ellos/Ellas/Ustedes:</dt>
-          <dd><input type="text" name="imperfectEls" id="imperfectEls"
+          <dd><input type="text" name="imperfectEls" id="imperfectEls" class="col-lg-12"
                     required
                     [(ngModel)]="imperfectEls"
           >
@@ -165,7 +165,7 @@
         <dl>
           <dt>yo:</dt>
           <dd>
-            <input type="text" name="futureYo" id="futureYo"
+            <input type="text" name="futureYo" id="futureYo" class="col-lg-12"
                   required
                   [(ngModel)]="futureYo"
             >
@@ -174,7 +174,7 @@
         <dl>
           <dt>tu:</dt>
           <dd>
-            <input type="text" name="futureTu" id="futureTu"
+            <input type="text" name="futureTu" id="futureTu" class="col-lg-12"
                   required
                   [(ngModel)]="futureTu"
             >
@@ -183,7 +183,7 @@
         <dl>
           <dt>el/Ella/Usted:</dt>
           <dd>
-            <input type="text" name="futureEl" id="futureEl"
+            <input type="text" name="futureEl" id="futureEl" class="col-lg-12"
                   required
                   [(ngModel)]="futureEl"
             >
@@ -192,7 +192,7 @@
         <dl>
           <dt>nosotros:</dt>
           <dd>
-            <input type="text" name="futureNosotros" id="futureNosotros"
+            <input type="text" name="futureNosotros" id="futureNosotros" class="col-lg-12"
                   required
                   [(ngModel)]="futureNosotros"
             >
@@ -200,7 +200,7 @@
         </dl>
         <dl>
           <dt>ellos/Ellas/Ustedes:</dt>
-          <dd><input type="text" name="futureEls" id="futureEls"
+          <dd><input type="text" name="futureEls" id="futureEls" class="col-lg-12"
                     required
                     [(ngModel)]="futureEls"
           >

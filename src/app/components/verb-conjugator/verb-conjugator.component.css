@@ -23,11 +23,8 @@ section > h1 {
 fieldset {
   text-align: center;
   margin: 0 auto;
-  padding: 0;
-  width: 550px;
+  padding: 1.5rem;
   border: 1px solid rgb(190, 190, 190);
-  padding-top: 20px;
-  padding-bottom: 20px;
   font-family: "Roboto", sans-serif;
 }
 
@@ -48,9 +45,9 @@ dl {
   display: flex;
   flex-direction: row;
   width: 100%;
-  margin-left: -30px;
+  /* margin-left: -30px;
   margin-top: 0.01em;
-  margin-bottom: 10px;
+  margin-bottom: 10px; */
   font-size: 1.25em;
 }
 
@@ -83,21 +80,17 @@ h3 {
   font-size: 2em;
 }
 
-input[type='text'] {
-  width: 20em;
-}
-
 input[type='button'] {
   margin-right: 0.15rem;
   margin-left:  0.15rem;
   padding: 0.625rem;
-  width: 100px;
   border: none;
   text-transform: uppercase;
   color: rgb(255, 255, 255);
   font-weight: bold;
   font-size: 0.75em;
   font-family: "Roboto", sans-serif;
+  width: 100px;
 }
 
 .answer {
@@ -113,6 +106,10 @@ input[type='button'] {
   color: rgb(255, 255, 255);
   width: 125px;
   margin-top: -1.5em;
+}
+
+#quitBtn {
+  background: rgb(220, 53, 69);
 }
 
 fieldset h4 {

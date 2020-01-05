@@ -8,9 +8,9 @@ section {
     position: absolute;
     z-index: -1;
     top: 0;
-    right: 0rem;
+    right: 0;
     border-left: 1px solid rgb(190, 190, 190);
-    padding-left: 0rem;
+    padding-left: 0;
     font-family: "Roboto", sans-serif;
     background: rgba(0, 0, 0, 0.90);
     color: rgb(255, 255, 255);

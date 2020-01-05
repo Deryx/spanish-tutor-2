@@ -1,8 +1,6 @@
 section {
     margin: 0;
     padding: 0;
-    width: 100%;
-    height: 100%;
     font-family: 'Roboto', sans-serif;
     display: flex;
     flex-direction: column;
@@ -17,12 +15,10 @@ section h1 {
     font-family: "Alfa Slab One", serif;
     text-transform: capitalize;
     font-weight: normal;
-    font-size: 175%;
 }
   
 form {
     margin-top: 5rem;
-    width: 50rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -31,7 +27,6 @@ form {
 fieldset {
     padding-top: 20px;
     padding-bottom: 20px;
-    width: 100%;
     border: none;
     display: flex;
     justify-content: center;
@@ -48,7 +43,6 @@ fieldset h2 {
 fieldset div {
     margin-top: 30px;
     margin-bottom: 30px;
-    width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -75,8 +69,6 @@ ul {
 .card {
     display: flex;
     flex-direction: column;
-    width: 200px;
-    height: 250px;
     border: 1px solid rgb(190, 190, 190);
 }
 
@@ -86,13 +78,19 @@ ul {
     padding-left: 1.5rem;
     padding-right: 1.5rem;
     text-transform: uppercase;
-    font-size: 125%;
+    font-size: 90%;
 }
 
 .card img {
-    width: 60%; 
-    height: 60%;
+    width: 75%; 
+    height: 75%;
 }
+
+@media (max-width: 992px) { 
+    .card img {
+        display: none;
+    }
+ }
 
 .slide {
     width: 200px;

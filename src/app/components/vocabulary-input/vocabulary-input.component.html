@@ -1,47 +1,47 @@
 <section>
   <h1>Vocabulary Input</h1>
-  <form (ngSubmit)="onSubmit()">
-    <fieldset>
+  <form (ngSubmit)="onSubmit()" class="col-lg-4 col-md-6 col-xs-12">
+    <fieldset class="col-lg-10">
       <dl>
         <dt class="select">category:</dt>
         <dd>
-          <select id="category" required [(ngModel)]="category" name="category"></select>
+          <select id="category" required [(ngModel)]="category" class="col-lg-12" name="category"></select>
         </dd>
       </dl>
       <dl *ngIf="( category === 'other' )">
         <dt>new category:</dt>
         <dd>
-          <input type="text" id="newCategory" name="newCategory" [(ngModel)]="newCategory" />
+          <input type="text" id="newCategory" name="newCategory" class="col-lg-12" [(ngModel)]="newCategory" />
         </dd>
       </dl>
       <dl>
         <dt>word:</dt>
         <dd>
-          <input type="text" [(ngModel)]="word" id="word" name="word" required />
+          <input type="text" [(ngModel)]="word" id="word" class="col-lg-12" name="word" required />
         </dd>
       </dl>
       <dl>
         <dt>translation:</dt> 
         <dd>
-          <input type="text" [(ngModel)]="translation" id="translation" name="translation" required />
+          <input type="text" [(ngModel)]="translation" id="translation" class="col-lg-12" name="translation" required />
         </dd>
       </dl>
       <dl>
         <dt class="select">gender:</dt>
         <dd>
-          <select id="gender" required [(ngModel)]="gender" name="gender"></select>
+          <select id="gender" required [(ngModel)]="gender" class="col-lg-12" name="gender"></select>
         </dd>
       </dl>
       <dl>
         <dt>image:</dt>
         <dd>
-          <input type="file" [(ngModel)]="image" id="image" name="image" />
+          <input type="file" [(ngModel)]="image" id="image" class="col-lg-12" name="image" />
         </dd>
       </dl>
       <dl>
         <dt>pronunciation:</dt>
         <dd>
-          <input type="text" [(ngModel)]="pronunciation" id="pronunciation" name="pronunciation" />
+          <input type="text" [(ngModel)]="pronunciation" id="pronunciation" class="col-lg-12" name="pronunciation" />
         </dd>
       </dl>
     </fieldset>

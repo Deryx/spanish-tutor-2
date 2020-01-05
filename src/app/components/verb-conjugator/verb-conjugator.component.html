@@ -2,30 +2,30 @@
 <app-conjugator-overlay-form (formChange)='getOverlayData($event)' *ngIf='showConjugatorOverlay'></app-conjugator-overlay-form>
 <section>
   <h1>verb conjugator</h1>
-  <form *ngIf='showForm'>
-    <fieldset>
+  <form *ngIf='showForm' class="col-lg-5 col-md-8 col-sm-10">
+    <fieldset class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
       <h2>{{infinitive}}</h2>
       <h3>{{translation}}</h3>
       <h4>{{tense}} tense</h4>
       <dl>
         <dt>Yo</dt>
-        <dd><input type="text" id="yo" name="yo" [(ngModel)]="inputAnswers.yo" /></dd>
+        <dd><input type="text" id="yo" class="col-lg-12" name="yo" [(ngModel)]="inputAnswers.yo" /></dd>
       </dl>
       <dl>
         <dt>Tu</dt>
-        <dd><input type="text" id="tu" name="tu" [(ngModel)]="inputAnswers.tu" /></dd>
+        <dd><input type="text" id="tu" class="col-lg-12" name="tu" [(ngModel)]="inputAnswers.tu" /></dd>
       </dl>
       <dl>
         <dt>El/Ella/Usted</dt>
-        <dd><input type="text" id="el" name="el" [(ngModel)]="inputAnswers.el" /></dd>
+        <dd><input type="text" id="el" class="col-lg-12" name="el" [(ngModel)]="inputAnswers.el" /></dd>
       </dl>
       <dl>
         <dt>Nosotros/Nosotras</dt>
-        <dd><input type="text" id="nosotros" name="nosotros" [(ngModel)]="inputAnswers.nosotros" /></dd>
+        <dd><input type="text" id="nosotros" class="col-lg-12" name="nosotros" [(ngModel)]="inputAnswers.nosotros" /></dd>
       </dl>
       <dl>
         <dt>Ellos/Ellas/Ustedes</dt>
-        <dd><input type="text" id="ellos" name="els" [(ngModel)]="inputAnswers.els" /></dd>
+        <dd><input type="text" id="ellos" class="col-lg-12" name="els" [(ngModel)]="inputAnswers.els" /></dd>
       </dl>
     </fieldset>
     <div class="buttons">

@@ -1,17 +1,17 @@
 <section>
   <h1>verb flashcard</h1>
 
-  <div>
-    <form>
-      <fieldset>
-        <div><select id="infinitive" name="infinitive" [(ngModel)]="infinitive" (change)="changeVerb()"></select></div>
-        <div><select id="tense" name="tense" [(ngModel)]="tense" (change)="changeTense()"></select></div>
+  <div class="col-lg-5 col-md-8 col-sm-10">
+    <form class="col-lg-12 col-xs-12">
+      <fieldset class="col-lg-10">
+        <div><select id="infinitive" class="col-xs-3 col-sm-6 col-lg-6" name="infinitive" [(ngModel)]="infinitive" (change)="changeVerb()"></select></div>
+        <div><select id="tense" class="col-xs-3 col-sm-6 col-lg-6" name="tense" [(ngModel)]="tense" (change)="changeTense()"></select></div>
         <div class="card" [@flipState]="flip">
-          <div class="face front">
+          <div class="face front col-lg-12">
             <section><h2>{{infinitive}}</h2></section>
             <section><h3>[ {{translation}} ]</h3></section>
           </div>
-          <div class="face back">
+          <div class="face back col-lg-12">
             <h3>[ {{this.tense}} ] tense</h3>
             <dl>
               <dt>yo</dt>

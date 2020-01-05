@@ -28,7 +28,19 @@ export class VerbFlashcardComponent implements OnInit {
         data => {
           this.infinitives = data;
           this.infinitives = this.infinitives.Items;
-          console.log(this.infinitives);
+          this.infinitives.sort((a, b) => {
+            const verbA = a.infinitive;
+            const verbB = b.infinitive;
+
+            let comparison = 0;
+            if(verbA > verbB) {
+              comparison = 1;
+            } else if (verbA < verbB) {
+              comparison = -1;
+            }
+
+            return comparison;
+          });
 
           let infinitiveSelect = document.getElementById('infinitive');
 

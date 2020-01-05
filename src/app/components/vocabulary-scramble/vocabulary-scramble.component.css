@@ -1,7 +1,6 @@
 section {
     margin: 0;
     padding: 0;
-    width: 100%;
     height: 100%;
     font-family: 'Roboto', sans-serif;
     display: flex;
@@ -21,7 +20,6 @@ section h1 {
   
 form {
     margin-top: 5rem;
-    width: 50rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -29,7 +27,6 @@ form {
 }
   
 fieldset {
-    width: 100%;
     border: none;
     display: flex;
     justify-content: center;
@@ -44,9 +41,8 @@ fieldset h2 {
 }
 
 fieldset div {
-    margin-top: 50px;
-    margin-bottom: 50px;
-    width: 100%;
+    margin-top: 30px;
+    margin-bottom: 30px;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -55,7 +51,6 @@ fieldset div {
 ul {
     margin: 0;
     padding: 0;
-    width: 50rem;
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
@@ -77,6 +72,11 @@ li h3 {
     text-transform: uppercase;
     margin: 0;
     padding: 0;
+}
+
+img {
+    width: 25%;
+    height: 25%;
 }
 
 #buttons {
