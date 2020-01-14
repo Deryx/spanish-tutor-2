@@ -60,44 +60,27 @@ ul {
 }
 
 .card, .slide {
+    width: 200px;
     margin: 5px;
     list-style: none;
-    text-align: center;
     font-family: "Roboto", sans-serif;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 .card {
-    display: flex;
-    flex-direction: column;
-    border: 1px solid rgb(190, 190, 190);
+    background: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
 }
-
-.card h3 {
-    margin-top: 1.5rem;
-    margin-bottom: 10px;
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
-    text-transform: uppercase;
-    font-size: 90%;
-}
-
-.card img {
-    width: 75%; 
-    height: 75%;
-}
-
-@media (max-width: 992px) { 
-    .card img {
-        display: none;
-    }
- }
 
 .slide {
-    width: 200px;
     background: rgb(52, 152, 219);
     color: rgb(255, 255, 255);
-    padding-top: 10px;
-    padding-bottom: 10px;
 }
 
 #buttons {
