@@ -1,7 +1,7 @@
 nav {
   margin: 0;
   padding: 0;
-  width: 225px;
+  width: 0;
   text-transform: uppercase;
   font-family: 'Roboto', sans-serif;
 }
@@ -17,12 +17,21 @@ nav {
   right: 0;
 }
 
+@media (max-width: 1199.98px) {
+  #menu {
+    margin-right: -10.0rem;
+  }
+}
+
+#menu li a div {
+  width: 35px;
+  height: 5px;
+  background-color: rgb(255, 255, 255);
+  margin: 6px 0;
+}
+
 .closeIcon {
   float: right;
-  margin-right: 1.5em;
-  margin-top: -1.5em;
-  color: rgb(255, 255, 255);
-  font-weight: bold;
 }
 
 #menu a {
@@ -37,11 +46,11 @@ nav {
 ul#subMenu {
   width: 100%;
   list-style-type: none;
-  left: -0.5rem;
-  margin-top: 1.1rem;
+  left: -180px;
+  margin-top: 0.55em;
   margin-left: 0;
   padding: 0;
-  z-index: 99;
+  z-index: 100;
   position: absolute;
   background: rgb(255, 0, 0);
   font-weight: 800;

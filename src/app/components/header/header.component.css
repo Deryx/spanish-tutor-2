@@ -23,6 +23,12 @@ header h1 {
   font-size: inherit;
 }
 
+@media (max-width: 1199.98px) {
+  header h1 {
+    margin-left: 4.0rem;
+  }
+}
+
 .titleMy {
   font-family: 'Lobster', sans-serif;
   z-index: 99;
@@ -44,11 +50,4 @@ header h1 a {
 
 header h1 a:visited {
   color: rgb(255, 255, 255);
-}
-
-header app-menu {
-  margin: 0;
-  padding: 0;
-  margin-right: 80px;
-  font-size: inherit;
 }

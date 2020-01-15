@@ -1,8 +1,12 @@
 <nav>
   <ul id="menu">
     <li>
-      <a (click)="toggleShowMenu()">menu</a>
-      <span class="closeIcon" *ngIf="showCloseIcon" (click)="toggleShowMenu()">X</span>
+      <a (click)="toggleShowMenu()">
+        <div></div>
+        <div></div>
+        <div></div>
+      </a>
+      <span class="closeIcon" *ngIf="showCloseIcon" (click)="toggleShowMenu()"></span>
       <ul id="subMenu" [@slideInOut]="animationState">
         <!-- <li><a routerLink="/letter-pronunciation" routerLinkActive="active">letter pronunciation</a></li> -->
         <li><a routerLink="/verb-input" routerLinkActive="active">verb input</a></li>
