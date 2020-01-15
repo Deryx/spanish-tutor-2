@@ -62,6 +62,19 @@ export class VocabularyFlashcardComponent implements OnInit {
         data => {
           this.vocabularyCategory = data;
           this.vocabularyCategory = this.vocabularyCategory.Items;
+          this.vocabularyCategory.sort((a, b) => {
+            const wordA = a.word;
+            const wordB = b.word;
+
+            let comparison = 0;
+            if(wordA > wordB) {
+              comparison = 1;
+            } else if (wordA < wordB) {
+              comparison = -1;
+            }
+
+            return comparison;
+          });
           this.index = 0;
           this.word = this.vocabularyCategory[this.index].word;
           this.pronunciation = this.vocabularyCategory[this.index].pronunciation;
