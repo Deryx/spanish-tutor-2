@@ -1,11 +1,9 @@
 {
-  "homepage": "https://deryx.github.io/SpanishTutor2/",
   "name": "spanish-tutor",
   "main": "server.js",
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "deploy" : "npm run build&&gh-pages -d dist",
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build --prod",
