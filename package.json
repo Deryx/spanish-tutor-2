@@ -5,7 +5,8 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "prestart": "ng build --prod && ngc",
+    "start": "server.js",
     "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
