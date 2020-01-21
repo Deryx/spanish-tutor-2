@@ -16,6 +16,7 @@ export class VerbConjugatorComponent {
   showOverlay: boolean = true;
   showConjugatorOverlay: boolean = true;
   showForm: boolean = false;
+  showReport: boolean = false;
 
   tenses = {
     'present': 0,

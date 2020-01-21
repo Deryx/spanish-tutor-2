@@ -1,5 +1,6 @@
 <app-overlay *ngIf='showOverlay'></app-overlay>
 <app-vocabulary-overlay-form (formChange)='getOverlayData($event)' *ngIf='showVocabularyOverlay'></app-vocabulary-overlay-form>
+<app-quiz-report *ngIf='showReport'></app-quiz-report>
 <section>
   <h1>vocabulary quiz</h1>
 

@@ -15,6 +15,7 @@ export class VocabularyCompletionComponent {
   showOverlay: boolean = true;
   showVocabularyOverlay: boolean = true;
   showForm: boolean = false;
+  showReport: boolean = false;
 
   dictionary: any;
   translation: string = '';

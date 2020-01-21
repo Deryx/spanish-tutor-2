@@ -13,6 +13,7 @@ export class VocabularyQuizComponent {
   showOverlay: boolean = true;
   showVocabularyOverlay: boolean = true;
   showForm: boolean = false;
+  showReport: boolean = false;
 
   dictionary: any;
   word: string = '';
@@ -79,6 +80,7 @@ export class VocabularyQuizComponent {
     answerObject.word = this.word;
     answerObject.answer = this.answer;
     answerObject.response = response;
+    this.answerReport.push( answerObject );
 
     this.quizAnswer = '';
 

@@ -13,6 +13,7 @@ export class VocabularySliderComponent {
   showOverlay: boolean = true;
   showVocabularyOverlay: boolean = true;
   showForm: boolean = false;
+  showReport: boolean = false;
 
   dictionary: any;
   currentQuestion: number = 0;

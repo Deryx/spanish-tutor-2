@@ -12,6 +12,7 @@ export class VocabularyScrambleComponent {
   showOverlay: boolean = true;
   showVocabularyOverlay: boolean = true;
   showForm: boolean = false;
+  showReport: boolean = false;
 
   dictionary: any;
   word: string = '';
@@ -90,6 +91,7 @@ export class VocabularyScrambleComponent {
     answerObject.word = this.translation;
     answerObject.answer = this.answer;
     answerObject.response = response;
+    this.answerReport.push( answerObject );
 
     this.scrambledWord = [];
     this.getNextQuestion();

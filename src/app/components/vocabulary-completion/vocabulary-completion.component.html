@@ -1,5 +1,6 @@
 <app-overlay *ngIf='showOverlay'></app-overlay>
 <app-vocabulary-overlay-form (formChange)='getOverlayData($event)' *ngIf='showVocabularyOverlay'></app-vocabulary-overlay-form>
+<app-completion-report *ngIf='showReport'></app-completion-report>
 <section class="col-lg-12">
     <h1>vocabulary completion</h1>
 
