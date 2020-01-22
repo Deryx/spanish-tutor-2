@@ -16,6 +16,7 @@ export class VocabularyQuizComponent {
   showReport: boolean = false;
 
   dictionary: any;
+  numberQuestions: number = 0;
   word: string = '';
   answer: string;
   quizAnswer: string;
@@ -44,7 +45,8 @@ export class VocabularyQuizComponent {
           },
           error => console.log('Error: ', error),
           () => {
-            this.randomNumberService.generateRandomNumberArray(data.numberQuestions, this.dictionary.length, this.questionSet );
+            this.numberQuestions = data.numberQuestions;
+            this.randomNumberService.generateRandomNumberArray(this.numberQuestions, this.dictionary.length, this.questionSet );
             this.getCurrentQuestion( this.currentQuestion );
           }
         );
@@ -84,7 +86,13 @@ export class VocabularyQuizComponent {
 
     this.quizAnswer = '';
 
-    this.getNextQuestion();
+    if(this.numberQuestions === 1) {
+      this.showForm = false;
+      this.showOverlay = true;
+    } else {
+      this.numberQuestions--;
+      this.getNextQuestion();
+    }
   }
 
   writeSummary() {

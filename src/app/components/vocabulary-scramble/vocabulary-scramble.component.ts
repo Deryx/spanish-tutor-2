@@ -15,6 +15,7 @@ export class VocabularyScrambleComponent {
   showReport: boolean = false;
 
   dictionary: any;
+  numberQuestions: number = 0;
   word: string = '';
   translation: string = '';
   image: string = '';
@@ -46,7 +47,8 @@ export class VocabularyScrambleComponent {
           },
           error => console.log('Error: ', error),
           () => {
-            this.randomNumberService.generateRandomNumberArray(data.numberQuestions, this.dictionary.length, this.questionSet );
+            this.numberQuestions = data.numberQuestions;
+            this.randomNumberService.generateRandomNumberArray(this.numberQuestions, this.dictionary.length, this.questionSet );
             this.getCurrentWord( this.currentWord );
           }
         );
@@ -93,8 +95,14 @@ export class VocabularyScrambleComponent {
     answerObject.response = response;
     this.answerReport.push( answerObject );
 
-    this.scrambledWord = [];
-    this.getNextQuestion();
+    if(this.numberQuestions === 1) {
+      this.showForm = false;
+      this.showOverlay = true;
+    } else {
+      this.numberQuestions--;
+      this.scrambledWord = [];
+      this.getNextQuestion();
+      }
   }
 
   writeSummary() {

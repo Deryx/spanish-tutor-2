@@ -125,11 +125,16 @@ export class VerbConjugatorComponent {
     answerObject.responses = this.inputAnswers;
     answerObject.numberCorrect = this.numberCorrect;
 
-    this.resetCurrentAnswers();
 
-    this.numberCorrect = 0;
-
-    this.getNextVerb();
+    if(this.numberQuestions === 1) {
+      this.showForm = false;
+      this.showOverlay = true;
+    } else {
+      this.numberQuestions--;
+      this.resetCurrentAnswers();
+      this.numberCorrect = 0;
+      this.getNextVerb();
+    }
   }
 
   resetCurrentAnswers() {

@@ -16,6 +16,7 @@ export class VocabularySliderComponent {
   showReport: boolean = false;
 
   dictionary: any;
+  numberQuestions: number = 0;
   currentQuestion: number = 0;
   numberCorrect: number = 0;
 
@@ -46,7 +47,8 @@ export class VocabularySliderComponent {
           },
           error => console.log('Error: ', error),
           () => {
-            this.getQuestionSet( data.numberQuestions, numberCards, this.dictionary.length );
+            this.numberQuestions = data.numberQuestions;
+            this.getQuestionSet( this.numberQuestions, numberCards, this.dictionary.length );
             this.displaySlideSet( this.currentQuestion );
           }
         );
@@ -136,7 +138,13 @@ export class VocabularySliderComponent {
 
     this.numberCorrect = 0;
 
-    this.getNextSet();
+    if(this.numberQuestions === 1) {
+      this.showForm = false;
+      this.showOverlay = true;
+    } else {
+      this.numberQuestions--;
+      this.getNextSet();
+    }
   }
 
   writeSummary() {

@@ -18,6 +18,7 @@ export class VocabularyCompletionComponent {
   showReport: boolean = false;
 
   dictionary: any;
+  numberQuestions: number = 0;
   translation: string = '';
   image: string = '';
   answer: string;
@@ -45,7 +46,8 @@ export class VocabularyCompletionComponent {
           },
           error => console.log('Error: ', error),
           () => {
-            this.randomNumberService.generateRandomNumberArray(data.numberQuestions, this.dictionary.length, this.questionSet );
+            this.numberQuestions = data.numberQuestions;
+            this.randomNumberService.generateRandomNumberArray(this.numberQuestions, this.dictionary.length, this.questionSet );
             this.getCurrentWord( this.currentWord );
           }
         );
@@ -99,7 +101,14 @@ export class VocabularyCompletionComponent {
     answerObject.response = response;
     this.answerReport.push( answerObject );
 
-    this.getNextQuestion();
+    if(this.numberQuestions === 1) {
+      this.showForm = false;
+      this.showReport = true;
+      this.showOverlay = true;
+    } else {
+      this.numberQuestions--;
+      this.getNextQuestion();
+    }
   }
 
   trackByFn(index: number, item: any) {
