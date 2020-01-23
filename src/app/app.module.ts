@@ -32,11 +32,7 @@ import { VocabularyOverlayFormComponent } from './components/vocabulary-overlay-
 import { SpanishAccentCodesComponent } from './components/spanish-accent-codes/spanish-accent-codes.component';
 import { HomeComponent } from './components/home/home.component';
 import { CardComponent } from './components/card/card.component';
-import { ConjugatorReportComponent } from './components/conjugator-report/conjugator-report.component';
-import { CompletionReportComponent } from './components/completion-report/completion-report.component';
-import { QuizReportComponent } from './components/quiz-report/quiz-report.component';
-import { ScrambleReportComponent } from './components/scramble-report/scramble-report.component';
-import { SliderReportComponent } from './components/slider-report/slider-report.component';
+import { ReportComponent } from './components/report/report.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -76,11 +72,7 @@ const appRoutes: Routes = [
     LetterPronunciationComponent,
     HomeComponent,
     CardComponent,
-    ConjugatorReportComponent,
-    CompletionReportComponent,
-    QuizReportComponent,
-    ScrambleReportComponent,
-    SliderReportComponent
+    ReportComponent
   ],
   imports: [
     BrowserModule,

@@ -27,7 +27,8 @@ export class VocabularyCompletionComponent {
   currentWord = 0;
   numberCorrect = 0;
 
-  answerReport: any = [];
+  report: any = {};
+  responses: any = [];
 
   constructor( private words: VocabularyService, private randomNumberService: RandomNumberGeneratorService, private router: Router ) {}
   
@@ -86,27 +87,31 @@ export class VocabularyCompletionComponent {
     if( this.currentWord < numberQuestions ) {
       this.currentWord++;
       this.getCurrentWord( this.currentWord );
-    } else {
-      this.writeSummary();
     }
   }
 
   getAnswer() {
-    const answerObject: any = {};
+    const responseObj: any = {};
+    let score: number = 0;
 
     let response = this.incompleteWord.join('');
     if( this.answer === response ) this.numberCorrect++;
 
-    answerObject.answer = this.answer;
-    answerObject.response = response;
-    this.answerReport.push( answerObject );
+    responseObj.question = this.translation;
+    responseObj.answer = this.answer;
+    responseObj.response = response;
+    this.responses.push( responseObj );
 
-    if(this.numberQuestions === 1) {
+    if(this.currentWord === this.numberQuestions - 1) {
       this.showForm = false;
       this.showReport = true;
       this.showOverlay = true;
+      score = ( this.numberCorrect / this.numberQuestions ) * 100; 
+
+      this.report.title = 'Word Completion Report';
+      this.report.scoreMessage = 'You scored ' + score + '%';
+      this.report.responses = this.responses;
     } else {
-      this.numberQuestions--;
       this.getNextQuestion();
     }
   }
