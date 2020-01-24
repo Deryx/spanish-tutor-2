@@ -26,7 +26,8 @@ export class VocabularyQuizComponent {
   currentQuestion = 0;
   numberCorrect = 0;
 
-  answerReport: any = [];
+  report: any = {};
+  responses: any = [];
 
   constructor( private words: VocabularyService, private randomNumberService: RandomNumberGeneratorService, private router: Router ) {}
 
@@ -69,34 +70,35 @@ export class VocabularyQuizComponent {
     if( this.currentQuestion < numberQuestions ) {
       this.currentQuestion++;
       this.getCurrentQuestion( this.currentQuestion );
-    } else {
-      this.writeSummary();
     }
   }
 
   getAnswer() {
+    const responseObj: any = {};
+    let score: number = 0;
+
     let response = this.quizAnswer;
     if(response === this.answer) this.numberCorrect++;
-    
-    const answerObject: any = {};
-    answerObject.word = this.word;
-    answerObject.answer = this.answer;
-    answerObject.response = response;
-    this.answerReport.push( answerObject );
 
-    this.quizAnswer = '';
+    responseObj.question = this.word;
+    responseObj.answer = this.answer;
+    responseObj.response = response;
+    this.responses.push( responseObj );
 
-    if(this.numberQuestions === 1) {
+    if(this.currentQuestion === this.numberQuestions - 1) {
       this.showForm = false;
+      this.showReport = true;
       this.showOverlay = true;
+      score = ( this.numberCorrect / this.numberQuestions ) * 100; 
+
+      this.report.title = 'Vocabulary Quiz Report';
+      this.report.scoreMessage = 'You scored ' + score + '%';
+      this.report.headings = ['word', 'answer', 'response'];
+      this.report.responses = this.responses;
     } else {
-      this.numberQuestions--;
+      this.quizAnswer = '';
       this.getNextQuestion();
     }
-  }
-
-  writeSummary() {
-
   }
 
   reset() {

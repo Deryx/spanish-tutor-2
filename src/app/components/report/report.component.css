@@ -1,15 +1,18 @@
 section {
-    z-index: 97;
-    width: 100%;
+    margin: 0;
+    padding: 0;
     height: 100%;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-}
+    z-index: 97;
+    position: absolute;
+  }
 
 section > div {
-    padding: 1.5rem;
+    margin: 0 auto;
+    padding: 1.8rem;
     z-index: 98;
     position: absolute;
     background: rgb(255, 255, 255);
@@ -29,4 +32,6 @@ div div {
 .header {
     font-weight: bold;
     text-transform: uppercase;
+    margin-top: 1.8rem;
+    margin-bottom: 0.5rem;
 }

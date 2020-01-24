@@ -1,16 +1,14 @@
-<section>
+<section class="col-lg-12">
   <div class="col-lg-6 col-md-6 col-xs-12">
     <h2>{{ reportInfo.title }}</h2>
     <h3>{{ reportInfo.scoreMessage }}</h3>
     <div class="row header">
-      <div class="col-lg-4 col-md-4 col-xs-4">word</div>
-      <div class="col-lg-4 col-md-4 col-xs-4">answer</div>
-      <div class="col-lg-4 col-md-4 col-xs-4">response</div>
+      <div class="col-lg-4 col-md-4 col-xs-4" *ngFor='let heading of reportInfo.headings'>{{ heading }}</div>
     </div>
     <div class="row" *ngFor='let response of reportInfo.responses'>
-      <div class="col-lg-4 col-md-4 col-xs-4">{{response.question}}</div>
-      <div class="col-lg-4 col-md-4 col-xs-4">{{response.answer}}</div>
-      <div class="col-lg-4 col-md-4 col-xs-4">{{response.response}}</div>
+      <div class="col-lg-4 col-md-4 col-xs-4">{{ response.question }}</div>
+      <div class="col-lg-4 col-md-4 col-xs-4">{{ response.answer }}</div>
+      <div class="col-lg-4 col-md-4 col-xs-4">{{ response.response }}</div>
     </div>
   </div>
 </section>

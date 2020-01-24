@@ -108,8 +108,9 @@ export class VocabularyCompletionComponent {
       this.showOverlay = true;
       score = ( this.numberCorrect / this.numberQuestions ) * 100; 
 
-      this.report.title = 'Word Completion Report';
+      this.report.title = 'Vocabulary Completion Report';
       this.report.scoreMessage = 'You scored ' + score + '%';
+      this.report.headings = ['word', 'answer', 'response'];
       this.report.responses = this.responses;
     } else {
       this.getNextQuestion();
@@ -118,10 +119,6 @@ export class VocabularyCompletionComponent {
 
   trackByFn(index: number, item: any) {
     return index;
-  }
-
-  writeSummary() {
-
   }
 
   reset() {

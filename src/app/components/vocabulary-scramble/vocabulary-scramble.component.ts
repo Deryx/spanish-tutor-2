@@ -28,7 +28,8 @@ export class VocabularyScrambleComponent {
   currentWord = 0;
   numberCorrect = 0;
 
-  answerReport: any = [];
+  report: any = {};
+  responses: any = [];
 
   constructor( private words: VocabularyService, private randomNumberService: RandomNumberGeneratorService, private router: Router ) {}
 
@@ -86,20 +87,28 @@ export class VocabularyScrambleComponent {
   }
 
   getAnswer() {
+    const responseObj: any = {};
+    let score: number = 0;
+
     const response = this.scrambledWord.join('');
     if( this.answer === response ) this.numberCorrect++;
 
-    const answerObject: any = {};
-    answerObject.word = this.translation;
-    answerObject.answer = this.answer;
-    answerObject.response = response;
-    this.answerReport.push( answerObject );
+    responseObj.question = this.translation;
+    responseObj.answer = this.answer;
+    responseObj.response = response;
+    this.responses.push( responseObj );
 
-    if(this.numberQuestions === 1) {
+    if(this.currentWord === this.numberQuestions - 1) {
       this.showForm = false;
+      this.showReport = true;
       this.showOverlay = true;
+      score = ( this.numberCorrect / this.numberQuestions ) * 100; 
+
+      this.report.title = 'Vocabulary Scramble Report';
+      this.report.scoreMessage = 'You scored ' + score + '%';
+      this.report.headings = ['word', 'answer', 'response'];
+      this.report.responses = this.responses;
     } else {
-      this.numberQuestions--;
       this.scrambledWord = [];
       this.getNextQuestion();
       }
