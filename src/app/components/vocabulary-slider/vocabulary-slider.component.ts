@@ -16,8 +16,8 @@ export class VocabularySliderComponent {
   showReport: boolean = false;
 
   dictionary: any;
-  numberQuestions: number = 0;
-  currentQuestion: number = 0;
+  numberSlides: number = 0;
+  currentSlideSet: number = 0;
   numberCorrect: number = 0;
 
   translation: string = '';
@@ -28,6 +28,9 @@ export class VocabularySliderComponent {
   slideSet: number[] = [];
   translationCards: any[] = [];
   wordSlides: any = [];
+
+  report: any = {};
+  responses: any = [];
 
   constructor( private words: VocabularyService, private randomNumberService: RandomNumberGeneratorService, private router: Router ) {}
 
@@ -47,9 +50,9 @@ export class VocabularySliderComponent {
           },
           error => console.log('Error: ', error),
           () => {
-            this.numberQuestions = data.numberQuestions;
-            this.getQuestionSet( this.numberQuestions, numberCards, this.dictionary.length );
-            this.displaySlideSet( this.currentQuestion );
+            this.numberSlides = data.numberQuestions;
+            this.getQuestionSet( this.numberSlides, numberCards, this.dictionary.length );
+            this.displaySlideSet( this.currentSlideSet );
           }
         );
       }
@@ -110,15 +113,16 @@ export class VocabularySliderComponent {
 
   getNextSet() {
     let numberQuestions = Object.keys(this.questionSet).length;
-    if( this.currentQuestion < numberQuestions ) {
-      this.currentQuestion++;
-      this.displaySlideSet( this.currentQuestion );
-    } else {
-      this.writeSummary();
+    if( this.currentSlideSet < numberQuestions ) {
+      this.currentSlideSet++;
+      this.displaySlideSet( this.currentSlideSet );
     }
   }
 
   getAnswer() {
+    const responseObj: any = {};
+    let score: number = 0;
+
     const response = this.wordSlides;
     for(let i = 0; i < response.length; i++) {
       if( this.translationCards[i].answer === response[i] ) this.numberCorrect++;
@@ -131,28 +135,30 @@ export class VocabularySliderComponent {
       translations.push( this.translationCards[i].translation);
       answers.push( this.translationCards[i].answer );
     }
-    answerObject.translations = translations;
-    answerObject.answers = answers;
-    answerObject.response = response;
-    answerObject.numberCorrect = this.numberCorrect;
+    responseObj.slideSet = this.currentSlideSet + 1;
+    responseObj.translations = translations;
+    responseObj.answers = response;
 
-    this.numberCorrect = 0;
+    this.responses.push( responseObj );
 
-    if(this.numberQuestions === 1) {
+    if( this.currentSlideSet === this.numberSlides - 1 ) {
       this.showForm = false;
+      this.showReport = true;
       this.showOverlay = true;
+      score = Math.round( ( this.numberCorrect / ( this.numberSlides * 5 ) ) * 100 ); 
+
+      this.report.title = 'Vocabulary Slider Report';
+      this.report.scoreMessage = 'You scored ' + score + '%';
+      this.report.headings = ['slide set', 'tile 1', 'tile 2', 'tile 3', 'tile 4', 'tile 5'];
+      this.report.responses = this.responses;
     } else {
-      this.numberQuestions--;
       this.getNextSet();
     }
   }
 
-  writeSummary() {
-
-  }
-
   reset() {
-
+    this.numberCorrect = 0;
+    this.wordSlides = this.getWordSliders( this.questionSet[this.currentSlideSet], this.dictionary);
   }
 
   quit() {

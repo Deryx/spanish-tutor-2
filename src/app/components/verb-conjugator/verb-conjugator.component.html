@@ -1,6 +1,6 @@
 <app-overlay *ngIf='showOverlay'></app-overlay>
 <app-conjugator-overlay-form (formChange)='getOverlayData($event)' *ngIf='showConjugatorOverlay'></app-conjugator-overlay-form>
-<app-report *ngIf='showReport'></app-report>
+<app-conjugator-report [reportInfo]="report" *ngIf='showReport'></app-conjugator-report>
 <section>
   <h1>verb conjugator</h1>
   <form *ngIf='showForm' class="col-lg-5 col-md-8 col-sm-10">

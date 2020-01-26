@@ -106,7 +106,7 @@ export class VocabularyCompletionComponent {
       this.showForm = false;
       this.showReport = true;
       this.showOverlay = true;
-      score = ( this.numberCorrect / this.numberQuestions ) * 100; 
+      score = Math.round( ( this.numberCorrect / this.numberQuestions ) * 100 ); 
 
       this.report.title = 'Vocabulary Completion Report';
       this.report.scoreMessage = 'You scored ' + score + '%';

@@ -9,7 +9,6 @@ import { Router } from "@angular/router";
   styleUrls: ['./verb-conjugator.component.css']
 })
 export class VerbConjugatorComponent {
-  // showAccents: boolean = false;
   buttonText: string = 'show accents';
   animationState = 'left';
 
@@ -34,34 +33,20 @@ export class VerbConjugatorComponent {
   currentVerb = 0;
   currentAnswers: any = {};
   inputAnswers: any = {
-    yo: '',
-    tu: '',
-    el: '',
-    nosotros: '',
-    els: ''
+    yo: 'n/a',
+    tu: 'n/a',
+    el: 'n/a',
+    nosotros: 'n/a',
+    els: 'n/a'
   };
   infinitive = '';
 
   numberCorrect: number = 0;
 
-  answerReport: any = [];
+  report: any = {};
+  responses: any = [];
 
   constructor( private verbs: VerbService, private randomNumberService: RandomNumberGeneratorService, private router: Router ) { }
-
-  retrieveVerbs() {
-    this.verbs.getVerbs()
-    .subscribe(
-      data => {
-        this.infinitives = data;
-        this.infinitives = this.infinitives.Items;
-      },
-      error => console.log('Error: ', error),
-      () => {
-        this.randomNumberService.generateRandomNumberArray(this.numberQuestions, this.infinitives.length, this.questionSet );
-        this.getCurrentVerb( this.currentVerb, this.tense );
-        delete this.currentAnswers._id;
-      });
-}
 
   getOverlayData(data) {
     if(!data.isVisible) {
@@ -69,70 +54,67 @@ export class VerbConjugatorComponent {
       this.showConjugatorOverlay = data.isVisible;
       this.showForm = true;
       this.tense = data.tense;
-      this.numberQuestions = data.numberVerbs;
 
-      this.retrieveVerbs();
-    }
+      this.verbs.getVerbs()
+      .subscribe(
+        data => {
+          this.infinitives = data;
+          this.infinitives = this.infinitives.Items;
+        },
+        error => console.log('Error: ', error),
+        () => {
+          this.numberQuestions = parseInt(data.numberVerbs);
+          console.log(this.numberQuestions);
+          this.randomNumberService.generateRandomNumberArray(this.numberQuestions, this.infinitives.length, this.questionSet );
+          this.getCurrentVerb( this.currentVerb, this.tense );
+          delete this.currentAnswers._id;
+        });
+      }
   }
 
   getCurrentVerb( verb: number, tense: string) {
     const currentVerb = this.questionSet[verb];
     this.infinitive = this.infinitives[currentVerb].infinitive;
     this.translation = '[ ' + this.infinitives[currentVerb].translation + ' ]';
-    this.cloneConjugation( this.getConjugation( this.currentVerb, this.tense ) );
-  }
-
-  getConjugation( verb: number, tense: string): any {
-    const currentVerb = this.questionSet[verb];
-
-    let conjugation: any = this.tenses[tense];
-    let conjugates: any = this.infinitives[currentVerb].conjugations[conjugation];
-    delete conjugates.tense;
-    delete conjugates._id;
-
-    return conjugates;
-  }
-
-  cloneConjugation(conjugation: any) {
-    return Object.assign( this.currentAnswers, conjugation );
+    this.currentAnswers = this.infinitives[currentVerb].conjugations[this.tense];
   }
 
   getNextVerb() {
     let numberVerbs: number = this.questionSet.length;
     if( this.currentVerb < numberVerbs ) {
       this.currentVerb++;
-      this.cloneConjugation({});
+      this.resetInputAnswers();
       this.getCurrentVerb( this.currentVerb, this.tense );
-    } else {
-      this.writeSummary();
-    }
-  }
-
-  writeSummary() {
-
+    } 
   }
 
   getAnswers() {
-    const answerObject: any = {};
-    const answers: any = Object.keys( this.currentAnswers );
+    const responseObj: any = {};
+    let score: number = 0;
 
-    for( const answer of answers ) {
-        if( this.currentAnswers[answer] === this.inputAnswers[answer] ) this.numberCorrect++;
-    }
+    if( this.currentAnswers.yo === this.inputAnswers.yo ) this.numberCorrect++;
+    if( this.currentAnswers.tu === this.inputAnswers.tu ) this.numberCorrect++;
+    if( this.currentAnswers.el === this.inputAnswers.el ) this.numberCorrect++;
+    if( this.currentAnswers.nosotros === this.inputAnswers.nosotros ) this.numberCorrect++;
+    if( this.currentAnswers.els === this.inputAnswers.els ) this.numberCorrect++;
 
-    answerObject.answers = {};
-    Object.assign(answerObject.answers, this.currentAnswers);
-    answerObject.responses = this.inputAnswers;
-    answerObject.numberCorrect = this.numberCorrect;
+    responseObj.verb = this.infinitive;
+    responseObj.answers = this.currentAnswers;
+    responseObj.inputs = this.inputAnswers;
 
+    this.responses.push( responseObj );
 
-    if(this.numberQuestions === 1) {
+    if(this.currentVerb === this.numberQuestions - 1) {
       this.showForm = false;
+      this.showReport = true;
       this.showOverlay = true;
+      score = Math.round( ( this.numberCorrect / ( this.numberQuestions * 5 ) ) * 100 ); 
+
+      this.report.title = 'Verb Conjugator Report';
+      this.report.scoreMessage = 'You scored ' + score + '%';
+      this.report.headings = ['infinitive', 'yo', 'tu', 'el', 'nosotros', 'els'];
+      this.report.responses = this.responses;
     } else {
-      this.numberQuestions--;
-      this.resetCurrentAnswers();
-      this.numberCorrect = 0;
       this.getNextVerb();
     }
   }
@@ -144,21 +126,23 @@ export class VerbConjugatorComponent {
     }
   }
 
+  resetInputAnswers() {
+    this.inputAnswers = {
+      yo: 'n/a',
+      tu: 'n/a',
+      el: 'n/a',
+      nosotros: 'n/a',
+      els: 'n/a'
+      };
+  }
+
   toggleAccents() {
     this.animationState = this.animationState === 'left' ? 'right' : 'left';
     this.buttonText = this.animationState === 'left' ? 'show accents' : 'hide accents';
   }
 
   reset() {
-    this.inputAnswers = {
-      yo: '',
-      tu: '',
-      el: '',
-      nosotros: '',
-      els: ''
-    };
     this.resetCurrentAnswers();
-    this.retrieveVerbs();
     this.currentVerb = 0;
     this.numberCorrect = 0;
     this.getNextVerb();

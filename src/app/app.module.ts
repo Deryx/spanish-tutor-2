@@ -33,6 +33,8 @@ import { SpanishAccentCodesComponent } from './components/spanish-accent-codes/s
 import { HomeComponent } from './components/home/home.component';
 import { CardComponent } from './components/card/card.component';
 import { ReportComponent } from './components/report/report.component';
+import { ConjugatorReportComponent } from './components/conjugator-report/conjugator-report.component';
+import { SliderReportComponent } from './components/slider-report/slider-report.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -72,7 +74,9 @@ const appRoutes: Routes = [
     LetterPronunciationComponent,
     HomeComponent,
     CardComponent,
-    ReportComponent
+    ReportComponent,
+    ConjugatorReportComponent,
+    SliderReportComponent
   ],
   imports: [
     BrowserModule,

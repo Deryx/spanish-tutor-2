@@ -81,8 +81,6 @@ export class VocabularyScrambleComponent {
     if( this.currentWord < numberQuestions ) {
       this.currentWord++;
       this.getCurrentWord( this.currentWord );
-    } else {
-      this.writeSummary();
     }
   }
 
@@ -102,7 +100,7 @@ export class VocabularyScrambleComponent {
       this.showForm = false;
       this.showReport = true;
       this.showOverlay = true;
-      score = ( this.numberCorrect / this.numberQuestions ) * 100; 
+      score = Math.round( ( this.numberCorrect / this.numberQuestions ) * 100 ); 
 
       this.report.title = 'Vocabulary Scramble Report';
       this.report.scoreMessage = 'You scored ' + score + '%';
@@ -112,10 +110,6 @@ export class VocabularyScrambleComponent {
       this.scrambledWord = [];
       this.getNextQuestion();
       }
-  }
-
-  writeSummary() {
-
   }
 
   reset() {

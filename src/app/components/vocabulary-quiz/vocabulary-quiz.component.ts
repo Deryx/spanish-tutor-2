@@ -89,7 +89,7 @@ export class VocabularyQuizComponent {
       this.showForm = false;
       this.showReport = true;
       this.showOverlay = true;
-      score = ( this.numberCorrect / this.numberQuestions ) * 100; 
+      score = Math.round( ( this.numberCorrect / this.numberQuestions ) * 100 ); 
 
       this.report.title = 'Vocabulary Quiz Report';
       this.report.scoreMessage = 'You scored ' + score + '%';
