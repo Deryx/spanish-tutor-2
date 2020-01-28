@@ -3,21 +3,21 @@
 <app-slider-report [reportInfo]="report" *ngIf='showReport'></app-slider-report>
 <section>
     <h1>vocabulary slider</h1>
-    <form *ngIf='showForm' ngClass="col-lg-4 col-md-10 col-xs-12">
-        <fieldset class="col-lg-12 col-xs-12">
-            <div>
-                <div ngClass="card col-lg-3" *ngFor="let translationCard of translationCards">
+    <form *ngIf='showForm' class="col-lg-12 col-md-10 col-xs-12">
+        <fieldset class="col-lg-10">
+            <div class="list-container col-lg-6 col-xs-6">
+                <div class="card col-lg-3" *ngFor="let translationCard of translationCards">
                     {{translationCard.translation}}
                 </div>
             </div>
-        
-            <div [sortablejs]="wordSlides">
-                <div ngClass="slide col-lg-3" *ngFor="let wordSlide of wordSlides">
+
+            <div class="list-container col-lg-6 col-xs-6" cdkDropList (cdkDropListDropped)="drop($event)" cdkDropList="y">
+                <div class="slide col-lg-3" *ngFor="let wordSlide of wordSlides" cdkDrag>
                     {{wordSlide}}
                 </div>
             </div>
         </fieldset>
-        <div id="buttons">
+        <div id="buttons" ngClass="col-lg-12 col-xs-12">
             <input type="button" id="answerBtn" value="answer" (click)="getAnswer()" />
             <input type="button" id="resetBtn" value="reset" (click)="reset()" />
             <input type="button" id="quitBtn" value="quit" (click)="quit()" />

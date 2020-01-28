@@ -8,11 +8,11 @@
         <fieldset class="col-lg-12 col-xs-12">
             <h2>{{translation}}</h2>
             <div><img src={{image}} /></div>
-            <ul [sortablejs]="this.scrambledWord">
-                <li *ngFor="let letter of this.scrambledWord">
+            <div cdkDropList cdkDropListOrientation="horizontal" (cdkDropListDropped)="drop($event)">
+                <div ngClass="slide" *ngFor="let letter of scrambledWord" cdkDrag>
                     <h3>{{letter}}</h3>
-                </li>
-            </ul>
+                </div>
+            </div>
         </fieldset>
         <div id="buttons">
             <input type="button" id="answerBtn" value="answer" (click)="getAnswer()" />

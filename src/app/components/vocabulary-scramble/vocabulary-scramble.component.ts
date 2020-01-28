@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { VocabularyService } from '../../services/vocabulary.service';
 import { RandomNumberGeneratorService } from '../../services/random-number-generator.service';
 import { Router } from "@angular/router";
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-vocabulary-scramble',
@@ -32,6 +33,13 @@ export class VocabularyScrambleComponent {
   responses: any = [];
 
   constructor( private words: VocabularyService, private randomNumberService: RandomNumberGeneratorService, private router: Router ) {}
+
+  drop(event: CdkDragDrop<string[]>) {
+    moveItemInArray(
+      this.scrambledWord, 
+      event.previousIndex, 
+      event.currentIndex);
+  }
 
   getOverlayData(data) {
     if(!data.isVisible) {

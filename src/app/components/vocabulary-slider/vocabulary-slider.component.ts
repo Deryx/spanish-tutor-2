@@ -3,7 +3,7 @@ import { VocabularyService } from '../../services/vocabulary.service';
 import { RandomNumberGeneratorService } from '../../services/random-number-generator.service';
 import { Observable } from 'rxjs';
 import { Router } from "@angular/router";
-
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 @Component({
   selector: 'app-vocabulary-slider',
   templateUrl: './vocabulary-slider.component.html',
@@ -33,6 +33,13 @@ export class VocabularySliderComponent {
   responses: any = [];
 
   constructor( private words: VocabularyService, private randomNumberService: RandomNumberGeneratorService, private router: Router ) {}
+
+  drop(event: CdkDragDrop<string[]>) {
+    moveItemInArray(
+      this.wordSlides, 
+      event.previousIndex, 
+      event.currentIndex);
+  }
 
   getOverlayData(data) {
     const numberCards = 5;
