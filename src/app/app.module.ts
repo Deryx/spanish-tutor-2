@@ -35,6 +35,7 @@ import { CardComponent } from './components/card/card.component';
 import { ReportComponent } from './components/report/report.component';
 import { ConjugatorReportComponent } from './components/conjugator-report/conjugator-report.component';
 import { SliderReportComponent } from './components/slider-report/slider-report.component';
+import { SpanishAccentsComponent } from './components/spanish-accents/spanish-accents.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -76,7 +77,8 @@ const appRoutes: Routes = [
     CardComponent,
     ReportComponent,
     ConjugatorReportComponent,
-    SliderReportComponent
+    SliderReportComponent,
+    SpanishAccentsComponent
   ],
   imports: [
     BrowserModule,

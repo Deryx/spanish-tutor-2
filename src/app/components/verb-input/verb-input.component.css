@@ -29,7 +29,7 @@ section h4 {
   margin-bottom: 0;
   padding: 10px 0;
   letter-spacing: 2px;
-  width: 100%;
+  width: 107%;
 }
 
 section form {
@@ -62,12 +62,16 @@ dl {
   border-bottom: 1px solid #CCCCCC;
 }
 
-dl:first-child {
+dl:first-child, dl:nth-child(2) {
   border-top: none;
 }
 
-dl:last-child {
+dl:last-child, dl:nth-child(2) {
   border-bottom: none;
+}
+
+dl:nth-child(4) dt {
+  margin-top: 5px;
 }
 
 dt {
@@ -90,7 +94,8 @@ dd {
 
 dd input {
   margin: 0;
-  padding: 5px;
+  padding: 0.3125rem;
+  font-size: 75%;
 }
 
 dl:nth-of-type(3) dt {

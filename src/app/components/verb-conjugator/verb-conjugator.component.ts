@@ -33,11 +33,11 @@ export class VerbConjugatorComponent {
   currentVerb = 0;
   currentAnswers: any = {};
   inputAnswers: any = {
-    yo: 'n/a',
-    tu: 'n/a',
-    el: 'n/a',
-    nosotros: 'n/a',
-    els: 'n/a'
+    yo: '',
+    tu: '',
+    el: '',
+    nosotros: '',
+    els: ''
   };
   infinitive = '';
 
@@ -128,11 +128,11 @@ export class VerbConjugatorComponent {
 
   resetInputAnswers() {
     this.inputAnswers = {
-      yo: 'n/a',
-      tu: 'n/a',
-      el: 'n/a',
-      nosotros: 'n/a',
-      els: 'n/a'
+      yo: '',
+      tu: '',
+      el: '',
+      nosotros: '',
+      els: ''
       };
   }
 

@@ -10,9 +10,6 @@ import { VocabularyCategoriesService } from '../../services/vocabulary-categorie
   styleUrls: ['./vocabulary-input.component.css']
 })
 export class VocabularyInputComponent implements OnInit {
-  animationState = 'left';
-  buttonText: string = 'show accents';
-
   category = '';
   newCategory = '';
   word = '';
@@ -21,6 +18,11 @@ export class VocabularyInputComponent implements OnInit {
   image = '';
   pronunciation = '';
   dictionary: any;
+
+  animationState = 'left';
+  buttonText: string = 'show accents';
+
+  accent: string;
 
   genders = new VocabularyGender();
 
@@ -84,6 +86,30 @@ export class VocabularyInputComponent implements OnInit {
         }
       });
   }
+
+  getCaretPosition(textfield) {
+    let caretPosition: number = 0;
+    if(document.selection) {
+      textfield.focus();
+      let selection = textfield.selection.createRange();
+      selection.moveStart('character', -selection.value.length);
+      caretPosition = selection.text.length;
+    } else if(textfield.selectionStart || textfield.selectionStart === '0') {
+      caretPosition = textfield.selectionStart;
+    }
+
+    return caretPosition;
+  }
+
+  placeAccent(txtbox, $event) {
+    let inputBox = <HTMLElement>document.getElementById(txtbox);
+    this.accent = $event;
+    let currentPosition = this.getCaretPosition(inputBox);
+    let originalValue = inputBox.nodeValue;
+    let newValue = originalValue.substring(0, currentPosition) + this.accent + originalValue.substring(currentPosition);
+    inputBox.value = newValue;
+  }
+
 
   resetForm(){
     this.category = '';
