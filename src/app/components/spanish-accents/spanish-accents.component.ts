@@ -6,7 +6,6 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrls: ['./spanish-accents.component.css']
 })
 export class SpanishAccentsComponent {
-  @Input() txtbox: any;
   @Output() accentMessage = new EventEmitter<string>();
 
   constructor() { }

@@ -89,7 +89,7 @@ export class VocabularyInputComponent implements OnInit {
 
   getCaretPosition(textfield) {
     let caretPosition: number = 0;
-    if(document.selection) {
+    if(window.getSelection) {
       textfield.focus();
       let selection = textfield.selection.createRange();
       selection.moveStart('character', -selection.value.length);
@@ -101,13 +101,14 @@ export class VocabularyInputComponent implements OnInit {
     return caretPosition;
   }
 
-  placeAccent(txtbox, $event) {
-    let inputBox = <HTMLElement>document.getElementById(txtbox);
-    this.accent = $event;
-    let currentPosition = this.getCaretPosition(inputBox);
-    let originalValue = inputBox.nodeValue;
-    let newValue = originalValue.substring(0, currentPosition) + this.accent + originalValue.substring(currentPosition);
-    inputBox.value = newValue;
+  placeAccent(event) {
+    // let inputBox = <HTMLElement>document.getElementById(txtbox);
+    this.accent = event;
+    // let currentPosition = this.getCaretPosition(inputBox);
+    // let originalValue = inputBox.nodeValue;
+    // let newValue = originalValue.substring(0, currentPosition) + this.accent + originalValue.substring(currentPosition);
+    // inputBox.value = newValue;
+    console.log(this.accent);
   }
 
 
