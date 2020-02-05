@@ -9,9 +9,6 @@ import { Router } from "@angular/router";
   styleUrls: ['./vocabulary-completion.component.css']
 })
 export class VocabularyCompletionComponent {
-  animationState = 'left';
-  buttonText: string = 'show accents';
-
   showOverlay: boolean = true;
   showVocabularyOverlay: boolean = true;
   showForm: boolean = false;
@@ -26,6 +23,9 @@ export class VocabularyCompletionComponent {
   questionSet: number[] = [];
   currentWord = 0;
   numberCorrect = 0;
+  
+  selectedTextbox: string;
+  accent: string;
 
   report: any = {};
   responses: any = [];
@@ -131,9 +131,19 @@ export class VocabularyCompletionComponent {
   quit() {
     this.router.navigateByUrl('');
   }
+  
+  getSelectedTextbox(textboxID) {
+    this.selectedTextbox = textboxID;
+  }
 
-  toggleAccents() {
-    this.animationState = this.animationState === 'left' ? 'right' : 'left';
-    this.buttonText = this.animationState === 'left' ? 'show accents' : 'hide accents';
+  placeAccent(event) {
+    let selectedTextbox = <HTMLInputElement>document.getElementById(this.selectedTextbox);
+
+    this.accent = event;
+
+    let currentPosition = selectedTextbox.selectionStart;
+    let originalValue = selectedTextbox.value;
+    let newValue = originalValue.substring(0, currentPosition) + this.accent + originalValue.substring(currentPosition);
+    selectedTextbox.value = newValue;
   }
 }
