@@ -10,7 +10,7 @@
             <div><img src={{image}} /></div>
             <ul>
                 <li *ngFor="let letter of this.incompleteWord; index as i, trackBy: trackByFn">
-                    <input type='text' id="userAnswer{{i}}" name="userAnswer{{i}}" [(ngModel)]="this.incompleteWord[i]" maxlength="1" [disabled]="letter !== ''" />
+                    <input type='text' id="userAnswer{{i}}" name="userAnswer{{i}}" (focus)="getSelectedTextbox(userAnswer{{i}})" [(ngModel)]="this.incompleteWord[i]" maxlength="1" [disabled]="letter !== ''" />
                 </li>
             </ul>
         </fieldset>
