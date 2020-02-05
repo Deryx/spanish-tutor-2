@@ -14,7 +14,7 @@
                 </li>
             </ul>
         </fieldset>
-        <app-spanish-accents></app-spanish-accents>
+        <app-spanish-accents (accentMessage)="placeAccent($event)"</app-spanish-accents>
         <div class="buttons">
             <input type="button" id="answerBtn" value="answer" (click)="getAnswer()" />
             <input type="button" id="resetBtn" value="reset" (click)="reset()" />
