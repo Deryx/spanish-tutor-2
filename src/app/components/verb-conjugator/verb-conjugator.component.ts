@@ -136,6 +136,10 @@ export class VerbConjugatorComponent {
       els: ''
       };
   }
+  
+  getSelectedTextbox(textboxID) {
+    this.selectedTextbox = textboxID;
+  }
 
   placeAccent(event) {
     console.log(this.selectedTextbox);
