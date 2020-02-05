@@ -39,6 +39,9 @@ export class VerbInputComponent {
   futureEl = '';
   futureNosotros = '';
   futureEls = '';
+  
+  selectedTextbox: any;
+  accent: string;
 
   constructor( private verbs: VerbService ){}
 
