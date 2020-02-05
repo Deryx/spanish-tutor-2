@@ -9,8 +9,6 @@ import { Router } from "@angular/router";
   styleUrls: ['./verb-conjugator.component.css']
 })
 export class VerbConjugatorComponent {
-  buttonText: string = 'show accents';
-
   showOverlay: boolean = true;
   showConjugatorOverlay: boolean = true;
   showForm: boolean = false;
