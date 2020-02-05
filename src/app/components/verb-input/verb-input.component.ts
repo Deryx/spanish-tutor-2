@@ -40,7 +40,7 @@ export class VerbInputComponent {
   futureNosotros = '';
   futureEls = '';
   
-  selectedTextbox: any;
+  selectedTextbox: string;
   accent: string;
 
   constructor( private verbs: VerbService ){}
@@ -132,5 +132,21 @@ export class VerbInputComponent {
       .subscribe();
 
     this.resetForm();
+  }
+  
+  getSelectedTextbox(textboxID) {
+    this.selectedTextbox = textboxID;
+  }
+
+  placeAccent(event) {
+    console.log(this.selectedTextbox);
+    let selectedTextbox = <HTMLInputElement>document.getElementById(this.selectedTextbox);
+
+    this.accent = event;
+
+    let currentPosition = selectedTextbox.selectionStart;
+    let originalValue = selectedTextbox.value;
+    let newValue = originalValue.substring(0, currentPosition) + this.accent + originalValue.substring(currentPosition);
+    selectedTextbox.value = newValue;
   }
 }
