@@ -19,9 +19,6 @@ export class VocabularyInputComponent implements OnInit {
   pronunciation = '';
   dictionary: any;
 
-  animationState = 'left';
-  buttonText: string = 'show accents';
-
   accent: string;
 
   genders = new VocabularyGender();
@@ -88,9 +85,9 @@ export class VocabularyInputComponent implements OnInit {
   }
 
   placeAccent(event) {
-    let inputBox = <HTMLElement>document.getElementById(word);
+    let inputBox = <HTMLInputElement>document.getElementById('word');
     this.accent = event;
-    let currentPosition = inputBox.selectionStart;
+    let currentPosition: number = inputBox.selectionStart;
     let originalValue = this.word;
     let newValue = originalValue.substring(0, currentPosition) + this.accent + originalValue.substring(currentPosition);
     this.word = newValue;
@@ -124,10 +121,5 @@ export class VocabularyInputComponent implements OnInit {
       .subscribe();
 
     this.resetForm();
-  }
-
-  toggleAccents() {
-    this.animationState = this.animationState === 'left' ? 'right' : 'left';
-    this.buttonText = this.animationState === 'left' ? 'show accents' : 'hide accents';
   }
 }

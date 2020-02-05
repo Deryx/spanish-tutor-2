@@ -10,7 +10,6 @@ import { Router } from "@angular/router";
 })
 export class VerbConjugatorComponent {
   buttonText: string = 'show accents';
-  animationState = 'left';
 
   showOverlay: boolean = true;
   showConjugatorOverlay: boolean = true;
@@ -23,6 +22,9 @@ export class VerbConjugatorComponent {
     'imperfect': 2,
     'future': 3
   };
+
+  selectedTextbox: string;
+  accent: string;
 
   infinitives: any;
   verb: string;
@@ -64,7 +66,6 @@ export class VerbConjugatorComponent {
         error => console.log('Error: ', error),
         () => {
           this.numberQuestions = parseInt(data.numberVerbs);
-          console.log(this.numberQuestions);
           this.randomNumberService.generateRandomNumberArray(this.numberQuestions, this.infinitives.length, this.questionSet );
           this.getCurrentVerb( this.currentVerb, this.tense );
           delete this.currentAnswers._id;
@@ -136,9 +137,16 @@ export class VerbConjugatorComponent {
       };
   }
 
-  toggleAccents() {
-    this.animationState = this.animationState === 'left' ? 'right' : 'left';
-    this.buttonText = this.animationState === 'left' ? 'show accents' : 'hide accents';
+  placeAccent(event) {
+    console.log(this.selectedTextbox);
+    let selectedTextbox = <HTMLInputElement>document.getElementById(this.selectedTextbox);
+
+    this.accent = event;
+
+    let currentPosition = selectedTextbox.selectionStart;
+    let originalValue = selectedTextbox.value;
+    let newValue = originalValue.substring(0, currentPosition) + this.accent + originalValue.substring(currentPosition);
+    selectedTextbox.value = newValue;
   }
 
   reset() {

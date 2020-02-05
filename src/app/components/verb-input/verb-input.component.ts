@@ -9,7 +9,6 @@ import { Conjugation } from '../../conjugation'
   styleUrls: ['./verb-input.component.css']
 })
 export class VerbInputComponent {
-  animationState = 'left';
   buttonText: string = 'show accents';
 
   currentTense = 'present';
@@ -130,10 +129,5 @@ export class VerbInputComponent {
       .subscribe();
 
     this.resetForm();
-  }
-
-  toggleAccents() {
-    this.animationState = this.animationState === 'left' ? 'right' : 'left';
-    this.buttonText = this.animationState === 'left' ? 'show accents' : 'hide accents';
   }
 }

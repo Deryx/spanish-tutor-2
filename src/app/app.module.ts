@@ -29,7 +29,6 @@ import { VocabularyCategoriesService } from './services/vocabulary-categories.se
 import { OverlayComponent } from './components/overlay/overlay.component';
 import { ConjugatorOverlayFormComponent } from './components/conjugator-overlay-form/conjugator-overlay-form.component';
 import { VocabularyOverlayFormComponent } from './components/vocabulary-overlay-form/vocabulary-overlay-form.component';
-import { SpanishAccentCodesComponent } from './components/spanish-accent-codes/spanish-accent-codes.component';
 import { HomeComponent } from './components/home/home.component';
 import { CardComponent } from './components/card/card.component';
 import { ReportComponent } from './components/report/report.component';
@@ -71,7 +70,6 @@ const appRoutes: Routes = [
     OverlayComponent,
     ConjugatorOverlayFormComponent,
     VocabularyOverlayFormComponent,
-    SpanishAccentCodesComponent,
     LetterPronunciationComponent,
     HomeComponent,
     CardComponent,
