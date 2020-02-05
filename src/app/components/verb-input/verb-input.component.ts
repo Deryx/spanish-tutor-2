@@ -9,8 +9,6 @@ import { Conjugation } from '../../conjugation'
   styleUrls: ['./verb-input.component.css']
 })
 export class VerbInputComponent {
-  buttonText: string = 'show accents';
-
   currentTense = 'present';
 
   infinitive = '';
