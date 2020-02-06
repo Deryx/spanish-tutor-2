@@ -24,7 +24,7 @@ export class VocabularyCompletionComponent {
   currentWord = 0;
   numberCorrect = 0;
   
-  selectedTextbox: string;
+  selectedTextbox: number;
   accent: string;
 
   report: any = {};
@@ -113,6 +113,7 @@ export class VocabularyCompletionComponent {
       this.report.headings = ['word', 'answer', 'response'];
       this.report.responses = this.responses;
     } else {
+      this.selectedTextbox = -1;
       this.getNextQuestion();
     }
   }
@@ -137,13 +138,7 @@ export class VocabularyCompletionComponent {
   }
 
   placeAccent(event) {
-    let selectedTextbox = <HTMLInputElement>document.getElementById(this.selectedTextbox);
-
     this.accent = event;
-
-    let currentPosition = selectedTextbox.selectionStart;
-    let originalValue = selectedTextbox.value;
-    let newValue = originalValue.substring(0, currentPosition) + this.accent + originalValue.substring(currentPosition);
-    selectedTextbox.value = newValue;
+    this.incompleteWord[this.selectedTextbox] = this.accent;
   }
 }

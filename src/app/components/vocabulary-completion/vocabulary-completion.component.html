@@ -9,12 +9,12 @@
             <h2>{{translation}}</h2>
             <div><img src={{image}} /></div>
             <ul>
-                <li *ngFor="let letter of this.incompleteWord; index as i, trackBy: trackByFn">
-                    <input type='text' id="userAnswer{{i}}" name="userAnswer{{i}}" (focus)="getSelectedTextbox(userAnswer{{i}})" [(ngModel)]="this.incompleteWord[i]" maxlength="1" [disabled]="letter !== ''" />
+                <li *ngFor="let letter of incompleteWord; index as i, trackBy: trackByFn">
+                    <input type='text' id="userAnswer{{i}}" name="userAnswer{{i}}" (focus)="getSelectedTextbox(i)" [(ngModel)]="this.incompleteWord[i]" maxlength="1" [disabled]="letter !== ''" />
                 </li>
             </ul>
         </fieldset>
-        <app-spanish-accents (accentMessage)="placeAccent($event)"</app-spanish-accents>
+        <app-spanish-accents (accentMessage)="placeAccent($event)"></app-spanish-accents>
         <div class="buttons">
             <input type="button" id="answerBtn" value="answer" (click)="getAnswer()" />
             <input type="button" id="resetBtn" value="reset" (click)="reset()" />
