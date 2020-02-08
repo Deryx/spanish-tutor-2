@@ -29,50 +29,69 @@ form {
 fieldset {
     border: none;
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    border: 1px solid rgb( 190, 190, 190 );
-    padding: 1.5rem;
+    border: 1px solid #AAA;
+    padding: 3.0rem;
     margin: 0 auto;
 }
 
 fieldset h2 {
     text-align: center;
     margin: 0;
+    margin-bottom: 1.5rem;
     padding: 0;
 }
 
-fieldset div {
-    margin-top: 30px;
-    margin-bottom: 30px;
+.tile-list {
+    width: 100%;
+    min-height: 1.5rem;
+    margin-top: 1.5rem;
     display: flex;
     flex-direction: row;
     justify-content: center;
-}
+    overflow: hidden;
+    padding-bottom: 1.5rem;
+  }
 
-fieldset div ~ div {
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: center;
-}
-
-fieldset div ~ div div {
-    margin: 5px;
+.letter-box {
     padding: 0.3125rem;
-    background: rgba(6, 75, 202, 0.75);
+    width: 1.5rem;
     color: rgb(255, 255, 255);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+    border-right: solid 1px #ccc;
+    cursor: move;
+    background: rgba(6, 75, 202, 0.75);
 }
 
-fieldset div ~ div div h3 {
-    margin: 0;
-    line-height: 1;
+.letter-tile {
+    border-right: none;
+}
+
+.cdk-drag-preview {
+    box-sizing: border-box;
+}
+  
+.cdk-drag-placeholder {
+    opacity: 0;
+}
+
+.cdk-drag-animating {
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.tile-list.cdk-drop-list-dragging .letter-box:not(.cdk-drag-placeholder) {
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }
 
 img {
-    width: 25%;
-    height: 25%;
+    width: 75%;
+    height: 75%;
+    margin: 0 auto;
 }
 
 #buttons {
@@ -109,4 +128,3 @@ img {
 #quitBtn {
     background: rgb(220, 53, 69);
 }
-

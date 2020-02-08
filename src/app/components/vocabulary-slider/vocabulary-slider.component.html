@@ -5,15 +5,15 @@
     <h1>vocabulary slider</h1>
     <form *ngIf='showForm'>
         <fieldset class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-            <div class="list-container col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                <div class="list-box translation col-xs-12" *ngFor="let translationCard of translationCards">
+            <div class="static-container col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                <div class="static-tile" *ngFor="let translationCard of translationCards">
                     {{translationCard.translation}}
                 </div>
             </div>
 
-            <div class="list-container col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                <div class="word-list" cdkDropList (cdkDropListDropped)="drop($event)" cdkDropList="y">
-                    <div class="list-box word col-xs-12" *ngFor="let wordSlide of wordSlides" cdkDrag>
+            <div class="slide-list col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                <div cdkDropList class="word-list" (cdkDropListDropped)="drop($event)">
+                    <div class="slide-box" *ngFor="let wordSlide of wordSlides" cdkDrag>
                         {{wordSlide}}
                     </div>
                 </div>

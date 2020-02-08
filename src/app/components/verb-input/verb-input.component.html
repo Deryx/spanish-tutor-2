@@ -1,11 +1,11 @@
 <section>
   <h1>Verb Input</h1>
-  <form (ngSubmit)="onSubmit()" class="col-lg-4 col-md-6 col-xs-12">
+  <form (ngSubmit)="onSubmit()" class="col-lg-6 col-md-6 col-xs-12">
     <fieldset class="col-lg-10">
       <dl>
         <dt>infinitive:</dt>
         <dd>
-          <input type="text" id="infinitive" name="infinitive" (focus)=getSelectedTextbox('infinitive') class="col-lg-12"
+          <input type="text" id="infinitive" name="infinitive" (focus)="getSelectedTextbox('infinitive')" class="col-lg-12"
                 [(ngModel)]="infinitive"
                 required
           />
@@ -217,6 +217,5 @@
         <input type="submit" id="submitBtn" value="ADD VERB" />
       </span>
     </div>
-    <div><input type="button" id="accentBtn" value={{buttonText}} (click)="toggleAccents()" /></div>
   </form>
 </section>

@@ -7,10 +7,10 @@
     <form *ngIf='showForm' ngClass="col-lg-4 col-md-6 col-xs-12">
         <fieldset class="col-lg-12 col-xs-12">
             <h2>{{translation}}</h2>
-            <div><img src={{image}} /></div>
-            <div cdkDropList cdkDropListOrientation="horizontal" (cdkDropListDropped)="drop($event)">
-                <div ngClass="slide" *ngFor="let letter of scrambledWord" cdkDrag>
-                    <h3>{{letter}}</h3>
+            <img src={{image}} />
+            <div cdkDropList class="tile-list" cdkDropListOrientation="horizontal" (cdkDropListDropped)="drop($event)">
+                <div ngClass="letter-box" *ngFor="let letter of scrambledWord" cdkDrag>
+                    {{letter}}
                 </div>
             </div>
         </fieldset>
