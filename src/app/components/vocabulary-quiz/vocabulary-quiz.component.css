@@ -30,7 +30,8 @@ fieldset {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  border: 1px solid rgb( 190, 190, 190 );
+  border: 1px solid #AAA;
+  box-shadow: 3px 3px 3px 0px #666;
   font-family: "Roboto", sans-serif;
 }
 
@@ -43,19 +44,17 @@ fieldset h2 {
 
 #answers {
   margin-bottom: 20px;
-  margin-left: 30px;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-flow: row wrap;
   align-content: center;
-  font-size: 1.25em;
+  font-size: 1.0rem;
 }
 
 .row {
-  width: 35%;
-  margin-left: 30px;
+  margin-left: 0;
   display: flex;
   flex: 0 33%;
   flex-direction: row;
