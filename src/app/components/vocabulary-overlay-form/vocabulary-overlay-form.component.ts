@@ -33,7 +33,6 @@ export class VocabularyOverlayFormComponent implements OnInit {
     
         let firstOption = document.createElement( 'option' );
         firstOption.value = '';
-        // firstOption.disabled = true;
         firstOption.selected = true;
         firstOption.innerHTML = 'SELECT A CATEGORY';
         categorySelect.appendChild( firstOption );

@@ -3,6 +3,7 @@ import { VocabularyCategories } from '../../vocabulary-categories';
 import { VocabularyService } from '../../services/vocabulary.service';
 import { VocabularyCategoriesService } from '../../services/vocabulary-categories.service';
 import { FlipAnimation } from '../../../animations/flip.animation';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-vocabulary-flashcard',
@@ -38,11 +39,15 @@ export class VocabularyFlashcardComponent implements OnInit {
         let categoryOptions: string[] = this.vocabularyCategories.getCategories( this.dictionary.Items );
     
         let firstOption = document.createElement( 'option' );
-        firstOption.value = '';
         firstOption.disabled = true;
         firstOption.selected = true;
         firstOption.innerHTML = 'SELECT A CATEGORY';
         categorySelect.appendChild( firstOption );
+
+        let secondOption = document.createElement( 'option' );
+        secondOption.value = '';
+        secondOption.innerHTML = 'All';
+        categorySelect.appendChild( secondOption );
     
         for(let i = 0; i < categoryOptions.length; i++) {
           let category = categoryOptions[i];
@@ -57,8 +62,9 @@ export class VocabularyFlashcardComponent implements OnInit {
   }
 
   changeCategory(){
-    return this.words.getCategory( this.category )
-      .subscribe(
+    const dataCommand:any = ( this.category === '' ) ? this.words.getDictionary() : this.words.getCategory( this.category );
+    dataCommand
+    .subscribe(
         data => {
           this.vocabularyCategory = data;
           this.vocabularyCategory = this.vocabularyCategory.Items;
