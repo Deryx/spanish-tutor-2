@@ -32,10 +32,15 @@ export class VocabularyOverlayFormComponent implements OnInit {
         categoryOptions.sort();
     
         let firstOption = document.createElement( 'option' );
-        firstOption.value = '';
+        firstOption.value = '-1';
         firstOption.selected = true;
         firstOption.innerHTML = 'SELECT A CATEGORY';
         categorySelect.appendChild( firstOption );
+
+        let secondOption = document.createElement( 'option' );
+        secondOption.value = '';
+        secondOption.innerHTML = 'All';
+        categorySelect.appendChild( secondOption );
     
         for(let i = 0; i < categoryOptions.length; i++) {
           let category = categoryOptions[i];
