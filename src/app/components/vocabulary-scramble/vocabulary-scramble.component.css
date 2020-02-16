@@ -33,7 +33,7 @@ fieldset {
     justify-content: center;
     border: 1px solid #AAA;
     box-shadow: 3px 3px 3px 0px #AAA;
-    padding: 3.0rem;
+    padding: 1.0rem;
     margin: 0 auto;
 }
 
@@ -90,8 +90,8 @@ fieldset h2 {
 }
 
 img {
-    width: 75%;
-    height: 75%;
+    width: 40%;
+    height: 40%;
     margin: 0 auto;
 }
 

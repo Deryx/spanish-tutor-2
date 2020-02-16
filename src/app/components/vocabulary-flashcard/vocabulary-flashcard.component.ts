@@ -24,6 +24,7 @@ export class VocabularyFlashcardComponent implements OnInit {
   vocabularyCategory: any;
   index: number;
   dictionary: any;
+  showImage: boolean = true;
 
   constructor( private words: VocabularyService, private vocabularyCategories: VocabularyCategoriesService ) { }
 
@@ -86,6 +87,7 @@ export class VocabularyFlashcardComponent implements OnInit {
           this.pronunciation = this.vocabularyCategory[this.index].pronunciation;
           this.translation = '[ ' + this.vocabularyCategory[this.index].translation + ' ]';
           this.image = this.vocabularyCategory[this.index].image;
+          this.showImage = ( this.image === 'assets/images/blank.png' ) ? false : true;
         }
       )
   }
@@ -96,6 +98,7 @@ export class VocabularyFlashcardComponent implements OnInit {
     this.pronunciation = this.vocabularyCategory[this.index].pronunciation;
     this.translation = '[ ' + this.vocabularyCategory[this.index].translation + ' ]';
     this.image = this.vocabularyCategory[this.index].image;
+    this.showImage = ( this.image === 'assets/images/blank.png' ) ? false : true;
   
     const card: any = document.querySelector('div.card');
     let cardFlipState = card.style.transform;

@@ -103,7 +103,6 @@ select {
 
 .back {
   transform: rotateX(180deg);
-  border: 1px solid rgb(190, 190, 190);
 }
 
 h2 {

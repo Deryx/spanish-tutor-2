@@ -17,7 +17,6 @@ header h1 {
   padding: 0;
   margin-top: 0.25em;
   margin-left: 2.0em;
-  color: rgb(255, 255, 255);
   font-size: 2rem !important;
   letter-spacing: 0.1rem;
   font-size: inherit;
@@ -50,5 +49,5 @@ header h1 a {
 }
 
 header h1 a:visited {
-  color: rgb(255, 255, 255);
+  color: rgb(255, 255, 0);
 }
