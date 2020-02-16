@@ -27,8 +27,8 @@ section {
   align-items: center;
   width: 50%;
   height: 100%;
-  background: rgb(255 255 0 / 0.85);
-  color: rgb(0 0 0 / 0.8);
+  background: rgb(255 255 0 / 0.9);
+  color: rgb(255 0 0);
   position: absolute;
   z-index: inherit;
 }
@@ -50,6 +50,7 @@ section {
   margin: 0;
   padding: 0;
   text-transform: capitalize;
+  font-weight: 900;
 }
 
 .opaque .top-spacing {
