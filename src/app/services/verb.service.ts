@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs/Rx';
 import { map } from 'rxjs/operators';
 import { Verb } from '../verb';
 
-const baseUrl = 'http://localhost:4000';
+const apiUrl: string = 'https://iu0476vb47.execute-api.us-east-2.amazonaws.com/v1';
 
 @Injectable()
 export class VerbService {
@@ -11,7 +12,7 @@ export class VerbService {
   constructor( private http: HttpClient ){}
 
   getVerbs(){
-    const uri = baseUrl + '/verbs';
+    const uri = apiUrl + '/verbs';
     return this.http
       .get( uri )
       .pipe(map( function(res){
@@ -20,7 +21,7 @@ export class VerbService {
   }
 
   getVerb( verb: string ){
-    const uri = baseUrl + '/verbs/infinitive/' + verb;
+    const uri = apiUrl + '/verbs/' + verb;
     return this.http
       .get( uri )
       .pipe(map( function(res){
@@ -29,7 +30,7 @@ export class VerbService {
   }
 
   addVerb( newVerb: Verb ) {
-    const uri = baseUrl + '/verbs';
+    const uri = apiUrl + '/verbs';
     return this.http
       .post( uri, newVerb )
   }

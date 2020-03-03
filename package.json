@@ -1,11 +1,10 @@
 {
   "name": "spanish-tutor",
-  "main": "server.js",
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --host 0.0.0.0 | node server",
+    "start": "ng serve",
     "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",

@@ -25,7 +25,7 @@ fieldset {
   margin: 0 auto;
   padding: 1.5rem;
   border: 1px solid #AAA;
-  box-shadow: 3px 3px 3px 0px #666;
+  box-shadow: 0 0 10px #666;
   font-family: "Roboto", sans-serif;
 }
 
