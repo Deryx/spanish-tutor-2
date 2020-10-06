@@ -3,6 +3,8 @@ import { VocabularyService } from '../../services/vocabulary.service';
 import { RandomNumberGeneratorService } from '../../services/random-number-generator.service';
 import { Router } from "@angular/router";
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import { Subscription } from 'rxjs';
+import { ApolloModule, Apollo } from 'apollo-angular';
 
 @Component({
   selector: 'app-vocabulary-scramble',
@@ -32,7 +34,9 @@ export class VocabularyScrambleComponent {
   report: any = {};
   responses: any = [];
 
-  constructor( private words: VocabularyService, private randomNumberService: RandomNumberGeneratorService, private router: Router ) {}
+  private queryDictionary: Subscription;
+
+  constructor( private vs: VocabularyService, private apollo: Apollo, private randomNumberService: RandomNumberGeneratorService, private router: Router ) {}
 
   drop(event: CdkDragDrop<string[]>) {
     moveItemInArray(
@@ -47,20 +51,28 @@ export class VocabularyScrambleComponent {
       this.showVocabularyOverlay = data.isVisible;
       this.showForm = true;
 
-      const dataCommand: any = data.category ? this.words.getCategory( data.category ) : this.words.getDictionary();
-      dataCommand
-        .subscribe(
-          data => {
-            this.dictionary = data;
-            this.dictionary = this.dictionary.Items;
-          },
-          error => console.log('Error: ', error),
-          () => {
-            this.numberQuestions = data.numberQuestions;
-            this.randomNumberService.generateRandomNumberArray(this.numberQuestions, this.dictionary.length, this.questionSet );
-            this.getCurrentWord( this.currentWord );
-          }
-        );
+      const categoryObject = {
+        query: this.vs.Category,
+        variables: {
+          category: parseInt(data.category)
+        }
+      };
+      const dictionaryObject = {
+        query: this.vs.Dictionary
+      }
+      const queryObject = (data.category) ? categoryObject : dictionaryObject;
+      this.queryDictionary = this.apollo.watchQuery(queryObject)
+        .valueChanges
+        .subscribe( result => {
+          const dictionaryData = JSON.parse(JSON.stringify(result.data));
+          this.dictionary = (data.category) ? dictionaryData.category : dictionaryData.dictionary;
+          this.dictionary = dictionaryData;
+          this.numberQuestions = data.numberQuestions;
+          this.randomNumberService.generateRandomNumberArray(this.numberQuestions, this.dictionary.length, this.questionSet );
+          this.getCurrentWord( this.currentWord );
+        }, (error) => {
+          console.log('there was an error sending the query', error);
+        });
     }
   }
 

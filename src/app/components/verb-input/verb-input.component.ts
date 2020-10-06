@@ -2,6 +2,11 @@ import { Component } from '@angular/core';
 import { VerbService } from '../../services/verb.service';
 import { Verb } from '../../verb';
 import { Conjugation } from '../../conjugation'
+import { Observable } from 'rxjs';
+import { ApolloModule, Apollo } from 'apollo-angular';
+import { Subscription } from 'rxjs';
+
+import gql from 'graphql-tag';
 
 @Component({
   selector: 'app-verb-input',
@@ -13,6 +18,7 @@ export class VerbInputComponent {
 
   infinitive = '';
   translation = '';
+  pronunciation = '';
 
   presentYo = '';
   presentTu = '';
@@ -37,17 +43,34 @@ export class VerbInputComponent {
   futureEl = '';
   futureNosotros = '';
   futureEls = '';
-  
+
+  conditionalYo = '';
+  conditionalTu = '';
+  conditionalEl = '';
+  conditionalNosotros = '';
+  conditionalEls = '';
+
+  newVerb = new Verb();
   selectedTextbox: string;
   accent: string;
+  id: number;
 
-  constructor( private verbs: VerbService ){}
+  presentConjugation: Conjugation = new Conjugation();
+  preteriteConjugation: Conjugation = new Conjugation();
+  imperfectConjugation: Conjugation = new Conjugation();
+  futureConjugation: Conjugation = new Conjugation();
+  conditionalConjugation: Conjugation = new Conjugation();
+
+  private queryVerb: Subscription;
+
+  constructor( private vs: VerbService, private apollo: Apollo ){}
 
   resetForm(){
     this.currentTense = 'present';
 
     this.infinitive = '';
     this.translation = '';
+    this.pronunciation = '';
 
     this.presentYo = '';
     this.presentTu = '';
@@ -72,6 +95,12 @@ export class VerbInputComponent {
     this.futureEl = '';
     this.futureNosotros = '';
     this.futureEls = '';
+
+    this.conditionalYo = '';
+    this.conditionalTu = '';
+    this.conditionalEl = '';
+    this.conditionalNosotros = '';
+    this.conditionalEls = '';
   }
 
   changeTense( tense: string ){
@@ -85,49 +114,112 @@ export class VerbInputComponent {
       this.changeTense('imperfect');
     }else if( this.currentTense === 'imperfect' ){
       this.changeTense('future');
+    }else if( this.currentTense === 'future' ){
+      this.changeTense('conditional');
     }
+}
+
+  addVerb = (verb: Verb) => {
+    this.apollo.mutate({
+      mutation: this.vs.CreateVerb,
+      variables: {
+        infinitive: verb.infinitive,
+        translation: verb.translation,
+        pronunciation: verb.pronunciation
+      }
+    }).subscribe( data => {
+      console.log(data);
+    }, (error) => {
+      console.log('there was an error sending the query', error);
+    })
+  };
+
+  addConjugation = (conjugation: Conjugation) => {
+    this.apollo.mutate({
+      mutation: this.vs.CreateConjugation,
+      variables: {
+        verb: conjugation.verb,
+        tense: conjugation.tense,
+        yo: conjugation.yo,
+        tu: conjugation.tu,
+        el: conjugation.el,
+        nosotros: conjugation.nosotros,
+        els: conjugation.els
+      }
+    }).subscribe( data => {
+      console.log(data);
+    }, (error) => {
+      console.log('there was an error sending the query', error);
+    })
   }
 
   onSubmit() {
-    let verb = new Verb();
+    this.newVerb.setInfinitive( this.infinitive );
+    this.newVerb.setTranslation( this.translation );
+    this.newVerb.setPronunciation( this.pronunciation );
 
-    verb.setInfinitive( this.infinitive );
-    verb.setTranslation( this.translation );
-    const conjugations = {
-      'present': {
-        'yo': this.presentYo,
-        'tu': this.presentTu,
-        'el': this.presentEl,
-        'nosotros': this.presentNosotros,
-        'els': this.presentEls
-      },
-      'preterite': {
-        'yo': this.preteriteYo,
-        'tu': this.preteriteTu,
-        'el': this.preteriteEl,
-        'nosotros': this.preteriteNosotros,
-        'els': this.preteriteEls
-      },
-      'imperfect': {
-        'yo': this.imperfectYo,
-        'tu': this.imperfectTu,
-        'el': this.imperfectEl,
-        'nosotros': this.imperfectNosotros,
-        'els': this.imperfectEls
-      },
-      'future': {
-        'yo': this.futureYo,
-        'tu': this.futureTu,
-        'el': this.futureEl,
-        'nosotros': this.futureNosotros,
-        'els': this.futureEls
+    this.presentConjugation.setTense(parseInt('1'));
+    this.presentConjugation.setYo( this.presentYo );
+    this.presentConjugation.setTu( this.presentTu );
+    this.presentConjugation.setEl( this.presentEl );
+    this.presentConjugation.setNosotros( this.presentNosotros );
+    this.presentConjugation.setEls( this.presentEls );
+
+    this.preteriteConjugation.setTense(parseInt('2'));
+    this.preteriteConjugation.setYo( this.preteriteYo );
+    this.preteriteConjugation.setTu( this.preteriteTu );
+    this.preteriteConjugation.setEl( this.preteriteEl );
+    this.preteriteConjugation.setNosotros( this.preteriteNosotros );
+    this.preteriteConjugation.setEls( this.preteriteEls );
+
+    this.imperfectConjugation.setTense(parseInt('3'));
+    this.imperfectConjugation.setYo( this.imperfectYo );
+    this.imperfectConjugation.setTu( this.imperfectTu );
+    this.imperfectConjugation.setEl( this.imperfectEl );
+    this.imperfectConjugation.setNosotros( this.imperfectNosotros );
+    this.imperfectConjugation.setEls( this.imperfectEls );
+
+    this.futureConjugation.setTense(parseInt('4'));
+    this.futureConjugation.setYo( this.futureYo );
+    this.futureConjugation.setTu( this.futureTu );
+    this.futureConjugation.setEl( this.futureEl );
+    this.futureConjugation.setNosotros( this.futureNosotros );
+    this.futureConjugation.setEls( this.futureEls );
+
+    this.conditionalConjugation.setTense(parseInt('5'));
+    this.conditionalConjugation.setYo( this.conditionalYo );
+    this.conditionalConjugation.setTu( this.conditionalTu );
+    this.conditionalConjugation.setEl( this.conditionalEl );
+    this.conditionalConjugation.setNosotros( this.conditionalNosotros );
+    this.conditionalConjugation.setEls( this.conditionalEls );
+    this.addVerb( this.newVerb );
+
+    this.queryVerb = this.apollo.watchQuery({
+      query: this.vs.VerbId,
+      variables: {
+        verb: this.infinitive
       }
-    };
+    }).valueChanges
+      .subscribe(result => {
+        const verbData = JSON.parse(JSON.stringify(result.data));
+        const verbId = JSON.parse(JSON.stringify(verbData.verbId))
+        this.id = parseInt(verbId['id']);
 
-    verb.addConjugations(conjugations);
-
-    this.verbs.addVerb( verb )
-      .subscribe();
+        this.presentConjugation.setVerb( this.id );
+        this.addConjugation( this.presentConjugation );
+    
+        this.preteriteConjugation.setVerb( this.id );
+        this.addConjugation( this.preteriteConjugation );
+    
+        this.imperfectConjugation.setVerb( this.id );
+        this.addConjugation( this.imperfectConjugation );
+    
+        this.futureConjugation.setVerb( this.id );
+        this.addConjugation( this.futureConjugation );
+    
+        this.conditionalConjugation.setVerb( this.id );
+        this.addConjugation( this.conditionalConjugation );
+      });
 
     this.resetForm();
   }
@@ -137,7 +229,6 @@ export class VerbInputComponent {
   }
 
   placeAccent(event) {
-    console.log(this.selectedTextbox);
     let selectedTextbox = <HTMLInputElement>document.getElementById(this.selectedTextbox);
 
     this.accent = event;

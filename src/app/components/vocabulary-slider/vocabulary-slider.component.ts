@@ -4,6 +4,9 @@ import { RandomNumberGeneratorService } from '../../services/random-number-gener
 import { Observable } from 'rxjs';
 import { Router } from "@angular/router";
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import { Subscription } from 'rxjs';
+import { ApolloModule, Apollo } from 'apollo-angular';
+
 @Component({
   selector: 'app-vocabulary-slider',
   templateUrl: './vocabulary-slider.component.html',
@@ -32,7 +35,9 @@ export class VocabularySliderComponent {
   report: any = {};
   responses: any = [];
 
-  constructor( private words: VocabularyService, private randomNumberService: RandomNumberGeneratorService, private router: Router ) {}
+  private queryDictionary: Subscription;
+
+  constructor( private vs: VocabularyService, private apollo: Apollo, private randomNumberService: RandomNumberGeneratorService, private router: Router ) {}
 
   drop(event: CdkDragDrop<string[]>) {
     moveItemInArray(
@@ -48,21 +53,29 @@ export class VocabularySliderComponent {
       this.showVocabularyOverlay = data.isVisible;
       this.showForm = true;
 
-      const dataCommand: any = data.category ? this.words.getCategory( data.category ) : this.words.getDictionary();
-      dataCommand
-      .subscribe(
-          data => {
-            this.dictionary = data;
-            this.dictionary = this.dictionary.Items;
-          },
-          error => console.log('Error: ', error),
-          () => {
-            this.numberSlides = data.numberQuestions;
-            this.getQuestionSet( this.numberSlides, numberCards, this.dictionary.length );
-            this.displaySlideSet( this.currentSlideSet );
-          }
-        );
+      const categoryObject = {
+        query: this.vs.Category,
+        variables: {
+          category: parseInt(data.category)
+        }
+      };
+      const dictionaryObject = {
+        query: this.vs.Dictionary
       }
+      const queryObject = (data.category) ? categoryObject : dictionaryObject;
+      this.queryDictionary = this.apollo.watchQuery(queryObject)
+        .valueChanges
+        .subscribe( result => {
+          const dictionaryData = JSON.parse(JSON.stringify(result.data));
+          this.dictionary = (data.category) ? dictionaryData.category : dictionaryData.dictionary;
+          this.dictionary = dictionaryData;
+          this.numberSlides = data.numberQuestions;
+          this.getQuestionSet( this.numberSlides, numberCards, this.dictionary.length );
+          this.displaySlideSet( this.currentSlideSet );
+        }, (error) => {
+          console.log('there was an error sending the query', error);
+        });
+    }
   }
 
   getQuestionSet( numQuestions: number, setSize: number, maxNumber: number ) {

@@ -2,6 +2,11 @@ import { Component } from '@angular/core';
 import { VerbService } from '../../services/verb.service';
 import { RandomNumberGeneratorService } from '../../services/random-number-generator.service';
 import { Router } from "@angular/router";
+import { ApolloModule, Apollo } from 'apollo-angular';
+import { Observable } from 'rxjs';
+import { Subscription } from 'rxjs';
+
+import gql from 'graphql-tag';
 
 @Component({
   selector: 'app-verb-conjugator',
@@ -13,13 +18,6 @@ export class VerbConjugatorComponent {
   showConjugatorOverlay: boolean = true;
   showForm: boolean = false;
   showReport: boolean = false;
-
-  tenses = {
-    'present': 0,
-    'preterite': 1,
-    'imperfect': 2,
-    'future': 3
-  };
 
   selectedTextbox: string;
   accent: string;
@@ -46,7 +44,11 @@ export class VerbConjugatorComponent {
   report: any = {};
   responses: any = [];
 
-  constructor( private verbs: VerbService, private randomNumberService: RandomNumberGeneratorService, private router: Router ) { }
+  private queryVerbs: Subscription;
+  private queryVerb: Subscription;
+  private queryTenses: Subscription;
+
+  constructor( private vs: VerbService, private randomNumberService: RandomNumberGeneratorService, private router: Router, private apollo: Apollo ) { }
 
   getOverlayData(data) {
     if(!data.isVisible) {
@@ -55,20 +57,34 @@ export class VerbConjugatorComponent {
       this.showForm = true;
       this.tense = data.tense;
 
-      this.verbs.getVerbs()
-      .subscribe(
-        data => {
-          this.infinitives = data;
-          this.infinitives = this.infinitives.Items;
-        },
-        error => console.log('Error: ', error),
-        () => {
+      this.queryVerbs = this.apollo.watchQuery<any>({
+        query: this.vs.Verbs
+      })
+        .valueChanges
+        .subscribe(result => {
+          const verbData = JSON.parse(JSON.stringify(result.data));
+          this.infinitives = verbData.verbs.sort((a, b) => {
+          const verbA = a.infinitive;
+          const verbB = b.infinitive;
+  
+          let comparison = 0;
+          if(verbA > verbB) {
+            comparison = 1;
+          } else if (verbA < verbB) {
+            comparison = -1;
+          }
+  
+          return comparison;
+          });
+
           this.numberQuestions = parseInt(data.numberVerbs);
           this.randomNumberService.generateRandomNumberArray(this.numberQuestions, this.infinitives.length, this.questionSet );
           this.getCurrentVerb( this.currentVerb, this.tense );
           delete this.currentAnswers._id;
-        });
-      }
+        }, (error) => {
+          console.log('there was an error sending the query', error);
+        })
+    }
   }
 
   getCurrentVerb( verb: number, tense: string) {

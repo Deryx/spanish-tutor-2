@@ -2,6 +2,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { ApolloModule, APOLLO_OPTIONS } from 'apollo-angular';
+import { HttpLinkModule, HttpLink } from 'apollo-angular-link-http';
+import { InMemoryCache } from "apollo-cache-inmemory";
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DragDropModule } from '@angular/cdk/drag-drop';
@@ -39,7 +42,6 @@ import { SpanishAccentsComponent } from './components/spanish-accents/spanish-ac
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'letter-pronunciation', component: LetterPronunciationComponent },
-  { path: 'verb-input', component: VerbInputComponent },
   { path: 'vocabulary-completion', component: VocabularyCompletionComponent },
   { path: 'vocabulary-flashcard', component: VocabularyFlashcardComponent },
   { path: 'vocabulary-input', component: VocabularyInputComponent },
@@ -81,6 +83,8 @@ const appRoutes: Routes = [
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    ApolloModule,
+    HttpLinkModule,
     HttpClientModule,
     FormsModule,
     DragDropModule,
@@ -89,7 +93,18 @@ const appRoutes: Routes = [
       { enableTracing: true }
     )
   ],
-  providers: [VocabularyService, VerbService, RandomNumberGeneratorService, VocabularyCategoriesService],
+  providers: [{
+    provide: APOLLO_OPTIONS,
+    useFactory: (httpLink: HttpLink) => {
+      return {
+        cache: new InMemoryCache(),
+        link: httpLink.create({
+          uri: "http://localhost:5000/graphql"
+        })
+      }
+    },
+    deps: [HttpLink]
+  }, VocabularyService, VerbService, RandomNumberGeneratorService, VocabularyCategoriesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

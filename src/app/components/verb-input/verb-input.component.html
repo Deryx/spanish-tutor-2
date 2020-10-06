@@ -20,6 +20,15 @@
           />
         </dd>
       </dl>
+      <dl>
+        <dt>pronunciation:</dt>
+        <dd>
+          <input type="text" id="pronunciation" name="pronunciation" class="col-lg-12"
+                [(ngModel)]="pronunciation"
+                required
+          />
+        </dd>
+      </dl>
 
       <section *ngIf="currentTense === 'present'">
         <h4>present tense</h4>
@@ -207,13 +216,61 @@
           </dd>
         </dl>
       </section>
+
+      <section *ngIf="currentTense === 'conditional'">
+        <h4>conditional tense</h4>
+        <dl>
+          <dt>yo:</dt>
+          <dd>
+            <input type="text" name="conditionalYo" id="conditionalYo" (focus)="getSelectedTextbox('conditionalYo')" class="col-lg-12"
+                  required
+                  [(ngModel)]="conditionalYo"
+            >
+          </dd>
+        </dl>
+        <dl>
+          <dt>tu:</dt>
+          <dd>
+            <input type="text" name="conditionalTu" id="conditionalTu" (focus)="getSelectedTextbox('conditionalTu')" class="col-lg-12"
+                  required
+                  [(ngModel)]="conditionalTu"
+            >
+          </dd>
+        </dl>
+        <dl>
+          <dt>el/Ella/Usted:</dt>
+          <dd>
+            <input type="text" name="conditionalEl" id="conditionalEl" (focus)="getSelectedTextbox('conditionalEl')" class="col-lg-12"
+                  required
+                  [(ngModel)]="conditionalEl"
+            >
+          </dd>
+        </dl>
+        <dl>
+          <dt>nosotros:</dt>
+          <dd>
+            <input type="text" name="conditionalNosotros" id="conditionalNosotros"  (focus)="getSelectedTextbox('conditionalNosotros')" class="col-lg-12"
+                  required
+                  [(ngModel)]="conditionalNosotros"
+            >
+          </dd>
+        </dl>
+        <dl>
+          <dt>ellos/Ellas/Ustedes:</dt>
+          <dd><input type="text" name="conditionalEls" id="conditionalEls" (focus)="getSelectedTextbox('conditionalEls')" class="col-lg-12"
+                    required
+                    [(ngModel)]="conditionalEls"
+          >
+          </dd>
+        </dl>
+      </section>
     </fieldset>
-    <app-spanish-accents></app-spanish-accents>
+    <app-spanish-accents (accentMessage)="placeAccent($event)"></app-spanish-accents>
     <div>
-      <span *ngIf="currentTense !== 'future'">
+      <span *ngIf="currentTense !== 'conditional'">
         <input type="button" id="nextBtn" (click)="next()" value="next" />
       </span>
-      <span *ngIf="currentTense === 'future'">
+      <span *ngIf="currentTense === 'conditional'">
         <input type="submit" id="submitBtn" value="ADD VERB" />
       </span>
     </div>

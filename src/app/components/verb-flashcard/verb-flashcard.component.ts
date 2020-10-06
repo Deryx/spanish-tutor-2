@@ -1,7 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+import { ApolloModule, Apollo } from 'apollo-angular';
 import { VerbService } from '../../services/verb.service';
+import { Conjugation } from '../../conjugation';
 import { FlipAnimation } from '../../../animations/flip.animation'
 import { FadeAnimation } from '../../../animations/fade.animation';
+import { Observable } from 'rxjs';
+import { Subscription } from 'rxjs';
+
+import gql from 'graphql-tag';
 
 @Component({
   selector: 'app-verb-flashcard',
@@ -18,105 +24,155 @@ export class VerbFlashcardComponent implements OnInit {
   infinitive: string = 'infinitive';
   translation: string = 'translation';
   tense: any;
+  tenseSelect: any;
+  selectedTense: string;
+  verbSelect: string;
   conjugation: any;
+  conjugations: any;
+  tenses: any;
 
-  constructor( private verbs: VerbService ) { }
+  private queryVerbs: Subscription;
+  private queryVerb: Subscription;
+  private queryTenses: Subscription;
+
+  constructor( private apollo: Apollo, private vs: VerbService ) { }
 
   ngOnInit() {
-    this.verbs.getVerbs()
-      .subscribe(
-        data => {
-          this.infinitives = data;
-          this.infinitives = this.infinitives.Items;
-          this.infinitives.sort((a, b) => {
-            const verbA = a.infinitive;
-            const verbB = b.infinitive;
+    this.getTenses();
+    this.getVerbs();
+  }
 
-            let comparison = 0;
-            if(verbA > verbB) {
-              comparison = 1;
-            } else if (verbA < verbB) {
-              comparison = -1;
-            }
+  getVerbs = () => {
+    this.queryVerbs = this.apollo.watchQuery<any>({
+      query: this.vs.Verbs
+    })
+      .valueChanges
+      .subscribe(result => {
+        const verbData = JSON.parse(JSON.stringify(result.data));
+        console.log(verbData);
+        this.infinitives = verbData.verbs.sort((a, b) => {
+        const verbA = a.verb;
+        const verbB = b.verb;
 
-            return comparison;
-          });
+        let comparison = 0;
+        if(verbA > verbB) {
+          comparison = 1;
+        } else if (verbA < verbB) {
+          comparison = -1;
+        }
 
-          let infinitiveSelect = document.getElementById('infinitive');
+        return comparison;
+      });
 
-          let firstOption = document.createElement('option');
-          firstOption.value = '';
-          firstOption.disabled = true;
-          firstOption.selected = true;
-          firstOption.innerHTML = 'SELECT A VERB ...';
-          infinitiveSelect.appendChild(firstOption);
+      let infinitiveSelect = document.getElementById('verbSelect');
 
-          let numVerbs = this.infinitives.length;
-          for (let i = 0; i < numVerbs; i++) {
-            let infinitive: string = this.infinitives[i].infinitive;
+      let firstOption = document.createElement('option');
+      firstOption.value = '';
+      firstOption.disabled = true;
+      firstOption.selected = true;
+      firstOption.innerHTML = 'SELECT A VERB ...';
+      infinitiveSelect.appendChild(firstOption);
 
-            let option = document.createElement('option');
-            option.value = infinitive;
-            option.innerHTML = infinitive.charAt(0).toUpperCase() + infinitive.slice(1);
+      let numVerbs = this.infinitives.length;
+      for (let i = 0; i < numVerbs; i++) {
+        let infinitive: string = this.infinitives[i].infinitive;
 
-            infinitiveSelect.appendChild(option);
-          }
+        let option = document.createElement('option');
+        option.value = this.infinitives[i].id;
+        option.label = infinitive.charAt(0).toUpperCase() + infinitive.slice(1);
 
-          let tenses: string[] = ['present', 'preterite', 'imperfect', 'future'];
+        infinitiveSelect.appendChild(option);
+      }
+    }, (error) => {
+      console.log('there was an error sending the query', error);
+    });
+  }
 
-          let tenseSelect = document.getElementById('tense');
+  getTenses = () => {
+    this.queryTenses = this.apollo.watchQuery<any>({
+      query: this.vs.Tenses
+    })
+      .valueChanges
+      .subscribe(result => {
+        const tensesData = JSON.parse(JSON.stringify(result.data));
+        this.tenses = tensesData.tenses;
 
-          firstOption = document.createElement('option');
-          firstOption.value = '';
-          firstOption.disabled = true;
-          firstOption.selected = true;
-          firstOption.innerHTML = 'SELECT A TENSE ...';
-          tenseSelect.appendChild(firstOption);
+        this.setTenses();
+      }, (error) => {
+        console.log('there was an error sending the query', error);
+      });
+  }
 
-          let numTenses = tenses.length;
-          for(let i = 0; i < numTenses; i++){
-            let tense: string = tenses[i];
+  setTenses = () => {
+    let tenseSelect = document.getElementById('tenseSelect');
 
-            let option = document.createElement('option');
-            option.value = tense;
-            option.innerHTML = tense;
+    let firstOption = document.createElement('option');
+    firstOption = document.createElement('option');
+    firstOption.value = '';
+    firstOption.disabled = true;
+    firstOption.selected = true;
+    firstOption.innerHTML = 'SELECT A TENSE ...';
+    tenseSelect.appendChild(firstOption);
 
-            tenseSelect.appendChild(option);
-          }
-        });
+    let numTenses = this.tenses.length;
+    for(let i = 0; i < numTenses; i++){
+      let tense: string = this.tenses[i];
+
+      let option = document.createElement('option');
+      option.label = tense['tense'];
+      option.value = tense['id'];
+
+      tenseSelect.appendChild(option);
+    }
   }
 
   changeVerb(){
-    return this.verbs.getVerb( this.infinitive )
-      .subscribe(
-        data => {
-          this.verb = data;
-          this.verb = this.verb.Items;
-          this.translation = this.verb[0].translation;
-          this.tense = '';
-          this.conjugation = '';
-
-          const card: any = document.querySelector("div.card");
-          let cardFlipState = card.style.transform;
-          if(cardFlipState === 'rotateX(180deg)') this.flip = 'inactive';
-        }
-      )
+    this.queryVerb = this.apollo.watchQuery<any>({
+      query: this.vs.Verb,
+      variables: {
+        id: parseInt(this.verbSelect)
+      }
+    })
+      .valueChanges
+      .subscribe( result => {
+        const verbData = JSON.parse(JSON.stringify(result.data));
+        console.log(verbData);
+        this.verb = verbData.verb;
+        this.infinitive = this.verb[0].infinitive;
+        this.translation = this.verb[0].translation;
+        this.tense = '';
+        this.conjugation = '';
+    
+        const card: any = document.querySelector("div.card");
+        let cardFlipState = card.style.transform;
+        if(cardFlipState === 'rotateX(180deg)') this.flip = 'inactive';
+      }, (error) => {
+        console.log('there was an error sending the query', error);
+      });
   }
 
   changeTense(){
-    return this.verbs.getVerb( this.infinitive )
-      .subscribe(
-        data => {
-          this.verb = data;
-          this.verb = this.verb.Items;
-          this.conjugation = this.verb[0].conjugations[this.tense];
-          this.fade = this.fade === 'in' ? 'out' : 'in';
-        }
-      )
+    this.queryVerb = this.apollo.watchQuery<any>({
+      query: this.vs.Conjugations,
+      variables: {
+        verb: parseInt(this.verbSelect)
+      }
+    })
+      .valueChanges
+      .subscribe( result => {
+        const conjugationData = JSON.parse(JSON.stringify(result.data));
+        const tensesArray = ['present', 'preterite', 'imperfect', 'future', 'conditional'];
+        this.selectedTense = tensesArray[this.tenseSelect - 1];
+        this.conjugations = conjugationData.conjugations;
+        this.conjugation = this.conjugations[this.tenseSelect - 1];
+        this.fade = this.fade === 'in' ? 'out' : 'in';
+          }, (error) => {
+        console.log('there was an error sending the query', error);
+      });
   }
 
   flipCard() {
-    if(this.infinitive && this.tense) {
+    if(this.infinitive && this.tenseSelect) {
       this.flip = this.flip === 'inactive' ? 'active' : 'inactive';
     }
   }

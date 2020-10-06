@@ -1,8 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+import { VocabularyCategoriesService } from '../../services/vocabulary-categories.service';
 import { VocabularyService } from '../../services/vocabulary.service';
 import { Vocabulary } from '../../vocabulary';
-import { VocabularyGender } from '../../vocabulary-gender'
-import { VocabularyCategoriesService } from '../../services/vocabulary-categories.service';
+import { ApolloModule, Apollo } from 'apollo-angular';
+import { Observable } from 'rxjs';
+import { Subscription } from 'rxjs';
+import { map } from 'rxjs/operators';
+
+import gql from 'graphql-tag';
 
 @Component({
   selector: 'app-vocabulary-input',
@@ -10,79 +15,88 @@ import { VocabularyCategoriesService } from '../../services/vocabulary-categorie
   styleUrls: ['./vocabulary-input.component.css']
 })
 export class VocabularyInputComponent implements OnInit {
-  category = '';
-  newCategory = '';
-  word = '';
-  translation = '';
-  gender =  '';
-  image = '';
-  pronunciation = '';
+  category: string;
+  categories: any;
+  word: string;
+  translation: string;
+  gender: string;
+  image: string;
+  pronunciation: string;
   dictionary: any;
+  createdWord: Vocabulary;
 
   accent: string;
 
-  genders = new VocabularyGender();
+  private queryCategories: Subscription;
 
   vocabulary = new Vocabulary();
 
-  constructor( private words: VocabularyService, private vocabularyCategories: VocabularyCategoriesService ){}
+  constructor( private vs: VocabularyService, private vcs: VocabularyCategoriesService, private apollo: Apollo ){}
 
   ngOnInit(){
-    this.words.getDictionary()
-    .subscribe(
-      data => {
-        this.dictionary = data;
-      },
-      error => console.log('Error: ', error),
-      () => {
-        let categorySelect = document.getElementById( 'category' );
-        let categoryOptions: string[] = this.vocabularyCategories.getCategories( this.dictionary.Items );
-        categoryOptions.sort();
-    
-        let firstOption = document.createElement( 'option' );
-        firstOption.value = '';
-        firstOption.disabled = true;
-        firstOption.selected = true;
-        firstOption.innerHTML = 'SELECT A CATEGORY';
-        categorySelect.appendChild( firstOption );
-    
-        for(let i = 0; i < categoryOptions.length; i++) {
-          let category = categoryOptions[i];
-    
-          let option = document.createElement( 'option' );
-          option.value = category;
-          option.innerHTML = category.charAt(0).toUpperCase() + category.slice(1);
-    
-          categorySelect.appendChild( option );
-        }
-          
-        let lastOption = document.createElement( 'option' );
-        lastOption.value = 'other';
-        lastOption.innerHTML = 'Other';
-      
-        categorySelect.appendChild( lastOption );
-      
-        let genderSelect = document.getElementById( 'gender' );
-        let genderOptions = this.genders.getGenders();
-      
-        let genderFirstOption = document.createElement( 'option' );
-        genderFirstOption.value = '';
-        genderFirstOption.disabled = true;
-        genderFirstOption.selected = true;
-        genderFirstOption.innerHTML = 'SELECT A GENDER ...';
-        genderSelect.appendChild( genderFirstOption );
-      
-        for(let i = 0; i < genderOptions.length; i++) {
-          let gender = genderOptions[i];
-      
-          let option = document.createElement( 'option' );
-          option.value = gender;
-          option.innerHTML = gender.charAt(0).toUpperCase() + gender.slice(1);
-      
-          genderSelect.appendChild( option );
-        }
+    this.retrieveCategories();
+  }
+
+  retrieveCategories = () => {
+    this.queryCategories = this.apollo.watchQuery<any>({
+      query: this.vcs.Categories
+    }).valueChanges
+      .subscribe(result => {
+        const categoryData = JSON.parse(JSON.stringify(result.data));
+        this.categories = categoryData.categories.sort((a, b) => {
+          const wordA = a.category;
+          const wordB = b.category;
+
+          let comparison = 0;
+          if(wordA > wordB) {
+            comparison = 1;
+          } else if (wordA < wordB) {
+            comparison = -1;
+          }
+
+          return comparison;
+        });
+        this.setCategories();
       });
   }
+
+  setCategories = () => {
+    let categorySelect = document.getElementById( 'category' );
+    let firstOption = document.createElement( 'option' );
+    firstOption.disabled = true;
+    firstOption.selected = true;
+    firstOption.label = 'SELECT A CATEGORY';
+    categorySelect.appendChild( firstOption );
+
+    for(let i = 0; i < this.categories.length; i++) {
+      let category = this.categories[i];
+
+      let option = document.createElement( 'option' );
+      option.style.textTransform = "Capitalize";
+      option.label = category['category'];
+      option.value = category['id'];
+
+      categorySelect.appendChild( option );
+    }
+  }
+
+  addWord = (word: Vocabulary) => {
+    this.apollo.mutate({
+      mutation: this.vs.CreateWord,
+      variables: {
+        word: word.word,
+        translation: word.translation,
+        pronunciation: word.pronunciation,
+        category: word.category,
+        gender: word.gender,
+        image: word.image
+      }
+    }).subscribe( data => {
+      console.log(data);
+    }, (error) => {
+      console.log('there was an error sending the query', error);
+    })
+  };
 
   placeAccent(event) {
     let inputBox = <HTMLInputElement>document.getElementById('word');
@@ -95,7 +109,6 @@ export class VocabularyInputComponent implements OnInit {
 
   resetForm(){
     this.category = '';
-    this.newCategory = '';
     this.word = '';
     this.translation = '';
     this.gender =  '';
@@ -104,8 +117,7 @@ export class VocabularyInputComponent implements OnInit {
   }
 
   onSubmit(){
-    this.vocabulary.setCategory( this.category );
-    if( this.newCategory ) this.vocabulary.setCategory( this.newCategory.toLowerCase() );
+    this.vocabulary.setCategory( parseInt(this.category) );
     this.vocabulary.setWord( this.word );
     this.vocabulary.setTranslation( this.translation );
     this.vocabulary.setGender( this.gender );
@@ -117,8 +129,7 @@ export class VocabularyInputComponent implements OnInit {
     this.vocabulary.setImage( image );
     this.vocabulary.setPronunciation( this.pronunciation );
 
-    this.words.addWord( this.vocabulary )
-      .subscribe();
+    this.addWord( this.vocabulary );
 
     this.resetForm();
   }

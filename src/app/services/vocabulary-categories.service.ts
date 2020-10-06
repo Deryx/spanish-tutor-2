@@ -1,21 +1,18 @@
-import { VocabularyService } from './vocabulary.service';
 import { Injectable } from '@angular/core';
+import { ApolloModule, Apollo } from 'apollo-angular';
 
+import gql from 'graphql-tag';
 
 @Injectable()
 export class VocabularyCategoriesService {
-  categories: string[] = [];
+  
+  constructor( private apollo: Apollo ) {}
 
-  constructor( private words: VocabularyService ) {}
-
-  getCategories( dictionary: any[] ): string[] {  
-    for(let i = 0; i < dictionary.length; i++) {
-      let category = dictionary[i].category;
-      if(this.categories.indexOf( category ) === -1) this.categories.push( category );
-    };
-
-    const categories = this.categories.sort();
-
-    return categories;
+   Categories: any = gql`
+    query categories {
+        categories {
+          id,
+          category
+        }
+    }`;
   }
-}

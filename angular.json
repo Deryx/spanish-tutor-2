@@ -13,6 +13,11 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "allowedCommonJsDependencies": [
+              "graphql-tag",
+              "zen-observable"
+            ],
+            "aot": false,
             "outputPath": "dist/SpanishTutor",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -27,8 +32,7 @@
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.css"
             ],
-            "scripts": [],
-            "es5BrowserSupport": true
+            "scripts": []
           },
           "configurations": {
             "production": {
@@ -52,6 +56,10 @@
                   "type": "initial",
                   "maximumWarning": "2mb",
                   "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
                 }
               ]
             }
@@ -139,5 +147,8 @@
       }
     }
   },
-  "defaultProject": "SpanishTutor"
+  "defaultProject": "SpanishTutor",
+  "cli": {
+    "analytics": "e4f317f8-a59f-4cb0-842a-61fc902453dd"
+  }
 }
