@@ -14,9 +14,8 @@ section {
 fieldset {
   margin: 0;
   margin-top: -10em;
-  padding: 0;
+  padding: 1.25rem;
   width: 500px;
-  height: 275px;
   border: none;
   background: rgb(255, 255, 255);
   display: flex;
@@ -33,7 +32,7 @@ dl {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin: 2em;
+  margin-bottom: 1.25rem;
   margin-left: 0;
 }
 
@@ -53,17 +52,23 @@ dd {
   width: 100%;
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: center;
+}
+
+select {
+  margin-top: 0.6rem;
 }
 
 label {
-  margin-top: -0.3rem;
-  margin-left: -1.0rem;
   font-weight: bold;
 }
 
+[type='radio'] {
+  margin-top: 0.35rem;
+  margin-right: 0.35rem;
+}
+
 #buttons {
-  margin-top: 30px;
   margin-bottom: 0;
   width: 100%;
   display: flex;

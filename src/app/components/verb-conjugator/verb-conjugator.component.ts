@@ -18,18 +18,26 @@ export class VerbConjugatorComponent {
   showConjugatorOverlay: boolean = true;
   showForm: boolean = false;
   showReport: boolean = false;
+  fade: any;
 
   selectedTextbox: string;
   accent: string;
 
   infinitives: any;
   verb: string;
+  verbs: any;
   numberQuestions: number;
+  numberAnswered: number = 0;
   tense: string;
   translation: string;
+  selectedTense: number;
   questionSet: number[] = [];
   currentVerb = 0;
   currentAnswers: any = {};
+  correctAnswers: any = [];
+  userAnswers: any = [];
+  reportData: any = [];
+  reportDatum: any = {};
   inputAnswers: any = {
     yo: '',
     tu: '',
@@ -40,6 +48,7 @@ export class VerbConjugatorComponent {
   infinitive = '';
 
   numberCorrect: number = 0;
+  tenses = ['present', 'preterite', 'imperfect', 'future', 'conditional'];
 
   report: any = {};
   responses: any = [];
@@ -52,10 +61,11 @@ export class VerbConjugatorComponent {
 
   getOverlayData(data) {
     if(!data.isVisible) {
+      this.selectedTense = data.tense;
       this.showOverlay = data.isVisible;
       this.showConjugatorOverlay = data.isVisible;
       this.showForm = true;
-      this.tense = data.tense;
+      this.tense = this.tenses[this.selectedTense - 1];
 
       this.queryVerbs = this.apollo.watchQuery<any>({
         query: this.vs.Verbs
@@ -78,60 +88,95 @@ export class VerbConjugatorComponent {
           });
 
           this.numberQuestions = parseInt(data.numberVerbs);
-          this.randomNumberService.generateRandomNumberArray(this.numberQuestions, this.infinitives.length, this.questionSet );
-          this.getCurrentVerb( this.currentVerb, this.tense );
-          delete this.currentAnswers._id;
+          this.verbs = this.getVerbIds( this.infinitives );
+          this.randomNumberService.generateRandomNumberArray(this.numberQuestions, this.verbs.length, this.questionSet );
+          let currentVerb = this.questionSet[this.currentVerb];
+          this.getCurrentVerb( currentVerb, this.selectedTense );
         }, (error) => {
           console.log('there was an error sending the query', error);
         })
     }
   }
 
-  getCurrentVerb( verb: number, tense: string) {
-    const currentVerb = this.questionSet[verb];
-    this.infinitive = this.infinitives[currentVerb].infinitive;
-    this.translation = '[ ' + this.infinitives[currentVerb].translation + ' ]';
-    this.currentAnswers = this.infinitives[currentVerb].conjugations[this.tense];
+  getVerbIds = (verbs: any): any => {
+    const numberVerbs = verbs.length;
+    const verbIds = [];
+    for(let i = 0; i < numberVerbs; i++) {
+      verbIds.push( parseInt( verbs[i].id ) );
+    }
+
+    return verbIds;
+  }
+
+  getCurrentVerb( verb: number, tense: number ) {
+    this.infinitive = this.infinitives[verb].infinitive;
+    this.translation = '[ ' + this.infinitives[verb].translation + ' ]';
+    this.reportDatum = {};
+    this.reportDatum.verb = this.infinitive;
+    this.queryVerb = this.apollo.watchQuery<any>({
+      query: this.vs.Conjugation,
+      variables: {
+        verb: parseInt( this.infinitives[verb].id ),
+        tense: parseInt( tense.toString() )
+      }
+    })
+      .valueChanges
+      .subscribe( result => {
+        const conjugationData = JSON.parse(JSON.stringify(result.data));
+        this.reportDatum.answers = conjugationData.conjugation[0];
+        this.fade = this.fade === 'in' ? 'out' : 'in';
+          }, (error) => {
+        console.log('there was an error sending the query', error);
+      });
   }
 
   getNextVerb() {
-    let numberVerbs: number = this.questionSet.length;
-    if( this.currentVerb < numberVerbs ) {
+    if( this.currentVerb < this.numberQuestions ) {
       this.currentVerb++;
       this.resetInputAnswers();
-      this.getCurrentVerb( this.currentVerb, this.tense );
+      this.getCurrentVerb( this.questionSet[this.currentVerb], this.selectedTense );
     } 
   }
 
   getAnswers() {
-    const responseObj: any = {};
-    let score: number = 0;
-
-    if( this.currentAnswers.yo === this.inputAnswers.yo ) this.numberCorrect++;
-    if( this.currentAnswers.tu === this.inputAnswers.tu ) this.numberCorrect++;
-    if( this.currentAnswers.el === this.inputAnswers.el ) this.numberCorrect++;
-    if( this.currentAnswers.nosotros === this.inputAnswers.nosotros ) this.numberCorrect++;
-    if( this.currentAnswers.els === this.inputAnswers.els ) this.numberCorrect++;
-
-    responseObj.verb = this.infinitive;
-    responseObj.answers = this.currentAnswers;
-    responseObj.inputs = this.inputAnswers;
-
-    this.responses.push( responseObj );
-
-    if(this.currentVerb === this.numberQuestions - 1) {
-      this.showForm = false;
-      this.showReport = true;
-      this.showOverlay = true;
-      score = Math.round( ( this.numberCorrect / ( this.numberQuestions * 5 ) ) * 100 ); 
-
-      this.report.title = 'Verb Conjugator Report';
-      this.report.scoreMessage = 'You scored ' + score + '%';
-      this.report.headings = ['infinitive', 'yo', 'tu', 'el', 'nosotros', 'els'];
-      this.report.responses = this.responses;
-    } else {
-      this.getNextVerb();
+    const userAnswers = {
+      yo: this.inputAnswers.yo,
+      tu: this.inputAnswers.tu,
+      el: this.inputAnswers.el,
+      nosotros: this.inputAnswers.nosotros,
+      els: this.inputAnswers.els
     }
+    this.reportDatum.userAnswers = userAnswers;
+    this.reportData.push(this.reportDatum);
+
+    if(this.numberAnswered < this.numberQuestions - 1) {
+      this.getNextVerb();
+      this.resetCurrentAnswers();
+      this.numberAnswered++;
+    } else {
+      this.createReport();
+    }
+  }
+
+  createReport = () => {
+    this.showForm = false;
+    this.showReport = true;
+    this.showOverlay = true;
+
+    for(let i = 0; i < this.numberQuestions; i++) {
+      if (this.reportData[i]['answers'].yo === this.reportData[i]['userAnswers'].yo) this.numberCorrect++;
+      if (this.reportData[i]['answers'].tu === this.reportData[i]['userAnswers'].tu) this.numberCorrect++;
+      if (this.reportData[i]['answers'].el === this.reportData[i]['userAnswers'].el) this.numberCorrect++;
+      if (this.reportData[i]['answers'].nosotros === this.reportData[i]['userAnswers'].nosotros) this.numberCorrect++;
+      if (this.reportData[i]['answers'].els === this.reportData[i]['userAnswers'].els) this.numberCorrect++;
+    }
+
+    this.report.score = Math.round( ( this.numberCorrect / ( this.numberQuestions * 5 ) ) * 100 ); 
+    this.report.correctAnswers = this.numberCorrect;
+    this.report.numberQuestions = this.numberQuestions * 5;
+    this.report.title = 'Verb Conjugator Report';
+    this.report.headings = ['infinitive', 'yo', 'tu', 'el', 'nosotros', 'els'];
+    this.report.reportData = this.reportData;
   }
 
   resetCurrentAnswers() {
@@ -156,7 +201,6 @@ export class VerbConjugatorComponent {
   }
 
   placeAccent(event) {
-    console.log(this.selectedTextbox);
     let selectedTextbox = <HTMLInputElement>document.getElementById(this.selectedTextbox);
 
     this.accent = event;

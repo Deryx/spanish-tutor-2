@@ -266,12 +266,12 @@
       </section>
     </fieldset>
     <app-spanish-accents (accentMessage)="placeAccent($event)"></app-spanish-accents>
-    <div>
+    <div class="col-lg-12">
       <span *ngIf="currentTense !== 'conditional'">
-        <input type="button" id="nextBtn" (click)="next()" value="next" />
+        <input type="button" id="nextBtn" class="col-lg-12" (click)="next()" value="next" />
       </span>
       <span *ngIf="currentTense === 'conditional'">
-        <input type="submit" id="submitBtn" value="ADD VERB" />
+        <input type="submit" id="submitBtn" class="col-lg-12" value="ADD VERB" />
       </span>
     </div>
   </form>

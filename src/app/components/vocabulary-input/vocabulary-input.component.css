@@ -64,17 +64,12 @@ dt {
   font-weight: bold;
   text-transform: capitalize;
   text-align: right;
-  font-size: 75%;
 }
 
 dd {
   margin: 0;
   padding: 0;
   width: 70%;
-}
-
-select {
-  font-size: 75%;
 }
 
 option[value=""][disabled] {
@@ -84,7 +79,7 @@ option[value=""][disabled] {
 dd input {
   margin: 0;
   padding: 0.25rem;
-  font-size: 75%;
+  width: 100%;
 }
 
 dl:nth-of-type(1) dt {

@@ -53,6 +53,19 @@ export class VerbService {
       }
     }`
 
+  Conjugation: any = gql`
+  query conjugation($verb: Int!, $tense: Int!) {
+    conjugation(verb: $verb, tense: $tense) {
+      verb,
+      tense,
+      yo,
+      tu,
+      el,
+      nosotros,
+      els
+    }
+  }`
+
   Conjugations: any = gql`
     query conjugations($verb: Int!) {
       conjugations(verb: $verb) {

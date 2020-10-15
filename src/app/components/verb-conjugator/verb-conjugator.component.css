@@ -39,7 +39,7 @@ fieldset {
 
 select {
   padding: 5px;
-  margin-bottom: 25px;
+  margin-bottom: 1.rem;
 }
 
 dl {
@@ -59,7 +59,6 @@ dt {
   width: 50%;
   margin-top: 0.25em;
   margin-right: 0.5em;
-  font-size: 75%;
 }
 
 dd {
@@ -80,8 +79,14 @@ h3 {
   margin-top: 0;
 }
 
+h4 {
+  background: rgb(255, 0, 0);
+  color: rgb(255, 255, 255);
+  padding-top: 0.625rem;
+  padding-bottom: 0.625rem;
+}
+
 input[type='text'] {
-  font-size: 75%;
   padding: 0.1875rem;;
 }
 

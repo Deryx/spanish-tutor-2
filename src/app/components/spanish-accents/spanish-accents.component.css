@@ -19,5 +19,6 @@ div button {
     color: rgb(255, 255, 255);
     border: none;
     border-radius: 0.25rem;
-    min-width: 1.5rem;
+    min-width: 2.5rem;
+    min-height: 2.5rem;
 }

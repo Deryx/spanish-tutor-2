@@ -66,7 +66,7 @@ export class VocabularyScrambleComponent {
         .subscribe( result => {
           const dictionaryData = JSON.parse(JSON.stringify(result.data));
           this.dictionary = (data.category) ? dictionaryData.category : dictionaryData.dictionary;
-          this.dictionary = dictionaryData;
+          this.dictionary = dictionaryData.category;
           this.numberQuestions = data.numberQuestions;
           this.randomNumberService.generateRandomNumberArray(this.numberQuestions, this.dictionary.length, this.questionSet );
           this.getCurrentWord( this.currentWord );

@@ -19,6 +19,7 @@ import gql from 'graphql-tag';
 
 export class VocabularyFlashcardComponent implements OnInit {
   flip = 'inactive';
+  searchWord: string = '';
   word: string = 'word';
   createdWord: Vocabulary;
   category: string;
@@ -32,33 +33,14 @@ export class VocabularyFlashcardComponent implements OnInit {
   showImage: boolean = true;
 
   private queryCategories: Subscription;
+  private queryWord: Subscription;
   private queryCategory: Subscription;
   private queryDictionary: Subscription;
 
   constructor( private apollo: Apollo, private vcs: VocabularyCategoriesService, private vs: VocabularyService ) { }
 
   ngOnInit(){
-    this.queryCategories = this.apollo.watchQuery<any>({
-      query: this.vcs.Categories
-    }).valueChanges
-      .subscribe(result => {
-        const categoryData = JSON.parse(JSON.stringify(result.data));
-        this.categories = categoryData.categories.sort((a, b) => {
-          const wordA = a.category;
-          const wordB = b.category;
-
-          let comparison = 0;
-          if(wordA > wordB) {
-            comparison = 1;
-          } else if (wordA < wordB) {
-            comparison = -1;
-          }
-
-          return comparison;
-        });
-
-        this.setCategories();
-      });
+    this.getCategories();
   }
 
   setCategories = () => {
@@ -83,6 +65,50 @@ export class VocabularyFlashcardComponent implements OnInit {
 
       categorySelect.appendChild( option );
     }
+  }
+
+  getCategories = () => {
+    this.queryCategories = this.apollo.watchQuery<any>({
+      query: this.vcs.Categories
+    }).valueChanges
+      .subscribe(result => {
+        const categoryData = JSON.parse(JSON.stringify(result.data));
+        this.categories = categoryData.categories.sort((a, b) => {
+          const wordA = a.category;
+          const wordB = b.category;
+
+          let comparison = 0;
+          if(wordA > wordB) {
+            comparison = 1;
+          } else if (wordA < wordB) {
+            comparison = -1;
+          }
+
+          return comparison;
+        });
+
+        this.setCategories();
+      });
+  }
+
+  getWord = () => {
+    this.queryWord = this.apollo.watchQuery<any>({
+      query: this.vs.Word,
+      variables: {
+        word: this.searchWord
+      }
+    })
+      .valueChanges
+      .subscribe(result => {
+        const wordData = JSON.parse(JSON.stringify(result.data));
+        const searchWord = wordData.word[0];
+        this.word = searchWord.word;
+        this.pronunciation = searchWord.pronunciation;
+        this.translation = '[ ' + searchWord.translation + ' ]';
+        this.image = searchWord.image;
+        this.showImage = ( this.image === 'assets/images/blank.png' ) ? false : true;
+        this.searchWord = '';
+      })
   }
 
   changeCategory = () => {
@@ -113,16 +139,34 @@ export class VocabularyFlashcardComponent implements OnInit {
   }
 
   next = () => {
-    this.index++;
-    this.word = this.vocabularyCategory[this.index].word;
-    this.pronunciation = this.vocabularyCategory[this.index].pronunciation;
-    this.translation = '[ ' + this.vocabularyCategory[this.index].translation + ' ]';
-    this.image = this.vocabularyCategory[this.index].image;
-    this.showImage = ( this.image === 'assets/images/blank.png' ) ? false : true;
-  
-    const card: any = document.querySelector('div.card');
-    let cardFlipState = card.style.transform;
-    if(cardFlipState === 'rotateX(180deg)') this.flip = 'inactive';
+    const categoryObject = {
+      query: this.vs.Category,
+      variables: {
+        category: parseInt(this.category)
+      }
+    };
+    const dictionaryObject = {
+      query: this.vs.Dictionary
+    }
+    const queryObject = (this.category) ? categoryObject : dictionaryObject;
+    this.queryDictionary = this.apollo.watchQuery(queryObject)
+    .valueChanges
+    .subscribe( result => {
+      const dictionaryData = JSON.parse(JSON.stringify(result.data));
+      this.dictionary = (this.category) ? dictionaryData.category : dictionaryData.dictionary;
+      this.index++;
+      this.word = this.dictionary[this.index].word;
+      this.pronunciation = this.dictionary[this.index].pronunciation;
+      this.translation = '[ ' + this.dictionary[this.index].translation + ' ]';
+      this.image = this.dictionary[this.index].image;
+      this.showImage = ( this.image === 'assets/images/blank.png' ) ? false : true;
+    
+      const card: any = document.querySelector('div.card');
+      let cardFlipState = card.style.transform;
+      if(cardFlipState === 'rotateX(180deg)') this.flip = 'inactive';
+    }, (error) => {
+      console.log('there was an error sending the query', error);
+    });
 }
 
   flipCard = () => {

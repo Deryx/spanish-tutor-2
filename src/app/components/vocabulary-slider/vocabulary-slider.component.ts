@@ -68,7 +68,7 @@ export class VocabularySliderComponent {
         .subscribe( result => {
           const dictionaryData = JSON.parse(JSON.stringify(result.data));
           this.dictionary = (data.category) ? dictionaryData.category : dictionaryData.dictionary;
-          this.dictionary = dictionaryData;
+          this.dictionary = dictionaryData.category;
           this.numberSlides = data.numberQuestions;
           this.getQuestionSet( this.numberSlides, numberCards, this.dictionary.length );
           this.displaySlideSet( this.currentSlideSet );

@@ -1,32 +1,47 @@
 <section class="col-lg-12">
   <div class="col-lg-8 col-md-8 col-xs-12">
     <h2>{{ reportInfo.title }}</h2>
-    <h3>{{ reportInfo.scoreMessage }}</h3>
-    <div class="row header">
-      <div class="col-lg-2 col-md-2 col-xs-2" *ngFor='let heading of reportInfo.headings'>{{ heading }}</div>
+    <h3>Your score: {{ reportInfo.score }}% ( {{reportInfo.correctAnswers}} / {{reportInfo.numberQuestions}} )</h3>
+    <table id="conjugatorReport">
+      <thead>
+        <tr>
+          <th *ngFor="let heading of reportInfo.headings">
+            {{heading}}
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of reportInfo.reportData">
+          <td>
+            {{data.verb}}
+          </td>
+          <td>
+            {{data.userAnswers.yo}}
+            <br />
+            {{data.answers.yo}}
+          </td>
+          <td>
+            {{data.userAnswers.tu}}
+            <br />
+            {{data.answers.tu}}
+          </td>
+          <td>
+            {{data.userAnswers.el}}
+            <br />
+            {{data.answers.el}}
+          </td>
+          <td>
+            {{data.userAnswers.nosotros}}
+            <br />
+            {{data.answers.nosotros}}
+          </td>
+          <td>
+            {{data.userAnswers.els}}
+            <br />
+            {{data.answers.els}}
+          </td>
+        </tr>
+      </tbody>
+    </table>
     </div>
-    <div class="row" *ngFor='let response of reportInfo.responses'>
-      <div class="verb col-lg-2 col-md-2 col-xs-2">{{ response.verb }}</div>
-      <div class="col-lg-2 col-md-2 col-xs-2">
-        <div>{{ response.answers.yo }}</div>
-        <div>{{ response.inputs.yo }}</div>
-      </div>
-      <div class="col-lg-2 col-md-2 col-xs-2">
-        <div>{{ response.answers.tu }}</div>
-        <div>{{ response.inputs.tu }}</div>
-      </div>
-      <div class="col-lg-2 col-md-2 col-xs-2">
-        <div>{{ response.answers.el }}</div>
-        <div>{{ response.inputs.el }}</div>
-      </div>
-      <div class="col-lg-2 col-md-2 col-xs-2">
-        <div>{{ response.answers.nosotros }}</div>
-        <div>{{ response.inputs.nosotros }}</div>
-      </div>
-      <div class="col-lg-2 col-md-2 col-xs-2">
-        <div>{{ response.answers.els }}</div>
-        <div>{{ response.inputs.els }}</div>
-      </div>
-    </div>
-  </div>
 </section>

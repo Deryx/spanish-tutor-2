@@ -33,6 +33,19 @@ export class VocabularyService {
       }
     }`
 
+  Word: any = gql`
+    query word($word: String!) {
+      word(word: $word) {
+          id,
+          word,
+          translation,
+          pronunciation,
+          category,
+          gender,
+          image
+      }
+    }`
+
   CreateWord: any = gql`
     mutation ($word: String!, $translation: String!, $pronunciation: String!, $category: Int!, $gender: String!, $image: String!) {
       createWord(word: $word, translation: $translation, pronunciation: $pronunciation, category: $category, gender: $gender, image: $image) {

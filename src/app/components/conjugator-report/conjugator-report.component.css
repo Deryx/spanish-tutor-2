@@ -1,6 +1,7 @@
 section {
     margin: 0;
     padding: 0;
+    width: 100%;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -8,9 +9,9 @@ section {
     align-items: center;
     z-index: 97;
     position: absolute;
-  }
+}
 
-section > div {
+div {
     margin: 0 auto;
     padding: 1.8rem;
     z-index: 98;
@@ -21,35 +22,36 @@ section > div {
     justify-content: center;
 }
 
-h2, h3 {
+div h2, h3 {
     text-align: center;
 }
 
-div div {
-    text-align: center;
+table {
+    margin: 0 auto;
+    width: 100%;
+    background: rgb(255, 255, 255);
 }
 
-.header {
-    font-weight: bold;
-    text-transform: uppercase;
-    margin-top: 1.8rem;
-    margin-bottom: 0.5rem;
+table tr {
     display: flex;
     flex-direction: row;
-    justify-content: center;
-}
-
-.row {
-    margin-bottom: 1.2rem;
-    padding-top: 0.625rem;
-    padding-bottom: 0.625rem;
     border-bottom: 1px solid rgb(0, 0, 0);
 }
 
-.verb {
-    font-weight: bold;
+table tr th {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-grow: 1;
 }
 
-.verb ~ div div:first-child {
-    font-weight: bold;
+table tr td {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-grow: 1;
+}
+
+table tbody tr td:first-child {
+    align-items: center;
 }

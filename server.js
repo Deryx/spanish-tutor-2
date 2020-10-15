@@ -116,6 +116,26 @@ let queryType = new graphql.GraphQLObjectType({
         });
       }
     },
+    word: {
+      type: graphql.GraphQLList(WordType),
+      args: {
+        word: {
+          type: graphql.GraphQLString
+        }
+      },
+      resolve: (root, {
+        word
+      }, context, info) => {
+        return new Promise( (resolve, reject) => {
+          database.all("SELECT * FROM Words WHERE word = (?) OR translation = (?);", [word, word], function (err, rows) {
+            if (err) {
+              reject(null);
+            }
+            resolve(rows);
+          });
+        });
+      }
+    },
     tenses: {
       type: graphql.GraphQLList(TenseType),
       resolve: (root, args, context, info) => {
@@ -178,6 +198,30 @@ let queryType = new graphql.GraphQLObjectType({
               reject(null);
             }
             resolve(rows[0]);
+          });
+        });
+      }
+    },
+    conjugation: {
+      type: graphql.GraphQLList(ConjugationType),
+      args: {
+        verb: {
+          type: graphql.GraphQLInt
+        },
+        tense: {
+          type: graphql.GraphQLInt
+        }
+      },
+      resolve: (root, {
+        verb,
+        tense
+      }, context, info) => {
+        return new Promise( (resolve, reject) => {
+          database.all("SELECT * FROM Conjugations WHERE verb = (?) AND tense = (?);", [verb, tense], function (err, rows) {
+            if (err) {
+              reject(null);
+            }
+            resolve(rows);
           });
         });
       }

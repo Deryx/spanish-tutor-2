@@ -51,8 +51,8 @@ export class VerbFlashcardComponent implements OnInit {
         const verbData = JSON.parse(JSON.stringify(result.data));
         console.log(verbData);
         this.infinitives = verbData.verbs.sort((a, b) => {
-        const verbA = a.verb;
-        const verbB = b.verb;
+        const verbA = a.infinitive;
+        const verbB = b.infinitive;
 
         let comparison = 0;
         if(verbA > verbB) {
@@ -136,7 +136,6 @@ export class VerbFlashcardComponent implements OnInit {
       .valueChanges
       .subscribe( result => {
         const verbData = JSON.parse(JSON.stringify(result.data));
-        console.log(verbData);
         this.verb = verbData.verb;
         this.infinitive = this.verb[0].infinitive;
         this.translation = this.verb[0].translation;

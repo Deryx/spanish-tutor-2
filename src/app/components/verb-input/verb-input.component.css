@@ -80,24 +80,22 @@ dt {
   margin-top: 5px;
   margin-right: 1.25rem;
   padding: 0;
-  width: 40%;
+  width: 30%;
   font-weight: bold;
   text-transform: capitalize;
   text-align: right;
   justify-content: flex-end;
-  font-size: 75%;
 }
 
 dd {
   margin: 0;
   padding: 0;
-  width: 60%;
+  width: 70%;
 }
 
 dd input {
   margin: 0;
   padding: 0.25rem;
-  font-size: 75%;
 }
 
 dl:nth-of-type(3) dt {
@@ -106,12 +104,12 @@ dl:nth-of-type(3) dt {
 
 input[type="button"], input[type="submit"] {
   border: none;
-  padding: 0.625rem;
-  font-size: 0.75em;
+  padding: 0.5rem 1.0rem;
   font-weight: bold;
   text-transform: uppercase;
   font-family: 'Roboto', sans-serif;
   letter-spacing: 0.09rem;
+  border-radius: 0.0625rem;
 }
 
 #nextBtn {
