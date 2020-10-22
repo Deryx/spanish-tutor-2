@@ -15,17 +15,69 @@ import gql from 'graphql-tag';
 export class ConjugatorOverlayFormComponent implements OnInit {
   isVisible: boolean = true;
   numberVerbs: number;
-  tenseSelect: any;
+  verbSelect: number;
+  tenseSelect: number;
   tenses: any;
+  infinitives: any;
+
+  disableVerbSelect: boolean = false;
 
   private queryTenses: Subscription;
+  private queryVerbs: Subscription;
 
   @Output() formChange = new EventEmitter();
 
   constructor( private apollo: Apollo, private vs: VerbService ) { }
 
   ngOnInit() {
+    this.getVerbs();
     this.getTenses();
+  }
+
+  getVerbs = () => {
+    this.queryVerbs = this.apollo.watchQuery<any>({
+      query: this.vs.Verbs
+    })
+      .valueChanges
+      .subscribe(result => {
+        const verbData = JSON.parse(JSON.stringify(result.data));
+        console.log(verbData);
+        this.infinitives = verbData.verbs.sort((a, b) => {
+        const verbA = a.infinitive;
+        const verbB = b.infinitive;
+
+        let comparison = 0;
+        if(verbA > verbB) {
+          comparison = 1;
+        } else if (verbA < verbB) {
+          comparison = -1;
+        }
+
+        return comparison;
+      });
+
+      let infinitiveSelect = document.getElementById('verbSelect');
+
+      let firstOption = document.createElement('option');
+      firstOption.value = '';
+      firstOption.disabled = true;
+      firstOption.selected = true;
+      firstOption.innerHTML = 'SELECT A VERB ...';
+      infinitiveSelect.appendChild(firstOption);
+
+      let numVerbs = this.infinitives.length;
+      for (let i = 0; i < numVerbs; i++) {
+        let infinitive: string = this.infinitives[i].infinitive;
+
+        let option = document.createElement('option');
+        option.value = this.infinitives[i].id;
+        option.label = infinitive.charAt(0).toUpperCase() + infinitive.slice(1);
+
+        infinitiveSelect.appendChild(option);
+      }
+    }, (error) => {
+      console.log('there was an error sending the query', error);
+    });
   }
 
   getTenses = () => {
@@ -48,7 +100,6 @@ export class ConjugatorOverlayFormComponent implements OnInit {
 
     let firstOption = document.createElement('option');
     firstOption = document.createElement('option');
-    firstOption.value = '';
     firstOption.disabled = true;
     firstOption.selected = true;
     firstOption.innerHTML = 'SELECT A TENSE ...';
@@ -70,9 +121,13 @@ export class ConjugatorOverlayFormComponent implements OnInit {
     let overlayData = {
       isVisible: !this.isVisible,
       numberVerbs: this.numberVerbs,
+      verb: this.verbSelect,
       tense: this.tenseSelect
     }
 
-    this.formChange.emit( overlayData );
+    let tenseSelected = this.tenseSelect;
+    let verbOptionSelect = this.numberVerbs || this.verbSelect;
+
+    if(tenseSelected && verbOptionSelect) this.formChange.emit( overlayData );
   }
 }

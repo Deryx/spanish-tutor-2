@@ -26,10 +26,11 @@ export class VerbConjugatorComponent {
   infinitives: any;
   verb: string;
   verbs: any;
-  numberQuestions: number;
+  numberQuestions: number = 1;
   numberAnswered: number = 0;
   tense: string;
   translation: string;
+  selectedVerb: number;
   selectedTense: number;
   questionSet: number[] = [];
   currentVerb = 0;
@@ -62,6 +63,7 @@ export class VerbConjugatorComponent {
   getOverlayData(data) {
     if(!data.isVisible) {
       this.selectedTense = data.tense;
+      this.selectedVerb = data.verb;
       this.showOverlay = data.isVisible;
       this.showConjugatorOverlay = data.isVisible;
       this.showForm = true;
@@ -87,11 +89,24 @@ export class VerbConjugatorComponent {
           return comparison;
           });
 
-          this.numberQuestions = parseInt(data.numberVerbs);
-          this.verbs = this.getVerbIds( this.infinitives );
-          this.randomNumberService.generateRandomNumberArray(this.numberQuestions, this.verbs.length, this.questionSet );
-          let currentVerb = this.questionSet[this.currentVerb];
-          this.getCurrentVerb( currentVerb, this.selectedTense );
+          let currentVerb: number;
+          if(this.selectedVerb) {
+            const verbsLength: number = this.infinitives.length;
+            let verb: number;
+            for(let i = 0; i < verbsLength; i++){
+              if(this.infinitives[i].id === this.selectedVerb){
+                verb = i;
+              }
+            }
+
+            this.getCurrentVerb(verb, this.selectedTense);
+          } else {
+            this.numberQuestions = parseInt(data.numberVerbs);
+            this.verbs = this.getVerbIds( this.infinitives );
+            this.randomNumberService.generateRandomNumberArray(this.numberQuestions, this.verbs.length, this.questionSet );
+            let currentVerb = this.questionSet[this.currentVerb];
+            this.getCurrentVerb( currentVerb, this.selectedTense );
+          }
         }, (error) => {
           console.log('there was an error sending the query', error);
         })

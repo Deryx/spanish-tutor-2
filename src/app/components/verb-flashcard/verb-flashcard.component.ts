@@ -163,9 +163,16 @@ export class VerbFlashcardComponent implements OnInit {
         const tensesArray = ['present', 'preterite', 'imperfect', 'future', 'conditional'];
         this.selectedTense = tensesArray[this.tenseSelect - 1];
         this.conjugations = conjugationData.conjugations;
-        this.conjugation = this.conjugations[this.tenseSelect - 1];
+        let index = this.tenseSelect - 1;
+        if(index === 3 && this.conjugations[index].tense === 5) {
+          index = 4;
+        } else if(index === 4 && this.conjugations[index].tense === 4) {
+          index = 3;
+        } 
+        this.conjugation = this.conjugations[index];
+
         this.fade = this.fade === 'in' ? 'out' : 'in';
-          }, (error) => {
+      }, (error) => {
         console.log('there was an error sending the query', error);
       });
   }
