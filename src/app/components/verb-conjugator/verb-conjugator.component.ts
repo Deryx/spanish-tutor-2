@@ -60,7 +60,7 @@ export class VerbConjugatorComponent {
 
   constructor( private vs: VerbService, private randomNumberService: RandomNumberGeneratorService, private router: Router, private apollo: Apollo ) { }
 
-  getOverlayData(data) {
+  getOverlayData = (data): void => {
     if(!data.isVisible) {
       this.selectedTense = data.tense;
       this.selectedVerb = data.verb;
@@ -69,65 +69,54 @@ export class VerbConjugatorComponent {
       this.showForm = true;
       this.tense = this.tenses[this.selectedTense - 1];
 
-      this.queryVerbs = this.apollo.watchQuery<any>({
-        query: this.vs.Verbs
-      })
-        .valueChanges
-        .subscribe(result => {
-          const verbData = JSON.parse(JSON.stringify(result.data));
-          this.infinitives = verbData.verbs.sort((a, b) => {
-          const verbA = a.infinitive;
-          const verbB = b.infinitive;
-  
-          let comparison = 0;
-          if(verbA > verbB) {
-            comparison = 1;
-          } else if (verbA < verbB) {
-            comparison = -1;
-          }
-  
-          return comparison;
-          });
-
-          let currentVerb: number;
-          if(this.selectedVerb) {
-            const verbsLength: number = this.infinitives.length;
-            let verb: number;
-            for(let i = 0; i < verbsLength; i++){
-              if(this.infinitives[i].id === this.selectedVerb){
-                verb = i;
-              }
-            }
-
-            this.getCurrentVerb(verb, this.selectedTense);
-          } else {
-            this.numberQuestions = parseInt(data.numberVerbs);
-            this.verbs = this.getVerbIds( this.infinitives );
-            this.randomNumberService.generateRandomNumberArray(this.numberQuestions, this.verbs.length, this.questionSet );
-            let currentVerb = this.questionSet[this.currentVerb];
-            this.getCurrentVerb( currentVerb, this.selectedTense );
-          }
-        }, (error) => {
-          console.log('there was an error sending the query', error);
-        })
+      this.getVerbs( data.numberVerbs );
     }
   }
 
-  getVerbIds = (verbs: any): any => {
-    const numberVerbs = verbs.length;
+  getVerbs = ( numberVerbs: number ): void => {
+    this.queryVerbs = this.apollo.watchQuery<any>({
+      query: this.vs.Verbs
+    })
+      .valueChanges
+      .subscribe(result => {
+        const verbData = JSON.parse(JSON.stringify(result.data));
+        this.infinitives = verbData.verbs.sort((a, b) => {
+        const verbA = a.infinitive;
+        const verbB = b.infinitive;
+
+        let comparison = 0;
+        if(verbA > verbB) {
+          comparison = 1;
+        } else if (verbA < verbB) {
+          comparison = -1;
+        }
+
+        return comparison;
+        });
+
+        if(this.selectedVerb){
+          this.getSelectedVerb();
+        } else {
+          this.getRandomVerbs( numberVerbs );
+        }
+
+      }, (error) => {
+        console.log('there was an error sending the query', error);
+      })
+  }
+
+  getVerbIds = (): any => {
+    const numberVerbs = this.infinitives.length;
     const verbIds = [];
     for(let i = 0; i < numberVerbs; i++) {
-      verbIds.push( parseInt( verbs[i].id ) );
+      verbIds.push( parseInt( this.infinitives[i].id ) );
     }
 
     return verbIds;
   }
 
-  getCurrentVerb( verb: number, tense: number ) {
-    this.infinitive = this.infinitives[verb].infinitive;
-    this.translation = '[ ' + this.infinitives[verb].translation + ' ]';
-    this.reportDatum = {};
-    this.reportDatum.verb = this.infinitive;
+  getCurrentVerb = ( verb: number, tense: number ): void => {
+    this.getVerbInfo( verb, tense )
     this.queryVerb = this.apollo.watchQuery<any>({
       query: this.vs.Conjugation,
       variables: {
@@ -145,7 +134,34 @@ export class VerbConjugatorComponent {
       });
   }
 
-  getNextVerb() {
+  getVerbInfo = ( verb: number, tense: number ): void => {
+    this.infinitive = this.infinitives[verb].infinitive;
+    this.translation = '[ ' + this.infinitives[verb].translation + ' ]';
+    this.reportDatum = {};
+    this.reportDatum.verb = this.infinitive;
+  }
+
+  getSelectedVerb = (): void => {
+    const verbsLength: number = this.infinitives.length;
+    let verb: number;
+    for(let i = 0; i < verbsLength; i++){
+      if(this.infinitives[i].id === this.selectedVerb){
+        verb = i;
+      }
+    }
+
+    this.getCurrentVerb(verb, this.selectedTense);
+  }
+
+  getRandomVerbs = ( numberVerbs: number ): void => {
+    this.numberQuestions = numberVerbs;
+    this.verbs = this.getVerbIds();
+    this.randomNumberService.generateRandomNumberArray(this.numberQuestions, this.verbs.length, this.questionSet );
+    let currentVerb = this.questionSet[this.currentVerb];
+    this.getCurrentVerb( currentVerb, this.selectedTense );
+  }
+
+  getNextVerb = (): void => {
     if( this.currentVerb < this.numberQuestions ) {
       this.currentVerb++;
       this.resetInputAnswers();
@@ -153,7 +169,7 @@ export class VerbConjugatorComponent {
     } 
   }
 
-  getAnswers() {
+  getAnswers = (): void => {
     const userAnswers = {
       yo: this.inputAnswers.yo,
       tu: this.inputAnswers.tu,
@@ -173,7 +189,7 @@ export class VerbConjugatorComponent {
     }
   }
 
-  createReport = () => {
+  createReport = (): void => {
     this.showForm = false;
     this.showReport = true;
     this.showOverlay = true;
@@ -194,28 +210,28 @@ export class VerbConjugatorComponent {
     this.report.reportData = this.reportData;
   }
 
-  resetCurrentAnswers() {
+  resetCurrentAnswers = (): void => {
     const answers = Object.keys( this.currentAnswers );
     for(const answer of answers) {
       this.currentAnswers[answer] = '';
     }
   }
 
-  resetInputAnswers() {
+  resetInputAnswers = (): void => {
     this.inputAnswers = {
       yo: '',
       tu: '',
       el: '',
       nosotros: '',
       els: ''
-      };
+    };
   }
   
-  getSelectedTextbox(textboxID) {
+  getSelectedTextbox = (textboxID): void => {
     this.selectedTextbox = textboxID;
   }
 
-  placeAccent(event) {
+  placeAccent = (event): void => {
     let selectedTextbox = <HTMLInputElement>document.getElementById(this.selectedTextbox);
 
     this.accent = event;
@@ -226,14 +242,14 @@ export class VerbConjugatorComponent {
     selectedTextbox.value = newValue;
   }
 
-  reset() {
+  reset = (): void => {
     this.resetCurrentAnswers();
     this.currentVerb = 0;
     this.numberCorrect = 0;
     this.getNextVerb();
   }
 
-  quit() {
+  quit = (): void => {
     this.router.navigateByUrl('');
   }
 }

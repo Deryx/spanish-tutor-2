@@ -23,6 +23,7 @@ export class VerbFlashcardComponent implements OnInit {
   verb: any;
   infinitive: string = 'infinitive';
   translation: string = 'translation';
+  pronunciation: string = 'pronunciation';
   tense: any;
   tenseSelect: any;
   selectedTense: string;
@@ -37,19 +38,18 @@ export class VerbFlashcardComponent implements OnInit {
 
   constructor( private apollo: Apollo, private vs: VerbService ) { }
 
-  ngOnInit() {
-    this.getTenses();
-    this.getVerbs();
+  ngOnInit = (): void => {
+    this.createTenseSelect();
+    this.createVerbSelect();
   }
 
-  getVerbs = () => {
+  createVerbSelect = (): void => {
     this.queryVerbs = this.apollo.watchQuery<any>({
       query: this.vs.Verbs
     })
       .valueChanges
       .subscribe(result => {
         const verbData = JSON.parse(JSON.stringify(result.data));
-        console.log(verbData);
         this.infinitives = verbData.verbs.sort((a, b) => {
         const verbA = a.infinitive;
         const verbB = b.infinitive;
@@ -64,31 +64,35 @@ export class VerbFlashcardComponent implements OnInit {
         return comparison;
       });
 
-      let infinitiveSelect = document.getElementById('verbSelect');
-
-      let firstOption = document.createElement('option');
-      firstOption.value = '';
-      firstOption.disabled = true;
-      firstOption.selected = true;
-      firstOption.innerHTML = 'SELECT A VERB ...';
-      infinitiveSelect.appendChild(firstOption);
-
-      let numVerbs = this.infinitives.length;
-      for (let i = 0; i < numVerbs; i++) {
-        let infinitive: string = this.infinitives[i].infinitive;
-
-        let option = document.createElement('option');
-        option.value = this.infinitives[i].id;
-        option.label = infinitive.charAt(0).toUpperCase() + infinitive.slice(1);
-
-        infinitiveSelect.appendChild(option);
-      }
+      this.setVerbSelect();
     }, (error) => {
       console.log('there was an error sending the query', error);
     });
   }
 
-  getTenses = () => {
+  setVerbSelect = (): void => {
+    let infinitiveSelect = document.getElementById('verbSelect');
+
+    let firstOption = document.createElement('option');
+    firstOption.value = '0';
+    firstOption.disabled = true;
+    firstOption.selected = true;
+    firstOption.innerHTML = 'SELECT A VERB ...';
+    infinitiveSelect.appendChild(firstOption);
+
+    let numVerbs = this.infinitives.length;
+    for (let i = 0; i < numVerbs; i++) {
+      let infinitive: string = this.infinitives[i].infinitive;
+
+      let option = document.createElement('option');
+      option.value = this.infinitives[i].id;
+      option.label = infinitive.charAt(0).toUpperCase() + infinitive.slice(1);
+
+      infinitiveSelect.appendChild(option);
+    }
+  }
+
+  createTenseSelect = (): void => {
     this.queryTenses = this.apollo.watchQuery<any>({
       query: this.vs.Tenses
     })
@@ -97,13 +101,13 @@ export class VerbFlashcardComponent implements OnInit {
         const tensesData = JSON.parse(JSON.stringify(result.data));
         this.tenses = tensesData.tenses;
 
-        this.setTenses();
-      }, (error) => {
-        console.log('there was an error sending the query', error);
-      });
+        this.setTenseSelect();
+    }, (error) => {
+      console.log('there was an error sending the query', error);
+    });
   }
 
-  setTenses = () => {
+  setTenseSelect = (): void => {
     let tenseSelect = document.getElementById('tenseSelect');
 
     let firstOption = document.createElement('option');
@@ -126,31 +130,58 @@ export class VerbFlashcardComponent implements OnInit {
     }
   }
 
-  changeVerb(){
-    this.queryVerb = this.apollo.watchQuery<any>({
-      query: this.vs.Verb,
-      variables: {
-        id: parseInt(this.verbSelect)
-      }
-    })
-      .valueChanges
-      .subscribe( result => {
-        const verbData = JSON.parse(JSON.stringify(result.data));
-        this.verb = verbData.verb;
-        this.infinitive = this.verb[0].infinitive;
-        this.translation = this.verb[0].translation;
-        this.tense = '';
-        this.conjugation = '';
-    
-        const card: any = document.querySelector("div.card");
-        let cardFlipState = card.style.transform;
-        if(cardFlipState === 'rotateX(180deg)') this.flip = 'inactive';
-      }, (error) => {
-        console.log('there was an error sending the query', error);
-      });
+  changeVerb = (): void => {
+    this.tenseSelect = '';
+    const retrievedVerb = this.retrieveVerb( this.infinitives, this.verbSelect );
+    this.infinitive = retrievedVerb.infinitive;
+    this.translation = retrievedVerb.translation;
+    this.pronunciation = retrievedVerb.pronunciation;
+
+    this.getVerbConjugations();
+  
+    const card: any = document.querySelector("div.card");
+    let cardFlipState = card.style.transform;
+    if(cardFlipState === 'rotateX(180deg)'){ 
+      this.flip = 'inactive';
+    }
   }
 
-  changeTense(){
+  retrieveVerb(verbs: any, verb: string): any {
+    const numberVerbs = verbs.length;
+    const verbObject = {
+      infinitive: '',
+      translation: '',
+      pronunciation: ''
+    };
+
+    for(let i = 0; i < numberVerbs; i++){
+      if(verbs[i].id === verb){
+        verbObject.infinitive = verbs[i].infinitive;
+        verbObject.translation = verbs[i].translation;
+        verbObject.pronunciation = verbs[i].pronunciation;
+
+        break;
+      }
+    }
+
+    return verbObject;
+  }
+
+  changeTense = (): void => {
+    const tensesArray = ['present', 'preterite', 'imperfect', 'future', 'conditional'];
+    this.selectedTense = tensesArray[this.tenseSelect - 1];
+    let index = this.tenseSelect - 1;
+    if(index === 3 && this.conjugations[index].tense === 5) {
+      index = 4;
+    } else if(index === 4 && this.conjugations[index].tense === 4) {
+      index = 3;
+    } 
+    this.conjugation = this.conjugations[index];
+
+    this.fade = this.fade === 'in' ? 'out' : 'in';
+  }
+
+  getVerbConjugations = (): void => {
     this.queryVerb = this.apollo.watchQuery<any>({
       query: this.vs.Conjugations,
       variables: {
@@ -160,24 +191,13 @@ export class VerbFlashcardComponent implements OnInit {
       .valueChanges
       .subscribe( result => {
         const conjugationData = JSON.parse(JSON.stringify(result.data));
-        const tensesArray = ['present', 'preterite', 'imperfect', 'future', 'conditional'];
-        this.selectedTense = tensesArray[this.tenseSelect - 1];
         this.conjugations = conjugationData.conjugations;
-        let index = this.tenseSelect - 1;
-        if(index === 3 && this.conjugations[index].tense === 5) {
-          index = 4;
-        } else if(index === 4 && this.conjugations[index].tense === 4) {
-          index = 3;
-        } 
-        this.conjugation = this.conjugations[index];
-
-        this.fade = this.fade === 'in' ? 'out' : 'in';
       }, (error) => {
         console.log('there was an error sending the query', error);
       });
   }
 
-  flipCard() {
+  flipCard = () => {
     if(this.infinitive && this.tenseSelect) {
       this.flip = this.flip === 'inactive' ? 'active' : 'inactive';
     }
