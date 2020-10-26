@@ -105,16 +105,6 @@ export class VerbConjugatorComponent {
       })
   }
 
-  getVerbIds = (): any => {
-    const numberVerbs = this.infinitives.length;
-    const verbIds = [];
-    for(let i = 0; i < numberVerbs; i++) {
-      verbIds.push( parseInt( this.infinitives[i].id ) );
-    }
-
-    return verbIds;
-  }
-
   getCurrentVerb = ( verb: number, tense: number ): void => {
     this.getVerbInfo( verb, tense )
     this.queryVerb = this.apollo.watchQuery<any>({
@@ -155,10 +145,9 @@ export class VerbConjugatorComponent {
 
   getRandomVerbs = ( numberVerbs: number ): void => {
     this.numberQuestions = numberVerbs;
-    this.verbs = this.getVerbIds();
-    this.randomNumberService.generateRandomNumberArray(this.numberQuestions, this.verbs.length, this.questionSet );
-    let currentVerb = this.questionSet[this.currentVerb];
-    this.getCurrentVerb( currentVerb, this.selectedTense );
+    this.randomNumberService.generateRandomNumberArray(this.numberQuestions, this.infinitives.length, this.questionSet );
+    let question = this.questionSet[this.currentVerb];
+    this.getCurrentVerb( question, this.selectedTense );
   }
 
   getNextVerb = (): void => {

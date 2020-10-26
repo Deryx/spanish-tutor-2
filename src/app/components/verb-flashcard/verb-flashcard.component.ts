@@ -38,9 +38,9 @@ export class VerbFlashcardComponent implements OnInit {
 
   constructor( private apollo: Apollo, private vs: VerbService ) { }
 
-  ngOnInit = (): void => {
-    this.createTenseSelect();
+  ngOnInit() {
     this.createVerbSelect();
+    this.createTenseSelect();
   }
 
   createVerbSelect = (): void => {
@@ -74,7 +74,7 @@ export class VerbFlashcardComponent implements OnInit {
     let infinitiveSelect = document.getElementById('verbSelect');
 
     let firstOption = document.createElement('option');
-    firstOption.value = '0';
+    firstOption.value = '';
     firstOption.disabled = true;
     firstOption.selected = true;
     firstOption.innerHTML = 'SELECT A VERB ...';
@@ -90,21 +90,6 @@ export class VerbFlashcardComponent implements OnInit {
 
       infinitiveSelect.appendChild(option);
     }
-  }
-
-  createTenseSelect = (): void => {
-    this.queryTenses = this.apollo.watchQuery<any>({
-      query: this.vs.Tenses
-    })
-      .valueChanges
-      .subscribe(result => {
-        const tensesData = JSON.parse(JSON.stringify(result.data));
-        this.tenses = tensesData.tenses;
-
-        this.setTenseSelect();
-    }, (error) => {
-      console.log('there was an error sending the query', error);
-    });
   }
 
   setTenseSelect = (): void => {
@@ -128,6 +113,21 @@ export class VerbFlashcardComponent implements OnInit {
 
       tenseSelect.appendChild(option);
     }
+  }
+
+  createTenseSelect = (): void => {
+    this.queryTenses = this.apollo.watchQuery<any>({
+      query: this.vs.Tenses
+    })
+      .valueChanges
+      .subscribe(result => {
+        const tensesData = JSON.parse(JSON.stringify(result.data));
+        this.tenses = tensesData.tenses;
+
+        this.setTenseSelect();
+    }, (error) => {
+      console.log('there was an error sending the query', error);
+    });
   }
 
   changeVerb = (): void => {
