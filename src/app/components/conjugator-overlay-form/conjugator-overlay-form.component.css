@@ -12,24 +12,25 @@ section {
 }
 
 fieldset {
-  margin: 0;
-  margin-top: -10em;
-  padding: 1.25rem;
-  width: 500px;
+  margin: 0 auto;
+  padding: 30px;
   border: none;
-  background: rgb(255, 255, 255);
+  border-radius: 1.25rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-family: "Source Sans Pro", sans-serif;
+  font-family: "Roboto", sans-serif;
+  background: rgb(255 255 255);
+  border: 1px solid black;
+  font-size: 115%;
 }
 
 dl {
   padding: 0;
   width: 100%;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
   margin-bottom: 1.25rem;
@@ -41,34 +42,81 @@ dt {
   padding: 0;
   clear: both;
   font-weight: bold;
-}
-
-dd {
-  margin: 0;
-  margin-top: 0.25em;
-  padding: 0 3.0rem;
-  text-indent: 0;
-  clear: both;
-  width: 100%;
   display: flex;
-  flex-direction: row;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
 }
 
-select {
-  margin-top: 0.6rem;
+.container-v {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
-label {
-  font-weight: bold;
+.container {
+  display: inline-block;
+  position: relative;
+  width: 30%;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
-[type='radio'] {
-  margin-top: 0.35rem;
-  margin-right: 0.35rem;
+dd input {
+  position: absolute;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.radioCategory {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
+  border-radius: 50%;
+}
+
+input:checked ~ .radioCategory {
+  background-color: #2196F3;
+}
+
+.radioCategory:after {
+  content: '';
+  position: absolute;
+  display: none;
+}
+
+input:checked ~ .radioCategory:after {
+  display: block;
+}
+
+.radioCategory:after {
+  top: 9px;
+  left: 9px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: white;
 }
 
 #buttons {
+  margin-top: 30px;
   margin-bottom: 0;
   width: 100%;
   display: flex;
@@ -77,12 +125,21 @@ label {
 
 input[type='button'] {
   padding: 0.625rem;
-  width: 100px;
+  width: 125px;
   background: rgb(30, 126, 52);
   border: none;
+  border-radius: 10px;
   text-transform: uppercase;
   color: rgb(255, 255, 255);
   font-weight: bold;
   letter-spacing: 1px;
-  font-size: 0.75em;
+  font-size: 1.0rem;
 }
+
+select {
+  margin-top: 0.6rem;
+  border-radius: 10px;
+  border: 2px solid #CCC;
+  padding: 10px;
+}
+

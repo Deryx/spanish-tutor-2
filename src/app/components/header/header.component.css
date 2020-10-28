@@ -7,7 +7,7 @@ header {
   flex-wrap: nowrap;
   align-items: center;
   justify-content: space-between;
-  background: rgb(255, 0, 0);
+  background: rgb(255, 0255, 255, 0);
   z-index: 100;
   position: fixed;
 }

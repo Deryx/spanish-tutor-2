@@ -18,6 +18,7 @@ export class VocabularySliderComponent {
   showForm: boolean = false;
   showReport: boolean = false;
 
+  selectedCategory: string;
   dictionary: any;
   numberSlides: number = 0;
   currentSlideSet: number = 0;
@@ -47,35 +48,40 @@ export class VocabularySliderComponent {
   }
 
   getOverlayData(data) {
-    const numberCards = 5;
     if(!data.isVisible) {
       this.showOverlay = data.isVisible;
       this.showVocabularyOverlay = data.isVisible;
       this.showForm = true;
+      this.selectedCategory = data.category;
+      this.numberSlides = data.numberQuestions;
 
-      const categoryObject = {
-        query: this.vs.Category,
-        variables: {
-          category: parseInt(data.category)
-        }
-      };
-      const dictionaryObject = {
-        query: this.vs.Dictionary
-      }
-      const queryObject = (data.category) ? categoryObject : dictionaryObject;
-      this.queryDictionary = this.apollo.watchQuery(queryObject)
-        .valueChanges
-        .subscribe( result => {
-          const dictionaryData = JSON.parse(JSON.stringify(result.data));
-          this.dictionary = (data.category) ? dictionaryData.category : dictionaryData.dictionary;
-          this.dictionary = dictionaryData.category;
-          this.numberSlides = data.numberQuestions;
-          this.getQuestionSet( this.numberSlides, numberCards, this.dictionary.length );
-          this.displaySlideSet( this.currentSlideSet );
-        }, (error) => {
-          console.log('there was an error sending the query', error);
-        });
+      this.createQuestionSet( parseInt( this.selectedCategory ) );
     }
+  }
+
+  createQuestionSet = ( category: number ) => {
+    const numberCards = 5;
+    const categoryObject = {
+      query: this.vs.Category,
+      variables: {
+        category: category
+      }
+    };
+    const dictionaryObject = {
+      query: this.vs.Dictionary
+    }
+    const queryObject = ( category ) ? categoryObject : dictionaryObject;
+    this.queryDictionary = this.apollo.watchQuery(queryObject)
+    .valueChanges
+    .subscribe( result => {
+      const dictionaryData = JSON.parse( JSON.stringify(result.data) );
+      this.dictionary = dictionaryData.category;
+
+      this.getQuestionSet( this.numberSlides, numberCards, this.dictionary.length );
+      this.displaySlideSet( this.currentSlideSet );
+    }, (error) => {
+      console.log('there was an error sending the query', error);
+    });
   }
 
   getQuestionSet( numQuestions: number, setSize: number, maxNumber: number ) {

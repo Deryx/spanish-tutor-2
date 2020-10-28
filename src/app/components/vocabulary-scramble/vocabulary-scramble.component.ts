@@ -17,6 +17,7 @@ export class VocabularyScrambleComponent {
   showForm: boolean = false;
   showReport: boolean = false;
 
+  selectedCategory: string;
   dictionary: any;
   numberQuestions: number = 0;
   word: string = '';
@@ -50,30 +51,35 @@ export class VocabularyScrambleComponent {
       this.showOverlay = data.isVisible;
       this.showVocabularyOverlay = data.isVisible;
       this.showForm = true;
+      this.selectedCategory = data.category;
+      this.numberQuestions = data.numberQuestions;
 
-      const categoryObject = {
-        query: this.vs.Category,
-        variables: {
-          category: parseInt(data.category)
-        }
-      };
-      const dictionaryObject = {
-        query: this.vs.Dictionary
-      }
-      const queryObject = (data.category) ? categoryObject : dictionaryObject;
-      this.queryDictionary = this.apollo.watchQuery(queryObject)
-        .valueChanges
-        .subscribe( result => {
-          const dictionaryData = JSON.parse(JSON.stringify(result.data));
-          this.dictionary = (data.category) ? dictionaryData.category : dictionaryData.dictionary;
-          this.dictionary = dictionaryData.category;
-          this.numberQuestions = data.numberQuestions;
-          this.randomNumberService.generateRandomNumberArray(this.numberQuestions, this.dictionary.length, this.questionSet );
-          this.getCurrentWord( this.currentWord );
-        }, (error) => {
-          console.log('there was an error sending the query', error);
-        });
+      this.createQuestionSet( parseInt( this.selectedCategory ) );
     }
+  }
+
+  createQuestionSet = ( category: number ) => {
+    const categoryObject = {
+      query: this.vs.Category,
+      variables: {
+        category: category
+      }
+    };
+    const dictionaryObject = {
+      query: this.vs.Dictionary
+    }
+    const queryObject = ( category ) ? categoryObject : dictionaryObject;
+    this.queryDictionary = this.apollo.watchQuery(queryObject)
+    .valueChanges
+    .subscribe( result => {
+      const dictionaryData = JSON.parse( JSON.stringify(result.data) );
+      this.dictionary = dictionaryData.category;
+
+      this.randomNumberService.generateRandomNumberArray(this.numberQuestions, this.dictionary.length, this.questionSet );
+      this.getCurrentWord( this.currentWord );
+    }, (error) => {
+      console.log('there was an error sending the query', error);
+    });
   }
 
   getCurrentWord( word: number ) {

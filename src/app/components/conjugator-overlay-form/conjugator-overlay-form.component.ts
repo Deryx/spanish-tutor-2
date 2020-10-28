@@ -5,6 +5,7 @@ import { ApolloModule, Apollo } from 'apollo-angular';
 import { VerbService } from '../../services/verb.service';
 
 import gql from 'graphql-tag';
+import { FormControl, FormControlName } from '@angular/forms';
 
 @Component({
   selector: 'app-conjugator-overlay-form',
@@ -19,6 +20,9 @@ export class ConjugatorOverlayFormComponent implements OnInit {
   tenseSelect: number;
   tenses: any;
   infinitives: any;
+  conjugationType: string;
+  showRandom: boolean = false;
+  showSingle: boolean = false;
 
   disableVerbSelect: boolean = false;
 
@@ -30,7 +34,6 @@ export class ConjugatorOverlayFormComponent implements OnInit {
   constructor( private apollo: Apollo, private vs: VerbService ) { }
 
   ngOnInit() {
-    this.getVerbs();
     this.getTenses();
   }
 
@@ -41,7 +44,6 @@ export class ConjugatorOverlayFormComponent implements OnInit {
       .valueChanges
       .subscribe(result => {
         const verbData = JSON.parse(JSON.stringify(result.data));
-        console.log(verbData);
         this.infinitives = verbData.verbs.sort((a, b) => {
         const verbA = a.infinitive;
         const verbB = b.infinitive;
@@ -114,6 +116,18 @@ export class ConjugatorOverlayFormComponent implements OnInit {
       option.value = tense['id'];
 
       tenseSelect.appendChild(option);
+    }
+  }
+
+  onChange() {
+    if(this.conjugationType === 'random'){
+      this.showRandom = true;
+      this.showSingle = false;
+    } else if(this.conjugationType === 'single'){
+      this.showRandom = false;
+      this.showSingle = true;
+    
+      this.getVerbs();
     }
   }
 
