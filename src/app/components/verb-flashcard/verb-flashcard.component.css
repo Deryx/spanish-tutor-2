@@ -14,7 +14,7 @@ section > h1 {
   text-transform: uppercase;
   text-align: center;
   padding-bottom: 50px;
-  font-family: "Alfa Slab One", serif;
+  font-family: "Open Sans", serif;
   text-transform: capitalize;
   font-weight: normal;
   font-size: 175%;
@@ -62,8 +62,10 @@ div.buttons {
 }
 
 select {
-  padding: 5px;
+  padding: 10px;
   margin-bottom: 25px;
+  border-radius: 0.8rem;
+  border: 2px solid #CCC;
 }
 
 dl {
@@ -100,6 +102,8 @@ dd {
   position: relative;
   transform-style: preserve-3d;
   transform: transform 1s;
+  border: 1px solid rgb(112,128,144);
+  border-radius: 2.0rem;
 }
 
 .face {
@@ -112,6 +116,7 @@ dd {
   backface-visibility: hidden;
   user-select: none;
   margin: 0 auto;
+  border-radius: 2.0rem;
 }
 
 .front {
@@ -119,11 +124,12 @@ dd {
   background: rgb(0, 0, 0);
   color: rgb(255, 255, 255);
   padding-top: 2.0rem;
+  border-radius: 2.0rem;
 }
 
 .back {
   transform: rotateX(180deg);
-  background: rgb(228, 7, 7);
+  background: rgb(198, 10, 30);
   color: rgb(255, 255, 255);
 }
 

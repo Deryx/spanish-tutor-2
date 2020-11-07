@@ -14,7 +14,7 @@ section h1 {
   text-transform: uppercase;
   text-align: center;
   padding-bottom: 50px;
-  font-family: "Alfa Slab One", serif;
+  font-family: "Open Sans", serif;
   text-transform: capitalize;
   font-weight: normal;
   font-size: 175%;
@@ -67,8 +67,16 @@ div.buttons {
 }
 
 select {
-  padding: 5px;
+  padding: 10px;
   margin-bottom: 25px;
+  border-radius: 0.8rem;
+  border: 2px solid #CCC;
+}
+
+[type='text'] {
+  padding: 10px;
+  border-radius: 0.8rem;
+  border: 2px solid #CCC;
 }
 
 .card {
@@ -81,6 +89,8 @@ select {
   transform-style: preserve-3d;
   transform: transform 1s;
   font-family: "Roboto", sans-serif;
+  border-radius: 2.0rem;
+  border: 1px solid rgb(112,128,144);
 }
 
 .face {
@@ -99,6 +109,7 @@ select {
   transform: rotateX(0deg);
   background: rgb(0, 0, 0);
   color: rgb(255, 255, 255);
+  border-radius: 2.0rem;
 }
 
 .back {

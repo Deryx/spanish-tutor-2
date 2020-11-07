@@ -1,13 +1,14 @@
 header {
   margin: 0 auto;
   padding: 0;
-  height: 80px;
+  padding-top: 1.5rem;
+  padding-bottom: 1.1rem;
   display: flex;
   flex-flow: row;
   flex-wrap: nowrap;
   align-items: center;
   justify-content: space-between;
-  background: rgb(255, 0255, 255, 0);
+  background: rgb(198, 10, 30);
   z-index: 100;
   position: fixed;
 }
@@ -40,14 +41,14 @@ header h1 {
 }
 
 .titleST {
-  font-family: 'Alfa Slab One', sans-serif;
+  font-family: 'Open Sans', sans-serif;
 }
 
 header h1 a {
   text-decoration: none;
-  color: rgb(255, 255, 255);
+  color:  rgb(255, 196, 0);
 }
 
 header h1 a:visited {
-  color: rgb(255, 255, 0);
+  color: rgb(255, 196, 0);
 }

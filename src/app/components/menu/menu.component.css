@@ -40,7 +40,7 @@ nav {
   width: 2.5rem;
   height: 5px;
   background: rgb(0 0 0);
-  background-color: rgb(255, 255, 0);
+  background-color:  rgb(255, 196, 0);
   margin: 6px 0;
 }
 
@@ -48,12 +48,12 @@ ul#subMenu {
   width: 230px;
   list-style-type: none;
   left: -180px;
-  margin-top: 0.6rem;
+  margin-top: 0.75rem;
   margin-left: 0;
   padding: 0;
   z-index: 100;
   position: absolute;
-  background: rgb(255, 0, 0);
+  background: rgb(198, 10, 30);
   font-weight: 800;
   font-family: 'Roboto', sans-serif;
 }
@@ -66,13 +66,13 @@ ul#subMenu li {
 ul#subMenu li a {
   width: 100%;
   display: block;
-  background: rgb(255, 0, 0);
-  color: rgb(255, 255, 0);
+  background: rgb(198, 10, 30);
+  color: rgb(255, 196, 0);
   font-weight: normal;
   letter-spacing: 0;
 }
 
 ul#subMenu li a:hover {
-  background: rgb(255, 255, 0);
-  color: rgb(255, 0, 0);
+  background: rgb(255, 196, 0);
+  color: rgb(198, 10, 30);
 }

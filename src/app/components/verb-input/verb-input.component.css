@@ -14,7 +14,7 @@ section h1 {
   text-align: center;
   margin-top: 8.0rem;
   padding-bottom: 50px;
-  font-family: "Alfa Slab One", serif;
+  font-family: "Open Sans", serif;
   text-transform: capitalize;
   font-weight: normal;
   font-size: 175%;
@@ -23,7 +23,7 @@ section h1 {
 section h4 {
   text-align: center;
   text-transform: uppercase;
-  background: rgb(255, 0, 0);
+  background: rgb(198, 10, 30);
   color: rgb(255, 255, 255);
   margin-top: 0;
   margin-bottom: 0;
@@ -38,8 +38,8 @@ section form {
 }
 
 fieldset {
-  border: 1px solid #AAA;
-  box-shadow: 0 0 10px #666;
+  border: 1px solid rgb(112,128,144);
+  border-radius: 2.0rem;
   margin: 0 auto;
 }
 
@@ -95,7 +95,9 @@ dd {
 
 dd input {
   margin: 0;
-  padding: 0.25rem;
+  padding: 8px;
+  border-radius: 0.8rem;
+  border: 2px solid #CCC;
 }
 
 dl:nth-of-type(3) dt {
