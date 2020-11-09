@@ -44,28 +44,28 @@ export class VocabularyQuizComponent {
       this.selectedCategory = data.category;
       this.numberQuestions = data.numberQuestions;
 
-      this.createQuestionSet( parseInt( this.selectedCategory ) );
+      this.createQuestionSet();
     }
   }
 
-  createQuestionSet = ( category: number ) => {
+  createQuestionSet = () => {
     const categoryObject = {
       query: this.vs.Category,
       variables: {
-        category: category
+        category: parseInt( this.selectedCategory )
       }
     };
     const dictionaryObject = {
       query: this.vs.Dictionary
     }
-    const queryObject = ( category ) ? categoryObject : dictionaryObject;
+    const queryObject = ( this.selectedCategory ) ? categoryObject : dictionaryObject;
     this.queryDictionary = this.apollo.watchQuery(queryObject)
     .valueChanges
     .subscribe( result => {
       const dictionaryData = JSON.parse( JSON.stringify(result.data) );
-      this.dictionary = dictionaryData.category;
+      this.dictionary = ( this.selectedCategory ) ? dictionaryData.category : dictionaryData.dictionary;
 
-      this.randomNumberService.generateRandomNumberArray(this.numberQuestions, this.dictionary.length, this.questionSet );
+      this.randomNumberService.generateRandomNumberArray( this.numberQuestions, this.dictionary.length, this.questionSet );
       this.getCurrentQuestion( this.currentQuestion );
     }, (error) => {
       console.log('there was an error sending the query', error);

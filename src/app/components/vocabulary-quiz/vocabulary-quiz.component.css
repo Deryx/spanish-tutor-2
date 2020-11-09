@@ -19,7 +19,7 @@ section h1 {
 }
 
 form {
-  margin-top: 5rem;
+  margin-top: 2.0rem;
   display: flex;
   flex-direction: column;
   justify-items: center;
@@ -31,13 +31,17 @@ fieldset {
   flex-direction: column;
   justify-content: center;
   font-family: "Roboto", sans-serif;
+  font-size: 125%;
+  border-top: 1px solid rgb(198, 10, 30);
+  border-bottom: 1px solid rgb(198, 10, 30);
 }
 
 fieldset h2 {
   margin-top: 1.5rem;
-  margin-bottom: 1.5rem;
-  font-size: 2.5em;
+  margin-bottom: 1.8rem;
+  font-size: 1.5em;
   text-align: center;
+  color: rgb(198, 10, 30);
 }
 
 #answers {
@@ -54,10 +58,8 @@ fieldset h2 {
 .row {
   margin-left: 0;
   display: flex;
-  flex: 0 33%;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: flex-start;
-  align-items: center;
 }
 
 #buttons {
@@ -71,20 +73,21 @@ fieldset h2 {
 #buttons input {
   margin-right: 0.5rem;
   margin-left:  0.15rem;
-  padding: 0.625rem;
+  padding: 0.75rem;
   border: none;
   text-transform: uppercase;
   color: rgb(255, 255, 255);
   font-weight: bold;
   letter-spacing: 1px;
-  font-size: 0.75em;
   font-family: "Roboto", sans-serif;
-  width: 100px;
+  border-radius: 5px;
+  font-size: 100%;
 }
 
 label {
   margin-top: 0.3rem;
   margin-left: 0.5rem;
+  font-size: 125%;
 }
 
 #answerBtn {
@@ -97,5 +100,5 @@ label {
 }
 
 #quitBtn {
-  background: rgb(220, 53, 69);
+  background:rgb(198, 10, 30);
 }

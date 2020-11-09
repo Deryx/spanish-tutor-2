@@ -55,27 +55,27 @@ export class VocabularySliderComponent {
       this.selectedCategory = data.category;
       this.numberSlides = data.numberQuestions;
 
-      this.createQuestionSet( parseInt( this.selectedCategory ) );
+      this.createQuestionSet();
     }
   }
 
-  createQuestionSet = ( category: number ) => {
+  createQuestionSet = () => {
     const numberCards = 5;
     const categoryObject = {
       query: this.vs.Category,
       variables: {
-        category: category
+        category: parseInt( this.selectedCategory )
       }
     };
     const dictionaryObject = {
       query: this.vs.Dictionary
     }
-    const queryObject = ( category ) ? categoryObject : dictionaryObject;
+    const queryObject = ( this.selectedCategory ) ? categoryObject : dictionaryObject;
     this.queryDictionary = this.apollo.watchQuery(queryObject)
     .valueChanges
     .subscribe( result => {
       const dictionaryData = JSON.parse( JSON.stringify(result.data) );
-      this.dictionary = dictionaryData.category;
+      this.dictionary = ( this.selectedCategory ) ? dictionaryData.category : dictionaryData.dictionary;
 
       this.getQuestionSet( this.numberSlides, numberCards, this.dictionary.length );
       this.displaySlideSet( this.currentSlideSet );

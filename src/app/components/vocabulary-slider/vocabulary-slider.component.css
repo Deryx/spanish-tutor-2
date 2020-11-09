@@ -28,6 +28,10 @@ fieldset {
     margin: 0 auto;
     border: none;
     width: 100%;
+    border-top: 1px solid rgb(198, 10, 30);
+    border-bottom: 1px solid rgb(198, 10, 30);
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
 }
 
 .static-container, .slide-list {
@@ -39,7 +43,7 @@ fieldset {
 }
 
 .static-tile, .slide-box {
-    padding: 0.3125rem;
+    padding: 1.0rem;
     background: rgba(6, 75, 202, 0.75);
     color: rgb(255, 255, 255);
     border-bottom: 1px solid #CCC;
@@ -47,6 +51,7 @@ fieldset {
     flex-direction: row;
     justify-content: center;
     box-sizing: border-box;
+    font-size: 125%;
 }
 
 .slide-box {
@@ -93,15 +98,16 @@ fieldset {
 #buttons input {
     margin-right: 0.15rem;
     margin-left:  0.15rem;
-    padding: 0.625rem;
+    padding: 0.75rem;
     width: 100px;
     border: none;
     text-transform: uppercase;
     color: rgb(255, 255, 255);
     font-weight: bold;
     letter-spacing: 1px;
-    font-size: 0.75em;
     font-family: "Roboto", sans-serif;
+    border-radius: 5px;
+    font-size: 100%;
 }
   
 #answerBtn {
@@ -114,5 +120,5 @@ fieldset {
 }
   
 #quitBtn {
-    background: rgb(220, 53, 69);
+    background: rgb(198, 10, 30);
 }

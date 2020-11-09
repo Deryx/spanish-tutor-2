@@ -23,10 +23,11 @@ section > h1 {
 fieldset {
   text-align: center;
   margin: 0 auto;
-  padding: 1.5rem;
-  border: 1px solid rgb(112,128,144);
+  padding-top: 1.5rem;
+  border: 10px solid rgb(198, 10, 30);
   border-radius: 2.0rem;
   font-family: "Roboto", sans-serif;
+  background:  rgb(255, 196, 0);
 }
 
 .buttons {
@@ -43,6 +44,7 @@ select {
 }
 
 dl {
+  padding: 0 1.5rem;
   display: flex;
   flex-direction: row;
   width: 100%;
@@ -78,7 +80,8 @@ h3 {
 }
 
 h4 {
-  color: rgb(198, 10, 30);
+  background: rgb(198, 10, 30);
+  color: rgb(255, 196, 0);
   padding-top: 0.625rem;
   padding-bottom: 0.625rem;
 }

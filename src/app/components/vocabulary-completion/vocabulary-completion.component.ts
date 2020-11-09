@@ -46,7 +46,7 @@ export class VocabularyCompletionComponent {
       this.selectedCategory = data.category;
       this.numberQuestions = data.numberQuestions;
 
-      this.createQuestionSet( parseInt( this.selectedCategory ) );
+      this.createQuestionSet();
     }
   }
 
@@ -54,18 +54,18 @@ export class VocabularyCompletionComponent {
     const categoryObject = {
       query: this.vs.Category,
       variables: {
-        category: category
+        category: parseInt( this.selectedCategory )
       }
     };
     const dictionaryObject = {
       query: this.vs.Dictionary
     }
-    const queryObject = (category) ? categoryObject : dictionaryObject;
+    const queryObject = ( this.selectedCategory ) ? categoryObject : dictionaryObject;
     this.queryDictionary = this.apollo.watchQuery(queryObject)
       .valueChanges
       .subscribe( result => {
         const dictionaryData = JSON.parse(JSON.stringify(result.data));
-        this.dictionary = (category) ? dictionaryData.category : dictionaryData.dictionary;
+        this.dictionary = ( this.selectedCategory ) ? dictionaryData.category : dictionaryData.dictionary;
         this.numberQuestions = this.numberQuestions;
         this.randomNumberService.generateRandomNumberArray(this.numberQuestions, this.dictionary.length, this.questionSet );
         this.getCurrentWord( this.currentWord );

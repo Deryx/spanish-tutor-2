@@ -6,8 +6,7 @@
 
     <form [ngFormOptions]="{ updateOn: 'change' }" *ngIf='showForm' class="col-lg-4 col-md-6 col-xs-12">
         <fieldset class="col-lg-12 col-xs-12">
-            <h2>{{translation}}</h2>
-            <div><img src={{image}} /></div>
+            <h2>[ {{translation}} ]</h2>
             <ul>
                 <li *ngFor="let letter of incompleteWord; index as i, trackBy: trackByFn">
                     <input type='text' id="userAnswer{{i}}" name="userAnswer{{i}}" (focus)="getSelectedTextbox(i)" [(ngModel)]="this.incompleteWord[i]" maxlength="1" [disabled]="letter !== ''" />

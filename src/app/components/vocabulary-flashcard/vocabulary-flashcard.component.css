@@ -43,15 +43,15 @@ div.buttons {
 .button {
   margin-right: 0.15rem;
   margin-left:  0.15rem;
-  padding: 0.625rem;
-  width: 100px;
+  padding: 0.75rem;
   border: none;
   text-transform: uppercase;
   color: rgb(255, 255, 255);
   font-weight: bold;
   letter-spacing: 1px;
-  font-size: 0.75em;
   font-family: "Roboto", sans-serif;
+  border-radius: 5px;
+  font-size: 100%;
 }
 
 .flip {
@@ -62,8 +62,12 @@ div.buttons {
   background: rgb(52, 58, 64);
 }
 
-.next {
+.next, .search {
   background: rgb(30, 126, 52);
+}
+
+.search {
+  margin-left: 0.75rem;
 }
 
 select {

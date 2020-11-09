@@ -28,16 +28,20 @@ fieldset {
     border: none;
     font-family: "Roboto", sans-serif;
     margin: 0 auto;
-    padding-top: 1.7rem;
-    padding-bottom: 1.7rem;
     word-wrap: break-word;
+    border-top: 1px solid rgb(198, 10, 30);
+    border-bottom: 1px solid rgb(198, 10, 30);
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
 }
 
 fieldset h2 {
     text-align: center;
     margin: 0;
+    margin-bottom: 1.5rem;
     padding: 0;
     text-transform: uppercase;
+    color:  rgb(198, 10, 30);
 }
 
 fieldset div {
@@ -99,6 +103,8 @@ li h3 {
     font-weight: bold;
     font-size: 0.75em;
     font-family: "Roboto", sans-serif;
+    border-radius: 5px;
+    font-size: 100%;
 }
   
 #answerBtn {
