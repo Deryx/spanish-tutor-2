@@ -50,7 +50,7 @@ export class VocabularyCompletionComponent {
     }
   }
 
-  createQuestionSet = ( category: number ) => {
+  createQuestionSet = () => {
     const categoryObject = {
       query: this.vs.Category,
       variables: {
