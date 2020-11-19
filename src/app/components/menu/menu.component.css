@@ -63,6 +63,19 @@ ul#subMenu li {
   padding-top: 5px;
 }
 
+ul#subMenu li .heading {
+  color: rgb(255, 196, 0);
+  margin: 0;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  width: 100%;
+  display: block;
+  font-size: 115%;
+  border-top: 1px solid  rgb(255, 196, 0);
+  border-bottom: 1px solid  rgb(255, 196, 0);
+}
+
 ul#subMenu li a {
   width: 100%;
   display: block;
@@ -75,4 +88,13 @@ ul#subMenu li a {
 ul#subMenu li a:hover {
   background: rgb(255, 196, 0);
   color: rgb(198, 10, 30);
+}
+ul#subMenu ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+ul#subMenu ul li {
+  text-indent: none;
 }
