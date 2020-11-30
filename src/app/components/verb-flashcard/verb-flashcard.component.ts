@@ -28,6 +28,7 @@ export class VerbFlashcardComponent implements OnInit {
   tenseSelect: any;
   selectedTense: string;
   verbSelect: string;
+  searchVerb: string;
   conjugation: any;
   conjugations: any;
   tenses: any;
@@ -130,14 +131,36 @@ export class VerbFlashcardComponent implements OnInit {
     });
   }
 
+  getTextVerb = (): void => {
+    const verb = '%' + this.searchVerb + '%';
+    this.queryVerb = this.apollo.watchQuery<any>({
+      query: this.vs.Verb,
+      variables: {
+        verb: verb
+      }
+    })
+      .valueChanges
+      .subscribe(result => {
+        const verbData = JSON.parse(JSON.stringify(result.data));
+        const retrievedInfinitive = verbData.verb[0];
+        console.log(retrievedInfinitive);
+        this.infinitive = retrievedInfinitive.infinitive;
+        this.translation = retrievedInfinitive.translation;
+        this.pronunciation = retrievedInfinitive.pronunciation;
+        this.getVerbConjugations( retrievedInfinitive.id );
+      }, (error) => {
+        console.log('there was an error sending the query', error);
+      });
+    }
+
   changeVerb = (): void => {
     this.tenseSelect = '';
-    const retrievedVerb = this.retrieveVerb( this.infinitives, this.verbSelect );
+    const retrievedVerb = this.getSelectVerb( this.infinitives, this.verbSelect );
     this.infinitive = retrievedVerb.infinitive;
     this.translation = retrievedVerb.translation;
     this.pronunciation = retrievedVerb.pronunciation;
 
-    this.getVerbConjugations();
+    this.getVerbConjugations( this.verbSelect );
   
     const card: any = document.querySelector("div.card");
     let cardFlipState = card.style.transform;
@@ -146,7 +169,7 @@ export class VerbFlashcardComponent implements OnInit {
     }
   }
 
-  retrieveVerb(verbs: any, verb: string): any {
+  getSelectVerb(verbs: any, verb: string): any {
     const numberVerbs = verbs.length;
     const verbObject = {
       infinitive: '',
@@ -181,11 +204,11 @@ export class VerbFlashcardComponent implements OnInit {
     this.fade = this.fade === 'in' ? 'out' : 'in';
   }
 
-  getVerbConjugations = (): void => {
+  getVerbConjugations = (verb: any): void => {
     this.queryVerb = this.apollo.watchQuery<any>({
       query: this.vs.Conjugations,
       variables: {
-        verb: parseInt(this.verbSelect)
+        verb: parseInt(verb)
       }
     })
       .valueChanges

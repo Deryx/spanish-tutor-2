@@ -39,18 +39,23 @@ div.buttons {
   text-align: center;
 }
 
+
 .button {
   margin-right: 0.15rem;
   margin-left:  0.15rem;
-  padding: 0.625rem;
-  width: 100px;
+  padding: 0.75rem;
   border: none;
   text-transform: uppercase;
   color: rgb(255, 255, 255);
   font-weight: bold;
   letter-spacing: 1px;
-  font-size: 0.75em;
   font-family: "Roboto", sans-serif;
+  border-radius: 5px;
+  font-size: 100%;
+}
+
+.search {
+  margin-left: 0.75rem;
 }
 
 .flip {
@@ -66,6 +71,29 @@ select {
   margin-bottom: 25px;
   border-radius: 0.8rem;
   border: 2px solid #CCC;
+}
+
+.or {
+  margin: 10px 0;
+  font-size: 125%;
+  font-weight: bold;
+}
+
+.and {
+  margin-top: -15px;
+  margin-bottom: 10px;
+  font-size: 125%;
+  font-weight: bold;
+}
+
+[type='text'] {
+  padding: 10px;
+  border-radius: 0.8rem;
+  border: 2px solid #CCC;
+}
+
+.next, .search {
+  background: rgb(30, 126, 52);
 }
 
 dl {

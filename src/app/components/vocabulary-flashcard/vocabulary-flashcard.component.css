@@ -72,9 +72,14 @@ div.buttons {
 
 select {
   padding: 10px;
-  margin-bottom: 25px;
   border-radius: 0.8rem;
   border: 2px solid #CCC;
+}
+
+.or {
+  margin: 10px 0;
+  font-size: 125%;
+  font-weight: bold;
 }
 
 [type='text'] {

@@ -127,7 +127,7 @@ let queryType = new graphql.GraphQLObjectType({
         word
       }, context, info) => {
         return new Promise( (resolve, reject) => {
-          database.all("SELECT * FROM Words WHERE word = (?) OR translation = (?);", [word, word], function (err, rows) {
+          database.all("SELECT * FROM Words WHERE word LIKE (?) OR translation LIKE (?);", [word, word], function (err, rows) {
             if (err) {
               reject(null);
             }
@@ -165,15 +165,15 @@ let queryType = new graphql.GraphQLObjectType({
     verb: {
       type: graphql.GraphQLList(VerbType),
       args: {
-        id: {
-          type: graphql.GraphQLInt
+        verb: {
+          type: graphql.GraphQLString
         }
       },
       resolve: (root, {
-        id
+        verb
       }, context, info) => {
         return new Promise( (resolve, reject) => {
-          database.all("SELECT * FROM Verbs WHERE id = (?);", [id], function (err, rows) {
+          database.all("SELECT * FROM Verbs WHERE infinitive LIKE (?) OR translation LIKE (?);", [verb, verb], function (err, rows) {
             if (err) {
               reject(null);
             }

@@ -92,20 +92,22 @@ export class VocabularyFlashcardComponent implements OnInit {
   }
 
   getWord = () => {
+    const word = '%' + this.searchWord + '%';
     this.queryWord = this.apollo.watchQuery<any>({
       query: this.vs.Word,
       variables: {
-        word: this.searchWord
+        word: word
       }
     })
       .valueChanges
       .subscribe(result => {
-        const wordData = JSON.parse(JSON.stringify(result.data));
-        const searchWord = wordData.word[0];
-        this.word = searchWord.word;
-        this.pronunciation = searchWord.pronunciation;
-        this.translation = '[ ' + searchWord.translation + ' ]';
-        this.image = searchWord.image;
+        const dictionaryData = JSON.parse(JSON.stringify(result.data));
+        this.dictionary = dictionaryData.word;
+        this.index = 0;
+        this.word = this.dictionary[this.index].word;
+        this.pronunciation = this.dictionary[this.index].pronunciation;
+        this.translation = '[ ' + this.dictionary[this.index].translation + ' ]';
+        this.image = this.dictionary[this.index].image;
         this.showImage = ( this.image === 'assets/images/blank.png' ) ? false : true;
         this.searchWord = '';
       })
@@ -139,34 +141,16 @@ export class VocabularyFlashcardComponent implements OnInit {
   }
 
   next = () => {
-    const categoryObject = {
-      query: this.vs.Category,
-      variables: {
-        category: parseInt(this.category)
-      }
-    };
-    const dictionaryObject = {
-      query: this.vs.Dictionary
-    }
-    const queryObject = (this.category) ? categoryObject : dictionaryObject;
-    this.queryDictionary = this.apollo.watchQuery(queryObject)
-    .valueChanges
-    .subscribe( result => {
-      const dictionaryData = JSON.parse(JSON.stringify(result.data));
-      this.dictionary = (this.category) ? dictionaryData.category : dictionaryData.dictionary;
-      this.index++;
-      this.word = this.dictionary[this.index].word;
-      this.pronunciation = this.dictionary[this.index].pronunciation;
-      this.translation = '[ ' + this.dictionary[this.index].translation + ' ]';
-      this.image = this.dictionary[this.index].image;
-      this.showImage = ( this.image === 'assets/images/blank.png' ) ? false : true;
-    
-      const card: any = document.querySelector('div.card');
-      let cardFlipState = card.style.transform;
-      if(cardFlipState === 'rotateX(180deg)') this.flip = 'inactive';
-    }, (error) => {
-      console.log('there was an error sending the query', error);
-    });
+    this.index++;
+    this.word = this.dictionary[this.index].word;
+    this.pronunciation = this.dictionary[this.index].pronunciation;
+    this.translation = '[ ' + this.dictionary[this.index].translation + ' ]';
+    this.image = this.dictionary[this.index].image;
+    this.showImage = ( this.image === 'assets/images/blank.png' ) ? false : true;
+  
+    const card: any = document.querySelector('div.card');
+    let cardFlipState = card.style.transform;
+    if(cardFlipState === 'rotateX(180deg)') this.flip = 'inactive';
 }
 
   flipCard = () => {

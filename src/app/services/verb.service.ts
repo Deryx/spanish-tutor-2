@@ -28,8 +28,8 @@ export class VerbService {
     }`
 
   Verb: any = gql`
-    query verb($id: Int!) {
-      verb(id: $id) {
+    query verb($verb: String!) {
+      verb(verb: $verb) {
         id,
         infinitive,
         translation,
