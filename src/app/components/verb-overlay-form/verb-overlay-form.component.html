@@ -1,0 +1,40 @@
+<section>
+    <form class="col-lg-4">
+      <fieldset class="col-lg-12">
+        <dl>
+          <dt class="col-lg-5">What tense do you want to test?</dt>
+          <dd class="col-lg-7">
+            <select id="tenseSelect" name="tenseSelect" [(ngModel)]="tenseSelect"></select>
+          </dd>
+        </dl>
+        <dl>
+          <dt class="col-lg-5">How many questions would you like?</dt>
+          <dd class="col-lg-7">
+            <label for="verbs5" class="container">5
+              <input type="radio" id="verbs5" name="numberQuestions" [(ngModel)]="numberQuestions" value="5" />
+              <span class="radioCategory"></span>
+            </label>
+  
+            <label for="verbs10" class="container">10
+              <input type="radio" id="verbs10" name="numberQuestions" [(ngModel)]="numberQuestions" value="10" />
+              <span class="radioCategory"></span>
+            </label>
+  
+            <label for="verbs15" class="container">15
+              <input type="radio" id="verbs15" name="numberQuestions" [(ngModel)]="numberQuestions" value="15" />
+              <span class="radioCategory"></span>
+            </label>
+  
+            <label for="verbs20" class="container">20
+              <input type="radio" id="verbs20" name="numberQuestions" [(ngModel)]="numberQuestions" value="20" />
+              <span class="radioCategory"></span>
+            </label>
+          </dd>
+        </dl>
+        <div id="buttons">
+          <input type="button" id="submitBtn" name="submitBtn" value="go" (click)="onClick()" />
+        </div>
+      </fieldset>
+    </form>
+  </section>
+  

@@ -38,6 +38,10 @@ import { ReportComponent } from './components/report/report.component';
 import { ConjugatorReportComponent } from './components/conjugator-report/conjugator-report.component';
 import { SliderReportComponent } from './components/slider-report/slider-report.component';
 import { SpanishAccentsComponent } from './components/spanish-accents/spanish-accents.component';
+import { VerbSliderComponent } from './components/verb-slider/verb-slider.component';
+import { VocabularyFillInComponent } from './components/vocabulary-fill-in/vocabulary-fill-in.component';
+import { VerbOverlayFormComponent } from './components/verb-overlay-form/verb-overlay-form.component';
+import { VerbSliderReportComponent } from './components/verb-slider-report/verb-slider-report.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -50,7 +54,10 @@ const appRoutes: Routes = [
   { path: 'vocabulary-slider', component: VocabularySliderComponent },
   { path: 'verb-flashcard', component: VerbFlashcardComponent },
   { path: 'verb-conjugator', component: VerbConjugatorComponent },
-  { path: 'verb-input', component: VerbInputComponent }
+  { path: 'verb-input', component: VerbInputComponent },
+  { path: 'verb-slider', component: VerbSliderComponent },
+  { path: 'vocabulary-fill-in', component: VocabularyFillInComponent }
+
 ];
 
 @NgModule({
@@ -78,7 +85,11 @@ const appRoutes: Routes = [
     ReportComponent,
     ConjugatorReportComponent,
     SliderReportComponent,
-    SpanishAccentsComponent
+    SpanishAccentsComponent,
+    VerbSliderComponent,
+    VocabularyFillInComponent,
+    VerbOverlayFormComponent,
+    VerbSliderReportComponent
   ],
   imports: [
     BrowserModule,

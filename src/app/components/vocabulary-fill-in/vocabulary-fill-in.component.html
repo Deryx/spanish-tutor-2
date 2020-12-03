@@ -1,0 +1,11 @@
+<app-overlay *ngIf='showOverlay'></app-overlay>
+<app-conjugator-overlay-form (formChange)='getOverlayData($event)' *ngIf='showConjugatorOverlay'></app-conjugator-overlay-form>
+<app-conjugator-report [reportInfo]="report" *ngIf='showReport'></app-conjugator-report>
+<section>
+  <h1>vocabulary fill-in</h1>
+  <form *ngIf='showForm' class="col-lg-5 col-md-8 col-sm-10">
+    <fieldset class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
+
+    </fieldset>
+  </form>
+</section>
