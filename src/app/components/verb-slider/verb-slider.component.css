@@ -35,6 +35,12 @@ fieldset {
     padding-bottom: 2.5rem;
 }
 
+fieldset h2 {
+    color: rgb(198, 10, 30);
+    text-align: center;
+    margin-bottom: 2.0rem;
+}
+
 .static-container, .slide-list {
     display: inline-block;
     width: 50%;
@@ -44,7 +50,7 @@ fieldset {
 }
 
 .static-tile, .slide-box {
-    padding: 1.0rem;
+    padding: 0.5rem;
     background: rgba(6, 75, 202, 0.75);
     color: rgb(255, 255, 255);
     border-bottom: 1px solid #CCC;

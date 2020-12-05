@@ -43,7 +43,7 @@ fieldset {
 }
 
 .static-tile, .slide-box {
-    padding: 1.0rem;
+    padding: 0.5rem;
     background: rgba(6, 75, 202, 0.75);
     color: rgb(255, 255, 255);
     border-bottom: 1px solid #CCC;

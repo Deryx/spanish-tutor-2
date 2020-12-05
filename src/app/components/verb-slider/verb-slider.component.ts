@@ -24,7 +24,7 @@ export class VerbSliderComponent {
   currentSlideSet: number = 0;
   numberCorrect: number = 0;
 
-  verb: string = '';
+  infinitive: string = '';
 
   questionSet: any = {};
   slideSet: number[] = [];
@@ -72,6 +72,7 @@ export class VerbSliderComponent {
     .subscribe( result => {
       const infinitivesData = JSON.parse( JSON.stringify(result.data) );
       this.verbs = infinitivesData.verbs;
+      console.log(this.verbs);
 
       this.getQuestionSet( this.numberSlides, this.verbs.length );
       this.displaySlideSet( this.currentSlideSet );
@@ -90,8 +91,9 @@ export class VerbSliderComponent {
   }
 
   displaySlideSet( numberQuestion: number ) {
-    const verb = this.questionSet[numberQuestion];
-    this.getCurrentVerb( this.verbs[verb].id, this.tenseSelect );
+    const question = this.questionSet[numberQuestion];
+    this.infinitive = this.verbs[question].infinitive;
+    this.getCurrentVerb( this.verbs[question].id, this.tenseSelect );
   }
 
   getCurrentVerb = ( verb: number, tense: number ): void => {
@@ -124,43 +126,6 @@ export class VerbSliderComponent {
         
         this.answers.push( this.currentAnswers );
         this.currentAnswers = [];
-      }, (error) => {
-        console.log('there was an error sending the query', error);
-      });
-  }
-
-  getVerbSliders( cardSet: number[] ): any {
-    let sliders: any = [];
-    let verbs: any = [];
-    let verbSliders: any = [];
-
-    this.randomNumberService.generateRandomNumberArray( cardSet.length, cardSet.length, sliders );
-    for( let i = 0; i < sliders.length; i++) {
-      let sliderIndex = sliders[i];
-      verbs[i] = cardSet[sliderIndex];
-    }
-
-    for( let i = 0; i < verbs.length; i++) {
-      let verb = verbs[i];
-      let verbId = this.verbs[verb].id;
-      this.getConjugations(verbId, this.tenseSelect);
-    }
-
-    return verbSliders;
-  }
-
-  getConjugations(verb: number, tense: number) {
-    this.queryVerb = this.apollo.watchQuery<any>({
-      query: this.vs.Conjugation,
-      variables: {
-        verb: parseInt( verb.toString() ),
-        tense: parseInt( tense.toString() )
-      }
-    })
-      .valueChanges
-      .subscribe( result => {
-        const conjugationData = JSON.parse(JSON.stringify(result.data));
-        // this.verbSlides.push(conjugationData.conjugation);
       }, (error) => {
         console.log('there was an error sending the query', error);
       });
@@ -213,7 +178,6 @@ export class VerbSliderComponent {
 
   reset() {
     this.numberCorrect = 0;
-    this.verbSlides = this.getVerbSliders( this.questionSet[this.currentSlideSet]);
   }
 
   quit() {

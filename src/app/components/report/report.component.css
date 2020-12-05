@@ -21,6 +21,7 @@ section > div {
     flex-direction: column;
     justify-content: center;
     width: 40%;
+    border-radius: 0.75rem;
 }
 
 h2, h3 {
