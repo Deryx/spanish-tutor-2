@@ -1,26 +1,34 @@
 <section>
-  <form>
-    <fieldset>
+  <form class="col-lg-4">
+    <fieldset class="col-lg-12">
       <dl>
-        <dt>What category do you want to test?</dt>
-        <dd>
-          <select id="category" name="category" [(ngModel)]="category"></select>
+        <dt class="col-lg-5">What category do you want to test?</dt>
+        <dd class="col-lg-7">
+          <select id="category"name="category" [(ngModel)]="category"></select>
         </dd>
       </dl>
       <dl>
-        <dt>How many questions would you like?</dt>
-        <dd>
-          <input type="radio" id="words5" name="numberQuestions" [(ngModel)]="numberQuestions" value="5" />
-          <label for="words5">5</label>
+        <dt class="col-lg-5">How many questions would you like?</dt>
+        <dd class="col-lg-7">
+          <label for="words5" class="container">5
+            <input type="radio" id="words5" name="numberQuestions" [(ngModel)]="numberQuestions" value="5" />
+            <span class="radioCategory"></span>
+          </label>
 
-          <input type="radio" id="words10" name="numberQuestions" [(ngModel)]="numberQuestions" value="10" />
-          <label for="words10">10</label>
+          <label for="words10" class="container">10
+            <input type="radio" id="words10" name="numberQuestions" [(ngModel)]="numberQuestions" value="10" />
+            <span class="radioCategory"></span>
+          </label>
 
-          <input type="radio" id="words15" name="numberQuestions" [(ngModel)]="numberQuestions" value="15" />
-          <label for="words15">15</label>
+          <label for="words15" class="container">15
+            <input type="radio" id="words15" name="numberQuestions" [(ngModel)]="numberQuestions" value="15" />
+            <span class="radioCategory"></span>
+          </label>
 
-          <input type="radio" id="words20" name="numberQuestions" [(ngModel)]="numberQuestions" value="20" />
-          <label for="words20">20</label>
+          <label for="words20" class="container">20
+            <input type="radio" id="words20" name="numberQuestions" [(ngModel)]="numberQuestions" value="20" />
+            <span class="radioCategory"></span>
+          </label>
         </dd>
       </dl>
       <div id="buttons">

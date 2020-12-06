@@ -1,25 +1,33 @@
 header {
-  margin: 0;
+  margin: 0 auto;
   padding: 0;
-  width: 100%;
-  height: 80px;
+  padding-top: 1.5rem;
+  padding-bottom: 1.1rem;
   display: flex;
   flex-flow: row;
   flex-wrap: nowrap;
   align-items: center;
   justify-content: space-between;
-  background: rgb(255, 0, 0);
+  background: rgb(198, 10, 30);
+  z-index: 100;
+  position: fixed;
 }
 
 header h1 {
   margin: 0;
   padding: 0;
   margin-top: 0.25em;
-  margin-left: 4.0em;
-  color: rgb(255, 255, 255);
+  margin-left: 2.0em;
   font-size: 2rem !important;
   letter-spacing: 0.1rem;
   font-size: inherit;
+}
+
+@media (max-width: 1199.98px) {
+  header h1 {
+    margin-left: 2.5rem;
+    font-size: 125% !important;
+  }
 }
 
 .titleMy {
@@ -33,21 +41,14 @@ header h1 {
 }
 
 .titleST {
-  font-family: 'Alfa Slab One', sans-serif;
+  font-family: 'Open Sans', sans-serif;
 }
 
 header h1 a {
   text-decoration: none;
-  color: rgb(255, 255, 255);
+  color:  rgb(255, 196, 0);
 }
 
 header h1 a:visited {
-  color: rgb(255, 255, 255);
-}
-
-header app-menu {
-  margin: 0;
-  padding: 0;
-  margin-right: 80px;
-  font-size: inherit;
+  color: rgb(255, 196, 0);
 }

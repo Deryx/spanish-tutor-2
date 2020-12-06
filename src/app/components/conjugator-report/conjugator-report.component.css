@@ -1,0 +1,106 @@
+section {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 97;
+    position: absolute;
+}
+
+section > div {
+    margin: 0 auto;
+    padding: 1.8rem;
+    z-index: 98;
+    position: absolute;
+    background: rgb(255, 255, 255);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 0.75rem;
+}
+
+div h2, h3 {
+    text-align: center;
+}
+
+h3 {
+    margin-bottom: 2.0rem;
+}
+
+table {
+    margin: 0 auto;
+    width: 100%;
+    background: rgb(255, 255, 255);
+}
+
+table tr {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px solid rgb(0, 0, 0);
+}
+
+table tr th {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-grow: 1;
+    width: 16%;
+}
+
+table tr td {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-grow: 1;
+    width: 16%;
+}
+
+table tbody tr td:first-child {
+    align-items: center;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+form {
+    margin: 0;
+    width: 100%;
+}
+
+.buttons {
+    margin-top: 50px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+  
+.buttons input {
+    margin-right: 0.15rem;
+    margin-left:  0.15rem;
+    padding: 0.625rem;
+    border: none;
+    text-transform: uppercase;
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+    font-size: 0.75em;
+    font-family: "Roboto", sans-serif;
+    border-radius: 5px;
+    font-size: 100%;
+}
+  
+#replayBtn {
+    background: rgb(52, 58, 64);
+}
+  
+#quitBtn {
+    background: rgb(220, 53, 69);
+}

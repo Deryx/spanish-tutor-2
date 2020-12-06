@@ -1,5 +1,5 @@
 export class Vocabulary {
-  category: string;
+  category: Number;
   word: string;
   translation: string;
   gender: string;
@@ -7,7 +7,7 @@ export class Vocabulary {
   pronunciation?: string;
 
   constructor(){
-    this.category = '';
+    this.category = 0;
     this.word = '';
     this.translation = '';
     this.gender = '';
@@ -15,7 +15,7 @@ export class Vocabulary {
     this.pronunciation = '';
   }
 
-  setCategory( category: string ){
+  setCategory( category: Number ){
     this.category = category;
   }
 

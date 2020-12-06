@@ -2,21 +2,24 @@ import { Component } from '@angular/core';
 import { VocabularyService } from '../../services/vocabulary.service';
 import { RandomNumberGeneratorService } from '../../services/random-number-generator.service';
 import { Router } from "@angular/router";
+import { Subscription } from 'rxjs';
+import { ApolloModule, Apollo } from 'apollo-angular';
 
 @Component({
   selector: 'app-vocabulary-completion',
   templateUrl: './vocabulary-completion.component.html',
   styleUrls: ['./vocabulary-completion.component.css']
 })
-export class VocabularyCompletionComponent {
-  animationState = 'left';
-  buttonText: string = 'show accents';
 
+export class VocabularyCompletionComponent {
   showOverlay: boolean = true;
   showVocabularyOverlay: boolean = true;
   showForm: boolean = false;
+  showReport: boolean = false;
 
+  selectedCategory: string;
   dictionary: any;
+  numberQuestions: number = 0;
   translation: string = '';
   image: string = '';
   answer: string;
@@ -24,30 +27,51 @@ export class VocabularyCompletionComponent {
   questionSet: number[] = [];
   currentWord = 0;
   numberCorrect = 0;
+  
+  selectedTextbox: number;
+  accent: string;
 
-  answerReport: any = [];
+  report: any = {};
+  responses: any = [];
 
-  constructor( private words: VocabularyService, private randomNumberService: RandomNumberGeneratorService, private router: Router ) {}
+  private queryDictionary: Subscription;
+
+  constructor( private vs: VocabularyService, private apollo: Apollo, private randomNumberService: RandomNumberGeneratorService, private router: Router ) {}
   
   getOverlayData(data) {
     if(!data.isVisible) {
       this.showOverlay = data.isVisible;
       this.showVocabularyOverlay = data.isVisible;
       this.showForm = true;
+      this.selectedCategory = data.category;
+      this.numberQuestions = data.numberQuestions;
 
-      const dataCommand: any = data.category ? this.words.getCategory( data.category ) : this.words.getDictionary();
-      dataCommand
-        .subscribe(
-          data => {
-            this.dictionary = data;
-          },
-          error => console.log('Error: ', error),
-          () => {
-            this.randomNumberService.generateRandomNumberArray(data.numberQuestions, this.dictionary.length, this.questionSet );
-            this.getCurrentWord( this.currentWord );
-          }
-        );
+      this.createQuestionSet();
     }
+  }
+
+  createQuestionSet = () => {
+    const categoryObject = {
+      query: this.vs.Category,
+      variables: {
+        category: parseInt( this.selectedCategory )
+      }
+    };
+    const dictionaryObject = {
+      query: this.vs.Dictionary
+    }
+    const queryObject = ( this.selectedCategory ) ? categoryObject : dictionaryObject;
+    this.queryDictionary = this.apollo.watchQuery(queryObject)
+      .valueChanges
+      .subscribe( result => {
+        const dictionaryData = JSON.parse(JSON.stringify(result.data));
+        this.dictionary = ( this.selectedCategory ) ? dictionaryData.category : dictionaryData.dictionary;
+        this.numberQuestions = this.numberQuestions;
+        this.randomNumberService.generateRandomNumberArray(this.numberQuestions, this.dictionary.length, this.questionSet );
+        this.getCurrentWord( this.currentWord );
+      }, (error) => {
+        console.log('there was an error sending the query', error);
+      });
   }
 
   getCurrentWord( word: number ) {
@@ -82,30 +106,39 @@ export class VocabularyCompletionComponent {
     if( this.currentWord < numberQuestions ) {
       this.currentWord++;
       this.getCurrentWord( this.currentWord );
-    } else {
-      this.writeSummary();
     }
   }
 
   getAnswer() {
-    const answerObject: any = {};
+    const responseObj: any = {};
+    let score: number = 0;
 
     let response = this.incompleteWord.join('');
     if( this.answer === response ) this.numberCorrect++;
 
-    answerObject.answer = this.answer;
-    answerObject.response = response;
-    this.answerReport.push( answerObject );
+    responseObj.question = this.translation;
+    responseObj.answer = this.answer;
+    responseObj.response = response;
+    this.responses.push( responseObj );
 
-    this.getNextQuestion();
+    if(this.currentWord === this.numberQuestions - 1) {
+      this.showForm = false;
+      this.showReport = true;
+      this.showOverlay = true;
+      score = Math.round( ( this.numberCorrect / this.numberQuestions ) * 100 ); 
+
+      this.report.title = 'Vocabulary Completion Report';
+      this.report.scoreMessage = 'You scored ' + score + '%';
+      this.report.headings = ['word', 'answer', 'response'];
+      this.report.responses = this.responses;
+    } else {
+      this.selectedTextbox = -1;
+      this.getNextQuestion();
+    }
   }
 
   trackByFn(index: number, item: any) {
     return index;
-  }
-
-  writeSummary() {
-
   }
 
   reset() {
@@ -118,9 +151,13 @@ export class VocabularyCompletionComponent {
   quit() {
     this.router.navigateByUrl('');
   }
+  
+  getSelectedTextbox(textboxID) {
+    this.selectedTextbox = textboxID;
+  }
 
-  toggleAccents() {
-    this.animationState = this.animationState === 'left' ? 'right' : 'left';
-    this.buttonText = this.animationState === 'left' ? 'show accents' : 'hide accents';
+  placeAccent(event) {
+    this.accent = event;
+    this.incompleteWord[this.selectedTextbox] = this.accent;
   }
 }

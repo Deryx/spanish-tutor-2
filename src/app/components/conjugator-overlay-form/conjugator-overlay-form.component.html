@@ -1,36 +1,58 @@
 <section>
-  <form>
-    <fieldset>
+  <form class="col-lg-4">
+    <fieldset class="col-lg-12">
       <dl>
-        <dt>What verb tense do you want to conjugate?</dt>
-        <dd>
-          <input type="radio" id="presentTense" name="tense" [(ngModel)]="tense" value="present" />
-          <label for="presentTense">present</label>
-
-          <input type="radio" id="preteriteTense" name="tense" [(ngModel)]="tense" value="preterite" />
-          <label for="preteriteTense">preterite</label>
-
-          <input type="radio" id="imperfectTense" name="tense" [(ngModel)]="tense" value="imperfect" />
-          <label for="imperfectTense">imperfect</label>
-
-          <input type="radio" id="futureTense" name="tense" [(ngModel)]="tense" value="future" />
-          <label for="futureTense">future</label>
+        <dt class="col-lg-6">What verb tense do you want to conjugate?</dt>
+        <dd class="col-lg-6">
+          <select id="tenseSelect" class="col-xs-12" name="tenseSelect" [(ngModel)]="tenseSelect"></select>
         </dd>
       </dl>
       <dl>
-        <dt>How many verbs do you want to conjugate?</dt>
-        <dd>
-          <input type="radio" id="verbs5" name="numberVerbs" [(ngModel)]="numberVerbs" value="5" />
-          <label for="verbs5">5</label>
+        <dt>Do you want you want to conjugate random verb(s) or one specific verb?</dt>
+        <dd class="col-lg-6">
+          <label for="random" class="container-v">random
+            <input type="radio" id="random" name="conjugationType" [(ngModel)]="conjugationType" value="random" (ngModelChange)="onChange()" />
+            <span class="radioCategory"></span>
+          </label>
 
-          <input type="radio" id="verbs10" name="numberVerbs" [(ngModel)]="numberVerbs" value="10" />
-          <label for="verbs10">10</label>
+          <label for="single" class="container-v">single
+            <input type="radio" id="single" name="conjugationType" [(ngModel)]="conjugationType" value="single" (ngModelChange)="onChange()" />
+            <span class="radioCategory"></span>
+          </label>
+        </dd>
+      </dl>
+      <dl *ngIf="showRandom">
+        <dt class="col-lg-6">How many verbs do you want to conjugate?</dt>
+        <dd class="col-lg-6">
+          <label for="verbs1" class="container">1
+            <input type="radio" id="verbs1" name="numberVerbs" [(ngModel)]="numberVerbs" value="1" />
+            <span class="radioCategory"></span>
+          </label>
 
-          <input type="radio" id="verbs15" name="numberVerbs" [(ngModel)]="numberVerbs" value="15" />
-          <label for="verbs15">15</label>
+          <label for="verbs5" class="container">5
+            <input type="radio" id="verbs5" name="numberVerbs" [(ngModel)]="numberVerbs" value="5" />
+            <span class="radioCategory"></span>
+          </label>
 
-          <input type="radio" id="verbs20" name="numberVerbs" [(ngModel)]="numberVerbs" value="20" />
-          <label for="verbs20">20</label>
+          <label for="verbs10" class="container">10
+            <input type="radio" id="verbs10" name="numberVerbs" [(ngModel)]="numberVerbs" value="10" />
+            <span class="radioCategory"></span>
+          </label>
+
+          <label for="verbs15" class="container">15
+            <input type="radio" id="verbs15" name="numberVerbs" [(ngModel)]="numberVerbs" value="15" />
+            <span class="radioCategory"></span>
+          </label>
+
+          <label for="verbs20" class="container">20
+            <input type="radio" id="verbs20" name="numberVerbs" [(ngModel)]="numberVerbs" value="20" />
+            <span class="radioCategory"></span>
+          </label>
+      </dl>
+      <dl *ngIf="showSingle">
+        <dt class="col-lg-6">What verb do you want to conjugate?</dt>
+        <dd class="col-lg-6">
+          <select id="verbSelect" class="col-xs-12" name="verbSelect" [(ngModel)]="verbSelect"></select>
         </dd>
       </dl>
       <div id="buttons">

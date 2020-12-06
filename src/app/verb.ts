@@ -3,12 +3,12 @@ import { Conjugation } from './conjugation';
 export class Verb {
   infinitive: string;
   translation: string;
-  conjugations: Conjugation[];
+  pronunciation: string;
 
   constructor (){
     this.infinitive ='';
     this.translation = '';
-    this.conjugations = [];
+    this.pronunciation = '';
   }
 
   setInfinitive(infinitive: string){
@@ -19,7 +19,7 @@ export class Verb {
     this.translation = translation;
   }
 
-  addConjugation(conjugation: Conjugation){
-    this.conjugations.push(conjugation);
+  setPronunciation(pronunciation: string){
+    this.pronunciation = pronunciation;
   }
 }

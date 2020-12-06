@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { VocabularyService } from '../../services/vocabulary.service';
 import { RandomNumberGeneratorService } from '../../services/random-number-generator.service';
 import { Router } from "@angular/router";
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import { Subscription } from 'rxjs';
+import { ApolloModule, Apollo } from 'apollo-angular';
 
 @Component({
   selector: 'app-vocabulary-scramble',
@@ -12,8 +15,11 @@ export class VocabularyScrambleComponent {
   showOverlay: boolean = true;
   showVocabularyOverlay: boolean = true;
   showForm: boolean = false;
+  showReport: boolean = false;
 
+  selectedCategory: string;
   dictionary: any;
+  numberQuestions: number = 0;
   word: string = '';
   translation: string = '';
   image: string = '';
@@ -26,29 +32,53 @@ export class VocabularyScrambleComponent {
   currentWord = 0;
   numberCorrect = 0;
 
-  answerReport: any = [];
+  report: any = {};
+  responses: any = [];
 
-  constructor( private words: VocabularyService, private randomNumberService: RandomNumberGeneratorService, private router: Router ) {}
+  private queryDictionary: Subscription;
+
+  constructor( private vs: VocabularyService, private apollo: Apollo, private randomNumberService: RandomNumberGeneratorService, private router: Router ) {}
+
+  drop(event: CdkDragDrop<string[]>) {
+    moveItemInArray(
+      this.scrambledWord, 
+      event.previousIndex, 
+      event.currentIndex);
+  }
 
   getOverlayData(data) {
     if(!data.isVisible) {
       this.showOverlay = data.isVisible;
       this.showVocabularyOverlay = data.isVisible;
       this.showForm = true;
+      this.selectedCategory = data.category;
+      this.numberQuestions = data.numberQuestions;
 
-      const dataCommand: any = data.category ? this.words.getCategory( data.category ) : this.words.getDictionary();
-      dataCommand
-        .subscribe(
-          data => {
-            this.dictionary = data;
-          },
-          error => console.log('Error: ', error),
-          () => {
-            this.randomNumberService.generateRandomNumberArray(data.numberQuestions, this.dictionary.length, this.questionSet );
-            this.getCurrentWord( this.currentWord );
-          }
-        );
+      this.createQuestionSet();
     }
+  }
+
+  createQuestionSet = () => {
+    const categoryObject = {
+      query: this.vs.Category,
+      variables: {
+        category: parseInt( this.selectedCategory )
+      }
+    };
+    const dictionaryObject = {
+      query: this.vs.Dictionary
+    }
+    const queryObject = ( this.selectedCategory ) ? categoryObject : dictionaryObject;
+    this.queryDictionary = this.apollo.watchQuery(queryObject)
+    .valueChanges
+    .subscribe( result => {
+      const dictionaryData = JSON.parse(JSON.stringify(result.data));
+      this.dictionary = ( this.selectedCategory ) ? dictionaryData.category : dictionaryData.dictionary;
+      this.randomNumberService.generateRandomNumberArray(this.numberQuestions, this.dictionary.length, this.questionSet );
+      this.getCurrentWord( this.currentWord );
+    }, (error) => {
+      console.log('there was an error sending the query', error);
+    });
   }
 
   getCurrentWord( word: number ) {
@@ -76,32 +106,40 @@ export class VocabularyScrambleComponent {
     if( this.currentWord < numberQuestions ) {
       this.currentWord++;
       this.getCurrentWord( this.currentWord );
-    } else {
-      this.writeSummary();
     }
   }
 
   getAnswer() {
+    const responseObj: any = {};
+    let score: number = 0;
+
     const response = this.scrambledWord.join('');
     if( this.answer === response ) this.numberCorrect++;
 
-    const answerObject: any = {};
-    answerObject.word = this.translation;
-    answerObject.answer = this.answer;
-    answerObject.response = response;
+    responseObj.question = this.translation;
+    responseObj.answer = this.answer;
+    responseObj.response = response;
+    this.responses.push( responseObj );
 
-    this.scrambledWord = [];
-    this.getNextQuestion();
-  }
+    if(this.currentWord === this.numberQuestions - 1) {
+      this.showForm = false;
+      this.showReport = true;
+      this.showOverlay = true;
+      score = Math.round( ( this.numberCorrect / this.numberQuestions ) * 100 ); 
 
-  writeSummary() {
-
+      this.report.title = 'Vocabulary Scramble Report';
+      this.report.scoreMessage = 'You scored ' + score + '%';
+      this.report.headings = ['word', 'answer', 'response'];
+      this.report.responses = this.responses;
+    } else {
+      this.scrambledWord = [];
+      this.getNextQuestion();
+      }
   }
 
   reset() {
     this.answer = '';
     this.scrambledWord = [];
-    // this.currentWord = 0;
     this.numberCorrect = 0;
     this.getCurrentWord( this.currentWord );
   }

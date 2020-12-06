@@ -1,8 +1,11 @@
 import { Component } from '@angular/core';
 import { VocabularyService } from '../../services/vocabulary.service';
 import { RandomNumberGeneratorService } from '../../services/random-number-generator.service';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { Router } from "@angular/router";
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import { Subscription } from 'rxjs';
+import { ApolloModule, Apollo } from 'apollo-angular';
 
 @Component({
   selector: 'app-vocabulary-slider',
@@ -13,9 +16,12 @@ export class VocabularySliderComponent {
   showOverlay: boolean = true;
   showVocabularyOverlay: boolean = true;
   showForm: boolean = false;
+  showReport: boolean = false;
 
+  selectedCategory: string;
   dictionary: any;
-  currentQuestion: number = 0;
+  numberSlides: number = 0;
+  currentSlideSet: number = 0;
   numberCorrect: number = 0;
 
   translation: string = '';
@@ -27,28 +33,55 @@ export class VocabularySliderComponent {
   translationCards: any[] = [];
   wordSlides: any = [];
 
-  constructor( private words: VocabularyService, private randomNumberService: RandomNumberGeneratorService, private router: Router ) {}
+  report: any = {};
+  responses: any = [];
+
+  private queryDictionary: Subscription;
+
+  constructor( private vs: VocabularyService, private apollo: Apollo, private randomNumberService: RandomNumberGeneratorService, private router: Router ) {}
+
+  drop(event: CdkDragDrop<string[]>) {
+    moveItemInArray(
+      this.wordSlides, 
+      event.previousIndex, 
+      event.currentIndex);
+  }
 
   getOverlayData(data) {
-    const numberCards = 5;
     if(!data.isVisible) {
       this.showOverlay = data.isVisible;
       this.showVocabularyOverlay = data.isVisible;
       this.showForm = true;
+      this.selectedCategory = data.category;
+      this.numberSlides = data.numberQuestions;
 
-      const dataCommand: any = data.category ? this.words.getCategory( data.category ) : this.words.getDictionary();
-      dataCommand
-      .subscribe(
-          data => {
-            this.dictionary = data;
-          },
-          error => console.log('Error: ', error),
-          () => {
-            this.getQuestionSet( data.numberQuestions, numberCards, this.dictionary.length );
-            this.displaySlideSet( this.currentQuestion );
-          }
-        );
+      this.createQuestionSet();
+    }
+  }
+
+  createQuestionSet = () => {
+    const numberCards = 5;
+    const categoryObject = {
+      query: this.vs.Category,
+      variables: {
+        category: parseInt( this.selectedCategory )
       }
+    };
+    const dictionaryObject = {
+      query: this.vs.Dictionary
+    }
+    const queryObject = ( this.selectedCategory ) ? categoryObject : dictionaryObject;
+    this.queryDictionary = this.apollo.watchQuery(queryObject)
+    .valueChanges
+    .subscribe( result => {
+      const dictionaryData = JSON.parse( JSON.stringify(result.data) );
+      this.dictionary = ( this.selectedCategory ) ? dictionaryData.category : dictionaryData.dictionary;
+
+      this.getQuestionSet( this.numberSlides, numberCards, this.dictionary.length );
+      this.displaySlideSet( this.currentSlideSet );
+    }, (error) => {
+      console.log('there was an error sending the query', error);
+    });
   }
 
   getQuestionSet( numQuestions: number, setSize: number, maxNumber: number ) {
@@ -106,15 +139,16 @@ export class VocabularySliderComponent {
 
   getNextSet() {
     let numberQuestions = Object.keys(this.questionSet).length;
-    if( this.currentQuestion < numberQuestions ) {
-      this.currentQuestion++;
-      this.displaySlideSet( this.currentQuestion );
-    } else {
-      this.writeSummary();
+    if( this.currentSlideSet < numberQuestions ) {
+      this.currentSlideSet++;
+      this.displaySlideSet( this.currentSlideSet );
     }
   }
 
   getAnswer() {
+    const responseObj: any = {};
+    let score: number = 0;
+
     const response = this.wordSlides;
     for(let i = 0; i < response.length; i++) {
       if( this.translationCards[i].answer === response[i] ) this.numberCorrect++;
@@ -127,22 +161,30 @@ export class VocabularySliderComponent {
       translations.push( this.translationCards[i].translation);
       answers.push( this.translationCards[i].answer );
     }
-    answerObject.translations = translations;
-    answerObject.answers = answers;
-    answerObject.response = response;
-    answerObject.numberCorrect = this.numberCorrect;
+    responseObj.slideSet = this.currentSlideSet + 1;
+    responseObj.translations = translations;
+    responseObj.answers = response;
 
-    this.numberCorrect = 0;
+    this.responses.push( responseObj );
 
-    this.getNextSet();
-  }
+    if( this.currentSlideSet === this.numberSlides - 1 ) {
+      this.showForm = false;
+      this.showReport = true;
+      this.showOverlay = true;
+      score = Math.round( ( this.numberCorrect / ( this.numberSlides * 5 ) ) * 100 ); 
 
-  writeSummary() {
-
+      this.report.title = 'Vocabulary Slider Report';
+      this.report.scoreMessage = 'You scored ' + score + '%';
+      this.report.headings = ['slide set', 'tile 1', 'tile 2', 'tile 3', 'tile 4', 'tile 5'];
+      this.report.responses = this.responses;
+    } else {
+      this.getNextSet();
+    }
   }
 
   reset() {
-
+    this.numberCorrect = 0;
+    this.wordSlides = this.getWordSliders( this.questionSet[this.currentSlideSet], this.dictionary);
   }
 
   quit() {

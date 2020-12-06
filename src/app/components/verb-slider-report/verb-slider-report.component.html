@@ -1,0 +1,38 @@
+<section class="col-lg-12">
+    <div class="col-lg-6 col-md-8 col-xs-12">
+      <h2>{{ reportInfo.title }}</h2>
+      <h3>{{ reportInfo.scoreMessage }}</h3>
+      <div class="row header">
+        <div class="col-lg-2 col-md-2 col-xs-2" *ngFor='let heading of reportInfo.headings'>{{ heading }}</div>
+      </div>
+      <div class="row" *ngFor='let response of reportInfo.responses'>
+        <div class="col-lg-2 col-md-2 col-xs-2">{{ response.slideSet }}</div>
+        <div class="col-lg-2 col-md-2 col-xs-2">
+          <div>{{ response.answers[0] }}</div>
+          <div>{{ response.responses[0] }}</div>
+        </div>
+        <div class="col-lg-2 col-md-2 col-xs-2">
+            <div>{{ response.answers[1] }}</div>
+            <div>{{ response.responses[1] }}</div>
+          </div>
+        <div class="col-lg-2 col-md-2 col-xs-2">
+            <div>{{ response.answers[2] }}</div>
+            <div>{{ response.responses[2] }}</div>
+          </div>
+        <div class="col-lg-2 col-md-2 col-xs-2">
+            <div>{{ response.answers[3] }}</div>
+            <div>{{ response.responses[3] }}</div>
+          </div>
+        <div class="col-lg-2 col-md-2 col-xs-2">
+            <div>{{ response.answers[4] }}</div>
+            <div>{{ response.responses[4] }}</div>
+          </div>
+      </div>
+      <form>
+        <div id="buttons" class="col-lg-12 col-xs-12 buttons">
+          <input type="button" id="replayBtn" value="replay" (click)="replay()" />
+          <input type="button" id="quitBtn" value="quit" (click)="quit()" />
+        </div>
+      </form>
+    </div>
+  </section>

@@ -1,39 +1,39 @@
 <app-overlay *ngIf='showOverlay'></app-overlay>
 <app-conjugator-overlay-form (formChange)='getOverlayData($event)' *ngIf='showConjugatorOverlay'></app-conjugator-overlay-form>
+<app-conjugator-report [reportInfo]="report" *ngIf='showReport'></app-conjugator-report>
 <section>
   <h1>verb conjugator</h1>
-  <form *ngIf='showForm'>
-    <fieldset>
+  <form *ngIf='showForm' class="col-lg-5 col-md-8 col-sm-10">
+    <fieldset class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
       <h2>{{infinitive}}</h2>
       <h3>{{translation}}</h3>
       <h4>{{tense}} tense</h4>
       <dl>
         <dt>Yo</dt>
-        <dd><input type="text" id="yo" name="yo" [(ngModel)]="inputAnswers.yo" /></dd>
+        <dd><input type="text" id="yo" (focus)="getSelectedTextbox('yo')" class="col-lg-12" name="yo" [(ngModel)]="inputAnswers.yo" /></dd>
       </dl>
       <dl>
         <dt>Tu</dt>
-        <dd><input type="text" id="tu" name="tu" [(ngModel)]="inputAnswers.tu" /></dd>
+        <dd><input type="text" id="tu" (focus)="getSelectedTextbox('tu')" class="col-lg-12" name="tu" [(ngModel)]="inputAnswers.tu" /></dd>
       </dl>
       <dl>
         <dt>El/Ella/Usted</dt>
-        <dd><input type="text" id="el" name="el" [(ngModel)]="inputAnswers.el" /></dd>
+        <dd><input type="text" id="el" (focus)="getSelectedTextbox('el')" class="col-lg-12" name="el" [(ngModel)]="inputAnswers.el" /></dd>
       </dl>
       <dl>
         <dt>Nosotros/Nosotras</dt>
-        <dd><input type="text" id="nosotros" name="nosotros" [(ngModel)]="inputAnswers.nosotros" /></dd>
+        <dd><input type="text" id="nosotros" (focus)="getSelectedTextbox('nosotros')" class="col-lg-12" name="nosotros" [(ngModel)]="inputAnswers.nosotros" /></dd>
       </dl>
       <dl>
         <dt>Ellos/Ellas/Ustedes</dt>
-        <dd><input type="text" id="ellos" name="els" [(ngModel)]="inputAnswers.els" /></dd>
+        <dd><input type="text" id="els" (focus)="getSelectedTextbox('els')" class="col-lg-12" name="els" [(ngModel)]="inputAnswers.els" /></dd>
       </dl>
     </fieldset>
+    <app-spanish-accents (accentMessage)="placeAccent($event)"></app-spanish-accents>
     <div class="buttons">
       <input type="button" class="button answer" id="answerBtn" name="answerBtn" value="answer" (click)="getAnswers()" />
       <input type="button" class="button reset" id="resetBtn" name="resetBtn" value="reset" (click)="reset()" />
       <input type="button" id="quitBtn" value="quit" (click)="quit()" />
     </div>
-    <div class="buttons"><input type="button" id="accentBtn" value={{buttonText}} (click)="toggleAccents()" /></div>
   </form>
 </section>
-<app-spanish-accent-codes [animationState]="animationState"></app-spanish-accent-codes>

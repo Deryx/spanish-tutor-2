@@ -1,35 +1,60 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Vocabulary } from '../vocabulary';
-import 'rxjs/add/operator/map';
-
-const baseUrl = 'http://localhost:4000/api';
+import { ApolloModule, Apollo } from 'apollo-angular';
+import gql from 'graphql-tag';
 
 @Injectable()
 export class VocabularyService {
-  constructor( private http: HttpClient ){}
 
-  getDictionary(){
-    const uri = baseUrl + '/words';
-    return this.http
-      .get( uri )
-      .map( function(res){
-        return res;
-      });
-  }
+  constructor( private apollo: Apollo ){}
 
-  getCategory( category: string ){
-    const uri = baseUrl + '/words/' + category;
-    return this.http
-      .get( uri )
-      .map( function(res){
-        return res;
-      });
-  }
+  Dictionary: any = gql`
+    query dictionary { 
+        dictionary {
+          id,
+          word,
+          translation,
+          pronunciation,
+          category,
+          gender,
+          image
+        }
+      }`
 
-  addWord( newWord: Vocabulary ){
-    const uri = baseUrl + '/words';
-    return this.http
-      .post( uri, newWord )
-  }
+  Category: any = gql`
+    query category($category: Int!) {
+      category(category: $category) {
+          id,
+          word,
+          translation,
+          pronunciation,
+          category,
+          gender,
+          image
+      }
+    }`
+
+  Word: any = gql`
+    query word($word: String!) {
+      word(word: $word) {
+          id,
+          word,
+          translation,
+          pronunciation,
+          category,
+          gender,
+          image
+      }
+    }`
+
+  CreateWord: any = gql`
+    mutation ($word: String!, $translation: String!, $pronunciation: String!, $category: Int!, $gender: String!, $image: String!) {
+      createWord(word: $word, translation: $translation, pronunciation: $pronunciation, category: $category, gender: $gender, image: $image) {
+        word,
+        translation,
+        pronunciation,
+        category,
+        gender,
+        image
+      }
+    }`
 }

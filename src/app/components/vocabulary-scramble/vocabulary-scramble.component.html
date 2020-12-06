@@ -1,17 +1,17 @@
 <app-overlay *ngIf='showOverlay'></app-overlay>
 <app-vocabulary-overlay-form (formChange)='getOverlayData($event)' *ngIf='showVocabularyOverlay'></app-vocabulary-overlay-form>
+<app-report [reportInfo]="report" *ngIf='showReport'></app-report>
 <section>
     <h1>vocabulary scramble</h1>
 
-    <form *ngIf='showForm'>
-        <fieldset>
-            <h2>{{translation}}</h2>
-            <div><img src={{image}} /></div>
-            <ul [sortablejs]="this.scrambledWord">
-                <li *ngFor="let letter of this.scrambledWord">
-                    <h3>{{letter}}</h3>
-                </li>
-            </ul>
+    <form *ngIf='showForm' ngClass="col-lg-4 col-md-6 col-xs-12">
+        <fieldset class="col-lg-12 col-xs-12">
+            <h2>[ {{translation}} ]</h2>
+            <div cdkDropList class="tile-list" cdkDropListOrientation="horizontal" (cdkDropListDropped)="drop($event)">
+                <div ngClass="letter-box" *ngFor="let letter of scrambledWord" cdkDrag>
+                    {{letter}}
+                </div>
+            </div>
         </fieldset>
         <div id="buttons">
             <input type="button" id="answerBtn" value="answer" (click)="getAnswer()" />

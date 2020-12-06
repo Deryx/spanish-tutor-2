@@ -1,5 +1,6 @@
 export class Conjugation {
-  tense: string;
+  verb: number;
+  tense: number;
   yo: string;
   tu: string;
   el: string;
@@ -7,11 +8,40 @@ export class Conjugation {
   els: string;
 
   constructor() {
-    this.tense = '';
+    this.verb = 0;
+    this.tense = 0;
     this.yo = '';
     this.tu = '';
     this.el = '';
     this.nosotros = '';
     this.els = '';
+  }
+
+  setVerb(verb: number) {
+    this.verb = verb;
+  }
+
+  setTense(tense: number) {
+    this.tense = tense;
+  }
+
+  setYo(yo: string) {
+    this.yo = yo;
+  }
+
+  setTu(tu: string) {
+    this.tu = tu;
+  }
+
+  setEl(el: string) {
+    this.el = el;
+  }
+
+  setNosotros(nosotros: string) {
+    this.nosotros = nosotros;
+  }
+
+  setEls(els: string) {
+    this.els = els;
   }
 }

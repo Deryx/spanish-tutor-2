@@ -1,0 +1,131 @@
+section {
+    margin: 0 auto;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 97;
+    position: absolute;
+  }
+  
+  fieldset {
+    margin: 0 auto;
+    padding: 30px;
+    border: none;
+    border-radius: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: "Roboto", sans-serif;
+    background: rgb(255 255 255);
+    border: 1px solid black;
+    font-size: 115%;
+  }
+  
+  dl {
+    padding: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.25rem;
+    margin-left: 0;
+  }
+  
+  dt {
+    margin: 0;
+    padding: 0;
+    clear: both;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+  
+  .container{
+    display: inline-block;
+    position: relative;
+    width: 25%;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  
+  dd input {
+    position: absolute;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+  
+  .radioCategory {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+    border-radius: 50%;
+  }
+  
+  dd input:checked ~ .radioCategory {
+    background-color: #2196F3;
+  }
+  
+  dd .radioCategory:after {
+    content: '';
+    position: absolute;
+    display: none;
+  }
+  
+  dd input:checked ~ .radioCategory:after {
+    display: block;
+  }
+  
+  dd .radioCategory:after {
+    top: 9px;
+    left: 9px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: white;
+  }
+  
+  #buttons {
+    margin-bottom: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  
+  input[type='button'] {
+    padding: 0.625rem;
+    width: 100px;
+    background: rgb(30, 126, 52);
+    border: none;
+    border-radius: 10px;
+    text-transform: uppercase;
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+    letter-spacing: 1px;
+    font-size: 1.0rem;
+  }
+  
+  select {
+    margin-top: 0.6rem;
+    border-radius: 10px;
+    border: 2px solid #CCC;
+    padding: 10px;
+  }
+  

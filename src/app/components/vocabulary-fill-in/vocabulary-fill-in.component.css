@@ -1,0 +1,99 @@
+section {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    flex-direction: column;
+}
+  
+section h1 {
+    margin-top: 8.0rem;
+    text-transform: uppercase;
+    text-align: center;
+    padding-bottom: 50px;
+    font-family: "Open Sans", serif;
+    text-transform: capitalize;
+    font-weight: normal;
+    font-size: 175%;
+}
+
+form {
+    padding: 1.5rem 0;
+    border: none;
+    font-family: "Roboto", sans-serif;
+    margin: 0 auto;
+}
+  
+fieldset {
+    margin: 0 auto;
+    border: none;
+    width: 100%;
+    border-top: 1px solid rgb(198, 10, 30);
+    border-bottom: 1px solid rgb(198, 10, 30);
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+fieldset h2 {
+    text-align: center;
+    color:  rgb(198, 10, 30);
+}
+
+fieldset div {
+    margin: 0 auto;
+}
+
+fieldset input {
+    margin-top: 1.5rem;
+    padding: 0.325rem;
+    border: none;
+    border-bottom: 1px solid rgb(0, 0, 0);
+}
+
+fieldset .reminder {
+    color: rgb(198, 10, 30);
+    font-size: 0.75rem;
+    font-weight: bold;
+    margin-top: 0.3rem;
+}
+
+#buttons {
+    margin: 1.75rem 0;
+    padding: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+  
+#buttons input {
+    margin-right: 0.15rem;
+    margin-left:  0.15rem;
+    padding: 0.75rem;
+    width: 100px;
+    border: none;
+    text-transform: uppercase;
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+    letter-spacing: 1px;
+    font-family: "Roboto", sans-serif;
+    border-radius: 5px;
+    font-size: 100%;
+}
+  
+#answerBtn {
+    margin-left: 30px;
+    background: rgb(40, 167, 69);
+}
+  
+#resetBtn {
+    background: rgb(52, 58, 64);
+}
+  
+#quitBtn {
+    background: rgb(198, 10, 30);
+}

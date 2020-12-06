@@ -1,23 +1,25 @@
 <app-overlay *ngIf='showOverlay'></app-overlay>
 <app-vocabulary-overlay-form (formChange)='getOverlayData($event)' *ngIf='showVocabularyOverlay'></app-vocabulary-overlay-form>
+<app-slider-report [reportInfo]="report" *ngIf='showReport'></app-slider-report>
 <section>
     <h1>vocabulary slider</h1>
     <form *ngIf='showForm'>
-        <fieldset>
-            <ul>
-                <li ngClass="card" *ngFor="let translationCard of this.translationCards">
-                    <h3>{{translationCard.translation}}</h3>
-                    <div><img src={{translationCard.image}} /></div>
-                </li>
-            </ul>
+        <fieldset class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+            <div class="static-container col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                <div class="static-tile" *ngFor="let translationCard of translationCards">
+                    {{translationCard.translation}}
+                </div>
+            </div>
 
-            <ul [sortablejs]="this.wordSlides">
-                <li ngClass="slide" *ngFor="let word of this.wordSlides">
-                    {{word}}
-                </li>
-            </ul>
+            <div class="slide-list col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                <div cdkDropList class="word-list" (cdkDropListDropped)="drop($event)">
+                    <div class="slide-box" *ngFor="let wordSlide of wordSlides" cdkDrag>
+                        {{wordSlide}}
+                    </div>
+                </div>
+            </div>
         </fieldset>
-        <div id="buttons">
+        <div id="buttons" class="col-lg-12 col-xs-12">
             <input type="button" id="answerBtn" value="answer" (click)="getAnswer()" />
             <input type="button" id="resetBtn" value="reset" (click)="reset()" />
             <input type="button" id="quitBtn" value="quit" (click)="quit()" />

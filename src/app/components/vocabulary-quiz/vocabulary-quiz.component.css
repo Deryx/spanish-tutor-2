@@ -1,6 +1,5 @@
 section {
   margin: 0;
-  margin-top: 4.0rem;
   padding: 0;
   width: 100%;
   font-family: 'Roboto', sans-serif;
@@ -10,59 +9,57 @@ section {
 }
 
 section h1 {
+  margin-top: 8.0rem;
   text-transform: uppercase;
   text-align: center;
-  padding-bottom: 50px;
-  font-family: "Alfa Slab One", serif;
+  font-family: "Open Sans", serif;
   text-transform: capitalize;
   font-weight: normal;
   font-size: 175%;
 }
 
 form {
-  margin-top: 5rem;
-  width: 35rem;
+  margin-top: 2.0rem;
   display: flex;
   flex-direction: column;
   justify-items: center;
 }
 
 fieldset {
-  width: 100%;
   border: none;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  border: 1px solid rgb( 190, 190, 190 );
   font-family: "Roboto", sans-serif;
+  font-size: 125%;
+  border-top: 1px solid rgb(198, 10, 30);
+  border-bottom: 1px solid rgb(198, 10, 30);
 }
 
 fieldset h2 {
-  margin-top: 20px;
-  font-size: 2.5em;
+  margin-top: 1.5rem;
+  margin-bottom: 1.8rem;
+  font-size: 1.5em;
   text-align: center;
+  color: rgb(198, 10, 30);
 }
 
 #answers {
   margin-bottom: 20px;
-  margin-left: 30px;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-flow: row wrap;
   align-content: center;
-  font-size: 1.25em;
+  font-size: 1.0rem;
 }
 
 .row {
-  width: 35%;
-  margin-left: 30px;
+  margin-left: 0;
   display: flex;
-  flex: 0 33%;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: flex-start;
-  align-items: center;
 }
 
 #buttons {
@@ -74,17 +71,23 @@ fieldset h2 {
 }
   
 #buttons input {
-  margin-right: 0.15rem;
+  margin-right: 0.5rem;
   margin-left:  0.15rem;
-  padding: 0.625rem;
-  width: 100px;
+  padding: 0.75rem;
   border: none;
   text-transform: uppercase;
   color: rgb(255, 255, 255);
   font-weight: bold;
   letter-spacing: 1px;
-  font-size: 0.75em;
   font-family: "Roboto", sans-serif;
+  border-radius: 5px;
+  font-size: 100%;
+}
+
+label {
+  margin-top: 0.3rem;
+  margin-left: 0.5rem;
+  font-size: 125%;
 }
 
 #answerBtn {
@@ -97,5 +100,5 @@ fieldset h2 {
 }
 
 #quitBtn {
-  background: rgb(220, 53, 69);
+  background:rgb(198, 10, 30);
 }

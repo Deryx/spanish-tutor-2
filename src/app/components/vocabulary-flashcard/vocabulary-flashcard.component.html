@@ -1,25 +1,32 @@
 <section>
   <h1>vocabulary flashcard</h1>
 
-  <div>
-    <form>
-      <fieldset>
-        <select id="category" name="category" [(ngModel)]="category" (change)="changeCategory()"></select>
-        <div class="card" [@flipState]="flip">
-          <div class="face front">
+  <div class="col-lg-5 col-md-8 col-sm-10">
+    <form class="col-lg-12 col-xs-12">
+      <fieldset class="col-lg-10">
+        <div class="col-lg-12">
+          <select id="category" class="col-xs-3 col-sm-6 col-lg-6" name="category" [(ngModel)]="category" (change)="changeCategory()"></select>
+        </div>
+        <div class="col-lg-12 or">OR</div>
+        <div class="col-lg-12">
+          <input type="text" name="searchWord" class="col-xs-3 col-sm-6 col-lg-6" id="searchWord" [(ngModel)]="searchWord" placeholder="INPUT A ENGLISH/SPANISH WORD" />
+          <input id="btnSearch" type="button" class="button search" value="search" (click)="getWord()">
+        </div>
+        <div class="card col-lg-12" [@flipState]="flip">
+          <div class="face front col-lg-12">
             <h2>[ {{word}} ]</h2>
             <h3>{{pronunciation}}</h3>
           </div>
-          <div class="face back">
+          <div class="face back col-lg-12">
             <h2>{{translation}}</h2>
-            <img src={{image}} />
+            <img src={{image}} *ngIf="showImage"/>
           </div>
         </div>
       </fieldset>
       <div class="buttons">
         <input id="btnReset" class="button reset" type="reset" value="reset">
         <input id="btnFlip" class="button flip" type="button" value="flip card" (click)="flipCard()">
-        <input id="btnNext" class="button next" type="button" value="next" (click)="next()">
+        <input id="btnNext" class="button next" type="button" value="next" *ngIf="!searchWord" (click)="next()">
       </div>
     </form>
   </div>

@@ -1,0 +1,79 @@
+section {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 97;
+    position: absolute;
+  }
+
+section > div {
+    margin: 0 auto;
+    padding: 1.8rem;
+    z-index: 98;
+    position: absolute;
+    background: rgb(255, 255, 255);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 0.75rem;
+}
+
+h2, h3 {
+    text-align: center;
+}
+
+div div {
+    text-align: center;
+}
+
+.header {
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-top: 1.8rem;
+    margin-bottom: 0.5rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.row {
+    margin-bottom: 1.2rem;
+    padding-top: 0.625rem;
+    padding-bottom: 0.625rem;
+    border-bottom: 1px solid rgb(0, 0, 0);
+}
+
+.buttons {
+    margin-top: 50px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+  
+.buttons input {
+    margin-right: 0.15rem;
+    margin-left:  0.15rem;
+    padding: 0.625rem;
+    border: none;
+    text-transform: uppercase;
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+    font-size: 0.75em;
+    font-family: "Roboto", sans-serif;
+    border-radius: 5px;
+    font-size: 100%;
+}
+  
+#replayBtn {
+    background: rgb(52, 58, 64);
+}
+  
+#quitBtn {
+    background: rgb(220, 53, 69);
+}

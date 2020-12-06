@@ -1,66 +1,100 @@
 nav {
-  margin: 0;
+  margin: -0.5rem;
   padding: 0;
-  width: 225px;
+  width: 0;
   text-transform: uppercase;
   font-family: 'Roboto', sans-serif;
 }
 
 #menu  {
   margin: 0;
-  margin-top: -0.5rem;
+  margin-top: -0.8rem;
   padding: 0;
   width: 230px;
   list-style-type: none;
-  z-index: 99;
+  z-index: 100;
   position: absolute;
-  right: 0;
+  right: -140px;
+}
+
+@media (max-width: 1199.98px) {
+  #menu {
+    margin-right: -2.0rem;
+  }
 }
 
 .closeIcon {
   float: right;
-  margin-right: 1.5em;
-  margin-top: -1.5em;
-  color: rgb(255, 255, 255);
-  font-weight: bold;
 }
 
-#menu a {
+#menu li a {
   text-decoration: none;
-  color: rgb(255, 255, 255);
   font-size: 125%;
   font-weight: bold;
   letter-spacing: 0.2em;
   display: block;
+  padding: 0.1875rem 0.375rem;
+}
+
+#menu li a div {
+  width: 2.5rem;
+  height: 5px;
+  background: rgb(0 0 0);
+  background-color:  rgb(255, 196, 0);
+  margin: 6px 0;
 }
 
 ul#subMenu {
-  width: 100%;
+  width: 230px;
   list-style-type: none;
-  left: -8px;
-  margin-top: 1.2em;
+  left: -180px;
+  margin-top: 0.75rem;
   margin-left: 0;
   padding: 0;
-  z-index: 99;
+  z-index: 100;
   position: absolute;
-  background: rgb(255, 0, 0);
+  background: rgb(198, 10, 30);
   font-weight: 800;
   font-family: 'Roboto', sans-serif;
 }
 
 ul#subMenu li {
+  width: 100%;
   padding-top: 5px;
-  padding-bottom: 5px;
+}
+
+ul#subMenu li .heading {
+  color: rgb(255, 196, 0);
+  margin: 0;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  width: 100%;
+  display: block;
+  font-size: 115%;
+  border-top: 1px solid  rgb(255, 196, 0);
+  border-bottom: 1px solid  rgb(255, 196, 0);
 }
 
 ul#subMenu li a {
-  background: rgb(255, 0, 0);
-  color: rgb(255, 255, 255);
+  width: 100%;
+  display: block;
+  background: rgb(198, 10, 30);
+  color: rgb(255, 196, 0);
   font-weight: normal;
   letter-spacing: 0;
 }
 
 ul#subMenu li a:hover {
-  background: rgb(255, 255, 255);
-  color: rgb(255, 0, 0);
+  background: rgb(255, 196, 0);
+  color: rgb(198, 10, 30);
+}
+ul#subMenu ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+ul#subMenu ul li {
+  text-indent: none;
 }

@@ -1,36 +1,94 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Verb } from '../verb';
-import 'rxjs/add/operator/map';
-
-const baseUrl = 'http://localhost:4000/api';
+import { ApolloModule, Apollo } from 'apollo-angular';
+import gql from 'graphql-tag';
 
 @Injectable()
 export class VerbService {
+  verbs: any;
+  verb: any;
 
-  constructor( private http: HttpClient ){}
+  constructor( private apollo: Apollo ){}
 
-  getVerbs(){
-    const uri = baseUrl + '/verbs';
-    return this.http
-      .get( uri )
-      .map( function(res){
-        return res;
-      });
-  }
+  Tenses: any = gql`
+    query tenses {
+      tenses {
+        id,
+        tense
+      }
+    }`
 
-  getVerb( verb: string ){
-    const uri = baseUrl + '/verbs/' + verb;
-    return this.http
-      .get( uri )
-      .map( function(res){
-        return res;
-      });
-  }
+  Verbs: any = gql`
+    query verbs {
+      verbs {
+        id,
+        infinitive,
+        translation,
+        pronunciation
+      }
+    }`
 
-  addVerb( newVerb: Verb ) {
-    const uri = baseUrl + '/verbs';
-    return this.http
-      .post( uri, newVerb )
-  }
+  Verb: any = gql`
+    query verb($verb: String!) {
+      verb(verb: $verb) {
+        id,
+        infinitive,
+        translation,
+        pronunciation
+      }
+    }`
+
+  VerbId: any = gql`
+    query verbId($verb: String!) {
+      verbId(verb: $verb) {
+        id
+      }
+    }`
+
+  CreateVerb: any = gql`
+    mutation ($infinitive: String!, $translation: String!, $pronunciation: String!) {
+      createVerb(infinitive: $infinitive, translation: $translation, pronunciation: $pronunciation) {
+        infinitive,
+        translation,
+        pronunciation
+      }
+    }`
+
+  Conjugation: any = gql`
+  query conjugation($verb: Int!, $tense: Int!) {
+    conjugation(verb: $verb, tense: $tense) {
+      verb,
+      tense,
+      yo,
+      tu,
+      el,
+      nosotros,
+      els
+    }
+  }`
+
+  Conjugations: any = gql`
+    query conjugations($verb: Int!) {
+      conjugations(verb: $verb) {
+        verb,
+        tense,
+        yo,
+        tu,
+        el,
+        nosotros,
+        els
+      }
+    }`
+
+  CreateConjugation: any = gql`
+    mutation ($verb: Int!, $tense: Int!, $yo: String!, $tu: String!, $el: String!, $nosotros: String!, $els: String!) {
+      createConjugation(verb: $verb, tense: $tense, yo: $yo, tu: $tu, el: $el, nosotros: $nosotros, els: $els) {
+        verb,
+        tense,
+        yo,
+        tu,
+        el,
+        nosotros,
+        els
+      }
+    }`
 }

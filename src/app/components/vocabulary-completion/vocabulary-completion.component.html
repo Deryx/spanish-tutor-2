@@ -1,24 +1,23 @@
 <app-overlay *ngIf='showOverlay'></app-overlay>
 <app-vocabulary-overlay-form (formChange)='getOverlayData($event)' *ngIf='showVocabularyOverlay'></app-vocabulary-overlay-form>
-<section>
+<app-report [reportInfo]="report" *ngIf='showReport'></app-report>
+<section class="col-lg-12">
     <h1>vocabulary completion</h1>
 
-    <form [ngFormOptions]="{ updateOn: 'change' }" *ngIf='showForm'>
-        <fieldset>
-            <h2>{{translation}}</h2>
-            <div><img src={{image}} /></div>
+    <form [ngFormOptions]="{ updateOn: 'change' }" *ngIf='showForm' class="col-lg-4 col-md-6 col-xs-12">
+        <fieldset class="col-lg-12 col-xs-12">
+            <h2>[ {{translation}} ]</h2>
             <ul>
-                <li *ngFor="let letter of this.incompleteWord; index as i, trackBy: trackByFn">
-                    <input type='text' id="userAnswer{{i}}" name="userAnswer{{i}}" [(ngModel)]="this.incompleteWord[i]" maxlength="1" [disabled]="letter !== ''" />
+                <li *ngFor="let letter of incompleteWord; index as i, trackBy: trackByFn">
+                    <input type='text' id="userAnswer{{i}}" name="userAnswer{{i}}" (focus)="getSelectedTextbox(i)" [(ngModel)]="this.incompleteWord[i]" maxlength="1" [disabled]="letter !== ''" />
                 </li>
             </ul>
         </fieldset>
+        <app-spanish-accents (accentMessage)="placeAccent($event)"></app-spanish-accents>
         <div class="buttons">
             <input type="button" id="answerBtn" value="answer" (click)="getAnswer()" />
             <input type="button" id="resetBtn" value="reset" (click)="reset()" />
             <input type="button" id="quitBtn" value="quit" (click)="quit()" />
         </div>
-        <div class="buttons"><input type="button" id="accentBtn" value={{buttonText}} (click)="toggleAccents()" /></div>
     </form>
 </section>
-<app-spanish-accent-codes [animationState]="animationState"></app-spanish-accent-codes>

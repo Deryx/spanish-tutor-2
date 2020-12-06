@@ -2,9 +2,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { ApolloModule, APOLLO_OPTIONS } from 'apollo-angular';
+import { HttpLinkModule, HttpLink } from 'apollo-angular-link-http';
+import { InMemoryCache } from "apollo-cache-inmemory";
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { SortablejsModule } from 'angular-sortablejs';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 import { AppComponent } from './app.component';
 import { MenuComponent } from './components/menu/menu.component';
@@ -29,14 +32,20 @@ import { VocabularyCategoriesService } from './services/vocabulary-categories.se
 import { OverlayComponent } from './components/overlay/overlay.component';
 import { ConjugatorOverlayFormComponent } from './components/conjugator-overlay-form/conjugator-overlay-form.component';
 import { VocabularyOverlayFormComponent } from './components/vocabulary-overlay-form/vocabulary-overlay-form.component';
-import { SpanishAccentCodesComponent } from './components/spanish-accent-codes/spanish-accent-codes.component';
 import { HomeComponent } from './components/home/home.component';
 import { CardComponent } from './components/card/card.component';
+import { ReportComponent } from './components/report/report.component';
+import { ConjugatorReportComponent } from './components/conjugator-report/conjugator-report.component';
+import { SliderReportComponent } from './components/slider-report/slider-report.component';
+import { SpanishAccentsComponent } from './components/spanish-accents/spanish-accents.component';
+import { VerbSliderComponent } from './components/verb-slider/verb-slider.component';
+import { VocabularyFillInComponent } from './components/vocabulary-fill-in/vocabulary-fill-in.component';
+import { VerbOverlayFormComponent } from './components/verb-overlay-form/verb-overlay-form.component';
+import { VerbSliderReportComponent } from './components/verb-slider-report/verb-slider-report.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'letter-pronunciation', component: LetterPronunciationComponent },
-  { path: 'verb-input', component: VerbInputComponent },
   { path: 'vocabulary-completion', component: VocabularyCompletionComponent },
   { path: 'vocabulary-flashcard', component: VocabularyFlashcardComponent },
   { path: 'vocabulary-input', component: VocabularyInputComponent },
@@ -45,7 +54,10 @@ const appRoutes: Routes = [
   { path: 'vocabulary-slider', component: VocabularySliderComponent },
   { path: 'verb-flashcard', component: VerbFlashcardComponent },
   { path: 'verb-conjugator', component: VerbConjugatorComponent },
-  { path: 'verb-input', component: VerbInputComponent }
+  { path: 'verb-input', component: VerbInputComponent },
+  { path: 'verb-slider', component: VerbSliderComponent },
+  { path: 'vocabulary-fill-in', component: VocabularyFillInComponent }
+
 ];
 
 @NgModule({
@@ -67,25 +79,43 @@ const appRoutes: Routes = [
     OverlayComponent,
     ConjugatorOverlayFormComponent,
     VocabularyOverlayFormComponent,
-    SpanishAccentCodesComponent,
     LetterPronunciationComponent,
     HomeComponent,
-    CardComponent
+    CardComponent,
+    ReportComponent,
+    ConjugatorReportComponent,
+    SliderReportComponent,
+    SpanishAccentsComponent,
+    VerbSliderComponent,
+    VocabularyFillInComponent,
+    VerbOverlayFormComponent,
+    VerbSliderReportComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    SortablejsModule.forRoot({
-      animation: 200
-    }),
+    ApolloModule,
+    HttpLinkModule,
     HttpClientModule,
     FormsModule,
+    DragDropModule,
     RouterModule.forRoot(
       appRoutes,
       { enableTracing: true }
     )
   ],
-  providers: [VocabularyService, VerbService, RandomNumberGeneratorService, VocabularyCategoriesService],
+  providers: [{
+    provide: APOLLO_OPTIONS,
+    useFactory: (httpLink: HttpLink) => {
+      return {
+        cache: new InMemoryCache(),
+        link: httpLink.create({
+          uri: "http://localhost:5000/graphql"
+        })
+      }
+    },
+    deps: [HttpLink]
+  }, VocabularyService, VerbService, RandomNumberGeneratorService, VocabularyCategoriesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
