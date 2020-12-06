@@ -5,11 +5,10 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve | node server.js",
-    "build": "ng build --prod",
+    "build": "ng build --prod --output-path docs --base-href /SpanishTutor2/",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e",
-    "deploy": "ng build --prod --base-href https://deryx.github.io/SpanishTutor2/"
+    "e2e": "ng e2e"
   },
   "private": true,
   "dependencies": {
