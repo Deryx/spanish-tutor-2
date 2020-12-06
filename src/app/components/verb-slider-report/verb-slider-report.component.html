@@ -28,5 +28,11 @@
             <div>{{ response.responses[4] }}</div>
           </div>
       </div>
+      <form>
+        <div id="buttons" class="col-lg-12 col-xs-12 buttons">
+          <input type="button" id="replayBtn" value="replay" (click)="replay()" />
+          <input type="button" id="quitBtn" value="quit" (click)="quit()" />
+        </div>
+      </form>
     </div>
   </section>

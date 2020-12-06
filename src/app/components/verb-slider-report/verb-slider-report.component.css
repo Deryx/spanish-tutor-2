@@ -47,3 +47,33 @@ div div {
     padding-bottom: 0.625rem;
     border-bottom: 1px solid rgb(0, 0, 0);
 }
+
+.buttons {
+    margin-top: 50px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+  
+.buttons input {
+    margin-right: 0.15rem;
+    margin-left:  0.15rem;
+    padding: 0.625rem;
+    border: none;
+    text-transform: uppercase;
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+    font-size: 0.75em;
+    font-family: "Roboto", sans-serif;
+    border-radius: 5px;
+    font-size: 100%;
+}
+  
+#replayBtn {
+    background: rgb(52, 58, 64);
+}
+  
+#quitBtn {
+    background: rgb(220, 53, 69);
+}
