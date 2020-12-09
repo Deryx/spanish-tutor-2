@@ -10,6 +10,10 @@ section {
     z-index: 97;
     position: absolute;
   }
+
+  form {
+    width: 100%;
+  }
   
   fieldset {
     margin: 0 auto;
