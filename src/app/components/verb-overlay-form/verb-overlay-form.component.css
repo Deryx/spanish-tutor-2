@@ -41,7 +41,7 @@ section {
     margin-left: 0;
   }
 
-  @media only screen and (max-width: 480px) {
+  @media only screen and (max-width: 1024px) {
     dl {
       display: flex;
       flex-direction: column;
@@ -79,6 +79,13 @@ section {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+  }
+
+  @media only screen and (max-width: 1024px) {
+    .container {
+      display: inline;
+      text-align: left;
+    }
   }
   
   dd input {
@@ -148,7 +155,7 @@ section {
     padding: 10px;
   }
 
-  @media only screen and (max-width: 480px) {
+  @media only screen and (max-width: 1024px) {
     select {
       padding: 5px;
     }
