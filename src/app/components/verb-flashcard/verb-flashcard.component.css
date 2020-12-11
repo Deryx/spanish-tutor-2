@@ -37,8 +37,8 @@ div.buttons {
   padding-top: 25px;
   width: 100%;
   text-align: center;
+  margin-bottom: 1.5rem;
 }
-
 
 .button {
   margin-right: 0.15rem;
@@ -54,8 +54,24 @@ div.buttons {
   font-size: 100%;
 }
 
+@media only screen and (max-width: 480px) {
+  .button {
+    padding: 0.75rem;
+    font-size: 75%;
+  }
+}
+
 .search {
   margin-left: 0.75rem;
+}
+
+@media only screen and (max-width: 480px) {
+  .search {
+    padding: 8px;
+    display: block;
+    margin: 0 auto;
+    margin-top: 10px;
+  }
 }
 
 .flip {
@@ -71,6 +87,12 @@ select {
   margin-bottom: 25px;
   border-radius: 0.8rem;
   border: 2px solid #CCC;
+}
+
+@media only screen and (max-width: 480px) {
+  select {
+    padding: 5px;
+  }
 }
 
 .or {
@@ -92,7 +114,13 @@ select {
   border: 2px solid #CCC;
 }
 
-.next, .search {
+@media only screen and (max-width: 480px) {
+  [type='text'] {
+    padding: 5px;
+  }
+ }
+ 
+ .next, .search {
   background: rgb(30, 126, 52);
 }
 
@@ -106,20 +134,35 @@ dl {
 }
 
 dt {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-  width: 50%;
-  margin-right: 0.5em;
+  margin: 0;
+  margin-top: 5px;
+  margin-right: 10px;
+  padding: 0;
+  width: 30%;
+  font-weight: bold;
+  text-transform: capitalize;
+  text-align: right;
+  font-size: 125%;
+}
+
+@media only screen and (max-width: 480px) {
+  dt {
+    width: 50%;
+    font-size: 90%;
+  }
 }
 
 dd {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  width: 50%;
-  margin-left: 0.5em;
-  font-weight: bold;
+  margin: 0;
+  padding: 0;
+  width: 70%;
+}
+
+@media only screen and (max-width: 480px) {
+  dd {
+    width: 50%;
+    text-align: left;
+  }
 }
 
 .card {

@@ -17,6 +17,8 @@ nav {
   right: -140px;
 }
 
+
+
 @media (max-width: 1199.98px) {
   #menu {
     margin-right: -2.0rem;
@@ -56,6 +58,12 @@ ul#subMenu {
   background: rgb(198, 10, 30);
   font-weight: 800;
   font-family: 'Roboto', sans-serif;
+}
+
+@media only screen and (max-width: 1024px) {
+  ul#subMenu {
+    margin-top: 0.25rem;
+  }
 }
 
 ul#subMenu li {

@@ -51,23 +51,42 @@ dl {
   font-size: 1.0rem;
 }
 
+@media only screen and (max-width: 480px) {
+  dl {
+    font-size: 80%;
+  }
+}
+
 dt {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-  width: 50%;
-  margin-top: 0.25em;
-  margin-right: 0.5em;
-  font-size: 1.25rem;
+  margin: 0;
+  margin-top: 5px;
+  margin-right: 10px;
+  padding: 0;
+  width: 40%;
+  font-weight: bold;
+  text-transform: capitalize;
+  text-align: right;
+  font-size: 125%;
+}
+
+@media only screen and (max-width: 1024px) {
+  dt {
+    width: 50%;
+    font-size: 100%;
+  }
 }
 
 dd {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  width: 50%;
-  margin-left: 0.5em;
-  font-weight: bold;
+  margin: 0;
+  padding: 0;
+  width: 60%;
+}
+
+@media only screen and (max-width: 1024px) {
+  dd {
+    width: 50%;
+    text-align: right;
+  }
 }
 
 h2 {
@@ -88,8 +107,22 @@ h4 {
 
 input[type='text'] {
   padding: 8px;
-  border-radius: 0.8rem;
-  border: 2px solid #CCC;
+  border: none;
+  border-radius: 0;
+  border-top: 2px solid  rgb(198, 10, 30);
+  border-bottom: 2px solid  rgb(198, 10, 30);
+  background: none;
+}
+
+@media only screen and (max-width: 1024px) {
+  input[type='text'] {
+    padding: 5px;
+    border: none;
+    border-radius: 0;
+    border-top: 1px solid  rgb(198, 10, 30);
+    border-bottom: 1px solid  rgb(198, 10, 30);
+    background: none;
+  }
 }
 
 input[type='button'] {

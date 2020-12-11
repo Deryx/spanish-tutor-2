@@ -1,7 +1,7 @@
 <section>
   <h1>Verb Input</h1>
-  <form (ngSubmit)="onSubmit()" class="col-lg-6 col-md-6 col-xs-12">
-    <fieldset class="col-lg-8">
+  <form (ngSubmit)="onSubmit()" class="col-xs-12 col-sm-8 col-lg-6">
+    <fieldset class="col-xs-12">
       <dl>
         <dt>infinitive:</dt>
         <dd>
@@ -49,7 +49,7 @@
           </dd>
         </dl>
         <dl>
-          <dt>el/Ella/Usted:</dt>
+          <dt>el, ella, usted:</dt>
           <dd>
             <input type="text" name="presentEl" id="presentEl" (focus)="getSelectedTextbox('presentEl')" class="col-lg-12"
                   [(ngModel)]="presentEl"
@@ -65,7 +65,7 @@
           </dd>
         </dl>
         <dl>
-          <dt>ellos/Ellas/Ustedes:</dt>
+          <dt>ellos, ellas, ustedes:</dt>
           <dd><input type="text" name="presentEls" id="presentEls" (focus)="getSelectedTextbox('presentEls')" class="col-lg-12"
                     [(ngModel)]="presentEls"
                     required />

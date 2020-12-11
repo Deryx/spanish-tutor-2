@@ -74,6 +74,16 @@ ul li {
     text-align: center;
 }
 
+@media only screen and (max-width: 480px) {
+    ul li {
+        margin: 5px;
+        list-style: none;
+        width: 15px;
+        height: 15px;
+        text-align: center;
+    }
+}
+  
 ul li:first-child {
     margin-left: 0;
 }
@@ -96,7 +106,6 @@ li h3 {
     margin-right: 0.15rem;
     margin-left:  0.15rem;
     padding: 0.625rem;
-    width: 100px;
     border: none;
     text-transform: uppercase;
     color: rgb(255, 255, 255);
@@ -105,6 +114,14 @@ li h3 {
     font-family: "Roboto", sans-serif;
     border-radius: 5px;
     font-size: 100%;
+}
+
+@media only screen and (max-width: 480px) {
+    .buttons input {
+        padding: 0.375rem;
+        width: 75px;
+        font-size: 75%;
+    }
 }
   
 #answerBtn {
@@ -133,4 +150,12 @@ input[type='text'] {
     width: 2.0rem;
     height: 2.0rem;
     font-size: 1.0rem;
+}
+
+@media only screen and (max-width: 480px) {
+    input[type='text'] {
+        width: 1.25rem;
+        height: 1.25rem;
+        font-size: 0.75rem;
+    }
 }

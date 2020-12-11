@@ -41,6 +41,21 @@ dl {
   margin-left: 0;
 }
 
+@media only screen and (max-width: 480px) {
+  dl {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 90%;
+  }
+
+  dt, dd {
+    display: block;
+    clear: both;
+    text-align: center;
+  }
+}
+
 dt {
   margin: 0;
   padding: 0;
@@ -64,6 +79,13 @@ dt {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+}
+
+@media only screen and (max-width: 1024px) {
+  .container {
+    display: inline;
+    text-align: left;
+  }
 }
 
 dd input {
@@ -131,4 +153,10 @@ select {
   border-radius: 10px;
   border: 2px solid #CCC;
   padding: 10px;
+}
+
+@media only screen and (max-width: 480px) {
+  select {
+    padding: 5px;
+  }
 }

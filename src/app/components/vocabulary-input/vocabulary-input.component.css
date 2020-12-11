@@ -52,6 +52,12 @@ dl {
   border-top: 1px solid rgb(198, 10, 30);
 }
 
+@media only screen and (max-width: 480px) {
+  dl {
+    font-size: 80%;
+  }
+}
+
 dl:nth-of-type(1) {
   margin-top: -1px;
 }
@@ -68,10 +74,22 @@ dt {
   font-size: 125%;
 }
 
+@media only screen and (max-width: 480px) {
+  dt {
+    width: 40%;
+  }
+}
+
 dd {
   margin: 0;
   padding: 0;
   width: 70%;
+}
+
+@media only screen and (max-width: 480px) {
+  dd {
+    width: 60%;
+  }
 }
 
 option[value=""][disabled] {
@@ -79,11 +97,23 @@ option[value=""][disabled] {
 }
 
 dd input {
-  margin: 0;
-  padding: 10px;
-  width: 100%;
-  border-radius: 0.8rem;
-  border: 2px solid #CCC;
+  padding: 8px;
+  border: none;
+  border-radius: 0;
+  border-top: 2px solid  rgb(198, 10, 30);
+  border-bottom: 2px solid  rgb(198, 10, 30);
+  background: none;
+}
+
+@media only screen and (max-width: 1024px) {
+  dd input {
+    padding: 5px;
+    border: none;
+    border-radius: 0;
+    border-top: 1px solid  rgb(198, 10, 30);
+    border-bottom: 1px solid  rgb(198, 10, 30);
+    background: none;
+  }
 }
 
 dl:nth-of-type(1) dt {

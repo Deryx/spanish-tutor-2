@@ -3,8 +3,8 @@
 <app-conjugator-report [reportInfo]="report" *ngIf='showReport'></app-conjugator-report>
 <section>
   <h1>verb conjugator</h1>
-  <form *ngIf='showForm' class="col-lg-5 col-md-8 col-sm-10">
-    <fieldset class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
+  <form *ngIf='showForm' class="col-xs-12 col-sm-10 col-md-8 col-lg-6">
+    <fieldset class="col-xs-12">
       <h2>{{infinitive}}</h2>
       <h3>{{translation}}</h3>
       <h4>{{tense}} tense</h4>
@@ -21,7 +21,7 @@
         <dd><input type="text" id="el" (focus)="getSelectedTextbox('el')" class="col-lg-12" name="el" [(ngModel)]="inputAnswers.el" /></dd>
       </dl>
       <dl>
-        <dt>Nosotros/Nosotras</dt>
+        <dt>Nosotros</dt>
         <dd><input type="text" id="nosotros" (focus)="getSelectedTextbox('nosotros')" class="col-lg-12" name="nosotros" [(ngModel)]="inputAnswers.nosotros" /></dd>
       </dl>
       <dl>

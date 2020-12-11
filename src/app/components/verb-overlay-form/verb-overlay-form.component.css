@@ -40,6 +40,21 @@ section {
     margin-bottom: 1.25rem;
     margin-left: 0;
   }
+
+  @media only screen and (max-width: 480px) {
+    dl {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      font-size: 90%;
+    }
+
+    dt, dd {
+      display: block;
+      clear: both;
+      text-align: center;
+    }
+  }
   
   dt {
     margin: 0;
@@ -131,5 +146,11 @@ section {
     border-radius: 10px;
     border: 2px solid #CCC;
     padding: 10px;
+  }
+
+  @media only screen and (max-width: 480px) {
+    select {
+      padding: 5px;
+    }
   }
   

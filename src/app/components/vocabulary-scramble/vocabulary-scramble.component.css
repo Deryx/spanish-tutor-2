@@ -67,8 +67,11 @@ fieldset h2 {
     font-size: 125%;
 }
 
-.letter-tile {
-    border-right: none;
+@media only screen and (max-width: 480px) {
+    .letter-box {
+        font-size: 90%;
+        padding: 0.25rem 0.5rem;
+    }
 }
 
 .cdk-drag-preview {
@@ -93,6 +96,7 @@ fieldset h2 {
     display: flex;
     flex-direction: row;
     justify-content: center;
+    margin-bottom: 1.75rem;
 }
   
 #buttons input {
@@ -108,6 +112,14 @@ fieldset h2 {
     border-radius: 5px;
     font-size: 100%;
   }
+
+  @media only screen and (max-width: 480px) {
+    #buttons input {
+        padding: 0.375rem;
+        width: 75px;
+        font-size: 75%;
+    }
+}
   
 #answerBtn {
     margin-left: 30px;

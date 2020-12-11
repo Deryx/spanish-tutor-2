@@ -60,33 +60,36 @@ dl {
   width: 100%;
   display: flex;
   flex-direction: row;
-  border-top: 1px solid -;
+  border-top: 1px solid  rgb(198, 10, 30);
   border-bottom: 1px solid rgb(198, 10, 30);
 }
 
-dl:first-child, dl:nth-child(2) {
-  border-top: none;
+@media only screen and (max-width: 480px) {
+  dl {
+    font-size: 80%;
+  }
 }
 
-dl:last-child, dl:nth-child(2) {
-  border-bottom: none;
-}
-
-dl:nth-child(4) dt {
-  margin-top: 5px;
+dl:nth-of-type(1) {
+  margin-top: -1px;
 }
 
 dt {
   margin: 0;
   margin-top: 5px;
-  margin-right: 1.25rem;
+  margin-right: 10px;
   padding: 0;
   width: 30%;
   font-weight: bold;
   text-transform: capitalize;
   text-align: right;
-  justify-content: flex-end;
   font-size: 125%;
+}
+
+@media only screen and (max-width: 480px) {
+  dt {
+    width: 40%;
+  }
 }
 
 dd {
@@ -95,11 +98,33 @@ dd {
   width: 70%;
 }
 
+@media only screen and (max-width: 480px) {
+  dd {
+    width: 60%;
+  }
+}
+
+option[value=""][disabled] {
+  display: none;
+}
+
 dd input {
   margin: 0;
-  padding: 8px;
-  border-radius: 0.8rem;
-  border: 2px solid #CCC;
+  padding: 10px;
+  border: none;
+  border-radius: 0;
+  border-bottom: 1px solid  rgb(198, 10, 30);
+  background: none;
+}
+
+@media only screen and (max-width: 480px) {
+  dd input {
+    padding: 5px;
+    border: none;
+    border-radius: 0;
+    border-bottom: 1px solid  rgb(198, 10, 30);
+    background: none;
+  }
 }
 
 dl:nth-of-type(3) dt {
@@ -114,6 +139,15 @@ input[type="button"], input[type="submit"] {
   font-family: 'Roboto', sans-serif;
   letter-spacing: 0.09rem;
   border-radius: 0.0625rem;
+}
+
+@media only screen and (max-width: 480px) {
+  input[type="button"], input[type="submit"] {
+      padding: 0.375rem;
+      width: 75px;
+      font-size: 75%;
+      border-radius: 0.0625rem;
+    }
 }
 
 #nextBtn {
