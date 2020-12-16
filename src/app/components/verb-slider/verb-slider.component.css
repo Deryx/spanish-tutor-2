@@ -61,7 +61,7 @@ fieldset h2 {
     font-size: 125%;
 }
 
-@media only screen and (max-width: 480px) {
+@media only screen and (max-width: 1024px) {
     .static-tile, .slide-box {
         padding: 0.25rem;
         font-size: 90%;
@@ -124,7 +124,7 @@ fieldset h2 {
     font-size: 100%;
 }
 
-@media only screen and (max-width: 480px) {
+@media only screen and (max-width: 1024px) {
     #buttons input {
         padding: 0.375rem;
         width: 75px;

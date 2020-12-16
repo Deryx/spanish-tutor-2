@@ -11,3 +11,9 @@
   position: absolute;
 }
 
+@media only screen and (max-width: 1024px) {
+  #overlay {
+      height: 175%;
+  }
+}
+

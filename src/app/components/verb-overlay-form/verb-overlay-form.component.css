@@ -48,12 +48,6 @@ section {
       justify-content: center;
       font-size: 90%;
     }
-
-    dt, dd {
-      display: block;
-      clear: both;
-      text-align: center;
-    }
   }
   
   dt {
@@ -67,6 +61,14 @@ section {
     align-items: flex-start;
   }
   
+  @media only screen and (max-width: 1024px) {
+    dt, dd {
+      display: block;
+      clear: both;
+      text-align: center;
+    }
+  }
+
   .container{
     display: inline-block;
     position: relative;

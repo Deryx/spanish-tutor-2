@@ -9,7 +9,13 @@ section {
     align-items: center;
     z-index: 97;
     position: absolute;
-  }
+}
+
+@media only screen and (max-width: 1024px) {
+    section {
+        height: 175%;
+    }
+}
 
 section > div {
     margin: 0 auto;
@@ -21,6 +27,12 @@ section > div {
     flex-direction: column;
     justify-content: center;
     border-radius: 0.75rem;
+}
+
+@media only screen and (max-width: 1024px) {
+    section > div {
+        border-radius: 0;
+    }
 }
 
 h2, h3 {
@@ -41,13 +53,47 @@ div div {
     justify-content: center;
 }
 
+@media only screen and (max-width: 1024px) {
+    div .header {
+        display: none;
+    }
+}
+
 .row {
     margin-bottom: 1.2rem;
     padding-top: 0.625rem;
     padding-bottom: 0.625rem;
     border-bottom: 1px solid rgb(0, 0, 0);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
 }
 
+@media only screen and (max-width: 1024px) {
+    .row {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+.row div {
+    width: 16%;
+}
+
+@media only screen and (max-width: 1024px) {
+    .row div {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    .row div div {
+        width: 50%;
+    }
+}
+ 
 .buttons {
     margin-top: 50px;
     width: 100%;
