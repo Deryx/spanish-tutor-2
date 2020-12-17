@@ -160,11 +160,11 @@ export class VerbConjugatorComponent {
 
   getAnswers = (): void => {
     const userAnswers = {
-      yo: this.inputAnswers.yo,
-      tu: this.inputAnswers.tu,
-      el: this.inputAnswers.el,
-      nosotros: this.inputAnswers.nosotros,
-      els: this.inputAnswers.els
+      yo: this.inputAnswers.yo || 'N/A',
+      tu: this.inputAnswers.tu || 'N/A',
+      el: this.inputAnswers.el || 'N/A',
+      nosotros: this.inputAnswers.nosotros || 'N/A',
+      els: this.inputAnswers.els || 'N/A'
     }
     this.reportDatum.userAnswers = userAnswers;
     this.reportData.push(this.reportDatum);

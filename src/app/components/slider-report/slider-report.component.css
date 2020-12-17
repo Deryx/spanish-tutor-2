@@ -2,20 +2,14 @@ section {
     margin: 0;
     padding: 0;
     width: 100%;
-    height: 100%;
+    height: 175%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     z-index: 97;
     position: absolute;
-}
-
-@media only screen and (max-width: 1024px) {
-    section {
-        height: 175%;
-    }
-}
+  }
 
 section > div {
     margin: 0 auto;
@@ -53,45 +47,32 @@ div div {
     justify-content: center;
 }
 
-@media only screen and (max-width: 1024px) {
-    div .header {
-        display: none;
-    }
-}
-
 .row {
     margin-bottom: 1.2rem;
     padding-top: 0.625rem;
     padding-bottom: 0.625rem;
     border-bottom: 1px solid rgb(0, 0, 0);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.row div {
+    width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: center;
 }
-
-@media only screen and (max-width: 1024px) {
-    .row {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-    }
+.row div div {
+    width: 50%;
 }
 
-.row div {
-    width: 16%;
+.row div div:nth-of-type(1) {
+    font-weight: bold;
 }
 
-@media only screen and (max-width: 1024px) {
-    .row div {
-        width: 100%;
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-    }
-
-    .row div div {
-        width: 50%;
-    }
+.row div:last-child {
+    padding: 0;
 }
  
 .buttons {

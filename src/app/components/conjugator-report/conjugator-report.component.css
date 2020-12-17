@@ -2,7 +2,7 @@ section {
     margin: 0;
     padding: 0;
     width: 100%;
-    height: 100%;
+    height: 175%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -23,58 +23,59 @@ section > div {
     border-radius: 0.75rem;
 }
 
-div h2, h3 {
+@media only screen and (max-width: 1024px) {
+    section > div {
+        border-radius: 0;
+    }
+}
+
+h2, h3 {
     text-align: center;
 }
 
-h3 {
-    margin-bottom: 2.0rem;
+div div {
+    text-align: center;
 }
 
-table {
-    margin: 0 auto;
-    width: 100%;
-    background: rgb(255, 255, 255);
-}
-
-table tr {
-    width: 100%;
+.header {
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-top: 1.8rem;
+    margin-bottom: 0.5rem;
     display: flex;
     flex-direction: row;
+    justify-content: center;
+}
+
+.row {
+    margin-bottom: 1.2rem;
+    padding-top: 0.625rem;
+    padding-bottom: 0.625rem;
     border-bottom: 1px solid rgb(0, 0, 0);
-}
-
-table tr th {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    flex-grow: 1;
-    width: 16%;
-}
-
-table tr td {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    flex-grow: 1;
-    width: 16%;
-}
-
-table tbody tr td:first-child {
-    align-items: center;
-}
-
-.form {
+    width: 100%;
     display: flex;
     flex-direction: column;
+}
+
+.row div {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
     justify-content: center;
 }
 
-form {
-    margin: 0;
-    width: 100%;
+.row div div {
+    width: 33%;
 }
 
+.row div div:nth-of-type(1) {
+    font-weight: bold;
+}
+
+.row div:last-child {
+    padding: 0;
+}
+ 
 .buttons {
     margin-top: 50px;
     width: 100%;
