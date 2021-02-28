@@ -107,6 +107,10 @@ select {
  [type='text'] {
    padding: 5px;
  }
+
+face front h2 {
+   font-size: 75%;
+ }
 }
 
 .card {
@@ -155,13 +159,25 @@ h2 {
   font-size: 3em;
 }
 
-h3 {
+@media only screen and (max-width: 480px) {
+ h2 {
+    font-size: 2em;
+  }
+}
+ 
+ h3 {
   margin-top: 0;
   font-size: 2em;
   font-style: italic;
   color:rgb(198, 10, 30);
 }
 
-img {
+@media only screen and (max-width: 480px) {
+  h3 {
+     font-size: 1.5em;
+   }
+ }
+  
+ img {
   margin-top: 2.0rem;
 }
