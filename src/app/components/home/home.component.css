@@ -15,6 +15,12 @@
   -webkit-filer: blur(10px); */
 }
 
+@media (min-width: 769px) and (max-width: 1024px) {
+  .bg-image {
+    height: 50%;
+  }
+}
+
 @media only screen and (min-width: 1025px) {
   .bg-image {
     background-size: 100%;
@@ -57,6 +63,12 @@
   border-bottom: 1px solid rgb(190, 190, 190);
 }
 
+@media (min-width: 1024px) {
+  .content {
+    min-height: 0;
+  }
+}
+
 .content h2 {
   margin: 1.7rem 0;
   text-align: center;
@@ -64,14 +76,22 @@
 }
 
 .row {
-  width: 100%;
-  display: row;
+  margin: 0 auto;
+  display: flex;
   flex-direction: row;
   justify-content: center;
 }
 
+@media only screen and (max-width: 480px) {
+  .row {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+
 .row .card {
-  padding: 1.5rem;
+  padding: 0;
   margin-top: 1.5rem;
   margin-bottom: 1.5rem;
   width: 100%;
@@ -81,17 +101,63 @@
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 }
 
+@media only screen and (max-width: 480px) {
+  .row .card {
+    margin: 0 auto;
+    margin-top: 1.7rem;
+    width: 80%;
+  }
+}
+
 .row .card h4 {
-  margin-bottom: 1.5rem;
+  margin: 1.5rem 0;
   text-align: center;
   font-weight: 500;
   text-transform: capitalize;
+}
+
+.row .card p {
+  padding: 1.5rem;
+}
+
+@media only screen and (max-width: 480px) {
+  .row .card p {
+    font-size: 85%;
+  }
 }
 
 .row .card a {
   color: rgb(198, 10, 30);
   font-weight: bold;
   letter-spacing: 1px;
+}
+
+.row .card .image {
+  margin: 0;
+  width: 100%;
+  background: rgb(255, 196, 0);
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+}
+
+@media only screen and (max-width: 1024px) {
+  .row .card .image {
+    display: none;
+  }
+}
+
+.row .card .image img {
+  height: 50%;
+}
+
+@media only screen and (max-width: 480px) {
+  .row .card .image img {
+    width: 40%;
+    padding: 1.0rem 0;
+  }
 }
 
 footer {
@@ -103,8 +169,89 @@ footer {
   justify-content: center;
 }
 
+@media only screen and (max-width: 480px) {
+  footer {
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  section {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid rgb(255, 196, 0);
+  }
+
+  section:last-child {
+    border-bottom: none;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  footer {
+    min-height: 50%;
+  }
+}
+
+@media (min-width: 1024px) {
+  footer {
+    min-height: 60%;
+  }
+}
+
 footer .row {
+  width: 100%;
   padding: 1.7rem 0;
+}
+
+footer .row h1 {
+  margin: 0;
+  margin-left: 1.7rem;
+  padding: 0;
+  font-size: 1.75rem !important;
+  letter-spacing: 0.1rem;
+  font-size: inherit;
+}
+
+@media (max-width: 1199.98px) {
+  header h1 {
+    font-size: 125% !important;
+  }
+}
+
+footer .row .titleMy {
+  font-family: 'Lobster', sans-serif;
+  z-index: 99;
+  position: absolute;
+  margin-top: -0.3em;
+  margin-left: -1.3em;
+  letter-spacing: 0;
+  color: rgb(0, 0, 0);
+}
+
+footer .row .titleST {
+  font-family: 'Open Sans', sans-serif;
+}
+
+footer .row h1 a {
+  text-decoration: none;
+  color:  rgb(255, 196, 0);
+}
+
+footer .row h1 a:visited {
+  color: rgb(255, 196, 0);
+}
+
+footer .row .tagline {
+  margin-top: 0.5rem;
+  color: rgb(255, 196, 0);
+  font-weight: 500;
+  letter-spacing: 1px;
+}
+
+footer .row .copyright {
+  font-weight: 500;
+  letter-spacing: 1px;
+  color:  rgb(0, 0, 0);
 }
 
 footer h4 {
@@ -118,6 +265,12 @@ footer .mainlist {
   margin: 0;
   padding-left: 0;
   list-style-type: none;
+}
+
+@media only screen and (max-width: 480px) {
+  footer .mainlist {
+    margin-bottom: 1.5rem;
+  }
 }
 
 footer .mainlist li {
@@ -137,4 +290,5 @@ footer .sublist {
 
 footer .sublist li a {
   color:  rgb(255, 196, 0);
+  font-weight: 400;
 }

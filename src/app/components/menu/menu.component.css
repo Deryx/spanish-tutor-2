@@ -1,6 +1,7 @@
 nav {
   margin: -0.5rem;
   padding: 0;
+  padding-right: 16px;
   width: 0;
   text-transform: uppercase;
   font-family: 'Roboto', sans-serif;

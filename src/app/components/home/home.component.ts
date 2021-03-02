@@ -14,8 +14,13 @@ export class HomeComponent {
   vocabularyQuizCard: any;
   vocabularyScrambleCard: any;
   vocabularySliderCard: any;
+  titleMy: string;
+  titleST: string;
 
   constructor() {
+    this.titleMy = 'My';
+    this.titleST = 'SpanishTutor';
+
     this.pronunciationCard = {
       image: '../../../assets/images/home/letter-pronunciation.png',
       header: 'letter pronunciation',
