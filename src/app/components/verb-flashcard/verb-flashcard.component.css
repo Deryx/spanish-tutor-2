@@ -177,7 +177,13 @@ dd {
   transform-style: preserve-3d;
   transform: transform 1s;
   border: 1px solid rgb(112,128,144);
-  border-radius: 2.0rem;
+  border-radius: 1.0rem;
+}
+
+@media only screen and (min-width: 1025px) {
+  .card {
+    width: 60%;
+  }
 }
 
 .face {
@@ -190,7 +196,7 @@ dd {
   backface-visibility: hidden;
   user-select: none;
   margin: 0 auto;
-  border-radius: 2.0rem;
+  border-radius: 1.0rem;
 }
 
 .front {
@@ -198,7 +204,7 @@ dd {
   background: rgb(0, 0, 0);
   color: rgb(255, 255, 255);
   padding-top: 2.0rem;
-  border-radius: 2.0rem;
+  border-radius: 1.0rem;
 }
 
 .back {

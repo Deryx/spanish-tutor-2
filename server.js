@@ -63,7 +63,8 @@ const ConjugationType = new graphql.GraphQLObjectType({
     tu: { type: graphql.GraphQLString },
     el: { type: graphql.GraphQLString },
     nosotros: { type: graphql.GraphQLString },
-    els: { type: graphql.GraphQLString }
+    vosotros: { type: graphql.GraphQLString },
+    ellos: { type: graphql.GraphQLString }
   }
 })
 
@@ -358,7 +359,10 @@ let mutationType = new graphql.GraphQLObjectType({
         nosotros: {
           type: new graphql.GraphQLNonNull(graphql.GraphQLString)
         },
-        els: {
+        vosotros: {
+          type: new graphql.GraphQLNonNull(graphql.GraphQLString)
+        },
+        ellos: {
           type: new graphql.GraphQLNonNull(graphql.GraphQLString)
         }
       },
@@ -369,10 +373,11 @@ let mutationType = new graphql.GraphQLObjectType({
         tu,
         el,
         nosotros,
-        els
+        vosotros,
+        ellos
       }) => {
         return new Promise((resolve, reject) => {
-          database.run('INSERT INTO Conjugations (verb, tense, yo, tu, el, nosotros, els) VALUES (?, ?, ?, ?, ?, ?, ?);', [verb, tense, yo, tu, el, nosotros, els], (err) => {
+          database.run('INSERT INTO Conjugations (verb, tense, yo, tu, el, nosotros, vosotros, ellos) VALUES (?, ?, ?, ?, ?, ?, ?, ?);', [verb, tense, yo, tu, el, nosotros, vosotros, ellos], (err) => {
             if (err) {
               reject(null);
             }
@@ -385,7 +390,8 @@ let mutationType = new graphql.GraphQLObjectType({
                 tu: tu,
                 el: el,
                 nosotros: nosotros,
-                els: els
+                vosotros: vosotros,
+                ellos: ellos
               });
             });
           });

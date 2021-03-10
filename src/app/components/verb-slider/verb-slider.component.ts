@@ -114,6 +114,7 @@ export class VerbSliderComponent {
         this.currentAnswers.push(conjugations[0].tu);
         this.currentAnswers.push(conjugations[0].el);
         this.currentAnswers.push(conjugations[0].nosotros);
+        this.currentAnswers.push(conjugations[0].vosotros);
         this.currentAnswers.push(conjugations[0].els);
         this.randomNumberService.generateRandomNumberArray( this.currentAnswers.length, this.currentAnswers.length, scrambledSlides );
         

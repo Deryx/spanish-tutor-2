@@ -5,7 +5,7 @@
       <dl>
         <dt>infinitive:</dt>
         <dd>
-          <input type="text" id="infinitive" name="infinitive" (focus)="getSelectedTextbox('infinitive')" class="col-lg-12"
+          <input type="text" id="infinitive" name="infinitive" (focus)="getSelectedTextbox('infinitive')" class="col-lg-10"
                 [(ngModel)]="infinitive"
                 required
           />
@@ -14,7 +14,7 @@
       <dl>
         <dt>translation:</dt>
         <dd>
-          <input type="text" id="translation" name="translation" class="col-lg-12"
+          <input type="text" id="translation" name="translation" class="col-lg-10"
                 [(ngModel)]="translation"
                 required
           />
@@ -23,7 +23,7 @@
       <dl>
         <dt>pronunciation:</dt>
         <dd>
-          <input type="text" id="pronunciation" name="pronunciation" class="col-lg-12"
+          <input type="text" id="pronunciation" name="pronunciation" class="col-lg-10"
                 [(ngModel)]="pronunciation"
                 required
           />
@@ -35,7 +35,7 @@
         <dl>
           <dt>yo:</dt>
           <dd>
-            <input type="text" name="presentYo" id="presentYo" (focus)="getSelectedTextbox('presentYo')" class="col-lg-12"
+            <input type="text" name="presentYo" id="presentYo" (focus)="getSelectedTextbox('presentYo')" class="col-lg-10"
                   [(ngModel)]="presentYo"
                   required />
           </dd>
@@ -43,7 +43,7 @@
         <dl>
           <dt>tu:</dt>
           <dd>
-            <input type="text" name="presentTu" id="presentTu" (focus)="getSelectedTextbox('presentTu')" class="col-lg-12"
+            <input type="text" name="presentTu" id="presentTu" (focus)="getSelectedTextbox('presentTu')" class="col-lg-10"
                   [(ngModel)]="presentTu"
                   required />
           </dd>
@@ -51,7 +51,7 @@
         <dl>
           <dt>el, ella, usted:</dt>
           <dd>
-            <input type="text" name="presentEl" id="presentEl" (focus)="getSelectedTextbox('presentEl')" class="col-lg-12"
+            <input type="text" name="presentEl" id="presentEl" (focus)="getSelectedTextbox('presentEl')" class="col-lg-10"
                   [(ngModel)]="presentEl"
                   required />
           </dd>
@@ -59,16 +59,24 @@
         <dl>
           <dt>nosotros:</dt>
           <dd>
-            <input type="text" name="presentNosotros" id="presentNosotros" (focus)="getSelectedTextbox('presentNosotros')" class="col-lg-12"
+            <input type="text" name="presentNosotros" id="presentNosotros" (focus)="getSelectedTextbox('presentNosotros')" class="col-lg-10"
                   [(ngModel)]="presentNosotros"
                   required />
           </dd>
         </dl>
         <dl>
+          <dt>vosotros:</dt>
+          <dd>
+            <input type="text" name="presentVosotros" id="presentVosotros" (focus)="getSelectedTextbox('presentVosotros')" class="col-lg-10"
+                  [(ngModel)]="presentVosotros"
+                  required />
+          </dd>
+        </dl>
+        <dl>
           <dt>ellos, ellas, ustedes:</dt>
-          <dd><input type="text" name="presentEls" id="presentEls" (focus)="getSelectedTextbox('presentEls')" class="col-lg-12"
-                    [(ngModel)]="presentEls"
-                    required />
+          <dd><input type="text" name="presentEllos" id="presentEllos" (focus)="getSelectedTextbox('presentEllos')" class="col-lg-10"
+                  [(ngModel)]="presentEllos"
+                  required />
           </dd>
         </dl>
       </section>
@@ -78,7 +86,7 @@
         <dl>
           <dt>yo:</dt>
           <dd>
-            <input type="text" name="preteriteYo" id="preteriteYo" (focus)="getSelectedTextbox('preteriteYo')" class="col-lg-12"
+            <input type="text" name="preteriteYo" id="preteriteYo" (focus)="getSelectedTextbox('preteriteYo')" class="col-lg-10"
                   required
                   [(ngModel)]="preteriteYo"
             >
@@ -87,7 +95,7 @@
         <dl>
           <dt>tu:</dt>
           <dd>
-            <input type="text" name="preteriteTu" id="preteriteTu" (focus)="getSelectedTextbox('preteriteTu')" class="col-lg-12"
+            <input type="text" name="preteriteTu" id="preteriteTu" (focus)="getSelectedTextbox('preteriteTu')" class="col-lg-10"
                   required
                   [(ngModel)]="preteriteTu"
             >
@@ -96,7 +104,7 @@
         <dl>
           <dt>el/Ella/Usted:</dt>
           <dd>
-            <input type="text" name="preteriteEl" id="preteriteEl" (focus)="getSelectedTextbox('preteriteEl')" class="col-lg-12"
+            <input type="text" name="preteriteEl" id="preteriteEl" (focus)="getSelectedTextbox('preteriteEl')" class="col-lg-10"
                   required
                   [(ngModel)]="preteriteEl"
             >
@@ -105,17 +113,26 @@
         <dl>
           <dt>nosotros:</dt>
           <dd>
-            <input type="text" name="preteriteNosotros" id="preteriteNosotros" (focus)="getSelectedTextbox('preteriteNosotros')" class="col-lg-12"
+            <input type="text" name="preteriteNosotros" id="preteriteNosotros" (focus)="getSelectedTextbox('preteriteNosotros')" class="col-lg-10"
                   required
                   [(ngModel)]="preteriteNosotros"
             >
           </dd>
         </dl>
         <dl>
+          <dt>vosotros:</dt>
+          <dd>
+            <input type="text" name="preteriteVosotros" id="preteriteVosotros" (focus)="getSelectedTextbox('preteriteVosotros')" class="col-lg-10"
+                  required
+                  [(ngModel)]="preteriteVosotros"
+            >
+          </dd>
+        </dl>
+        <dl>
           <dt>ellos/Ellas/Ustedes:</dt>
-          <dd><input type="text" name="preteriteEls" id="preteriteEls"  (focus)="getSelectedTextbox('preteriteEls')" class="col-lg-12"
-                    required
-                    [(ngModel)]="preteriteEls"
+          <dd><input type="text" name="preteriteEllos" id="preteriteEllos"  (focus)="getSelectedTextbox('preteriteEllos')" class="col-lg-10"
+                  required
+                  [(ngModel)]="preteriteEllos"
           >
           </dd>
         </dl>
@@ -126,7 +143,7 @@
         <dl>
           <dt>yo:</dt>
           <dd>
-            <input type="text" name="imperfectYo" id="imperfectYo" (focus)="getSelectedTextbox('imperfectYo')" class="col-lg-12"
+            <input type="text" name="imperfectYo" id="imperfectYo" (focus)="getSelectedTextbox('imperfectYo')" class="col-lg-10"
                   required
                   [(ngModel)]="imperfectYo"
             >
@@ -135,7 +152,7 @@
         <dl>
           <dt>tu:</dt>
           <dd>
-            <input type="text" name="imperfectTu" id="imperfectTu" (focus)="getSelectedTextbox('imperfectTu')" class="col-lg-12"
+            <input type="text" name="imperfectTu" id="imperfectTu" (focus)="getSelectedTextbox('imperfectTu')" class="col-lg-10"
                   required
                   [(ngModel)]="imperfectTu"
             >
@@ -144,7 +161,7 @@
         <dl>
           <dt>el/Ella/Usted:</dt>
           <dd>
-            <input type="text" name="imperfectEl" id="imperfectEl" (focus)="getSelectedTextbox('imperfectEl')" class="col-lg-12"
+            <input type="text" name="imperfectEl" id="imperfectEl" (focus)="getSelectedTextbox('imperfectEl')" class="col-lg-10"
                   required
                   [(ngModel)]="imperfectEl"
             >
@@ -153,65 +170,26 @@
         <dl>
           <dt>nosotros:</dt>
           <dd>
-            <input type="text" name="imperfectNosotros" id="imperfectNosotros" (focus)="getSelectedTextbox('imperfectNosotros')" class="col-lg-12"
+            <input type="text" name="imperfectNosotros" id="imperfectNosotros" (focus)="getSelectedTextbox('imperfectNosotros')" class="col-lg-10"
                   required
                   [(ngModel)]="imperfectNosotros"
             >
           </dd>
         </dl>
         <dl>
-          <dt>ellos/Ellas/Ustedes:</dt>
-          <dd><input type="text" name="imperfectEls" id="imperfectEls" (focus)="getSelectedTextbox('imperfectEls')" class="col-lg-12"
-                    required
-                    [(ngModel)]="imperfectEls"
-          >
-          </dd>
-        </dl>
-      </section>
-
-      <section *ngIf="currentTense === 'future'">
-        <h4>future tense</h4>
-        <dl>
-          <dt>yo:</dt>
+          <dt>vosotros:</dt>
           <dd>
-            <input type="text" name="futureYo" id="futureYo" (focus)="getSelectedTextbox('futureYo')" class="col-lg-12"
+            <input type="text" name="imperfectVosotros" id="imperfectVosotros" (focus)="getSelectedTextbox('imperfectVosotros')" class="col-lg-10"
                   required
-                  [(ngModel)]="futureYo"
-            >
-          </dd>
-        </dl>
-        <dl>
-          <dt>tu:</dt>
-          <dd>
-            <input type="text" name="futureTu" id="futureTu" (focus)="getSelectedTextbox('futureTu')" class="col-lg-12"
-                  required
-                  [(ngModel)]="futureTu"
-            >
-          </dd>
-        </dl>
-        <dl>
-          <dt>el/Ella/Usted:</dt>
-          <dd>
-            <input type="text" name="futureEl" id="futureEl" (focus)="getSelectedTextbox('futureEl')" class="col-lg-12"
-                  required
-                  [(ngModel)]="futureEl"
-            >
-          </dd>
-        </dl>
-        <dl>
-          <dt>nosotros:</dt>
-          <dd>
-            <input type="text" name="futureNosotros" id="futureNosotros"  (focus)="getSelectedTextbox('futureNosotros')" class="col-lg-12"
-                  required
-                  [(ngModel)]="futureNosotros"
+                  [(ngModel)]="imperfectVosotros"
             >
           </dd>
         </dl>
         <dl>
           <dt>ellos/Ellas/Ustedes:</dt>
-          <dd><input type="text" name="futureEls" id="futureEls" (focus)="getSelectedTextbox('futureEls')" class="col-lg-12"
+          <dd><input type="text" name="imperfectEllos" id="imperfectEllos" (focus)="getSelectedTextbox('imperfectEllos')" class="col-lg-10"
                     required
-                    [(ngModel)]="futureEls"
+                    [(ngModel)]="imperfectEllos"
           >
           </dd>
         </dl>
@@ -222,7 +200,7 @@
         <dl>
           <dt>yo:</dt>
           <dd>
-            <input type="text" name="conditionalYo" id="conditionalYo" (focus)="getSelectedTextbox('conditionalYo')" class="col-lg-12"
+            <input type="text" name="conditionalYo" id="conditionalYo" (focus)="getSelectedTextbox('conditionalYo')" class="col-lg-10"
                   required
                   [(ngModel)]="conditionalYo"
             >
@@ -231,7 +209,7 @@
         <dl>
           <dt>tu:</dt>
           <dd>
-            <input type="text" name="conditionalTu" id="conditionalTu" (focus)="getSelectedTextbox('conditionalTu')" class="col-lg-12"
+            <input type="text" name="conditionalTu" id="conditionalTu" (focus)="getSelectedTextbox('conditionalTu')" class="col-lg-10"
                   required
                   [(ngModel)]="conditionalTu"
             >
@@ -240,7 +218,7 @@
         <dl>
           <dt>el/Ella/Usted:</dt>
           <dd>
-            <input type="text" name="conditionalEl" id="conditionalEl" (focus)="getSelectedTextbox('conditionalEl')" class="col-lg-12"
+            <input type="text" name="conditionalEl" id="conditionalEl" (focus)="getSelectedTextbox('conditionalEl')" class="col-lg-10"
                   required
                   [(ngModel)]="conditionalEl"
             >
@@ -249,17 +227,83 @@
         <dl>
           <dt>nosotros:</dt>
           <dd>
-            <input type="text" name="conditionalNosotros" id="conditionalNosotros"  (focus)="getSelectedTextbox('conditionalNosotros')" class="col-lg-12"
+            <input type="text" name="conditionalNosotros" id="conditionalNosotros"  (focus)="getSelectedTextbox('conditionalNosotros')" class="col-lg-10"
                   required
                   [(ngModel)]="conditionalNosotros"
             >
           </dd>
         </dl>
         <dl>
+          <dt>vosotros:</dt>
+          <dd>
+            <input type="text" name="conditionalVosotros" id="conditionalVosotros"  (focus)="getSelectedTextbox('conditionalVosotros')" class="col-lg-10"
+                  required
+                  [(ngModel)]="conditionalVosotros"
+            >
+          </dd>
+        </dl>
+        <dl>
           <dt>ellos/Ellas/Ustedes:</dt>
-          <dd><input type="text" name="conditionalEls" id="conditionalEls" (focus)="getSelectedTextbox('conditionalEls')" class="col-lg-12"
+          <dd><input type="text" name="conditionalEllos" id="conditionalEllos" (focus)="getSelectedTextbox('conditionalEllos')" class="col-lg-10"
                     required
-                    [(ngModel)]="conditionalEls"
+                    [(ngModel)]="conditionalEllos"
+          >
+          </dd>
+        </dl>
+      </section>
+
+      <section *ngIf="currentTense === 'future'">
+        <h4>future tense</h4>
+        <dl>
+          <dt>yo:</dt>
+          <dd>
+            <input type="text" name="futureYo" id="futureYo" (focus)="getSelectedTextbox('futureYo')" class="col-lg-10"
+                  required
+                  [(ngModel)]="futureYo"
+            >
+          </dd>
+        </dl>
+        <dl>
+          <dt>tú:</dt>
+          <dd>
+            <input type="text" name="futureTu" id="futureTu" (focus)="getSelectedTextbox('futureTu')" class="col-lg-10"
+                  required
+                  [(ngModel)]="futureTu"
+            >
+          </dd>
+        </dl>
+        <dl>
+          <dt>él/Ella/Usted:</dt>
+          <dd>
+            <input type="text" name="futureEl" id="futureEl" (focus)="getSelectedTextbox('futureEl')" class="col-lg-10"
+                  required
+                  [(ngModel)]="futureEl"
+            >
+          </dd>
+        </dl>
+        <dl>
+          <dt>nosotros:</dt>
+          <dd>
+            <input type="text" name="futureNosotros" id="futureNosotros"  (focus)="getSelectedTextbox('futureNosotros')" class="col-lg-10"
+                  required
+                  [(ngModel)]="futureNosotros"
+            >
+          </dd>
+        </dl>
+        <dl>
+          <dt>vosotros:</dt>
+          <dd>
+            <input type="text" name="futureVosotros" id="futureVosotros"  (focus)="getSelectedTextbox('futureVosotros')" class="col-lg-10"
+                  required
+                  [(ngModel)]="futureVosotros"
+            >
+          </dd>
+        </dl>
+        <dl>
+          <dt>ellos/Ellas/Ustedes:</dt>
+          <dd><input type="text" name="futureEllos" id="futureEllos" (focus)="getSelectedTextbox('futureEllos')" class="col-lg-10"
+                    required
+                    [(ngModel)]="futureEllos"
           >
           </dd>
         </dl>
@@ -267,10 +311,10 @@
     </fieldset>
     <app-spanish-accents (accentMessage)="placeAccent($event)"></app-spanish-accents>
     <div class="col-lg-12">
-      <span *ngIf="currentTense !== 'conditional'">
+      <span *ngIf="currentTense !== 'future'">
         <input type="button" id="nextBtn" class="col-lg-12" (click)="next()" value="next" />
       </span>
-      <span *ngIf="currentTense === 'conditional'">
+      <span *ngIf="currentTense === 'future'">
         <input type="submit" id="submitBtn" class="col-lg-12" value="ADD VERB" />
       </span>
     </div>

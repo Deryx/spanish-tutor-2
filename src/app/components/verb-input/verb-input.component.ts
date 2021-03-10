@@ -24,31 +24,36 @@ export class VerbInputComponent {
   presentTu = '';
   presentEl = '';
   presentNosotros = '';
-  presentEls = '';
+  presentVosotros = '';
+  presentEllos = '';
 
   preteriteYo = '';
   preteriteTu = '';
   preteriteEl = '';
   preteriteNosotros = '';
-  preteriteEls = '';
+  preteriteVosotros = '';
+  preteriteEllos = '';
 
   imperfectYo = '';
   imperfectTu = '';
   imperfectEl = '';
   imperfectNosotros = '';
-  imperfectEls = '';
-
-  futureYo = '';
-  futureTu = '';
-  futureEl = '';
-  futureNosotros = '';
-  futureEls = '';
+  imperfectVosotros = '';
+  imperfectEllos = '';
 
   conditionalYo = '';
   conditionalTu = '';
   conditionalEl = '';
   conditionalNosotros = '';
-  conditionalEls = '';
+  conditionalVosotros = '';
+  conditionalEllos = '';
+
+  futureYo = '';
+  futureTu = '';
+  futureEl = '';
+  futureNosotros = '';
+  futureVosotros = '';
+  futureEllos = '';
 
   newVerb = new Verb();
   selectedTextbox: string;
@@ -58,8 +63,8 @@ export class VerbInputComponent {
   presentConjugation: Conjugation = new Conjugation();
   preteriteConjugation: Conjugation = new Conjugation();
   imperfectConjugation: Conjugation = new Conjugation();
-  futureConjugation: Conjugation = new Conjugation();
   conditionalConjugation: Conjugation = new Conjugation();
+  futureConjugation: Conjugation = new Conjugation();
 
   private queryVerb: Subscription;
 
@@ -76,31 +81,36 @@ export class VerbInputComponent {
     this.presentTu = '';
     this.presentEl = '';
     this.presentNosotros = '';
-    this.presentEls = '';
+    this.presentVosotros = '';
+    this.presentEllos = '';
 
     this.preteriteYo = '';
     this.preteriteTu = '';
     this.preteriteEl = '';
     this.preteriteNosotros = '';
-    this.preteriteEls = '';
+    this.preteriteVosotros = '';
+    this.preteriteEllos = '';
 
     this.imperfectYo = '';
     this.imperfectTu = '';
     this.imperfectEl = '';
     this.imperfectNosotros = '';
-    this.imperfectEls = '';
-
-    this.futureYo = '';
-    this.futureTu = '';
-    this.futureEl = '';
-    this.futureNosotros = '';
-    this.futureEls = '';
+    this.imperfectVosotros = '';
+    this.imperfectEllos = '';
 
     this.conditionalYo = '';
     this.conditionalTu = '';
     this.conditionalEl = '';
     this.conditionalNosotros = '';
-    this.conditionalEls = '';
+    this.conditionalVosotros = '';
+    this.conditionalEllos = '';
+
+    this.futureYo = '';
+    this.futureTu = '';
+    this.futureEl = '';
+    this.futureNosotros = '';
+    this.futureVosotros = '';
+    this.futureEllos = '';
   }
 
   changeTense( tense: string ){
@@ -113,9 +123,9 @@ export class VerbInputComponent {
     }else if( this.currentTense === 'preterite' ){
       this.changeTense('imperfect');
     }else if( this.currentTense === 'imperfect' ){
-      this.changeTense('future');
-    }else if( this.currentTense === 'future' ){
       this.changeTense('conditional');
+    }else if( this.currentTense === 'conditional' ){
+      this.changeTense('future');
     }
 }
 
@@ -144,7 +154,8 @@ export class VerbInputComponent {
         tu: conjugation.tu,
         el: conjugation.el,
         nosotros: conjugation.nosotros,
-        els: conjugation.els
+        vosotros: conjugation.vosotros,
+        ellos: conjugation.ellos
       }
     }).subscribe( data => {
       console.log(data);
@@ -163,35 +174,41 @@ export class VerbInputComponent {
     this.presentConjugation.setTu( this.presentTu );
     this.presentConjugation.setEl( this.presentEl );
     this.presentConjugation.setNosotros( this.presentNosotros );
-    this.presentConjugation.setEls( this.presentEls );
+    this.presentConjugation.setVosotros( this.presentVosotros );
+    this.presentConjugation.setEllos( this.presentEllos );
 
     this.preteriteConjugation.setTense(parseInt('2'));
     this.preteriteConjugation.setYo( this.preteriteYo );
     this.preteriteConjugation.setTu( this.preteriteTu );
     this.preteriteConjugation.setEl( this.preteriteEl );
     this.preteriteConjugation.setNosotros( this.preteriteNosotros );
-    this.preteriteConjugation.setEls( this.preteriteEls );
+    this.preteriteConjugation.setVosotros( this.preteriteVosotros );
+    this.preteriteConjugation.setEllos( this.preteriteEllos );
 
     this.imperfectConjugation.setTense(parseInt('3'));
     this.imperfectConjugation.setYo( this.imperfectYo );
     this.imperfectConjugation.setTu( this.imperfectTu );
     this.imperfectConjugation.setEl( this.imperfectEl );
     this.imperfectConjugation.setNosotros( this.imperfectNosotros );
-    this.imperfectConjugation.setEls( this.imperfectEls );
+    this.imperfectConjugation.setVosotros( this.imperfectVosotros );
+    this.imperfectConjugation.setEllos( this.imperfectEllos );
 
-    this.futureConjugation.setTense(parseInt('4'));
-    this.futureConjugation.setYo( this.futureYo );
-    this.futureConjugation.setTu( this.futureTu );
-    this.futureConjugation.setEl( this.futureEl );
-    this.futureConjugation.setNosotros( this.futureNosotros );
-    this.futureConjugation.setEls( this.futureEls );
-
-    this.conditionalConjugation.setTense(parseInt('5'));
+    this.conditionalConjugation.setTense(parseInt('4'));
     this.conditionalConjugation.setYo( this.conditionalYo );
     this.conditionalConjugation.setTu( this.conditionalTu );
     this.conditionalConjugation.setEl( this.conditionalEl );
     this.conditionalConjugation.setNosotros( this.conditionalNosotros );
-    this.conditionalConjugation.setEls( this.conditionalEls );
+    this.conditionalConjugation.setVosotros( this.conditionalVosotros );
+    this.conditionalConjugation.setEllos( this.conditionalEllos );
+
+    this.futureConjugation.setTense(parseInt('5'));
+    this.futureConjugation.setYo( this.futureYo );
+    this.futureConjugation.setTu( this.futureTu );
+    this.futureConjugation.setEl( this.futureEl );
+    this.futureConjugation.setNosotros( this.futureNosotros );
+    this.futureConjugation.setVosotros( this.futureVosotros );
+    this.futureConjugation.setEllos( this.futureEllos );
+
     this.addVerb( this.newVerb );
 
     this.queryVerb = this.apollo.watchQuery({
@@ -214,11 +231,11 @@ export class VerbInputComponent {
         this.imperfectConjugation.setVerb( this.id );
         this.addConjugation( this.imperfectConjugation );
     
-        this.futureConjugation.setVerb( this.id );
-        this.addConjugation( this.futureConjugation );
-    
         this.conditionalConjugation.setVerb( this.id );
         this.addConjugation( this.conditionalConjugation );
+
+        this.futureConjugation.setVerb( this.id );
+        this.addConjugation( this.futureConjugation );
       });
 
     this.resetForm();

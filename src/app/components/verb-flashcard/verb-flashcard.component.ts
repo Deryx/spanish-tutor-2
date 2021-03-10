@@ -191,15 +191,19 @@ export class VerbFlashcardComponent implements OnInit {
   }
 
   changeTense = (): void => {
-    const tensesArray = ['present', 'preterite', 'imperfect', 'future', 'conditional'];
-    this.selectedTense = tensesArray[this.tenseSelect - 1];
-    let index = this.tenseSelect - 1;
-    if(index === 3 && this.conjugations[index].tense === 5) {
-      index = 4;
-    } else if(index === 4 && this.conjugations[index].tense === 4) {
-      index = 3;
-    } 
-    this.conjugation = this.conjugations[index];
+    const tenseSelected: number = parseInt( this.tenseSelect );
+    const tensesArray = ['present', 'preterite', 'imperfect', 'conditional', 'future'];
+    this.selectedTense = tensesArray[ tenseSelected - 1 ];
+    const numConjugations: number = this.conjugations.length;
+    let i = 0;
+    while(i < numConjugations){
+      let currentConjugation = this.conjugations[i];
+      if( currentConjugation.tense === tenseSelected ){
+        this.conjugation = currentConjugation;
+        return;
+      }
+      i++;
+    }
 
     this.fade = this.fade === 'in' ? 'out' : 'in';
   }
@@ -213,8 +217,9 @@ export class VerbFlashcardComponent implements OnInit {
     })
       .valueChanges
       .subscribe( result => {
-        const conjugationData = JSON.parse(JSON.stringify(result.data));
+        const conjugationData = result.data;
         this.conjugations = conjugationData.conjugations;
+        console.log(this.conjugations);
       }, (error) => {
         console.log('there was an error sending the query', error);
       });

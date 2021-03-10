@@ -62,7 +62,8 @@ export class VerbService {
       tu,
       el,
       nosotros,
-      els
+      vosotros,
+      ellos
     }
   }`
 
@@ -75,20 +76,22 @@ export class VerbService {
         tu,
         el,
         nosotros,
-        els
+        vosotros,
+        ellos
       }
     }`
 
   CreateConjugation: any = gql`
-    mutation ($verb: Int!, $tense: Int!, $yo: String!, $tu: String!, $el: String!, $nosotros: String!, $els: String!) {
-      createConjugation(verb: $verb, tense: $tense, yo: $yo, tu: $tu, el: $el, nosotros: $nosotros, els: $els) {
+    mutation ($verb: Int!, $tense: Int!, $yo: String!, $tu: String!, $el: String!, $nosotros: String!, $vosotros: String!, $ellos: String!) {
+      createConjugation(verb: $verb, tense: $tense, yo: $yo, tu: $tu, el: $el, nosotros: $nosotros, vosotros: $vosotros, ellos: $ellos) {
         verb,
         tense,
         yo,
         tu,
         el,
         nosotros,
-        els
+        vosotros,
+        ellos
       }
     }`
 }

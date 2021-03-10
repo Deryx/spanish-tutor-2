@@ -124,8 +124,14 @@ face front h2 {
   transform-style: preserve-3d;
   transform: transform 1s;
   font-family: "Roboto", sans-serif;
-  border-radius: 2.0rem;
+  border-radius: 1.0rem;
   border: 1px solid rgb(112,128,144);
+}
+
+@media only screen and (min-width: 1025px) {
+  .card {
+    width: 70%;
+  }
 }
 
 .face {
@@ -139,13 +145,14 @@ face front h2 {
   backface-visibility: hidden;
   user-select: none;
   margin: 0 auto;
+  border-radius: 1.0rem;
 }
 
 .front {
   transform: rotateX(0deg);
   background: rgb(0, 0, 0);
   color: rgb(255, 255, 255);
-  border-radius: 2.0rem;
+  border-radius: 1.0rem;
 }
 
 .back {

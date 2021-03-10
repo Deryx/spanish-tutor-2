@@ -5,7 +5,9 @@ import { Component } from '@angular/core';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
+
 export class HomeComponent {
+  animationState = 'scrollDown';
   pronunciationCard: any;
   verbFlashcardCard: any;
   vocabularyFlashcardCard: any;
@@ -61,5 +63,5 @@ export class HomeComponent {
       header: 'vocabulary slider',
       summary: 'Want to test your knowledge of spanish vocabulary by matching spanish words with their corresponding translation? Then play with the Vocabulary Slider.'
     }
-   }
+  }
 }

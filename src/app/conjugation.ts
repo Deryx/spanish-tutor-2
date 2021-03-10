@@ -5,7 +5,8 @@ export class Conjugation {
   tu: string;
   el: string;
   nosotros: string;
-  els: string;
+  vosotros: string;
+  ellos: string;
 
   constructor() {
     this.verb = 0;
@@ -14,7 +15,8 @@ export class Conjugation {
     this.tu = '';
     this.el = '';
     this.nosotros = '';
-    this.els = '';
+    this.vosotros = '';
+    this.ellos = '';
   }
 
   setVerb(verb: number) {
@@ -41,7 +43,11 @@ export class Conjugation {
     this.nosotros = nosotros;
   }
 
-  setEls(els: string) {
-    this.els = els;
+  setVosotros(vosotros: string) {
+    this.vosotros = vosotros;
+  }
+
+  setEllos(ellos: string) {
+    this.ellos = ellos;
   }
 }
