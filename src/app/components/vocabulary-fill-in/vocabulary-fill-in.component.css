@@ -27,15 +27,20 @@ form {
   
 fieldset {
     margin: 0 auto;
-    border: none;
     width: 100%;
-    border-top: 1px solid rgb(198, 10, 30);
-    border-bottom: 1px solid rgb(198, 10, 30);
+    border-top: 2px solid rgb(198, 10, 30);
+    border-bottom: 2px solid rgb(198, 10, 30);
     padding-top: 2.5rem;
     padding-bottom: 2.5rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
+}
+
+@media only screen and (min-width: 1025px) {
+    fieldset {
+      width: 75%;
+    }
 }
 
 fieldset h2 {
@@ -57,7 +62,6 @@ fieldset input {
 fieldset .reminder {
     color: rgb(198, 10, 30);
     font-size: 0.75rem;
-    font-weight: bold;
     margin-top: 0.3rem;
 }
 
