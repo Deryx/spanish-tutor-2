@@ -177,6 +177,6 @@ input[type="button"], input[type="submit"] {
 
 select {
   padding: 8px;
-  border-radius: 0.8rem;
+  border-radius: 5px;
   border: 2px solid #CCC;
 }

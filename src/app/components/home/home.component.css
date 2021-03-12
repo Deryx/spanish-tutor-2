@@ -76,6 +76,14 @@
   min-height: 100%;
 }
 
+.description {
+  margin: 0 auto;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  width: 80%;
+  font-size: 150%;
+}
+
 .verbContent, .vocabularyContent {
   width: 100%;
   padding-bottom: 1.7rem;
@@ -84,6 +92,10 @@
   flex-direction: column;
   justify-content: center;
   border-bottom: 1px solid rgb(190, 190, 190);
+}
+
+.verbContent a, .vocabularyContent a {
+  color: rgb(198, 10, 30);
 }
 
 @media (min-width: 1024px) {
