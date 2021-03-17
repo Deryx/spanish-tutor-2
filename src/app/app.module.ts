@@ -22,8 +22,6 @@ import { VocabularyScrambleComponent } from './components/vocabulary-scramble/vo
 import { VerbConjugatorComponent } from './components/verb-conjugator/verb-conjugator.component';
 import { VocabularyFlashcardComponent } from './components/vocabulary-flashcard/vocabulary-flashcard.component';
 import { VerbFlashcardComponent } from './components/verb-flashcard/verb-flashcard.component';
-import { VocabularyInputComponent } from './components/vocabulary-input/vocabulary-input.component';
-import { VerbInputComponent } from './components/verb-input/verb-input.component';
 
 import { VocabularyService } from './services/vocabulary.service';
 import { VerbService } from './services/verb.service';
@@ -48,13 +46,11 @@ const appRoutes: Routes = [
   { path: 'letter-pronunciation', component: LetterPronunciationComponent },
   { path: 'vocabulary-completion', component: VocabularyCompletionComponent },
   { path: 'vocabulary-flashcard', component: VocabularyFlashcardComponent },
-  { path: 'vocabulary-input', component: VocabularyInputComponent },
   { path: 'vocabulary-quiz', component: VocabularyQuizComponent },
   { path: 'vocabulary-scramble', component: VocabularyScrambleComponent },
   { path: 'vocabulary-slider', component: VocabularySliderComponent },
   { path: 'verb-flashcard', component: VerbFlashcardComponent },
   { path: 'verb-conjugator', component: VerbConjugatorComponent },
-  { path: 'verb-input', component: VerbInputComponent },
   { path: 'verb-slider', component: VerbSliderComponent },
   { path: 'vocabulary-fill-in', component: VocabularyFillInComponent }
 
@@ -74,8 +70,6 @@ const appRoutes: Routes = [
     VerbConjugatorComponent,
     VocabularyFlashcardComponent,
     VerbFlashcardComponent,
-    VocabularyInputComponent,
-    VerbInputComponent,
     OverlayComponent,
     ConjugatorOverlayFormComponent,
     VocabularyOverlayFormComponent,

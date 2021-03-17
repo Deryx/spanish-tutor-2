@@ -10,6 +10,8 @@ const database = new sqlite3.Database('spanish.db');
 const vocabulary = '../spanish-tutor-2/src/assets/data/vocabulary.json';
 const verbs = '../spanish-tutor-2/src/assets/data/verbs.json';
 const conjugations = '../spanish-tutor-2/src/assets/data/conjugations.json';
+const tenses = '../spanish-tutor-2/src/assets/data/tenses.json';
+const categories = '../spanish-tutor-2/src/assets/data/categories.json';
 
 app.listen(8000, () => {
     console.log("Server started (http://localhost:8000/)")
@@ -45,7 +47,6 @@ app.get("/verbs", (req, res) => {
     });
 });
 
-
 app.get("/conjugations", (req, res) => {
     let sql = "SELECT id, verb, tense, yo, tu, el, nosotros, vosotros, ellos from Conjugations";
     database.all(sql, [], (err, rows) => {
@@ -61,3 +62,32 @@ app.get("/conjugations", (req, res) => {
     });
 });
 
+app.get("/tenses", (req, res) => {
+    let sql = "SELECT id, tense from Tenses";
+    database.all(sql, [], (err, rows) => {
+        if(err) {
+            return console.error(err.message);
+        }
+        fs.writeFile(tenses, JSON.stringify(rows), (err) => {
+            if(err) {
+                throw err;
+            }
+            console.log("tenses.json created");
+        });
+    });
+});
+
+app.get("/categories", (req, res) => {
+    let sql = "SELECT id, category from Categories";
+    database.all(sql, [], (err, rows) => {
+        if(err) {
+            return console.error(err.message);
+        }
+        fs.writeFile(categories, JSON.stringify(rows), (err) => {
+            if(err) {
+                throw err;
+            }
+            console.log("categories.json created");
+        });
+    });
+});

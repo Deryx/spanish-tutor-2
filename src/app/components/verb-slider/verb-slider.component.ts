@@ -5,13 +5,15 @@ import { Observable } from 'rxjs';
 import { Router } from "@angular/router";
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Subscription } from 'rxjs';
-import { ApolloModule, Apollo } from 'apollo-angular';
+
+const JSONPath = require('jsonpath-plus');
 
 @Component({
   selector: 'app-verb-slider',
   templateUrl: './verb-slider.component.html',
   styleUrls: ['./verb-slider.component.css']
 })
+
 export class VerbSliderComponent {
   showOverlay: boolean = true;
   showVerbOverlay: boolean = true;
@@ -43,7 +45,7 @@ export class VerbSliderComponent {
   private queryVerb: Subscription;
   private queryConjugation: Subscription;
 
-  constructor( private vs: VerbService, private apollo: Apollo, private randomNumberService: RandomNumberGeneratorService, private router: Router ) {}
+  constructor( private vs: VerbService, private randomNumberService: RandomNumberGeneratorService, private router: Router ) {}
 
   drop(event: CdkDragDrop<string[]>) {
     moveItemInArray(
@@ -65,16 +67,12 @@ export class VerbSliderComponent {
   }
 
   createQuestionSet = () => {
-    this.queryVerbs = this.apollo.watchQuery({
-      query: this.vs.Verbs
-    })
-    .valueChanges
+    this.vs.getVerbs()
     .subscribe( result => {
-      const infinitivesData = JSON.parse( JSON.stringify(result.data) );
-      this.verbs = infinitivesData.verbs;
-      console.log(this.verbs);
+      const infinitiveData = JSON.parse( JSON.stringify(result) );
+      this.infinitives = infinitiveData;
 
-      this.getQuestionSet( this.numberSlides, this.verbs.length );
+      this.getQuestionSet( this.numberSlides, this.infinitives.length );
       this.displaySlideSet( this.currentSlideSet );
     }, (error) => {
       console.log('there was an error sending the query', error);
@@ -92,30 +90,36 @@ export class VerbSliderComponent {
 
   displaySlideSet( numberQuestion: number ) {
     const question = this.questionSet[numberQuestion];
-    this.infinitive = this.verbs[question].infinitive;
-    this.getCurrentVerb( this.verbs[question].id, this.tenseSelect );
+    this.infinitive = this.infinitives[question].infinitive;
+    this.getCurrentVerb( this.infinitives[question].id, this.tenseSelect );
   }
 
   getCurrentVerb = ( verb: number, tense: number ): void => {
-    this.queryVerb = this.apollo.watchQuery<any>({
-      query: this.vs.Conjugation,
-      variables: {
-        verb: parseInt( verb.toString() ),
-        tense: parseInt( tense.toString() )
-      }
-    })
-      .valueChanges
+    this.vs.getConjugations()
       .subscribe( result => {
         let scrambledSlides: any = [];
-        const conjugationData = JSON.parse(JSON.stringify(result.data));
-        const conjugations = conjugationData.conjugation;
-        
-        this.currentAnswers.push(conjugations[0].yo);
-        this.currentAnswers.push(conjugations[0].tu);
-        this.currentAnswers.push(conjugations[0].el);
-        this.currentAnswers.push(conjugations[0].nosotros);
-        this.currentAnswers.push(conjugations[0].vosotros);
-        this.currentAnswers.push(conjugations[0].els);
+        const conjugationData = JSON.parse(JSON.stringify(result));
+        const conjugations = conjugationData;
+              
+        let index: number = 0;
+        while(index < conjugations.length) {
+          let currentConjugation: any = conjugations[index];
+          let currentVerb: number = parseInt( currentConjugation.verb );
+          let currentTense: number = parseInt( currentConjugation.tense );
+          if( currentVerb === verb && currentTense === parseInt( tense.toString() ) ) {
+            this.currentAnswers.push(currentConjugation.yo);
+            this.currentAnswers.push(currentConjugation.tu);
+            this.currentAnswers.push(currentConjugation.el);
+            this.currentAnswers.push(currentConjugation.nosotros);
+            this.currentAnswers.push(currentConjugation.vosotros);
+            this.currentAnswers.push(currentConjugation.ellos);
+            
+            break;
+          }
+
+          index++;
+        }
+
         this.randomNumberService.generateRandomNumberArray( this.currentAnswers.length, this.currentAnswers.length, scrambledSlides );
         
         for(let i = 0; i < scrambledSlides.length; i++) {

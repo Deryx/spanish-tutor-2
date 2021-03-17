@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ApolloModule, Apollo } from 'apollo-angular';
 import { VerbService } from '../../services/verb.service';
 import { Conjugation } from '../../conjugation';
 import { FlipAnimation } from '../../../animations/flip.animation'
@@ -7,7 +6,7 @@ import { FadeAnimation } from '../../../animations/fade.animation';
 import { Observable } from 'rxjs';
 import { Subscription } from 'rxjs';
 
-import gql from 'graphql-tag';
+const JSONPath = require('jsonpath-plus');
 
 @Component({
   selector: 'app-verb-flashcard',
@@ -37,7 +36,7 @@ export class VerbFlashcardComponent implements OnInit {
   private queryVerb: Subscription;
   private queryTenses: Subscription;
 
-  constructor( private apollo: Apollo, private vs: VerbService ) { }
+  constructor( private vs: VerbService ) { }
 
   ngOnInit() {
     this.createVerbSelect();
@@ -45,13 +44,10 @@ export class VerbFlashcardComponent implements OnInit {
   }
 
   createVerbSelect = (): void => {
-    this.queryVerbs = this.apollo.watchQuery<any>({
-      query: this.vs.Verbs
-    })
-      .valueChanges
-      .subscribe(result => {
-        const verbData = JSON.parse(JSON.stringify(result.data));
-        this.infinitives = verbData.verbs.sort((a, b) => {
+    this.vs.getVerbs()
+      .subscribe(results => {
+        const verbData = JSON.parse(JSON.stringify(results));
+        this.infinitives = verbData.sort((a, b) => {
         const verbA = a.infinitive;
         const verbB = b.infinitive;
 
@@ -117,13 +113,10 @@ export class VerbFlashcardComponent implements OnInit {
   }
 
   createTenseSelect = (): void => {
-    this.queryTenses = this.apollo.watchQuery<any>({
-      query: this.vs.Tenses
-    })
-      .valueChanges
-      .subscribe(result => {
-        const tensesData = JSON.parse(JSON.stringify(result.data));
-        this.tenses = tensesData.tenses;
+    this.vs.getTenses()
+      .subscribe(results => {
+        const tensesData = JSON.parse(JSON.stringify(results));
+        this.tenses = tensesData;
 
         this.setTenseSelect();
     }, (error) => {
@@ -131,31 +124,9 @@ export class VerbFlashcardComponent implements OnInit {
     });
   }
 
-  getTextVerb = (): void => {
-    const verb = '%' + this.searchVerb + '%';
-    this.queryVerb = this.apollo.watchQuery<any>({
-      query: this.vs.Verb,
-      variables: {
-        verb: verb
-      }
-    })
-      .valueChanges
-      .subscribe(result => {
-        const verbData = JSON.parse(JSON.stringify(result.data));
-        const retrievedInfinitive = verbData.verb[0];
-        console.log(retrievedInfinitive);
-        this.infinitive = retrievedInfinitive.infinitive;
-        this.translation = retrievedInfinitive.translation;
-        this.pronunciation = retrievedInfinitive.pronunciation;
-        this.getVerbConjugations( retrievedInfinitive.id );
-      }, (error) => {
-        console.log('there was an error sending the query', error);
-      });
-    }
-
   changeVerb = (): void => {
     this.tenseSelect = '';
-    const retrievedVerb = this.getSelectVerb( this.infinitives, this.verbSelect );
+    const retrievedVerb = this.getSelectVerb( this.infinitives, parseInt(this.verbSelect) );
     this.infinitive = retrievedVerb.infinitive;
     this.translation = retrievedVerb.translation;
     this.pronunciation = retrievedVerb.pronunciation;
@@ -169,8 +140,9 @@ export class VerbFlashcardComponent implements OnInit {
     }
   }
 
-  getSelectVerb(verbs: any, verb: string): any {
+  getSelectVerb(verbs: any, verb: number): any {
     const numberVerbs = verbs.length;
+    console.log(verbs);
     const verbObject = {
       infinitive: '',
       translation: '',
@@ -195,10 +167,12 @@ export class VerbFlashcardComponent implements OnInit {
     const tensesArray = ['present', 'preterite', 'imperfect', 'conditional', 'future'];
     this.selectedTense = tensesArray[ tenseSelected - 1 ];
     const numConjugations: number = this.conjugations.length;
+    const currentVerb: number = parseInt( this.verbSelect );
+    console.log(currentVerb, tenseSelected);
     let i = 0;
     while(i < numConjugations){
       let currentConjugation = this.conjugations[i];
-      if( currentConjugation.tense === tenseSelected ){
+      if( currentConjugation.verb === currentVerb && currentConjugation.tense === tenseSelected ){
         this.conjugation = currentConjugation;
         return;
       }
@@ -209,16 +183,9 @@ export class VerbFlashcardComponent implements OnInit {
   }
 
   getVerbConjugations = (verb: any): void => {
-    this.queryVerb = this.apollo.watchQuery<any>({
-      query: this.vs.Conjugations,
-      variables: {
-        verb: parseInt(verb)
-      }
-    })
-      .valueChanges
-      .subscribe( result => {
-        const conjugationData = result.data;
-        this.conjugations = conjugationData.conjugations;
+    this.vs.getConjugations()
+      .subscribe( results => {
+        this.conjugations = results;
         console.log(this.conjugations);
       }, (error) => {
         console.log('there was an error sending the query', error);

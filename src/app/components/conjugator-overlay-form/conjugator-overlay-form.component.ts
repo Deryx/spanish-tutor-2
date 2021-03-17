@@ -1,11 +1,12 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Subscription } from 'rxjs';
-import { ApolloModule, Apollo } from 'apollo-angular';
 import { VerbService } from '../../services/verb.service';
 
 import gql from 'graphql-tag';
 import { FormControl, FormControlName } from '@angular/forms';
+
+const JSONPath = require('jsonpath-plus');
 
 @Component({
   selector: 'app-conjugator-overlay-form',
@@ -31,20 +32,17 @@ export class ConjugatorOverlayFormComponent implements OnInit {
 
   @Output() formChange = new EventEmitter();
 
-  constructor( private apollo: Apollo, private vs: VerbService ) { }
+  constructor( private vs: VerbService ) { }
 
   ngOnInit() {
     this.getTenses();
   }
 
   getVerbs = () => {
-    this.queryVerbs = this.apollo.watchQuery<any>({
-      query: this.vs.Verbs
-    })
-      .valueChanges
+    this.vs.getVerbs()
       .subscribe(result => {
-        const verbData = JSON.parse(JSON.stringify(result.data));
-        this.infinitives = verbData.verbs.sort((a, b) => {
+        const verbData = JSON.parse(JSON.stringify(result));
+        this.infinitives = verbData.sort((a, b) => {
         const verbA = a.infinitive;
         const verbB = b.infinitive;
 
@@ -83,13 +81,10 @@ export class ConjugatorOverlayFormComponent implements OnInit {
   }
 
   getTenses = () => {
-    this.queryTenses = this.apollo.watchQuery<any>({
-      query: this.vs.Tenses
-    })
-      .valueChanges
+    this.vs.getTenses()
       .subscribe(result => {
-        const tensesData = JSON.parse(JSON.stringify(result.data));
-        this.tenses = tensesData.tenses;
+        const tensesData = JSON.parse(JSON.stringify(result));
+        this.tenses = tensesData;
 
         this.setTenses();
       }, (error) => {

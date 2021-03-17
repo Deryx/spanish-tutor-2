@@ -1,18 +1,15 @@
 import { Injectable } from '@angular/core';
-import { ApolloModule, Apollo } from 'apollo-angular';
-
-import gql from 'graphql-tag';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class VocabularyCategoriesService {
-  
-  constructor( private apollo: Apollo ) {}
+  categoriesURL: any = '../assets/data/categories.json';
 
-   Categories: any = gql`
-    query categories {
-        categories {
-          id,
-          category
-        }
-    }`;
-  }
+  constructor( private http: HttpClient ) {}
+
+   getCategories = () => {
+    return this.http
+      .get( this.categoriesURL ); 
+   }
+}

@@ -61,27 +61,32 @@ export class VocabularySliderComponent {
 
   createQuestionSet = () => {
     const numberCards = 5;
-    const categoryObject = {
-      query: this.vs.Category,
-      variables: {
-        category: parseInt( this.selectedCategory )
-      }
-    };
-    const dictionaryObject = {
-      query: this.vs.Dictionary
-    }
-    const queryObject = ( this.selectedCategory ) ? categoryObject : dictionaryObject;
-    this.queryDictionary = this.apollo.watchQuery(queryObject)
-    .valueChanges
-    .subscribe( result => {
-      const dictionaryData = JSON.parse( JSON.stringify(result.data) );
-      this.dictionary = ( this.selectedCategory ) ? dictionaryData.category : dictionaryData.dictionary;
+    this.vs.getDictionary()
+      .subscribe( result => {
+        this.dictionary = JSON.parse(JSON.stringify(result));
+        let questionDictionary: any;
+        const dictionaryLength = this.dictionary.length;
+        const categoryDictionary: any = [];
+        if( this.selectedCategory ) {
+          let index: number = 0;
+          while( index < dictionaryLength ) {
+            let currentWord: any = this.dictionary[index];
+            let currentCategory: number = currentWord.category;
+            if( currentCategory === parseInt( this.selectedCategory.toString() )) {
+              categoryDictionary.push( currentWord );
+            }
+    
+            index++;
+          }
+    
+          this.dictionary = categoryDictionary;
+        }
 
-      this.getQuestionSet( this.numberSlides, numberCards, this.dictionary.length );
-      this.displaySlideSet( this.currentSlideSet );
-    }, (error) => {
-      console.log('there was an error sending the query', error);
-    });
+        this.getQuestionSet( this.numberSlides, numberCards, this.dictionary.length );
+        this.displaySlideSet( this.currentSlideSet );;
+      }, (error) => {
+        console.log('there was an error sending the query', error);
+      });
   }
 
   getQuestionSet( numQuestions: number, setSize: number, maxNumber: number ) {

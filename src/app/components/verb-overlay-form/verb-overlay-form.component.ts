@@ -3,9 +3,9 @@ import { Observable } from 'rxjs';
 import { Subscription } from 'rxjs';
 import { ApolloModule, Apollo } from 'apollo-angular';
 import { VerbService } from '../../services/verb.service';
-
-import gql from 'graphql-tag';
 import { FormControl, FormControlName } from '@angular/forms';
+
+const JSONPath = require('jsonpath-plus');
 
 @Component({
   selector: 'app-verb-overlay-form',
@@ -29,7 +29,7 @@ export class VerbOverlayFormComponent implements OnInit {
 
   @Output() formChange = new EventEmitter();
 
-  constructor( private apollo: Apollo, private vs: VerbService ) { }
+  constructor( private vs: VerbService ) { }
 
 
   ngOnInit() {
@@ -37,13 +37,10 @@ export class VerbOverlayFormComponent implements OnInit {
   }
 
   getTenses = () => {
-    this.queryTenses = this.apollo.watchQuery<any>({
-      query: this.vs.Tenses
-    })
-      .valueChanges
+    this.vs.getTenses()
       .subscribe(result => {
-        const tensesData = JSON.parse(JSON.stringify(result.data));
-        this.tenses = tensesData.tenses;
+        const tensesData = JSON.parse(JSON.stringify(result));
+        this.tenses = tensesData;
 
         this.setTenses();
       }, (error) => {

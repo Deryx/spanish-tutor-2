@@ -28,12 +28,10 @@ export class VocabularyOverlayFormComponent implements OnInit {
   constructor( private vcs: VocabularyCategoriesService, private apollo: Apollo ) { }
  
   ngOnInit() {
-    this.queryCategories = this.apollo.watchQuery<any>({
-      query: this.vcs.Categories
-    }).valueChanges
+    this.vcs.getCategories()
       .subscribe(result => {
-        const categoryData = JSON.parse(JSON.stringify(result.data));
-        this.categories = categoryData.categories
+        const categoryData = JSON.parse(JSON.stringify(result));
+        this.categories = categoryData
         this.setCategories();
       });
   }

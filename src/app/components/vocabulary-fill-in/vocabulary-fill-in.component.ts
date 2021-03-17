@@ -3,7 +3,6 @@ import { VocabularyService } from '../../services/vocabulary.service';
 import { RandomNumberGeneratorService } from '../../services/random-number-generator.service';
 import { Router } from "@angular/router";
 import { Subscription } from 'rxjs';
-import { ApolloModule, Apollo } from 'apollo-angular';
 
 @Component({
   selector: 'app-vocabulary-fill-in',
@@ -36,7 +35,7 @@ export class VocabularyFillInComponent {
 
   private queryDictionary: Subscription;
 
-  constructor( private vs: VocabularyService, private apollo: Apollo, private randomNumberService: RandomNumberGeneratorService, private router: Router ) {}
+  constructor( private vs: VocabularyService, private randomNumberService: RandomNumberGeneratorService, private router: Router ) {}
 
   getOverlayData(data) {
     if(!data.isVisible) {
@@ -51,27 +50,32 @@ export class VocabularyFillInComponent {
   }
 
   createQuestionSet = () => {
-    const categoryObject = {
-      query: this.vs.Category,
-      variables: {
-        category: parseInt( this.selectedCategory )
-      }
-    };
-    const dictionaryObject = {
-      query: this.vs.Dictionary
-    }
-    const queryObject = ( this.selectedCategory ) ? categoryObject : dictionaryObject;
-    this.queryDictionary = this.apollo.watchQuery(queryObject)
-    .valueChanges
-    .subscribe( result => {
-      const dictionaryData = JSON.parse( JSON.stringify(result.data) );
-      this.dictionary = ( this.selectedCategory ) ? dictionaryData.category : dictionaryData.dictionary;
-
-      this.randomNumberService.generateRandomNumberArray( this.numberQuestions, this.dictionary.length, this.questionSet );
-      this.getCurrentQuestion( this.currentQuestion );
-    }, (error) => {
-      console.log('there was an error sending the query', error);
-    });
+    this.vs.getDictionary()
+      .subscribe( result => {
+        this.dictionary = JSON.parse(JSON.stringify(result));
+        let questionDictionary: any;
+        const dictionaryLength = this.dictionary.length;
+        const categoryDictionary: any = [];
+        if( this.selectedCategory ) {
+          let index: number = 0;
+          while( index < dictionaryLength ) {
+            let currentWord: any = this.dictionary[index];
+            let currentCategory: number = currentWord.category;
+            if( currentCategory === parseInt( this.selectedCategory.toString() )) {
+              categoryDictionary.push( currentWord );
+            }
+    
+            index++;
+          }
+    
+          this.dictionary = categoryDictionary;
+        }
+    
+        this.randomNumberService.generateRandomNumberArray(this.numberQuestions, this.dictionary.length, this.questionSet );
+        this.getCurrentQuestion( this.currentQuestion );
+      }, (error) => {
+        console.log('there was an error sending the query', error);
+      });
   }
 
   getCurrentQuestion( question: number ) {

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ApolloModule, Apollo } from 'apollo-angular';
 import { FlipAnimation } from '../../../animations/flip.animation';
 import { Observable } from 'rxjs';
 import { Subscription } from 'rxjs';
@@ -8,18 +7,14 @@ import { VocabularyService } from '../../services/vocabulary.service';
 import { VocabularyCategoriesService } from '../../services/vocabulary-categories.service';
 import { Vocabulary } from '../../vocabulary';
 
-import gql from 'graphql-tag';
-
 @Component({
   selector: 'app-vocabulary-flashcard',
   templateUrl: './vocabulary-flashcard.component.html',
   styleUrls: ['./vocabulary-flashcard.component.css'],
   animations: FlipAnimation.animations
 })
-
 export class VocabularyFlashcardComponent implements OnInit {
   flip = 'inactive';
-  searchWord: string = '';
   word: string = 'word';
   createdWord: Vocabulary;
   category: string;
@@ -37,7 +32,7 @@ export class VocabularyFlashcardComponent implements OnInit {
   private queryCategory: Subscription;
   private queryDictionary: Subscription;
 
-  constructor( private apollo: Apollo, private vcs: VocabularyCategoriesService, private vs: VocabularyService ) { }
+  constructor( private vcs: VocabularyCategoriesService, private vs: VocabularyService ) { }
 
   ngOnInit(){
     this.getCategories();
@@ -68,12 +63,10 @@ export class VocabularyFlashcardComponent implements OnInit {
   }
 
   getCategories = () => {
-    this.queryCategories = this.apollo.watchQuery<any>({
-      query: this.vcs.Categories
-    }).valueChanges
-      .subscribe(result => {
-        const categoryData = JSON.parse(JSON.stringify(result.data));
-        this.categories = categoryData.categories.sort((a, b) => {
+    this.vcs.getCategories()
+    .subscribe(result => {
+        const categoryData = JSON.parse(JSON.stringify(result));
+        this.categories = categoryData.sort((a, b) => {
           const wordA = a.category;
           const wordB = b.category;
 
@@ -91,44 +84,31 @@ export class VocabularyFlashcardComponent implements OnInit {
       });
   }
 
-  getWord = () => {
-    const word = '%' + this.searchWord + '%';
-    this.queryWord = this.apollo.watchQuery<any>({
-      query: this.vs.Word,
-      variables: {
-        word: word
-      }
-    })
-      .valueChanges
-      .subscribe(result => {
-        const dictionaryData = JSON.parse(JSON.stringify(result.data));
-        this.dictionary = dictionaryData.word;
-        this.index = 0;
-        this.word = this.dictionary[this.index].word;
-        this.pronunciation = this.dictionary[this.index].pronunciation;
-        this.translation = '[ ' + this.dictionary[this.index].translation + ' ]';
-        this.image = this.dictionary[this.index].image;
-        this.showImage = ( this.image === 'assets/images/blank.png' ) ? false : true;
-        this.searchWord = '';
-      })
-  }
-
   changeCategory = () => {
-    const categoryObject = {
-      query: this.vs.Category,
-      variables: {
-        category: parseInt(this.category)
-      }
-    };
-    const dictionaryObject = {
-      query: this.vs.Dictionary
-    }
-    const queryObject = (this.category) ? categoryObject : dictionaryObject;
-    this.queryDictionary = this.apollo.watchQuery(queryObject)
-    .valueChanges
+    this.vs.getDictionary()
     .subscribe( result => {
-      const dictionaryData = JSON.parse(JSON.stringify(result.data));
-      this.dictionary = (this.category) ? dictionaryData.category : dictionaryData.dictionary;
+      const dictionaryData = JSON.parse(JSON.stringify(result));
+      this.dictionary = dictionaryData;
+      const dictionaryLength = this.dictionary.length;
+      const flashcardDictionary: any = [];
+
+      if( this.category ) {
+        let index: number = 0;
+
+        while( index < dictionaryLength ) {
+          let currentWord: any = this.dictionary[index];
+          let currentCategory: number = parseInt( currentWord.category.toString() );
+          const selectedCategory: number = parseInt( this.category.toString() );
+          if( currentCategory === selectedCategory ) {
+            flashcardDictionary.push( currentWord );
+          }
+
+          index++;
+        }
+
+        this.dictionary = flashcardDictionary;
+      }
+      console.log(this.dictionary);
       this.index = 0;
       this.word = this.dictionary[this.index].word;
       this.pronunciation = this.dictionary[this.index].pronunciation;
