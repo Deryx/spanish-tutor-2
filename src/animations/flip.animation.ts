@@ -15,7 +15,7 @@ export class FlipAnimation {
                 state(
                     'inactive',
                     style({
-                        transform: 'rotateX(0)',
+                        transform: 'none',
                     })
                 ),
                 transition('active => inactive', animate('400ms ease-out')),
