@@ -200,7 +200,7 @@ dd {
 }
 
 .front {
-  transform: rotateX(0deg);
+  transform: rotateX(180deg);
   background: rgb(0, 0, 0);
   color: rgb(255, 255, 255);
   padding-top: 2.0rem;
@@ -208,7 +208,6 @@ dd {
 }
 
 .back {
-  transform: rotateX(180deg);
   background: rgb(198, 10, 30);
   color: rgb(255, 255, 255);
 }
