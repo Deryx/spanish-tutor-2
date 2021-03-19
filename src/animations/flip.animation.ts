@@ -15,11 +15,11 @@ export class FlipAnimation {
                 state(
                     'inactive',
                     style({
-                        transform: 'none',
+                        transform: 'rotateX(0)',
                     })
                 ),
                 transition('active => inactive', animate('400ms ease-out')),
-                transition('inactive => active', animate('400ms, ease-out')),
+                transition('inactive => active', animate('400ms ease-in')),
             ]),
         ];
     }
