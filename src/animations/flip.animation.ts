@@ -19,7 +19,7 @@ export class FlipAnimation {
                     })
                 ),
                 transition('active => inactive', animate('600ms ease-out')),
-                transition('inactive => active', animate('600ms ease-out')),
+                transition('inactive => active', animate('1000ms ease-out')),
             ]),
         ];
     }
