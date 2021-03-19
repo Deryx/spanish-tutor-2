@@ -153,6 +153,7 @@ face front h2 {
   background: rgb(0, 0, 0);
   color: rgb(255, 255, 255);
   border-radius: 1.0rem;
+  transform: rotateY(180deg);
 }
 
 .back {

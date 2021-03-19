@@ -18,8 +18,8 @@ export class FlipAnimation {
                         transform: 'none',
                     })
                 ),
-                transition('active => inactive', animate('400ms ease-out')),
-                transition('inactive => active', animate('400ms ease-in')),
+                transition('active => inactive', animate('600ms ease-out')),
+                transition('inactive => active', animate('600ms ease-out')),
             ]),
         ];
     }
