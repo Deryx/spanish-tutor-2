@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 
 @Injectable()
 export class VocabularyService {
-  dictionaryURL: any = '../assets/data/vocabulary.json';
+  dictionaryURL: any = 'assets/data/vocabulary.json';
 
   constructor( private http: HttpClient ){}
 
