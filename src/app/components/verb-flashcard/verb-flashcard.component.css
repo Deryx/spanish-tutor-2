@@ -169,15 +169,7 @@ dd {
 }
 
 .card {
-  margin: 0 auto;
-  padding: 0;
-  height: 25rem;
-  background: rgb(255, 255, 255);
-  position: relative;
   transform-style: preserve-3d;
-  transform: transform 1s;
-  border: 1px solid rgb(112,128,144);
-  border-radius: 1.0rem;
 }
 
 @media only screen and (min-width: 1025px) {
