@@ -196,6 +196,7 @@ export class VerbConjugatorComponent {
   createReport = (): void => {
     this.showForm = false;
     this.showReport = true;
+    this.showOverlay = false;
     this.showLongOverlay = true;
 
     for(let i = 0; i < this.numberQuestions; i++) {
