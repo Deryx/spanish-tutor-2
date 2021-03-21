@@ -12,6 +12,7 @@ import { Subscription } from 'rxjs';
 })
 export class VerbConjugatorComponent {
   showOverlay: boolean = true;
+  showLongOverlay: boolean = false;
   showConjugatorOverlay: boolean = true;
   showForm: boolean = false;
   showReport: boolean = false;
@@ -195,7 +196,7 @@ export class VerbConjugatorComponent {
   createReport = (): void => {
     this.showForm = false;
     this.showReport = true;
-    this.showOverlay = true;
+    this.showLongOverlay = true;
 
     for(let i = 0; i < this.numberQuestions; i++) {
       if (this.reportData[i]['answers'].yo === this.reportData[i]['userAnswers'].yo) this.numberCorrect++;

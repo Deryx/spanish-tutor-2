@@ -9,11 +9,5 @@ export class OverlayComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
-  }
-
-  onSubmit() {
-
-  }
-
+  ngOnInit() {}
 }

@@ -28,6 +28,7 @@ import { VerbService } from './services/verb.service';
 import { RandomNumberGeneratorService } from './services/random-number-generator.service';
 import { VocabularyCategoriesService } from './services/vocabulary-categories.service';
 import { OverlayComponent } from './components/overlay/overlay.component';
+import { LongOverlayComponent } from './components/long-overlay/long-overlay.component';
 import { ConjugatorOverlayFormComponent } from './components/conjugator-overlay-form/conjugator-overlay-form.component';
 import { VocabularyOverlayFormComponent } from './components/vocabulary-overlay-form/vocabulary-overlay-form.component';
 import { HomeComponent } from './components/home/home.component';
@@ -70,6 +71,7 @@ const appRoutes: Routes = [
     VerbConjugatorComponent,
     VocabularyFlashcardComponent,
     VerbFlashcardComponent,
+    LongOverlayComponent,
     OverlayComponent,
     ConjugatorOverlayFormComponent,
     VocabularyOverlayFormComponent,
