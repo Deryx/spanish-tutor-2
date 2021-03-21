@@ -42,12 +42,13 @@ export class VerbConjugatorComponent {
     tu: '',
     el: '',
     nosotros: '',
-    els: ''
+    vosotros: '',
+    ellos: ''
   };
   infinitive = '';
 
   numberCorrect: number = 0;
-  tenses = ['present', 'preterite', 'imperfect', 'future', 'conditional'];
+  tenses = ['present', 'preterite', 'imperfect', 'conditional', 'future'];
 
   report: any = {};
   responses: any = [];
