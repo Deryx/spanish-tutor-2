@@ -195,7 +195,7 @@ export class VerbConjugatorComponent {
 
   createReport = (): void => {
     this.showForm = false;
-    this.showReport = false;
+    this.showReport = true;
     this.showOverlay = false || this.numberQuestions === 1;
     this.showLongOverlay = true && this.numberQuestions > 1;
 
