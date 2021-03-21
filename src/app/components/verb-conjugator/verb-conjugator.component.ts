@@ -11,9 +11,9 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./verb-conjugator.component.css']
 })
 export class VerbConjugatorComponent {
-  showOverlay: boolean = false;
+  showOverlay: boolean = true;
   showLongOverlay: boolean = false;
-  showConjugatorOverlay: boolean = false;
+  showConjugatorOverlay: boolean = true;
   showForm: boolean = false;
   showReport: boolean = false;
   fade: any;
