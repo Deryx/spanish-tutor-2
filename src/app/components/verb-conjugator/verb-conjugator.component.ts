@@ -11,9 +11,9 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./verb-conjugator.component.css']
 })
 export class VerbConjugatorComponent {
-  showOverlay: boolean = true;
+  showOverlay: boolean = false;
   showLongOverlay: boolean = false;
-  showConjugatorOverlay: boolean = true;
+  showConjugatorOverlay: boolean = false;
   showForm: boolean = false;
   showReport: boolean = false;
   fade: any;
@@ -210,7 +210,7 @@ export class VerbConjugatorComponent {
 
     this.report.score = Math.round( ( this.numberCorrect / ( this.numberQuestions * 5 ) ) * 100 ); 
     this.report.correctAnswers = this.numberCorrect;
-    this.report.numberQuestions = this.numberQuestions * 5;
+    this.report.numberQuestions = this.numberQuestions * 6;
     this.report.title = 'Verb Conjugator Report';
     this.report.headings = ['infinitive', 'yo', 'tu', 'el', 'nosotros', 'vosotros', 'ellos'];
     this.report.reportData = this.reportData;
