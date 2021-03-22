@@ -81,7 +81,8 @@ export class VerbConjugatorComponent {
         this.infinitives = verbData;
 
         if( this.selectedVerb ) {
-          this.getSelectedVerb();
+          this.getCurrentVerb(parseInt( this.selectedVerb.toString() ), parseInt( this.selectedTense.toString() ) );
+
         } else {
           this.getRandomVerbs();
         }
@@ -96,7 +97,6 @@ export class VerbConjugatorComponent {
       const conjugationData = JSON.parse(JSON.stringify(result));
       this.conjugations = conjugationData;
       this.getVerbInfo( verb, tense );
-      console.log(this.questionSet);
 
       const currentVerb: number = this.questionSet[this.currentVerb];
       const currentInfinitive: number = this.infinitives[currentVerb].id;
@@ -140,26 +140,8 @@ export class VerbConjugatorComponent {
     }
   }
 
-  getSelectedVerb = (): void => {
-    const verbsLength: number = this.infinitives.length;
-    let index: number = 0;
-    let verb: number;
-    while(index < verbsLength) {
-      if(this.infinitives[index].id === parseInt( this.selectedVerb.toString() ) ){
-        verb = this.infinitives[index].id;
-
-        break;
-      }
-
-      index++;
-    }
-
-    this.getCurrentVerb(verb, parseInt( this.selectedTense.toString() ) );
-  }
-
   getRandomVerbs = (): void => {
     this.randomNumberService.generateRandomNumberArray(this.numberQuestions, this.infinitives.length, this.questionSet );
-    console.log(this.questionSet);
     let question = this.questionSet[this.currentVerb];
     this.getCurrentVerb( question, parseInt( this.selectedTense.toString() ) );
   }
