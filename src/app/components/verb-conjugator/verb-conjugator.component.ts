@@ -25,7 +25,7 @@ export class VerbConjugatorComponent {
   verb: string;
   verbs: any;
   conjugations: any;
-  numberQuestions: number = 1;
+  numberQuestions: number;
   numberAnswered: number = 0;
   tense: string;
   translation: string;
@@ -64,7 +64,7 @@ export class VerbConjugatorComponent {
     if(!data.isVisible) {
       this.selectedTense = data.tense;
       this.selectedVerb = data.verb;
-      this.numberQuestions = parseInt( data.numberVerbs );
+      this.numberQuestions = parseInt( data.numberVerbs ) || 1;
       this.showOverlay = data.isVisible;
       this.showConjugatorOverlay = data.isVisible;
       this.showForm = true;
@@ -100,7 +100,6 @@ export class VerbConjugatorComponent {
 
       let currentInfinitive: number;
       if( this.selectedVerb ) {
-        this.numberQuestions = 1;
         currentInfinitive = parseInt( this.selectedVerb.toString() );
       } else {
         const currentVerb: number = this.questionSet[this.currentVerb];
@@ -196,7 +195,7 @@ export class VerbConjugatorComponent {
       if (this.reportData[i]['answers'].ellos === this.reportData[i]['userAnswers'].ellos) this.numberCorrect++;
     }
 
-    this.report.score = Math.round( ( this.numberCorrect / ( this.numberQuestions * 5 ) ) * 100 ); 
+    this.report.score = Math.round( ( this.numberCorrect / ( this.numberQuestions * 6 ) ) * 100 ); 
     this.report.correctAnswers = this.numberCorrect;
     this.report.numberQuestions = this.numberQuestions * 6;
     this.report.title = 'Verb Conjugator Report';
