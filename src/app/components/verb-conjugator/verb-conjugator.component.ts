@@ -171,7 +171,7 @@ export class VerbConjugatorComponent {
     this.reportDatum.userAnswers = userAnswers;
     this.reportData.push(this.reportDatum);
 
-    if(this.numberAnswered < this.numberQuestions - 1) {
+    if(this.numberAnswered < this.numberQuestions) {
       this.getNextVerb();
       this.resetCurrentAnswers();
       this.numberAnswered++;
@@ -181,7 +181,6 @@ export class VerbConjugatorComponent {
   }
 
   createReport = (): void => {
-    console.log(this.numberQuestions);
     this.showForm = false;
     this.showReport = true;
     this.showOverlay = this.numberQuestions === 1;
