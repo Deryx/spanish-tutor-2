@@ -98,8 +98,13 @@ export class VerbConjugatorComponent {
       this.conjugations = conjugationData;
       this.getVerbInfo( verb, tense );
 
-      const currentVerb: number = this.questionSet[this.currentVerb];
-      const currentInfinitive: number = this.infinitives[currentVerb].id;
+      let currentInfinitive: number;
+      if( this.selectedVerb ) {
+        currentInfinitive = parseInt( this.selectedVerb.toString() );
+      } else {
+        const currentVerb: number = this.questionSet[this.currentVerb];
+        currentInfinitive = this.infinitives[currentVerb].id;
+      }
 
       let currentConjugations: any;
       let index: number = 0;
