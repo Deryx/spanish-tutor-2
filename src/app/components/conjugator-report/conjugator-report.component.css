@@ -20,6 +20,7 @@ section > div {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
     border-radius: 0.75rem;
     height: 31.25rem;
 }
