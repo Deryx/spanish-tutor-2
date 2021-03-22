@@ -100,6 +100,7 @@ export class VerbConjugatorComponent {
 
       let currentInfinitive: number;
       if( this.selectedVerb ) {
+        this.numberQuestions = 1;
         currentInfinitive = parseInt( this.selectedVerb.toString() );
       } else {
         const currentVerb: number = this.questionSet[this.currentVerb];
