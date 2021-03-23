@@ -1,4 +1,4 @@
-import { Component, Input, Inject, OnInit } from '@angular/core';
+import { Component, Input, Inject } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { Router } from "@angular/router";
 
@@ -7,14 +7,8 @@ import { Router } from "@angular/router";
   templateUrl: './verb-slider-report.component.html',
   styleUrls: ['./verb-slider-report.component.css']
 })
-export class VerbSliderReportComponent implements OnInit {
+export class VerbSliderReportComponent {
   @Input() reportInfo: any;
-
-  ngOnInit() {
-    const report: any = document.querySelector( 'section > div' );
-
-    report.style.marginTop = "50rem";
-  }
   
   constructor( @Inject(DOCUMENT) private document: Document, private router: Router ) { }
 
