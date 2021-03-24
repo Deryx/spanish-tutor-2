@@ -176,7 +176,7 @@ export class VocabularySliderComponent {
       this.showForm = false;
       this.showReport = true;
       this.showOverlay = true;
-      score = Math.round( ( this.numberCorrect / ( this.numberSlides * 5 ) ) * 100 ); 
+      score = Math.round( ( this.numberCorrect / ( this.numberSlides * 6 ) ) * 100 ); 
 
       this.report.title = 'Vocabulary Slider Report';
       this.report.scoreMessage = 'You scored ' + score + '%';
