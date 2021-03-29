@@ -23,8 +23,6 @@ export class MenuComponent {
       { 'link': 'vocabulary quiz', 'ref': '/vocabulary-quiz'},
       { 'link': 'vocabulary scramble', 'ref': '/vocabulary-scramble'},
       { 'link': 'vocabulary slider', 'ref': '/vocabulary-slider'},
-      { 'link': 'verb input', 'ref': '/verb-input'},
-      { 'link': 'vocabulary input', 'ref': '/vocabulary-input'},
       { 'link': 'vocabulary fill-in', 'ref': '/vocabulary-fill-in'},
       { 'link': 'verb slider', 'ref': '/verb-slider'}
     ]
