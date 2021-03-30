@@ -7,6 +7,7 @@
 	* JSON
 	* MongoDB
 	* Serverless AWS
+	* DynamoDB
 	* SQLite3
 * Learn GraphQL
 
