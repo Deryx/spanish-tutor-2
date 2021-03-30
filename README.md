@@ -16,12 +16,12 @@
 
 My Spanish Tutor features the following mini-applications:
 
-### Verbs
+#### Verbs
 * Conjugation Flashcards
 * Conjugator
 * Slider
 
-### Vocabulary
+#### Vocabulary
 * Flashcards
 * Completion
 * Fill-in
