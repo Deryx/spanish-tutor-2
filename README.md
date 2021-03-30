@@ -1,8 +1,7 @@
 # My Spanish Tutor
 
-My Spanish Tutor is a program that This project was created to:
+My Spanish Tutor is an application created to help beginning learners, including myself, learn Spanish by studying flashcards and utilizing various other exercises - a verb conjugator, verb and vocabulary sliders, vocabulary completion, fill-in, quiz, and scramble. Another primary motivation for creating this application was to:
 
-* Learn Spanish
 * Learn Angular 2+
 * Implement the following data storage solutions:
 	* JSON
