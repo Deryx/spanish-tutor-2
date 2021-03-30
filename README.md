@@ -13,6 +13,8 @@
 
 ## Features
 
+My Spanish Tutor features the following mini-applications:
+
 ### Verbs
 * Conjugation Flashcards
 * Conjugator
@@ -25,3 +27,5 @@
 * Quiz
 * Scramble
 * Slider
+
+At the present time, the verbs in the **indicative** mood. The other two moods, **subjunctive** and **imperative** will come later.
