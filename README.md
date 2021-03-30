@@ -10,6 +10,7 @@
 	* SQLite3
 * Learn GraphQL
 
+
 ## Using My Spanish Tutor
 
 [My Spanish Tutor](https://deryx.github.io/spanish-tutor-2/ "My Spanish Tutor")
