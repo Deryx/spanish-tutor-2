@@ -1,6 +1,6 @@
 # My Spanish Tutor
 
-**My Spanish Tutor** is an application created to help beginning learners, including myself, learn Spanish by studying flashcards and utilizing various other exercises - a verb conjugator, verb and vocabulary sliders, vocabulary completion, fill-in, quiz, and scramble. Another primary motivation for creating this application was to:
+**My Spanish Tutor** is an application created to help beginning learners, including myself, learn Spanish by studying flashcards and utilizing various other exercises. Another primary motivation for creating this application was to:
 
 * Learn Angular 2+
 * Implement the following data storage solutions:
@@ -11,6 +11,17 @@
 * Learn GraphQL
 
 
-## Using My Spanish Tutor
+## Features
 
-[My Spanish Tutor](https://deryx.github.io/spanish-tutor-2/ "My Spanish Tutor")
+[Verbs]
+* Conjugation Flashcards
+* Conjugator
+* Slider
+
+[Vocabulary]
+* Flashcards
+* Completion
+* Fill-in
+* Quiz
+* Scramble
+* Slider
