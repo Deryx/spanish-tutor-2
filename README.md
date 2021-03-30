@@ -12,4 +12,4 @@
 
 ## Using My Spanish Tutor
 
-[Named Link](http://www.google.fr/ "Named link title")
+[My Spanish Tutor](https://deryx.github.io/spanish-tutor-2/ "My Spanish Tutor")
