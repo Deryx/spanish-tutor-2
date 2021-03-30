@@ -13,13 +13,13 @@
 
 ## Features
 
-[Verbs](#Verbs "Verbs")
+[Verbs](#Verbs)
 
 * Conjugation Flashcards
 * Conjugator
 * Slider
 
-[Vocabulary](#Vocabulary "Verbs")
+[Vocabulary](#Vocabulary)
 
 * Flashcards
 * Completion
