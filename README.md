@@ -33,7 +33,7 @@ At the present time, the verbs in the **indicative** mood. The other two moods, 
 
  ## Working Site
  
- The working site is hosted by GitHub and based on the sqlite branch without using the sqlite database. You can access the site with the link below:
+ The working site is hosted by GitHub and based on the sqlite branch without using the sqlite database. The branch actually uses several json files - verbs, conjugations, tenses, vocabulary, and categories - that were created from sqlite3 database found in the branch sqlite. You can access the site with the link below:
  
  [My Spanish Tutor](https://deryx.github.io/spanish-tutor-2/ "My Spanish Tutor")
 
