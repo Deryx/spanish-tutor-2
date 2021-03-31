@@ -44,6 +44,7 @@ This branch was adapted from the master branch to use the relational database SQ
 
 This branch was adapted from the sqlite branch. Five json files - verbs, conjugation, tenses, vocabulary, and categories - were created from the SQLite database. Json files were created so that the application could be fully functional on GitHub. Functions just like the application on the sqlite branch except it doesn't have the verb input and vocabulary input compoonents. You can access the app with this link: [My Spanish Tutor](https://deryx.github.io/spanish-tutor-2/ "My Spanish Tutor").
 
+
 ### dynamoDb
 
 This branch was adapted from the master branch to utilize AWS Serverless technology and the noSQL database, dynamoDb. This was an attempt to be able to publish My Spanish Tutor on gh-pages. 
