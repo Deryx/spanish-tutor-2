@@ -35,7 +35,9 @@ At the present time, the verbs in the **indicative** mood. The other two moods, 
 
 ### sqlite
 
-This branch was adapted from the master branch to use the relational database SQLite and query language GraphQL. This branch was created with the intention of developing a relational database that could be used in case I decide to develop a mobile app.
+This branch was adapted from the master branch to use the relational database SQLite and query language GraphQL. This branch was created with the intention of developing a relational database that could be used in case I decide to develop a mobile app. The database is present on the branch and would be downloaded in any pull. Once the branch is pulled, the app and the database would be started using the following command line at the command prompt of the folder in which you have cloned the application:
+
+**npm start**
 
 
 ### gh-pages
