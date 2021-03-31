@@ -44,5 +44,5 @@ This branch was adapted from the sqlite branch. Five json files - verbs, conjuga
 
 ### dynamoDb
 
-
+This branch was adapted from the master branch to utilize AWS Serverless technology and the noSQL database, dynamoDb. This was an attempt to be able to publish My Spanish Tutor on gh-pages. 
 
