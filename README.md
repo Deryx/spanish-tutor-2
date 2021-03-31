@@ -31,9 +31,18 @@ My Spanish Tutor features the following mini-applications:
 
 At the present time, the verbs in the **indicative** mood. The other two moods, **subjunctive** and **imperative** will come later.
 
- ## Working Site
- 
- The working site is hosted by GitHub and based on the sqlite branch without using the sqlite database. The branch actually uses several json files - verbs, conjugations, tenses, vocabulary, and categories - that were created from the sqlite3 database found on the sqlite branch. You can access the site with the link below:
- 
- [My Spanish Tutor](https://deryx.github.io/spanish-tutor-2/ "My Spanish Tutor")
+## Branches
+
+### sqlite
+
+This branch was adapted from the master branch to use the relational database SQLite and query language GraphQL. This branch was created with the intention of developing a relational database that could be used in case I decide to develop a mobile app.
+
+
+### gh-pages
+
+This branch was adapted from the sqlite branch. Five json files - verbs, conjugation, tenses, vocabulary, and categories - were created from the SQLite database. Json files were created so that the application could be fully functional on GitHub. Functions just like the application on the sqlite branch except it doesn't have the verb input and vocabulary input compoonents. You can access the app with this link: [My Spanish Tutor](https://deryx.github.io/spanish-tutor-2/ "My Spanish Tutor").
+
+### dynamoDb
+
+
 
