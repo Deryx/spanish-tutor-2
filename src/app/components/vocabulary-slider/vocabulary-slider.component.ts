@@ -175,7 +175,12 @@ export class VocabularySliderComponent {
 
       this.report.title = 'Vocabulary Slider Report';
       this.report.scoreMessage = 'You scored ' + score + '%';
-      this.report.headings = ['slide set', 'tile 1', 'tile 2', 'tile 3', 'tile 4', 'tile 5'];
+      this.report.headings = ['slide set'];
+      for(let i = 1; i < this.numberSlides; i++){
+        let heading: string = 'tile ' + i;
+        this.report.headings.push( heading );
+      }
+      
       this.report.responses = this.responses;
     } else {
       this.getNextSet();

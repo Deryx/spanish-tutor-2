@@ -174,6 +174,7 @@ export class VerbSliderComponent {
         let heading = 'tile ' + i;
         this.report.headings.push( heading );
       }
+      
       this.report.responses = this.responses;
     } else {
       this.getNextSet();
