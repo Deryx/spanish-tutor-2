@@ -25,8 +25,12 @@
         <dd><input type="text" id="nosotros" (focus)="getSelectedTextbox('nosotros')" class="col-lg-12" name="nosotros" [(ngModel)]="inputAnswers.nosotros" /></dd>
       </dl>
       <dl>
+        <dt>Vosotros</dt>
+        <dd><input type="text" id="vosotros" (focus)="getSelectedTextbox('vosotros')" class="col-lg-12" name="vosotros" [(ngModel)]="inputAnswers.vosotros" /></dd>
+      </dl>
+      <dl>
         <dt>Ellos/Ellas/Ustedes</dt>
-        <dd><input type="text" id="els" (focus)="getSelectedTextbox('els')" class="col-lg-12" name="els" [(ngModel)]="inputAnswers.els" /></dd>
+        <dd><input type="text" id="ellos" (focus)="getSelectedTextbox('ellos')" class="col-lg-12" name="ellos" [(ngModel)]="inputAnswers.ellos" /></dd>
       </dl>
     </fieldset>
     <app-spanish-accents (accentMessage)="placeAccent($event)"></app-spanish-accents>

@@ -115,7 +115,7 @@ export class VerbSliderComponent {
         this.currentAnswers.push(conjugations[0].el);
         this.currentAnswers.push(conjugations[0].nosotros);
         this.currentAnswers.push(conjugations[0].vosotros);
-        this.currentAnswers.push(conjugations[0].els);
+        this.currentAnswers.push(conjugations[0].ellos);
         this.randomNumberService.generateRandomNumberArray( this.currentAnswers.length, this.currentAnswers.length, scrambledSlides );
         
         for(let i = 0; i < scrambledSlides.length; i++) {
@@ -148,7 +148,6 @@ export class VerbSliderComponent {
     const answer = this.answers[this.currentSlideSet];
     const response = this.verbSlides;
     for(let i = 0; i < response.length; i++) {
-      console.log(answer[i], response[i]);
       if( answer[i] === response[i] ) this.numberCorrect++;
     }
 
@@ -166,11 +165,15 @@ export class VerbSliderComponent {
       this.showForm = false;
       this.showReport = true;
       this.showOverlay = true;
-      score = Math.round( ( this.numberCorrect / ( this.numberSlides * 5 ) ) * 100 ); 
+      score = Math.round( ( this.numberCorrect / ( this.numberSlides * 6 ) ) * 100 ); 
 
       this.report.title = 'Verb Slider Report';
       this.report.scoreMessage = 'You scored ' + score + '%';
-      this.report.headings = ['slide set', 'tile 1', 'tile 2', 'tile 3', 'tile 4', 'tile 5'];
+      this.report.headings = ['slide set'];
+      for(let i = 1; i < this.numberSlides; i++){
+        let heading = 'tile ' + i;
+        this.report.headings.push( heading );
+      }
       this.report.responses = this.responses;
     } else {
       this.getNextSet();

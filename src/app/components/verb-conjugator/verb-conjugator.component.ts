@@ -44,12 +44,13 @@ export class VerbConjugatorComponent {
     tu: '',
     el: '',
     nosotros: '',
-    els: ''
+    vosotros: '',
+    ellos: ''
   };
   infinitive = '';
 
   numberCorrect: number = 0;
-  tenses = ['present', 'preterite', 'imperfect', 'future', 'conditional'];
+  tenses = ['present', 'preterite', 'imperfect', 'conditional', 'future'];
 
   report: any = {};
   responses: any = [];
@@ -133,14 +134,11 @@ export class VerbConjugatorComponent {
 
   getSelectedVerb = (): void => {
     const verbsLength: number = this.infinitives.length;
-    let verb: number;
-    for(let i = 0; i < verbsLength; i++){
-      if(this.infinitives[i].id === this.selectedVerb){
-        verb = i;
-      }
-    }
+    let verbElement: any = this.infinitives.find( element => parseInt( element.id.toString() ) === parseInt( this.selectedVerb.toString() ) );
 
-    this.getCurrentVerb(verb, this.selectedTense);
+    const verb: number = verbElement.id - 1;
+
+    this.getCurrentVerb( verb, this.selectedTense);
   }
 
   getRandomVerbs = ( numberVerbs: number ): void => {
@@ -164,7 +162,8 @@ export class VerbConjugatorComponent {
       tu: this.inputAnswers.tu || 'N/A',
       el: this.inputAnswers.el || 'N/A',
       nosotros: this.inputAnswers.nosotros || 'N/A',
-      els: this.inputAnswers.els || 'N/A'
+      vosotros: this.inputAnswers.vosotros || 'N/A',
+      ellos: this.inputAnswers.ellos || 'N/A'
     }
     this.reportDatum.userAnswers = userAnswers;
     this.reportData.push(this.reportDatum);
@@ -188,14 +187,15 @@ export class VerbConjugatorComponent {
       if (this.reportData[i]['answers'].tu === this.reportData[i]['userAnswers'].tu) this.numberCorrect++;
       if (this.reportData[i]['answers'].el === this.reportData[i]['userAnswers'].el) this.numberCorrect++;
       if (this.reportData[i]['answers'].nosotros === this.reportData[i]['userAnswers'].nosotros) this.numberCorrect++;
-      if (this.reportData[i]['answers'].els === this.reportData[i]['userAnswers'].els) this.numberCorrect++;
+      if (this.reportData[i]['answers'].vosotros === this.reportData[i]['userAnswers'].vosotros) this.numberCorrect++;
+      if (this.reportData[i]['answers'].ellos === this.reportData[i]['userAnswers'].ellos) this.numberCorrect++;
     }
 
     this.report.score = Math.round( ( this.numberCorrect / ( this.numberQuestions * 5 ) ) * 100 ); 
     this.report.correctAnswers = this.numberCorrect;
     this.report.numberQuestions = this.numberQuestions * 5;
     this.report.title = 'Verb Conjugator Report';
-    this.report.headings = ['infinitive', 'yo', 'tu', 'el', 'nosotros', 'els'];
+    this.report.headings = ['infinitive', 'yo', 'tu', 'el', 'nosotros', 'vosotros', 'ellos'];
     this.report.reportData = this.reportData;
   }
 
@@ -212,7 +212,8 @@ export class VerbConjugatorComponent {
       tu: '',
       el: '',
       nosotros: '',
-      els: ''
+      vosotros: '',
+      ellos: ''
     };
   }
   
