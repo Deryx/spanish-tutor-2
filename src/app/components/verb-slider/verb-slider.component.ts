@@ -115,6 +115,7 @@ export class VerbSliderComponent {
           let scrambledSlide = scrambledSlides[i];
           this.verbSlides.push( answers[scrambledSlide] );
         }
+        console.log(this.verbSlides);
         
         scrambledSlides = [];
         
