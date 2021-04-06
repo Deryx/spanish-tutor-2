@@ -109,7 +109,7 @@ export class VerbSliderComponent {
         answers.push( this.currentAnswers.vosotros );
         answers.push( this.currentAnswers.ellos );
               
-        this.randomNumberService.generateRandomNumberArray( this.currentAnswers.length, this.currentAnswers.length, scrambledSlides );
+        this.randomNumberService.generateRandomNumberArray( answers.length, answers.length, scrambledSlides );
         
         for(let i = 0; i < scrambledSlides.length; i++) {
           let scrambledSlide = scrambledSlides[i];
