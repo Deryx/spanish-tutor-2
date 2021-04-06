@@ -6,8 +6,6 @@ import { Router } from "@angular/router";
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Subscription } from 'rxjs';
 
-const JSONPath = require('jsonpath-plus');
-
 @Component({
   selector: 'app-verb-slider',
   templateUrl: './verb-slider.component.html',
