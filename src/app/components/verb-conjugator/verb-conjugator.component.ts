@@ -103,10 +103,10 @@ export class VerbConjugatorComponent {
         currentInfinitive = parseInt( this.selectedVerb.toString() );
       } else {
         const currentVerb: number = this.questionSet[this.currentVerb];
-        currentInfinitive = verb;
+        currentInfinitive = parseInt ( verb.toString() );
       }
 
-      let currentConjugations: any = this.conjugations.filter( conjugation => conjugation.verb === currentInfinitive && conjugation.tense === tense );
+      let currentConjugations: any = this.conjugations.filter( conjugation => conjugation.verb === parseInt( currentInfinitive.toString() ) && conjugation.tense === parseInt( tense.toString() ) );
   
       this.reportDatum.answers = currentConjugations;
       
