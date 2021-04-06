@@ -101,7 +101,7 @@ export class VerbSliderComponent {
         const conjugationData = JSON.parse(JSON.stringify(result));
         const conjugations = conjugationData;
 
-        this.currentAnswers = conjugations.filter( conjugation => ( parseInt( conjugation.verb ) === verb && parseInt( conjugation.tense ) === parseInt( tense.toString() ) ) );
+        this.currentAnswers = conjugations.filter( conjugation => ( parseInt( conjugation.verb ) === parseInt( verb.toString() ) && parseInt( conjugation.tense ) === parseInt( tense.toString() ) ) );
               
         this.randomNumberService.generateRandomNumberArray( this.currentAnswers.length, this.currentAnswers.length, scrambledSlides );
         
