@@ -1,28 +1,51 @@
-# SpanishTutor
+# My Spanish Tutor
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.4.
+**My Spanish Tutor** is an application created to help beginning learners, including myself, learn Spanish by studying flashcards and utilizing various other exercises. Another primary motivation for creating this application was to:
 
-## Development server
+* Learn Angular 2+
+* Implement the following data storage solutions:
+	* JSON
+	* MongoDB
+	* Serverless AWS
+	* DynamoDB
+	* SQLite3
+* Learn GraphQL
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Code scaffolding
+## Features
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+My Spanish Tutor features the following mini-applications:
 
-## Build
+#### Verbs
+* Conjugation Flashcards
+* Conjugator
+* Slider
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+#### Vocabulary
+* Flashcards
+* Completion
+* Fill-in
+* Quiz
+* Scramble
+* Slider
 
-## Running unit tests
+At the present time, the verbs in the **indicative** mood. The other two moods, **subjunctive** and **imperative** will come later.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Branches
 
-## Running end-to-end tests
+### sqlite
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+This branch was adapted from the master branch to use the relational database SQLite and query language GraphQL. This branch was created with the intention of developing a relational database that could be used in case I decide to develop a mobile app. The database is present on the branch and would be downloaded in any pull. Once the branch is pulled, the app and the database would be started using the following command line at the command prompt of the folder in which you have cloned the application:
 
-## Further help
+**npm start**
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
-"# SpanishTutor2" 
+
+### gh-pages
+
+This branch was adapted from the sqlite branch. Five json files - verbs, conjugation, tenses, vocabulary, and categories - were created from the SQLite database. Json files were created so that the application could be fully functional on GitHub. Functions just like the application on the sqlite branch except it doesn't have the verb input and vocabulary input compoonents. You can access the app with this link: [My Spanish Tutor](https://deryx.github.io/spanish-tutor-2/ "My Spanish Tutor").
+
+
+### dynamoDb
+
+This branch was adapted from the master branch to utilize AWS Serverless technology and the noSQL database, dynamoDb. This was an attempt to be able to publish My Spanish Tutor on gh-pages. 
+
