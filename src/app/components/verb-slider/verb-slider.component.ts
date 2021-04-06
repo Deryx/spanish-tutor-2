@@ -100,12 +100,13 @@ export class VerbSliderComponent {
         const conjugations = conjugationData;
 
         this.currentAnswers = conjugations.filter( conjugation => ( parseInt( conjugation.verb ) === parseInt( verb.toString() ) && parseInt( conjugation.tense ) === parseInt( tense.toString() ) ) );
+        console.log(this.currentAnswers);
               
         this.randomNumberService.generateRandomNumberArray( this.currentAnswers.length, this.currentAnswers.length, scrambledSlides );
         
         for(let i = 0; i < scrambledSlides.length; i++) {
           let scrambledSlide = scrambledSlides[i];
-          this.verbSlides.push( this.currentAnswers[0][scrambledSlide] );
+          this.verbSlides.push( this.currentAnswers[scrambledSlide] );
         }
         
         scrambledSlides = [];
