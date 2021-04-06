@@ -100,26 +100,9 @@ export class VerbSliderComponent {
         let scrambledSlides: any = [];
         const conjugationData = JSON.parse(JSON.stringify(result));
         const conjugations = conjugationData;
+
+        this.currentAnswers = conjugations.filter( conjugation => ( parseInt( conjugation.verb ) === verb && parseInt( conjugation.tense ) === parseInt( tense.toString() ) ) );
               
-        let index: number = 0;
-        while(index < conjugations.length) {
-          let currentConjugation: any = conjugations[index];
-          let currentVerb: number = parseInt( currentConjugation.verb );
-          let currentTense: number = parseInt( currentConjugation.tense );
-          if( currentVerb === verb && currentTense === parseInt( tense.toString() ) ) {
-            this.currentAnswers.push(currentConjugation.yo);
-            this.currentAnswers.push(currentConjugation.tu);
-            this.currentAnswers.push(currentConjugation.el);
-            this.currentAnswers.push(currentConjugation.nosotros);
-            this.currentAnswers.push(currentConjugation.vosotros);
-            this.currentAnswers.push(currentConjugation.ellos);
-            
-            break;
-          }
-
-          index++;
-        }
-
         this.randomNumberService.generateRandomNumberArray( this.currentAnswers.length, this.currentAnswers.length, scrambledSlides );
         
         for(let i = 0; i < scrambledSlides.length; i++) {
@@ -152,7 +135,6 @@ export class VerbSliderComponent {
     const answer = this.answers[this.currentSlideSet];
     const response = this.verbSlides;
     for(let i = 0; i < response.length; i++) {
-      console.log(answer[i], response[i]);
       if( answer[i] === response[i] ) this.numberCorrect++;
     }
 
@@ -174,7 +156,13 @@ export class VerbSliderComponent {
 
       this.report.title = 'Verb Slider Report';
       this.report.scoreMessage = 'You scored ' + score + '%';
-      this.report.headings = ['slide set', 'tile 1', 'tile 2', 'tile 3', 'tile 4', 'tile 5'];
+      this.report.headings = ['slide set'];
+
+      for( let i = 0; i < this.numberSlides; i++ ) {
+        let heading = 'tile ' + i + 1;
+        this.report.headings.push( heading );
+      }
+
       this.report.responses = this.responses;
     } else {
       this.getNextSet();

@@ -106,18 +106,7 @@ export class VerbConjugatorComponent {
         currentInfinitive = verb;
       }
 
-      let currentConjugations: any;
-      let index: number = 0;
-      while(index < this.conjugations.length) {
-        let currentConjugationVerb: number = parseInt( this.conjugations[index].verb );
-        let currentConjugationTense: number = parseInt( this.conjugations[index].tense );
-        if( currentConjugationVerb === currentInfinitive && currentConjugationTense === tense ) {
-          currentConjugations = this.conjugations[index];
-
-          break;
-        }
-        index++;
-      }
+      let currentConjugations: any = this.conjugations.filter( conjugation => conjugation.verb === currentInfinitive && conjugation.tense === tense );
   
       this.reportDatum.answers = currentConjugations;
       

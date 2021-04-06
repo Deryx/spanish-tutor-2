@@ -166,18 +166,9 @@ export class VerbFlashcardComponent implements OnInit {
     const tenseSelected: number = parseInt( this.tenseSelect );
     const tensesArray = ['present', 'preterite', 'imperfect', 'conditional', 'future'];
     this.selectedTense = tensesArray[ tenseSelected - 1 ];
-    const numConjugations: number = this.conjugations.length;
     const currentVerb: number = parseInt( this.verbSelect );
-    console.log(currentVerb, tenseSelected);
-    let i = 0;
-    while(i < numConjugations){
-      let currentConjugation = this.conjugations[i];
-      if( currentConjugation.verb === currentVerb && currentConjugation.tense === tenseSelected ){
-        this.conjugation = currentConjugation;
-        return;
-      }
-      i++;
-    }
+    
+    this.conjugation = this.conjugations.find( conjugation => ( conjugation.verb === currentVerb && conjugation.tense === tenseSelected ) );
 
     this.fade = this.fade === 'in' ? 'out' : 'in';
   }
@@ -186,7 +177,6 @@ export class VerbFlashcardComponent implements OnInit {
     this.vs.getConjugations()
       .subscribe( results => {
         this.conjugations = results;
-        console.log(this.conjugations);
       }, (error) => {
         console.log('there was an error sending the query', error);
       });

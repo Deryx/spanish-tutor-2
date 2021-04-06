@@ -55,18 +55,9 @@ export class VocabularyFillInComponent {
         this.dictionary = JSON.parse(JSON.stringify(result));
         let questionDictionary: any;
         const dictionaryLength = this.dictionary.length;
-        const categoryDictionary: any = [];
+        let categoryDictionary: any = [];
         if( this.selectedCategory ) {
-          let index: number = 0;
-          while( index < dictionaryLength ) {
-            let currentWord: any = this.dictionary[index];
-            let currentCategory: number = currentWord.category;
-            if( currentCategory === parseInt( this.selectedCategory.toString() )) {
-              categoryDictionary.push( currentWord );
-            }
-    
-            index++;
-          }
+          categoryDictionary = this.dictionary.filter( word => word.category === parseInt( this.selectedCategory.toString() ) );
     
           this.dictionary = categoryDictionary;
         }

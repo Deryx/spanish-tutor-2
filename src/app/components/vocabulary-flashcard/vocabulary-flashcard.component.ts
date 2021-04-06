@@ -90,25 +90,13 @@ export class VocabularyFlashcardComponent implements OnInit {
       const dictionaryData = JSON.parse(JSON.stringify(result));
       this.dictionary = dictionaryData;
       const dictionaryLength = this.dictionary.length;
-      const flashcardDictionary: any = [];
+      let flashcardDictionary: any = [];
 
       if( this.category ) {
-        let index: number = 0;
-
-        while( index < dictionaryLength ) {
-          let currentWord: any = this.dictionary[index];
-          let currentCategory: number = parseInt( currentWord.category.toString() );
-          const selectedCategory: number = parseInt( this.category.toString() );
-          if( currentCategory === selectedCategory ) {
-            flashcardDictionary.push( currentWord );
-          }
-
-          index++;
-        }
-
+        flashcardDictionary = this.dictionary.filter( word => word.category === parseInt( this.category.toString() ) );
+    
         this.dictionary = flashcardDictionary;
       }
-      console.log(this.dictionary);
       this.index = 0;
       this.word = this.dictionary[this.index].word;
       this.pronunciation = this.dictionary[this.index].pronunciation;

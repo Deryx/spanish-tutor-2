@@ -66,18 +66,13 @@ export class VocabularySliderComponent {
         this.dictionary = JSON.parse(JSON.stringify(result));
         let questionDictionary: any;
         const dictionaryLength = this.dictionary.length;
-        const categoryDictionary: any = [];
+        let categoryDictionary: any = [];
         if( this.selectedCategory ) {
-          let index: number = 0;
-          while( index < dictionaryLength ) {
-            let currentWord: any = this.dictionary[index];
-            let currentCategory: number = currentWord.category;
-            if( currentCategory === parseInt( this.selectedCategory.toString() )) {
-              categoryDictionary.push( currentWord );
-            }
-    
-            index++;
-          }
+          categoryDictionary = this.dictionary.filter( ( category, index ) => {
+            if( category === parseInt( this.selectedCategory.toString() ) ) {
+              return this.dictionary[index];
+           }
+          });
     
           this.dictionary = categoryDictionary;
         }
@@ -180,7 +175,13 @@ export class VocabularySliderComponent {
 
       this.report.title = 'Vocabulary Slider Report';
       this.report.scoreMessage = 'You scored ' + score + '%';
-      this.report.headings = ['slide set', 'tile 1', 'tile 2', 'tile 3', 'tile 4', 'tile 5'];
+
+      this.report.headings = ['slide set'];
+      for( let i = 0; i < this.numberSlides; i++ ) {
+        let heading = 'tile ' + i + 1;
+        this.report.headings.push( heading );
+      }
+
       this.report.responses = this.responses;
     } else {
       this.getNextSet();
