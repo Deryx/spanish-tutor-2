@@ -107,7 +107,8 @@ export class VerbConjugatorComponent {
       }
 
       let currentConjugations: any = this.conjugations.filter( conjugation => parseInt( conjugation.verb.toString() ) === parseInt( currentInfinitive.toString() ) && parseInt( conjugation.tense.toString() ) === parseInt( tense.toString() ) );
-  
+      console.log(currentConjugations);
+
       this.reportDatum.answers = currentConjugations;
       
       this.fade = this.fade === 'in' ? 'out' : 'in';
