@@ -100,7 +100,8 @@ export class VerbSliderComponent {
         const conjugations = conjugationData;
 
         this.currentAnswers = conjugations.find( conjugation => ( parseInt( conjugation.verb ) === parseInt( verb.toString() ) && parseInt( conjugation.tense ) === parseInt( tense.toString() ) ) );
-      
+        console.log(this.currentAnswers);
+        
         const answers: any = [];
         answers.push( this.currentAnswers.yo );
         answers.push( this.currentAnswers.tu );
