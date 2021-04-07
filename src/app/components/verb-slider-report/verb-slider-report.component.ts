@@ -1,4 +1,4 @@
-import { Component, Input, Inject } from '@angular/core';
+import { Component, Input, Inject, OnInit } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { Router } from "@angular/router";
 
@@ -7,9 +7,18 @@ import { Router } from "@angular/router";
   templateUrl: './verb-slider-report.component.html',
   styleUrls: ['./verb-slider-report.component.css']
 })
-export class VerbSliderReportComponent {
+export class VerbSliderReportComponent implements OnInit {
   @Input() reportInfo: any;
-  
+
+  ngOnInit() {
+    const longOverlay: any = document.querySelector( '#long-overlay' );
+    const report: any = document.querySelector( 'section > div' );
+
+    if(longOverlay) {
+      report.style.marginTop = "50rem";
+    } 
+  }
+
   constructor( @Inject(DOCUMENT) private document: Document, private router: Router ) { }
 
   replay() {    
