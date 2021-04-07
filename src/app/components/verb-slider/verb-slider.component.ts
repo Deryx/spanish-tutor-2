@@ -153,7 +153,7 @@ export class VerbSliderComponent {
 
     this.responses.push( responseObj );
 
-    if( this.currentSlideSet === this.numberSlides ) {
+    if( this.currentSlideSet === this.numberSlides - 1 ) {
       this.showForm = false;
       this.showReport = true;
       this.showOverlay = true;
