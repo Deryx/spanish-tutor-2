@@ -79,7 +79,7 @@ export class VerbSliderComponent {
 
   getQuestionSet( numQuestions: number, maxNumber: number ) {
     const slideSet: number[] = [];
-    for( let i = 0; i < numQuestions; i++ ) {
+    for( let i = 0; i < this.numberSlides; i++ ) {
       this.randomNumberService.generateRandomNumberArray( numQuestions, maxNumber, slideSet );
     }
 
