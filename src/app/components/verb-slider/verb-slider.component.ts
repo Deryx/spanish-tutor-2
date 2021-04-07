@@ -115,12 +115,10 @@ export class VerbSliderComponent {
           let scrambledSlide = scrambledSlides[i];
           this.verbSlides.push( answers[scrambledSlide] );
         }
-        console.log('verb slides', this.verbSlides);
         
         scrambledSlides = [];
         
         this.answers.push( answers );
-        console.log('answers', this.answers);
         this.currentAnswers = [];
       }, (error) => {
         console.log('there was an error sending the query', error);
@@ -129,8 +127,7 @@ export class VerbSliderComponent {
 
   getNextSet() {
     this.verbSlides = [];
-    let numberQuestions = Object.keys(this.questionSet).length;
-    if( this.currentSlideSet < numberQuestions ) {
+    if( this.currentSlideSet < this.numberSlides ) {
       this.currentSlideSet++;
       this.displaySlideSet( this.currentSlideSet );
     }
