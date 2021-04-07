@@ -115,12 +115,12 @@ export class VerbSliderComponent {
           let scrambledSlide = scrambledSlides[i];
           this.verbSlides.push( answers[scrambledSlide] );
         }
-        console.log(this.verbSlides);
+        console.log('verb slides', this.verbSlides);
         
         scrambledSlides = [];
         
         this.answers.push( answers );
-        console.log(this.answers);
+        console.log('answers', this.answers);
         this.currentAnswers = [];
       }, (error) => {
         console.log('there was an error sending the query', error);
