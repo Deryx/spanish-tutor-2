@@ -26,7 +26,7 @@ export class VerbSliderComponent {
 
   infinitive: string = '';
 
-  questionSet: any = {};
+  questionSet: any = [];
   slideSet: number[] = [];
   pronounCards: any[] = [];
   verbSlides: any = [];
