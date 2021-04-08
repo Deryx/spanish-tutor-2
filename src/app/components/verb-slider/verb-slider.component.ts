@@ -169,6 +169,8 @@ export class VerbSliderComponent {
 
       this.responses.push( responseObj );
 
+      this.currentSlideSet++;
+
       this.getNextSet();
     } else {
       this.createReport();
