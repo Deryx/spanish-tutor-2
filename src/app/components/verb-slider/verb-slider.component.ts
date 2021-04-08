@@ -89,6 +89,7 @@ export class VerbSliderComponent {
   displaySlideSet( numberQuestion: number ) {
     const question = this.questionSet[numberQuestion];
     this.infinitive = this.infinitives[question].infinitive;
+    this.answers = [];
     this.getCurrentVerb( this.infinitives[question].id, this.tenseSelect );
   }
 
@@ -101,24 +102,21 @@ export class VerbSliderComponent {
 
         this.currentAnswers = conjugations.find( conjugation => ( parseInt( conjugation.verb ) === parseInt( verb.toString() ) && parseInt( conjugation.tense ) === parseInt( tense.toString() ) ) );
         
-        const answers: any = [];
-        answers.push( this.currentAnswers.yo );
-        answers.push( this.currentAnswers.tu );
-        answers.push( this.currentAnswers.el );
-        answers.push( this.currentAnswers.nosotros );
-        answers.push( this.currentAnswers.vosotros );
-        answers.push( this.currentAnswers.ellos );
+        this.answers.push( this.currentAnswers.yo );
+        this.answers.push( this.currentAnswers.tu );
+        this.answers.push( this.currentAnswers.el );
+        this.answers.push( this.currentAnswers.nosotros );
+        this.answers.push( this.currentAnswers.vosotros );
+        this.answers.push( this.currentAnswers.ellos );
               
-        this.randomNumberService.generateRandomNumberArray( answers.length, answers.length, scrambledSlides );
+        this.randomNumberService.generateRandomNumberArray( this.answers.length, this.answers.length, scrambledSlides );
         
         for(let i = 0; i < scrambledSlides.length; i++) {
           let scrambledSlide = scrambledSlides[i];
-          this.verbSlides.push( answers[scrambledSlide] );
+          this.verbSlides.push( this.answers[scrambledSlide] );
         }
         
         scrambledSlides = [];
-        
-        this.answers.push( answers );
         this.currentAnswers = [];
       }, (error) => {
         console.log('there was an error sending the query', error);
