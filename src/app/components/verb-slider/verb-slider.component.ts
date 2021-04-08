@@ -89,7 +89,6 @@ export class VerbSliderComponent {
   displaySlideSet( numberQuestion: number ) {
     const question = this.questionSet[numberQuestion];
     this.infinitive = this.infinitives[question].infinitive;
-    this.answers = [];
     this.getCurrentVerb( this.infinitives[question].id, this.tenseSelect );
   }
 
@@ -102,6 +101,7 @@ export class VerbSliderComponent {
 
         this.currentAnswers = conjugations.find( conjugation => ( parseInt( conjugation.verb ) === parseInt( verb.toString() ) && parseInt( conjugation.tense ) === parseInt( tense.toString() ) ) );
         
+        this.answers = [];
         this.answers.push( this.currentAnswers.yo );
         this.answers.push( this.currentAnswers.tu );
         this.answers.push( this.currentAnswers.el );
