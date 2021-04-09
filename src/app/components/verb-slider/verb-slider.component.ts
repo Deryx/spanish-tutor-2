@@ -14,6 +14,7 @@ import { Subscription } from 'rxjs';
 
 export class VerbSliderComponent {
   showOverlay: boolean = true;
+  showLongOverlay: boolean = false;
   showVerbOverlay: boolean = true;
   showForm: boolean = false;
   showReport: boolean = false;
@@ -156,7 +157,8 @@ export class VerbSliderComponent {
     if( this.currentSlideSet === this.numberSlides - 1 ) {
       this.showForm = false;
       this.showReport = true;
-      this.showOverlay = true;
+      this.showOverlay = this.numberSlides === 1;
+      this.showLongOverlay = this.numberSlides > 1;
       score = Math.round( ( this.numberCorrect / ( this.numberSlides * 6 ) ) * 100 ); 
 
       this.report.title = 'Verb Slider Report';
