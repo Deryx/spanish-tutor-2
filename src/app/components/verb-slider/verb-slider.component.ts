@@ -101,22 +101,24 @@ export class VerbSliderComponent {
 
         this.currentAnswers = conjugations.find( conjugation => ( parseInt( conjugation.verb ) === parseInt( verb.toString() ) && parseInt( conjugation.tense ) === parseInt( tense.toString() ) ) );
         
-        this.answers = [];
-        this.answers.push( this.currentAnswers.yo );
-        this.answers.push( this.currentAnswers.tu );
-        this.answers.push( this.currentAnswers.el );
-        this.answers.push( this.currentAnswers.nosotros );
-        this.answers.push( this.currentAnswers.vosotros );
-        this.answers.push( this.currentAnswers.ellos );
+        const answers: any = [];
+        answers.push( this.currentAnswers.yo );
+        answers.push( this.currentAnswers.tu );
+        answers.push( this.currentAnswers.el );
+        answers.push( this.currentAnswers.nosotros );
+        answers.push( this.currentAnswers.vosotros );
+        answers.push( this.currentAnswers.ellos );
               
-        this.randomNumberService.generateRandomNumberArray( this.answers.length, this.answers.length, scrambledSlides );
+        this.randomNumberService.generateRandomNumberArray( answers.length, answers.length, scrambledSlides );
         
         for(let i = 0; i < scrambledSlides.length; i++) {
           let scrambledSlide = scrambledSlides[i];
-          this.verbSlides.push( this.answers[scrambledSlide] );
+          this.verbSlides.push( answers[scrambledSlide] );
         }
         
         scrambledSlides = [];
+        
+        this.answers.push( answers );
         this.currentAnswers = [];
       }, (error) => {
         console.log('there was an error sending the query', error);
@@ -131,49 +133,44 @@ export class VerbSliderComponent {
     }
   }
 
-  createReport() {
-    this.showForm = false;
-    this.showReport = true;
-    this.showOverlay = true;
+  getAnswer() {
+    const responseObj: any = {};
+    let score: number = 0;
 
-    let score = Math.round( ( this.numberCorrect / ( this.numberSlides * 6 ) ) * 100 ); 
-
-    this.report.title = 'Verb Slider Report';
-    this.report.scoreMessage = 'You scored ' + score + '%';
-    this.report.headings = ['slide set'];
-
-    for( let i = 0; i < this.numberSlides; i++ ) {
-      let heading = 'tile ' + i + 1;
-      this.report.headings.push( heading );
+    const answer = this.answers[this.currentSlideSet];
+    const response = this.verbSlides;
+    for(let i = 0; i < response.length; i++) {
+      if( answer[i] === response[i] ) this.numberCorrect++;
     }
 
-    this.report.responses = this.responses;
-  }
+    const answerObject: any = {};
+    const answers: string[] = [];
+    const responses: string[] = [];
 
-  getAnswer() {
+    responseObj.slideSet = this.currentSlideSet + 1;
+    responseObj.answers = this.answers[this.currentSlideSet];
+    responseObj.responses = response;
+
+    this.responses.push( responseObj );
+
     if( this.currentSlideSet === this.numberSlides - 1 ) {
-      const responseObj: any = {};
-      const answer = this.answers[this.currentSlideSet];
-      const response = this.verbSlides;
-      for(let i = 0; i < response.length; i++) {
-        if( answer[i] === response[i] ) this.numberCorrect++;
+      this.showForm = false;
+      this.showReport = true;
+      this.showOverlay = true;
+      score = Math.round( ( this.numberCorrect / ( this.numberSlides * 6 ) ) * 100 ); 
+
+      this.report.title = 'Verb Slider Report';
+      this.report.scoreMessage = 'You scored ' + score + '%';
+      this.report.headings = ['slide set'];
+
+      for( let i = 0; i < this.numberSlides; i++ ) {
+        let heading = 'tile ' + i + 1;
+        this.report.headings.push( heading );
       }
 
-      const answerObject: any = {};
-      const answers: string[] = [];
-      const responses: string[] = [];
-
-      responseObj.slideSet = this.currentSlideSet;
-      responseObj.answers = this.answers[this.currentSlideSet];
-      responseObj.responses = response;
-
-      this.responses.push( responseObj );
-
-      this.currentSlideSet++;
-
-      this.getNextSet();
+      this.report.responses = this.responses;
     } else {
-      this.createReport();
+      this.getNextSet();
     }
   }
 
