@@ -75,7 +75,7 @@ export class VocabularySliderComponent {
           this.dictionary = categoryDictionary;
         }
 
-        this.getQuestionSet( this.numberSlides, this.numberSlides, this.dictionary.length );
+        this.getQuestionSet( numberCards, numberCards, this.dictionary.length );
         this.displaySlideSet( this.currentSlideSet );;
       }, (error) => {
         console.log('there was an error sending the query', error);
