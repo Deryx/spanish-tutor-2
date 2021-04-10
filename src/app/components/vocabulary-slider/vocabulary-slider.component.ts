@@ -14,6 +14,7 @@ import { ApolloModule, Apollo } from 'apollo-angular';
 })
 export class VocabularySliderComponent {
   showOverlay: boolean = true;
+  showLongOverlay: boolean = false;
   showVocabularyOverlay: boolean = true;
   showForm: boolean = false;
   showReport: boolean = false;
@@ -38,7 +39,7 @@ export class VocabularySliderComponent {
 
   private queryDictionary: Subscription;
 
-  constructor( private vs: VocabularyService, private apollo: Apollo, private randomNumberService: RandomNumberGeneratorService, private router: Router ) {}
+  constructor( private vs: VocabularyService, private randomNumberService: RandomNumberGeneratorService, private router: Router ) {}
 
   drop(event: CdkDragDrop<string[]>) {
     moveItemInArray(
@@ -170,7 +171,8 @@ export class VocabularySliderComponent {
     if( this.currentSlideSet === this.numberSlides - 1 ) {
       this.showForm = false;
       this.showReport = true;
-      this.showOverlay = true;
+      this.showOverlay = this.numberSlides === 1;
+      this.showLongOverlay = this.numberSlides > 1;
       score = Math.round( ( this.numberCorrect / ( this.numberSlides * 6 ) ) * 100 ); 
 
       this.report.title = 'Vocabulary Slider Report';
