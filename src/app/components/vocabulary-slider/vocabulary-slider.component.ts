@@ -70,7 +70,8 @@ export class VocabularySliderComponent {
         const dictionaryLength = this.dictionary.length;
         let categoryDictionary: any = [];
         if( this.selectedCategory ) {
-          categoryDictionary = this.dictionary.filter( category => ( category === parseInt( this.selectedCategory.toString() ) ) );
+          categoryDictionary = this.dictionary.filter( word => ( word.category === parseInt( this.selectedCategory.toString() ) ) );
+          console.log('category dictionary', categoryDictionary);
           this.dictionary = categoryDictionary;
         }
 
