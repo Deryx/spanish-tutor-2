@@ -65,12 +65,12 @@ export class VocabularySliderComponent {
     this.vs.getDictionary()
       .subscribe( result => {
         this.dictionary = JSON.parse(JSON.stringify(result));
+        console.log('dictionary', this.dictionary);
         let questionDictionary: any;
         const dictionaryLength = this.dictionary.length;
         let categoryDictionary: any = [];
         if( this.selectedCategory ) {
           categoryDictionary = this.dictionary.filter( category => ( category === parseInt( this.selectedCategory.toString() ) ) );
-          console.log(categoryDictionary);
           this.dictionary = categoryDictionary;
         }
 
