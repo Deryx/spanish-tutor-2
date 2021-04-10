@@ -1,5 +1,5 @@
 <app-overlay *ngIf='showOverlay'></app-overlay>
-<app-long-overlay *ngIf='showOverlay'></app-long-overlay>
+<app-long-overlay *ngIf='showLongOverlay'></app-long-overlay>
 <app-verb-overlay-form (formChange)='getOverlayData($event)' *ngIf='showVerbOverlay'></app-verb-overlay-form>
 <app-verb-slider-report [reportInfo]="report" *ngIf='showReport'></app-verb-slider-report>
 <section>
