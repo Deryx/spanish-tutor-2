@@ -69,16 +69,12 @@ export class VocabularySliderComponent {
         const dictionaryLength = this.dictionary.length;
         let categoryDictionary: any = [];
         if( this.selectedCategory ) {
-          categoryDictionary = this.dictionary.filter( ( category, index ) => {
-            if( category === parseInt( this.selectedCategory.toString() ) ) {
-              return this.dictionary[index];
-           }
-          });
+          categoryDictionary = this.dictionary.filter( category => ( category === parseInt( this.selectedCategory.toString() ) ) );
     
           this.dictionary = categoryDictionary;
         }
 
-        this.getQuestionSet( this.numberSlides, numberCards, this.dictionary.length );
+        this.getQuestionSet( this.numberSlides, this.numberSlides, this.dictionary.length );
         this.displaySlideSet( this.currentSlideSet );;
       }, (error) => {
         console.log('there was an error sending the query', error);
