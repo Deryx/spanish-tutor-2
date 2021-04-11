@@ -15,6 +15,8 @@ export class VerbSliderReportComponent implements OnInit {
     const report: any = document.querySelector( 'section > div' );
 
     if(longOverlay) {
+      const reportHeight = report.clientHeight;
+      longOverlay.style.height = reportHeight + 100 + 'px';
       report.style.marginTop = "50rem";
     } 
   }
