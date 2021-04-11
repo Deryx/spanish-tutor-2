@@ -12,10 +12,10 @@ export class VerbSliderReportComponent implements OnInit {
 
   ngOnInit() {
     const longOverlay: any = document.querySelector( '#long-overlay' );
-    const report: any = document.querySelector( '.report' );
+    const report: any = document.querySelector( '#report' );
 
     if(longOverlay) {
-      const reportHeightNumber: number = window.innerHeight;
+      const reportHeightNumber: number = report.scrollHeight;
       const reportHeightString: string = reportHeightNumber.toString() + 'px';
       console.log(reportHeightString);
       longOverlay.style.height = reportHeightString;
