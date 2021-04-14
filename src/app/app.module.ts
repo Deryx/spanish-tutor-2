@@ -2,8 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { ApolloModule, APOLLO_OPTIONS } from 'apollo-angular';
-import { HttpLinkModule, HttpLink } from 'apollo-angular-link-http';
 import { InMemoryCache } from "apollo-cache-inmemory";
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -15,45 +13,45 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { MarqueeComponent } from './components/marquee/marquee.component';
 import { LetterPronunciationComponent } from './components/letter-pronunciation/letter-pronunciation.component';
-import { VocabularySliderComponent } from './components/vocabulary-slider/vocabulary-slider.component';
-import { VocabularyQuizComponent } from './components/vocabulary-quiz/vocabulary-quiz.component';
-import { VocabularyCompletionComponent } from './components/vocabulary-completion/vocabulary-completion.component';
-import { VocabularyScrambleComponent } from './components/vocabulary-scramble/vocabulary-scramble.component';
-import { VerbConjugatorComponent } from './components/verb-conjugator/verb-conjugator.component';
-import { VocabularyFlashcardComponent } from './components/vocabulary-flashcard/vocabulary-flashcard.component';
-import { VerbFlashcardComponent } from './components/verb-flashcard/verb-flashcard.component';
+import { VocabularySliderComponent } from './vocabulary/slider/slider.component';
+import { QuizComponent } from './vocabulary/quiz/quiz.component';
+import { CompletionComponent } from './vocabulary/completion/completion.component';
+import { ScrambleComponent } from './vocabulary/scramble/scramble.component';
+import { ConjugatorComponent } from './verbs/conjugator/conjugator.component';
+import { VocabularyFlashcardComponent } from './vocabulary/flashcard/flashcard.component';
+import { VerbFlashcardComponent } from './verbs/flashcard/flashcard.component';
 
-import { VocabularyService } from './services/vocabulary.service';
-import { VerbService } from './services/verb.service';
+import { VocabularyService } from './vocabulary/services/vocabulary.service';
+import { VerbService } from './verbs/services/verb.service';
 import { RandomNumberGeneratorService } from './services/random-number-generator.service';
-import { VocabularyCategoriesService } from './services/vocabulary-categories.service';
+import { VocabularyCategoriesService } from './vocabulary/services/vocabulary-categories.service';
 import { OverlayComponent } from './components/overlay/overlay.component';
 import { LongOverlayComponent } from './components/long-overlay/long-overlay.component';
-import { ConjugatorOverlayFormComponent } from './components/conjugator-overlay-form/conjugator-overlay-form.component';
-import { VocabularyOverlayFormComponent } from './components/vocabulary-overlay-form/vocabulary-overlay-form.component';
+import { ConjugatorOverlayFormComponent } from './verbs/conjugator-overlay-form/conjugator-overlay-form.component';
+import { VocabularyOverlayFormComponent } from './vocabulary/overlay-form/overlay-form.component';
 import { HomeComponent } from './components/home/home.component';
 import { CardComponent } from './components/card/card.component';
 import { ReportComponent } from './components/report/report.component';
-import { ConjugatorReportComponent } from './components/conjugator-report/conjugator-report.component';
-import { SliderReportComponent } from './components/slider-report/slider-report.component';
+import { ConjugatorReportComponent } from './verbs/conjugator-report/conjugator-report.component';
+import { VocabularySliderReportComponent } from './vocabulary/slider-report/slider-report.component';
 import { SpanishAccentsComponent } from './components/spanish-accents/spanish-accents.component';
-import { VerbSliderComponent } from './components/verb-slider/verb-slider.component';
-import { VocabularyFillInComponent } from './components/vocabulary-fill-in/vocabulary-fill-in.component';
-import { VerbOverlayFormComponent } from './components/verb-overlay-form/verb-overlay-form.component';
-import { VerbSliderReportComponent } from './components/verb-slider-report/verb-slider-report.component';
+import { VerbSliderComponent } from './verbs/slider/slider.component';
+import { FillInComponent } from './vocabulary/fill-in/fill-in.component';
+import { VerbOverlayFormComponent } from './verbs/overlay-form/overlay-form.component';
+import { VerbSliderReportComponent } from './verbs/slider-report/slider-report.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'letter-pronunciation', component: LetterPronunciationComponent },
-  { path: 'vocabulary-completion', component: VocabularyCompletionComponent },
+  { path: 'completion', component: CompletionComponent },
   { path: 'vocabulary-flashcard', component: VocabularyFlashcardComponent },
-  { path: 'vocabulary-quiz', component: VocabularyQuizComponent },
-  { path: 'vocabulary-scramble', component: VocabularyScrambleComponent },
+  { path: 'quiz', component: QuizComponent },
+  { path: 'scramble', component: ScrambleComponent },
   { path: 'vocabulary-slider', component: VocabularySliderComponent },
   { path: 'verb-flashcard', component: VerbFlashcardComponent },
-  { path: 'verb-conjugator', component: VerbConjugatorComponent },
+  { path: 'conjugator', component: ConjugatorComponent },
   { path: 'verb-slider', component: VerbSliderComponent },
-  { path: 'vocabulary-fill-in', component: VocabularyFillInComponent }
+  { path: 'fill-in', component: FillInComponent }
 
 ];
 
@@ -65,10 +63,10 @@ const appRoutes: Routes = [
     FooterComponent,
     MarqueeComponent,
     VocabularySliderComponent,
-    VocabularyQuizComponent,
-    VocabularyCompletionComponent,
-    VocabularyScrambleComponent,
-    VerbConjugatorComponent,
+    QuizComponent,
+    CompletionComponent,
+    ScrambleComponent,
+    ConjugatorComponent,
     VocabularyFlashcardComponent,
     VerbFlashcardComponent,
     LongOverlayComponent,
@@ -80,18 +78,16 @@ const appRoutes: Routes = [
     CardComponent,
     ReportComponent,
     ConjugatorReportComponent,
-    SliderReportComponent,
+    VocabularySliderReportComponent,
     SpanishAccentsComponent,
     VerbSliderComponent,
-    VocabularyFillInComponent,
+    FillInComponent,
     VerbOverlayFormComponent,
     VerbSliderReportComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    ApolloModule,
-    HttpLinkModule,
     HttpClientModule,
     FormsModule,
     DragDropModule,
@@ -100,18 +96,7 @@ const appRoutes: Routes = [
       { enableTracing: true }
     )
   ],
-  providers: [{
-    provide: APOLLO_OPTIONS,
-    useFactory: (httpLink: HttpLink) => {
-      return {
-        cache: new InMemoryCache(),
-        link: httpLink.create({
-          uri: "http://localhost:5000/graphql"
-        })
-      }
-    },
-    deps: [HttpLink]
-  }, VocabularyService, VerbService, RandomNumberGeneratorService, VocabularyCategoriesService],
+  providers: [VocabularyService, VerbService, RandomNumberGeneratorService, VocabularyCategoriesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
