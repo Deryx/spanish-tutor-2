@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { VocabularySliderComponent } from './vocabulary-slider.component';
+import { VocabularySliderComponent } from './slider.component';
 
 describe('VocabularySliderComponent', () => {
   let component: VocabularySliderComponent;
