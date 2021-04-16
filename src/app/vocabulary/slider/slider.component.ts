@@ -100,7 +100,6 @@ export class VocabularySliderComponent {
       let card: any = {};
       let vocabularyId = cardSet[i];
       card.translation = vocabulary[vocabularyId].translation;
-      card.image = vocabulary[vocabularyId].image;
       card.answer = vocabulary[vocabularyId].word;
 
       (function(index) {
@@ -159,7 +158,8 @@ export class VocabularySliderComponent {
     }
     responseObj.slideSet = this.currentSlideSet + 1;
     responseObj.translations = translations;
-    responseObj.answers = response;
+    responseObj.answers = answers;
+    responseObj.userAnswers = response;
 
     this.responses.push( responseObj );
 
