@@ -1,5 +1,4 @@
 <app-overlay *ngIf='showOverlay'></app-overlay>
-<app-long-overlay *ngIf='showLongOverlay'></app-long-overlay>
 <app-conjugator-overlay-form (formChange)='getOverlayData($event)' *ngIf='showConjugatorOverlay'></app-conjugator-overlay-form>
 <app-conjugator-report [reportInfo]="report" *ngIf='showReport'></app-conjugator-report>
 <section>

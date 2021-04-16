@@ -1,20 +1,18 @@
-<section>
-  <div class="col-xs-12 col-md-10 col-lg-6">
-    <h2>{{ reportInfo.title }}</h2>
-    <h3>{{ reportInfo.scoreMessage }}</h3>
-    <div class="row header">
-      <div class="col-xs-4" *ngFor='let heading of reportInfo.headings'>{{ heading }}</div>
-    </div>
-    <div class="row" *ngFor='let response of reportInfo.responses'>
-      <div class="col-xs-4">{{ response.question }}</div>
-      <div class="col-xs-4">{{ response.answer }}</div>
-      <div class="col-xs-4">{{ response.response }}</div>
-    </div>
-    <form>
-      <div id="buttons" class="col-lg-12 col-xs-12 buttons">
-        <input type="button" id="replayBtn" value="replay" (click)="replay()" />
-        <input type="button" id="quitBtn" value="quit" (click)="quit()" />
-      </div>
-    </form>
+<section id="report" class="col-xs-12 col-md-10 col-lg-6">
+  <h2>{{ reportInfo.title }}</h2>
+  <h3>{{ reportInfo.scoreMessage }}</h3>
+  <div class="row header">
+    <div class="col-xs-4" *ngFor='let heading of reportInfo.headings'>{{ heading }}</div>
   </div>
+  <div class="row" *ngFor='let response of reportInfo.responses'>
+    <div class="col-xs-4">{{ response.question }}</div>
+    <div class="col-xs-4">{{ response.answer }}</div>
+    <div class="col-xs-4">{{ response.response }}</div>
+  </div>
+  <form>
+    <div id="buttons" class="col-lg-12 col-xs-12 buttons">
+      <input type="button" id="replayBtn" value="replay" (click)="replay()" />
+      <input type="button" id="quitBtn" value="quit" (click)="quit()" />
+    </div>
+  </form>
 </section>

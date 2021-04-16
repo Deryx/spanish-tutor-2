@@ -13,7 +13,6 @@ import { Subscription } from 'rxjs';
 })
 export class VocabularySliderComponent {
   showOverlay: boolean = true;
-  showLongOverlay: boolean = false;
   showVocabularyOverlay: boolean = true;
   showForm: boolean = false;
   showReport: boolean = false;
@@ -61,21 +60,21 @@ export class VocabularySliderComponent {
 
   createQuestionSet = () => {
     const numberCards = 5;
+
     this.vs.getDictionary()
       .subscribe( result => {
         this.dictionary = JSON.parse(JSON.stringify(result));
-        console.log('dictionary', this.dictionary);
-        let questionDictionary: any;
-        const dictionaryLength = this.dictionary.length;
+
         let categoryDictionary: any = [];
         if( this.selectedCategory ) {
           categoryDictionary = this.dictionary.filter( word => ( word.category === parseInt( this.selectedCategory.toString() ) ) );
-          console.log('category dictionary', categoryDictionary);
           this.dictionary = categoryDictionary;
         }
 
-        this.getQuestionSet( this.numberSlides, numberCards, this.dictionary.length );
-        this.displaySlideSet( this.currentSlideSet );;
+        const dictionaryLength = this.dictionary.length;
+
+        this.getQuestionSet( this.numberSlides, numberCards, dictionaryLength );
+        this.displaySlideSet( this.currentSlideSet );
       }, (error) => {
         console.log('there was an error sending the query', error);
       });
@@ -167,8 +166,7 @@ export class VocabularySliderComponent {
     if( this.currentSlideSet === this.numberSlides - 1 ) {
       this.showForm = false;
       this.showReport = true;
-      this.showOverlay = this.numberSlides === 1;
-      this.showLongOverlay = this.numberSlides > 1;
+      this.showOverlay = true;
       score = Math.round( ( this.numberCorrect / ( this.numberSlides * 6 ) ) * 100 ); 
 
       this.report.title = 'Vocabulary Slider Report';

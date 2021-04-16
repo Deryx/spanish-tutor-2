@@ -12,7 +12,6 @@ import { Subscription } from 'rxjs';
 })
 export class ConjugatorComponent {
   showOverlay: boolean = true;
-  showLongOverlay: boolean = false;
   showConjugatorOverlay: boolean = true;
   showForm: boolean = false;
   showReport: boolean = false;
@@ -172,8 +171,7 @@ export class ConjugatorComponent {
   createReport = (): void => {
     this.showForm = false;
     this.showReport = true;
-    this.showOverlay = this.numberQuestions === 1;
-    this.showLongOverlay = this.numberQuestions > 1;
+    this.showOverlay = true;
 
     for(let i = 0; i < this.numberQuestions; i++) {
       if (this.reportData[i]['answers'].yo === this.reportData[i]['userAnswers'].yo) this.numberCorrect++;

@@ -14,14 +14,12 @@ import { Subscription } from 'rxjs';
 
 export class VerbSliderComponent {
   showOverlay: boolean = true;
-  showLongOverlay: boolean = false;
   showVerbOverlay: boolean = true;
   showForm: boolean = false;
   showReport: boolean = false;
 
-  selectedCategory: string;
   infinitives: any;
-  numberSlides: number;
+  numberSlides: number = 0;
   currentSlideSet: number = 0;
   numberCorrect: number = 0;
 
@@ -66,12 +64,15 @@ export class VerbSliderComponent {
   }
 
   createQuestionSet = () => {
+    const numberCards = 6;
+
     this.vs.getVerbs()
     .subscribe( result => {
       const infinitiveData = JSON.parse( JSON.stringify(result) );
       this.infinitives = infinitiveData;
+      const infinitivesLength = this.infinitives.length;
 
-      this.getQuestionSet( this.numberSlides, this.infinitives.length );
+      this.getQuestionSet( this.numberSlides, infinitivesLength );
       this.displaySlideSet( this.currentSlideSet );
     }, (error) => {
       console.log('there was an error sending the query', error);
@@ -79,10 +80,9 @@ export class VerbSliderComponent {
   }
 
   getQuestionSet( numQuestions: number, maxNumber: number ) {
-    const slideSet: number[] = [];
-    for( let i = 0; i < this.numberSlides; i++ ) {
-      this.randomNumberService.generateRandomNumberArray( numQuestions, maxNumber, slideSet );
-    }
+    let slideSet: number[] = [];
+
+    this.randomNumberService.generateRandomNumberArray( numQuestions, maxNumber, slideSet );
 
     this.questionSet = slideSet;
   }
@@ -157,8 +157,7 @@ export class VerbSliderComponent {
     if( this.currentSlideSet === this.numberSlides - 1 ) {
       this.showForm = false;
       this.showReport = true;
-      this.showOverlay = this.numberSlides === 1;
-      this.showLongOverlay = this.numberSlides > 1;
+      this.showOverlay = true;
       score = Math.round( ( this.numberCorrect / ( this.numberSlides * 6 ) ) * 100 ); 
 
       this.report.title = 'Verb Slider Report';
