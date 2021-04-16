@@ -61,6 +61,18 @@ div div {
 .row div:last-child {
     padding: 0;
 }
+
+.fields {
+    width: 100%;
+}
+
+.fields h6 {
+    display: inline-block;
+    width: 33%;
+    text-transform: uppercase;
+    text-align: center;
+    margin-top: 0.625rem;
+}
  
 .buttons {
     margin-top: 50px;

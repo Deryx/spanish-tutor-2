@@ -3,6 +3,11 @@
   <h3>{{ reportInfo.scoreMessage }}</h3>
   <div class="row" *ngFor='let response of reportInfo.responses'>
     <h4>Tile Set {{ response.slideSet }}</h4>
+    <div class="fields col-xs-12">
+      <h6 class="field">pronoun</h6>
+      <h6 class="field">correct answer</h6>
+      <h6 class="field">user answer</h6>
+    </div>
     <div class="col-xs-12">
       <div class="col-xs-4">Yo</div>
       <div class="col-xs-4">{{ response.answers[0] }}</div>
