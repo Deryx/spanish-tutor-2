@@ -128,9 +128,9 @@ export class VerbSliderComponent {
 
   getNextSet() {
     this.verbSlides = [];
+    this.currentSlideSet++;
     if( this.currentSlideSet < this.numberSlides ) {
       this.displaySlideSet( this.currentSlideSet );
-      this.currentSlideSet++;
     }
   }
 
